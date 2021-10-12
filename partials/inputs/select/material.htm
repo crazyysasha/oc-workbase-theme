@@ -1,0 +1,39 @@
+==
+{##}
+<div x-data="{
+    items: {{items | join(', ')}}
+}" class="inline-block relative text-lime-500  order-1 w-full mb-4" x-on:keypress.enter="callback">
+    <template x-for="(item, index) in selected" :key="index">
+        <input type="checkbox" name="types[]" x-bind:value="item.value" id="" class="hidden" checked="">
+    </template>
+
+    <div class="relative flex text-sm border-2 border-lime-500 rounded-md p-2 w-full focus:outline-none" x-bind:class="{ 'rounded-b-none': isOpen }">
+        <div class="bg-white transition-all absolute rounded-md -top-4 text-lime-500  px-0 ml-2 text-left" x-bind:class="{'p-2 inset-0': selected.length < 1, '-top-4 px-1 mx-1': selected.length > 0}"> 
+            <label for="{{field}}Field">{{ body | raw }}</label>
+        </div>
+        <button x-on:click="$event => toggleOpen($event)" class="focus:outline-none p-2 transition-all bg-primary bg-opacity-0 hover:bg-opacity-50 rounded-md block z-20" x-bind:class="{ 'rounded-br-none': isOpen }">
+            <div class="transition-transform transform" x-bind:class="{ 'rotate-180': isOpen }">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+            </div>
+        </button>
+    </div>
+    <div class="absolute border border-t-0  border-primary bg-white w-full z-50 max-h-72 overflow-y-auto" x-show="isOpen" x-transition="" style="display: none;">
+        <ul x-on:click.outside="isOpen = false">
+            <template x-for="(item, index) in items" :key="index">
+                <li x-on:click="$event => toggle($event, item)" class="flex flex-nowrap justify-between w-full cursor-pointer bg-primary bg-opacity-0 hover:bg-opacity-50 transition-colors p-2 box-border">
+                    <div x-text="item.label" class="overflow-ellipsis overflow-hidden whitespace-nowrap">
+                    </div>
+                    <template x-if="selected.find(e => {return e.value == item.value})">
+                        <div class="">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                    </template>
+                </li>
+            </template>
+        </ul>
+    </div>
+</div>

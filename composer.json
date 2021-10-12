@@ -1,0 +1,8 @@
+{
+    "name": "crazy/crazy.tailpine-theme",
+    "type": "october-theme",
+    "description": "Base Tailwindcss + Alpine.js theme for OctoberCMS",
+    "require": {
+        "composer/installers": "~1.0"
+    }
+}

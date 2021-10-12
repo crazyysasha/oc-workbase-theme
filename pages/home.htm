@@ -1,0 +1,88 @@
+url = "/"
+layout = "default"
+title = "Home"
+==
+<?php
+?>
+==
+{##}
+<section class="container">
+    <div>
+        <h1 class="text-3xl font-bold">В Ташкенте работает 325 779 специалистов, 205 469 дистанционно</h1>
+    </div>
+    <div class="my-10">
+        {% partial "cards/default" %}
+    </div>
+</section>
+<section>
+    <div class="flex container">
+        <div>
+            <h1 class="text-3xl font-bold py-5">
+                Как нанять <span class="text-blue-800">специалиста?</span>
+            </h1>
+            <h3 class="text-lg"> Оставьте вашу заявку.</h3>
+            <p class="text-gray-400">Опишите работу которую необходимо выполнить для подбора подходящего специалиста.</p>
+            <h3 class="text-lg pt-5">Исполнители свяжутся с вами.</h3>
+            <p class="text-gray-400">Выберите подходящего специалиста по отзывам и цене.</p>
+            <h3 class="text-lg pt-5">Оставьте отзыв по окончанию работы.</h3>
+            <p class="text-gray-400">После выполнения работы не забудьте оставить отзыв и оценку выбранному специалисту.</p>
+        </div>
+    
+        <div class="relative">
+            <img src="{{'assets/images/MaskGroup.png' | theme}}" alt="">
+            <div class="absolute -bottom-4 left-8 bg-gray-100 p-5 rounded-tr-3xl rounded-bl-3xl w-7/12">
+                <ul class="flex justify-between">
+                    <li>
+                        <img src="{{ 'assets/images/Clock.png' | theme}}" alt="" class="h-4 mb-2 mx-auto">
+                        <p>Заявка</p>
+                    </li>
+                    <li>
+                        <img src="{{ 'assets/images/Search.png' | theme}}" alt="" class="h-4 mb-2 mx-auto">
+                        <p>Поиск</p>
+                    </li>
+                    <li>
+                        <img src="{{ 'assets/images/Stars.png' | theme}}" alt="" class="h-4 mb-2 mx-auto">
+                        <p>Отзыв</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="bg-gray-50 mt-10">
+    <div class="flex my-5 container ">
+        <div class="flex-1 mx-auto my-auto">
+            <h1 class="text-2xl font-bold mb-4">Для максимального <br> удобства, скачайте <br> бесплатное <span class="text-blue-800">мобильное <br> приложение.</span></h1>
+            <a class="inline-block" href="#"><img src="{{'assets/images/appstorerus.png' | theme }}" alt="" width="110px"></a>
+            <a class="inline-block ml-5" href="#"><img src="{{'assets/images/icongoogleplay.png' | theme }}" alt="" width="120px"></a>
+
+        </div>
+        <div class="flex-1">
+            <img src="{{'assets/images/smartphone.png' | theme}}" alt="">
+        </div>
+    </div>
+</section>
+<section >
+    <div class="flex container">
+        <div class="flex-1">
+
+        </div>
+        <div class="flex-1">
+            <h1 class="text-2xl font-bold">За 12 месяцев 416 047 отзывов</h1>
+            <div>
+                <img src="" alt="" class="inline-block"> 
+                <p class="inline-block font-bold">Фарух Усманов</p>
+                <p class="float-right inline-block text-orange-500">10 из 10</p>
+                <p>
+                    Нам нужен был электрик. Мастер произвел отличное впечатление. Работу выполнил хорошо, установил розетки. Мастер сказал, что если понадобятся еще услуги электрика, то всегда можно к нему обратиться.P/s: Мастер пришел в перчатках и маске.
+                </p>
+                <p class=" text-gray-500">
+                    Азамат
+                    <span class="bg-gray-500 rounded-full w-1"></span>
+                    «двери и замки»
+                    11 ноября 2020
+                </p>
+            </div>
+        </div>
+    </div>
+</section>

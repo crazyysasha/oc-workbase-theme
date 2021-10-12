@@ -1,0 +1,9 @@
+name: 'Base Tailwindcss + Alpine.js'
+description: 'Base Tailwindcss + Alpine.js theme for OctoberCMS'
+author: 'Sasha Raimov'
+homepage: 'https://crazy.bigsoft.uz'
+authorCode: Crazy
+code: crazy.tailpine
+parent: ''
+database: '0'
+form: config/fields.yaml

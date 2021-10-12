@@ -1,0 +1,40 @@
+
+==
+<?php
+?>
+==
+{##}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{this.page.title}}</title>
+    {% component 'alternateHrefLangElements' %}
+    <link rel="stylesheet" href="{{['assets/css/app.css', '@framework.extras.css']|theme}}">
+    <link rel="icon" href="{{ this.theme.favicon.path }}">
+    {% styles %}
+</head>
+<body class="">
+    {% partial "headers/default" %}
+    <div id="page" class="mt-10">
+        {% page %}        
+    </div>
+
+<section>
+    {% partial "footers/default" %}
+</section>
+
+
+    {% placeholder modals %}
+    
+    <script src="{{ 'assets/js/app.js' | theme }}"></script>
+    <script src="{{ [
+        '@jquery',
+        '@framework',
+        '@framework.extras',
+    ]|theme }}"></script>
+    {% scripts %}
+</body>
+</html>

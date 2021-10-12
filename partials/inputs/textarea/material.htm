@@ -1,0 +1,51 @@
+==
+{##}
+<div 
+    x-data="{
+        isFocused: false,
+        {{field}}: '{{ defaultValue }}', 
+        placeholder: '{{ palceholder }}'}"  
+    class="relative mb-4">
+    
+    <div 
+        class="
+            absolute left-0 top-0 flex items-center transition-all delay-100 px-1
+            transform 
+            {% if defaultValue %} 
+                -translate-y-3 scale-90
+            {% else %} 
+                translate-y-3
+            {% endif %}
+            "
+        :class="{
+            '-translate-y-3 scale-90': isFocused || {{field}}.length > 0,
+            'translate-y-2.5': !isFocused && {{field}}.length == 0,
+        }">
+        
+        <label for="{{field}}Field"
+            class="whitespace-nowrap bg-white text inline-block text-lime-500 transition-all delay-100
+                {% if defaultValue %} 
+                    px-1
+                {% else %} 
+                    px-2.5
+                {% endif %}"
+            :class="{
+                'px-1': isFocused || {{field}}.length > 0,
+                'px-2.5': !isFocused && {{field}}.length == 0,
+            }">
+            {{ body | raw }}
+        </label>
+    
+    </div>
+
+    <textarea  type="text" 
+            id="{{field}}Field"
+            class="text-sm border-2 border-lime-500 rounded-md p-2.5 px-4 w-full focus:outline-none placeholder-transparent focus:placeholder-lime-200" 
+            name="{{field}}" 
+            x-model="{{field}}"
+            @focus="isFocused = true"
+            @focusout="isFocused = false"
+            placeholder="{{placeholder}}"
+            value="{{ defaultValue }}">
+    </textarea>
+</div>

@@ -1,0 +1,5 @@
+==
+{##}
+<button x-on:click="active = false" {% if disabled %} disabled {% endif %} class="bg-orange-400 text-white rounded-full ml-2 py-0.5 px-4 border-2 border-transparent hover:bg-transparent hover:border-orange-400 hover:text-orange-400 transition-colors duration-150 focus:outline-none focus:text-orange-400 focus:bg-transparent focus:border-orange-400" type="button">
+{{ body | raw }}
+</button>

@@ -1,1 +1,1 @@
-# oc-workbase-theme
+# Base Tailwindcss + Alpine.js theme for OctoberCMS

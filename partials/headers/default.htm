@@ -1,0 +1,61 @@
+==
+{##}
+<header class="">
+   
+    <nav class="py-4" x-data="{ open: false }">
+        <ul class="flex w-3/4 m-auto justify-between">
+            <li class="">
+                <a href="{{ 'home' | page }}" class="mr-auto">
+                    <img src="{{'assets/images/logo.png' | theme}}" width="100%">
+                </a>
+            </li>
+            <li class="my-auto">
+                <a href="#"> Вы специалист?</a>
+            </li>
+            <li class="my-auto">
+                <a href="#">Мои заказы</a>
+            </li>
+            <li class="my-auto">
+                <a href="#">+ 998 97 456 45 45</a>
+            </li>
+            <li class="my-auto">
+                <button class="border rounded-full px-4 py-1" x-on:click="open = ! open">
+                    <img class="inline-block" src="{{'assets/images/location.png' | theme}}" alt=""> г. Ташкент
+                </button>
+            </li>
+            <li class="my-auto">
+                <button class="border rounded-full px-4 py-1">
+                    <img class="inline-block" src="{{'assets/images/enter.png' | theme}}" alt=""> Вход
+                </button>
+            </li>
+            <li class="my-auto">
+                <select class="border rounded-full px-6 py-1" x-on:click="open = ! open">
+                    <option href="#">Ru</option>
+                    <option href="#">Uz</option>
+                    <option href="#">En</option>
+                </select>
+            </li>
+        </ul>
+    </nav>
+    <section class="relative">
+        <section class="w-full">
+            <video class="object-cover" src="{{ 'assets/videos/videobg.mp4' | theme }}" width="100%" height="100%" autoplay allowfullscreen muted loop></video>
+        </section>
+        <section class="bg-header-pattern absolute top-36 left-20 w-11/12">
+            <h2 class="text-4xl font-bold mb-10 text-white">Работа в Узбекистане</h2>
+            <p class="text-xl font-bold my-10 text-white">538 603 клиента доверили дела WorkBase</p>
+            <form action="/action_page.php" >
+                    <input type="text" placeholder="Профессия, должность или специалист" name="search" class="text-black outline-none rounded-tl-full rounded-bl-full px-8 py-2 bg-white mr-0 border-2 border-white w-1/2 -mr-2">
+                    <button type="submit" class="bg-white text-white m-0 outline-none rounded-tr-full rounded-br-full -ml-1 border-2 border-white focus:outline-none">
+                        <div class="bg-orange-400 rounded-full px-11 py-2">Заказать услугу</div>
+                    </button>
+              </form>
+              <ul class="flex mt-10 text-white text-sm text-xl ">
+                  <li class=""><a class="border-b border-white" href="#"># создание сайтов</a></li>
+                  <li class="ml-5"><a class="border-b border-white" href="#"># выгул собак</a></li>
+                  <li class="ml-5"><a class="border-b border-white" href="#"># ремонт под ключ</a></li>
+                  <li class="ml-5"><a class="border-b border-white" href="#"># математика дистанционно</a></li>
+              </ul>
+        </section>
+    </section> 
+</header>
