@@ -3179,20 +3179,16 @@ alpinejs__WEBPACK_IMPORTED_MODULE_0__.default.data('multiselect', function (item
       }
 
       this.timeout = setTimeout(callback, 2000);
-      event.preventDefault();
-
-      if (!this.selected.find(function (it) {
-        return it.value == item.value;
-      })) {
-        this.selected.push(item);
-        return;
-      }
-
-      var index = this.selected.indexOf(item);
-
-      if (index > -1) {
-        this.selected.splice(index, 1);
-      }
+      event.preventDefault(); // if (!this.selected.find(it => {
+      //     return it.value == item.value;
+      // })) {
+      //     this.selected.push(item);
+      //     return;
+      // }
+      // const index = this.selected.indexOf(item);
+      // if (index > -1) {
+      //     this.selected.splice(index, 1);
+      // }
     },
     init: function init() {
       this.items = items;

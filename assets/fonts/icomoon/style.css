@@ -1,0 +1,200 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot');
+  src:  url('fonts/icomoon.eot') format('embedded-opentype'),
+    url('fonts/icomoon.txt') format('truetype'),
+    url('fonts/icomoon-1.txt') format('woff'),
+    url('fonts/icomoon.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-groupuser:before {
+  content: "\e926";
+  color: #f38649;
+}
+.icon-notecorrect:before {
+  content: "\e927";
+  color: #f38649;
+}
+.icon-protector:before {
+  content: "\e928";
+  color: #f38649;
+}
+.icon-check:before {
+  content: "\e929";
+  color: #f38649;
+}
+.icon-x:before {
+  content: "\e925";
+}
+.icon-frameBorder:before {
+  content: "\e903";
+  color: #abb2da;
+}
+.icon-bonus:before {
+  content: "\e900";
+  color: #fff;
+}
+.icon-calculator:before {
+  content: "\e901";
+  color: #303f9f;
+}
+.icon-camera:before {
+  content: "\e902";
+  color: #d1d4e3;
+}
+.icon-clear:before {
+  content: "\e904";
+  color: #303f9f;
+}
+.icon-clock:before {
+  content: "\e905";
+  color: #f38649;
+}
+.icon-comments:before {
+  content: "\e906";
+  color: #f38649;
+}
+.icon-facebook:before {
+  content: "\e907";
+  color: #fff;
+}
+.icon-frame:before {
+  content: "\e908";
+  color: #303f9f;
+}
+.icon-frameStar:before {
+  content: "\e909";
+  color: #303f9f;
+}
+.icon-galary:before {
+  content: "\e90a";
+  color: #abacbb;
+}
+.icon-home:before {
+  content: "\e90b";
+  color: #303f9f;
+}
+.icon-instagram:before {
+  content: "\e90c";
+  color: #fff;
+}
+.icon-job-2:before {
+  content: "\e90d";
+  color: #303f9f;
+}
+.icon-key:before {
+  content: "\e90e";
+  color: #303f9f;
+}
+.icon-laptop:before {
+  content: "\e90f";
+  color: #303f9f;
+}
+.icon-like:before {
+  content: "\e910";
+  color: #f38649;
+}
+.icon-location:before {
+  content: "\e911";
+  color: #abacbb;
+}
+.icon-makeup:before {
+  content: "\e912";
+  color: #303f9f;
+}
+.icon-medical:before {
+  content: "\e913";
+  color: #303f9f;
+}
+.icon-menu1:before {
+  content: "\e914";
+  color: #fff;
+}
+.icon-menu2:before {
+  content: "\e915";
+  color: #fff;
+}
+.icon-menu3:before {
+  content: "\e916";
+  color: #fff;
+}
+.icon-menu4:before {
+  content: "\e917";
+  color: #fff;
+}
+.icon-microphone:before {
+  content: "\e918";
+  color: #303f9f;
+}
+.icon-notebook:before {
+  content: "\e919";
+  color: #303f9f;
+}
+.icon-orangestar:before {
+  content: "\e91a";
+  color: #f38649;
+}
+.icon-orangestarbg:before {
+  content: "\e91b";
+  color: #f38649;
+}
+.icon-pencil:before {
+  content: "\e91c";
+  color: #fff;
+}
+.icon-picture:before {
+  content: "\e91d";
+  color: #abb2da;
+}
+.icon-rightAngle:before {
+  content: "\e91e";
+  color: #f38649;
+}
+.icon-search:before {
+  content: "\e91f";
+  color: #303f9f;
+}
+.icon-settings:before {
+  content: "\e920";
+  color: #303f9f;
+}
+.icon-shitanga:before {
+  content: "\e921";
+  color: #303f9f;
+}
+.icon-stars:before {
+  content: "\e922";
+  color: #303f9f;
+}
+.icon-telegram:before {
+  content: "\e923";
+  color: #fff;
+}
+.icon-telephone:before {
+  content: "\e924";
+  color: #fff;
+}
+.icon-user-tie:before {
+  content: "\e976";
+}
+.icon-eye:before {
+  content: "\e9ce";
+}

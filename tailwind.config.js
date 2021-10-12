@@ -1,4 +1,17 @@
 const colors = require('tailwindcss/colors')
+module.exports = {
+    variants: {
+      extend: {
+        aeroport: [
+            'Aeroport',
+            'Aeroport-Bold',
+            'Aeroport-Light',
+            'Aeroport-Italic',
+        ],
+        
+      }
+    }
+  }
 
 module.exports = {
     purge: {
@@ -282,16 +295,6 @@ module.exports = {
                 '"Noto Color Emoji"',
             ],
             serif: ['ui-serif', 'Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
-            mono: [
-                'ui-monospace',
-                'SFMono-Regular',
-                'Menlo',
-                'Monaco',
-                'Consolas',
-                '"Liberation Mono"',
-                '"Courier New"',
-                'monospace',
-            ],
         },
         fontSize: {
             xs: ['0.75rem', {lineHeight: '1rem'}],

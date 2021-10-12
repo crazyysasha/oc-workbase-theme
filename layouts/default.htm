@@ -12,13 +12,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{this.page.title}}</title>
     {% component 'alternateHrefLangElements' %}
+    <link rel="stylesheet" href="{{ 'assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css'|theme }}">
+    <link rel="stylesheet" href="{{ 'assets/fonts/icomoon/style.css'|theme }}">
+    <link rel="stylesheet" href="{{ 'assets/fonts/aeroport/stylesheet.css'|theme }}">
     <link rel="stylesheet" href="{{['assets/css/app.css', '@framework.extras.css']|theme}}">
     <link rel="icon" href="{{ this.theme.favicon.path }}">
     {% styles %}
 </head>
-<body class="">
+<body class="font-aeroport">
     {% partial "headers/default" %}
-    <div id="page" class="mt-10">
+    <div id="page" class="">
         {% page %}        
     </div>
 
@@ -29,7 +32,7 @@
 
     {% placeholder modals %}
     
-    <script src="{{ 'assets/js/app.js' | theme }}"></script>
+    <script src="{{ 'assets/js/app.js' |theme }}"></script>
     <script src="{{ [
         '@jquery',
         '@framework',
