@@ -1,19 +1,7 @@
 const colors = require('tailwindcss/colors')
-module.exports = {
-    variants: {
-      extend: {
-        aeroport: [
-            'Aeroport',
-            'Aeroport-Bold',
-            'Aeroport-Light',
-            'Aeroport-Italic',
-        ],
-        
-      }
-    }
-  }
 
 module.exports = {
+    important: true,
     purge: {
         enabled: false,
         content: [

@@ -15,12 +15,13 @@ title = "Home"
             <div class="bg-white rounded-xl px-5 py-4 m-3">
                 <div class=" p-2 rounded-full bg-gray-200 inline-block">
                     <img src="{{ 'assets/images/notebook.png' | theme }}" alt="">
+
                 </div>
                <div class="inline-block">
-                    <h1 class=" font-aeroport">
+                    <h3 class=" font-aeroport">
                         Репетиторы
-                    </h1>
-                    <h1 class="text-gray-300">(2)</h1>
+                    </h3>
+                    <span class="text-gray-300">(2)</span>
                </div>
                <div class="border-b border-dashed border-gray-400 mt-2">
                    <ul class="mb-5">
@@ -39,7 +40,7 @@ title = "Home"
     </div>
 </section>
 <section>
-    <div class="flex container">
+    <div class="flex container py-10">
         <div>
             <h1 class="text-3xl font-bold py-5">
                 Как нанять <span class="text-blue-800">специалиста?</span>
@@ -82,7 +83,32 @@ title = "Home"
 
         </div>
         <div class="flex-1">
-            <img src="{{'assets/images/smartphone.png' | theme}}" alt="">
+
+
+            <div class="relative" x-data="{
+                active: 1,
+                loop() {
+                    setInterval(() => { this.active = this.active === 4 ? 1 : this.active+1 }, 3000)
+                },
+            }" x-init="loop">
+      <div class="flex">
+        <div class="bg-white">
+          <img class="w-full h-96 object-cover bg-white" alt="1" src="{{'assets/images/smartphone.png' | theme}}" x-show="active == 1" x-transition:enter="transition duration-1000"
+            x-transition:enter-start="transform translate-x-full" x-transition:enter-end="transform translate-x-0" x-transition:leave="transition duration-1000" x-transition:leave-start="transform" x-transition:leave-end="transform -translate-x-full">
+        </div>
+        <div class="bg-white">
+          <img class="w-full h-96 object-cover bg-white" alt="2" src="{{'assets/images/smartphone2.png' | theme}}" x-show="active == 2" x-transition:enter="transition duration-1000"
+            x-transition:enter-start="transform translate-x-full" x-transition:enter-end="transform translate-x-0" x-transition:leave="transition duration-1000" x-transition:leave-start="transform" x-transition:leave-end="transform -translate-x-full">
+        </div>
+        <div class="bg-white">
+          <img class="w-full h-96 object-cover bg-white" alt="3" src="{{'assets/images/smartphone3.png' | theme}}" x-show="active == 3" x-transition:enter="transition duration-1000"
+            x-transition:enter-start="transform translate-x-full" x-transition:enter-end="transform translate-x-0" x-transition:leave="transition duration-1000" x-transition:leave-start="transform" x-transition:leave-end="transform -translate-x-full">
+        </div>
+      </div>
+    </div>
+
+
+            
         </div>
     </div>
 </section>
@@ -123,7 +149,7 @@ title = "Home"
                     10 ноября 2020
                 </p>
             </div>
-            <button class="my-5 px-4 py-2 rounded-full bg-blue-800 text-white"><span class=""> Все отзывы <i class="icon-rightAngle"></i> </span></button>
+            <button class="my-5 px-4 py-2 rounded-full bg-blue-800 text-white"><span class=""> Все отзывы <i class="icon-rightAngle text-white"></i> </span></button>
         </div>
         
     </div>
