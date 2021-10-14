@@ -1,119 +1,119 @@
 ==
 {##}
 <header class="">
-   
-    <nav class="py-4">
-        <ul class="flex w-3/4 m-auto justify-between">
-            <li class="">
-                <a href="{{ 'home' | page }}" class="mr-auto">
-                    <img src="{{'assets/images/logo.png' | theme}}" width="100%">
-                </a>
+
+
+        <nav
+        class="flex items-center justify-between flex-wrap p-6 fixed w-full z-10 top-0"
+        x-data="{ isOpen: false }"
+        @keydown.escape="isOpen = false"
+        :class="{ 'shadow-lg bg-white' : isOpen , 'bg-gray-800' : !isOpen}"
+      >
+      <div class="container">
+        <div class="flex items-center flex-shrink-0 text-white mr-6">
+          <a
+            class="text-white no-underline hover:text-white hover:no-underline"
+            href="#"
+          >
+            <span class="text-2xl pl-2"
+              ><i class="em em-grinning"></i> Brand McBrandface</span
+            >
+          </a>
+        </div>
+  
+        <!--Toggle button (hidden on large screens)-->
+        <button
+          @click="isOpen = !isOpen"
+          type="button"
+          class="block lg:hidden px-2 text-gray-500 hover:text-white focus:outline-none focus:text-white"
+          :class="{ 'transition transform-180': isOpen }"
+        >
+          <svg
+            class="h-6 w-6 fill-current"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <path
+              x-show="isOpen"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"
+            />
+            <path
+              x-show="!isOpen"
+              fill-rule="evenodd"
+              d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
+            />
+          </svg>
+        </button>
+  
+        <!--Menu-->
+        <div
+          class="w-full flex-grow lg:flex lg:items-center lg:w-auto"
+          :class="{ 'block shadow-3xl': isOpen, 'hidden': !isOpen }"
+          @click.away="isOpen = false"
+          x-show.transition="true"
+        >
+          <ul
+            class="pt-6 lg:pt-0 list-reset lg:flex justify-end flex-1 items-center"
+          >
+            <li class="mr-3">
+              <a
+                class="inline-block py-2 px-4 text-white no-underline"
+                href="#"
+                @click="isOpen = false"
+                >Active
+              </a>
             </li>
-            <li class="my-auto">
-                <a href="#"> Вы специалист?</a>
+            <li class="mr-3">
+              <a
+                class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4"
+                href="#"
+                @click="isOpen = false"
+                >link
+              </a>
             </li>
-            <li class="my-auto">
-                <a href="#">Мои заказы</a>
+            <li class="mr-3">
+              <a
+                class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4"
+                href="#"
+                @click="isOpen = false"
+                >link
+              </a>
             </li>
-            <li class="my-auto">
-                <a href="#">+ 998 97 456 45 45</a>
+            <li class="mr-3">
+              <a
+                class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4"
+                href="#"
+                @click="isOpen = false"
+                >link
+              </a>
             </li>
-            <li class="my-auto">
-               <div x-data="{ Modal : false }" @click.away="Modal = false">
-                <button class="border rounded-full px-4 py-1 focus:outline-none" @click="Modal = !Modal" >
-                    <img class="inline-block" src="{{'assets/images/location.png' | theme}}" alt=""> г. Ташкент
-                </button>
-                <div x-show="Modal" class="w-44 bg-white absolute z-10 px-5 py-3 rounded-xl top-20 ">
-                    <div class="flex justify-between">
-                        <span>Ваш город <br> <span class="text-blue-500">Ташкент?</span></span>
-                        <div class="inline-block p-1 py-0 rounded-full bg-gray-300 my-auto cursor-pointer" @click="Modal = !Modal"><i class="fa fa-times font-light"></i></div>
-                    </div>
-                    <div class="flex justify-between mt-5">
-                        <button @click="Modal = !Modal" class="px-5 text-sm py-1 bg-blue-800 rounded-full text-white focus:outline-none  border border-blue-800 hover:bg-white hover:text-blue-800 hover-border-blue-800">Да</button>
-                        <button @click="Modal = !Modal" class="px-5 text-sm py-1 bg-blue-800 rounded-full text-white focus:outline-none  border border-blue-800 hover:bg-white hover:text-blue-800 hover-border-blue-800">Нет</button>
-                    </div>
-                </div>
-               </div>
-            </li>
-             <li class="my-auto">
-                <div x-data="{ showModal : false }">
-                    <!-- Button -->
-                    <button @click="showModal = !showModal" class="border focus:outline-none focus:ring-0 rounded-full px-4 py-1">
-                        <img class="inline-block" src="{{'assets/images/enter.png' | theme}}" alt=""> Вход
-                    </button>
-                    <div x-show="showModal">
-                        <div  class="w-full fixed flex items-center justify-center overflow-auto z-50 bg-black bg-opacity-40 left-0 right-0 top-0 bottom-0" x-transition:enter="transition ease duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
-                            <div x-show="showModal" class="bg-white relative rounded-sm shadow-2xl p-6 smуа:w-10/12 mx-10 w-96  " @click.away="showModal = false" x-transition:enter="transition ease duration-100 transform" x-transition:enter-start="opacity-0 scale-90 translate-y-1" x-transition:enter-end="opacity-100 scale-100 translate-y-0" x-transition:leave="transition ease duration-100 transform" x-transition:leave-start="opacity-100 scale-100 translate-y-0" x-transition:leave-end="opacity-0 scale-90 translate-y-1">
-                                <h3 class="font-bold block text-2xl mb-3 text-center mb-6">Авторизация</h3>
-                                <div class="absolute top-3 right-3 text-sm inline-block p-1 py-0 rounded-full bg-gray-300 my-auto cursor-pointer" @click="showModal = !showModal"><i class="fa fa-times font-light"></i></div>
-                                <form action="https://workbase.mdg.uz/new/ru/form/reg/login" class="login-form active" method="post" accept-charset="utf-8">
-                                    <input type="hidden" name="csrf_test_name" value="93365a2df35b6aa7cf296e49822ee4f1">
-    
-                                    <div class="flex mb-10 mx-5 justify-between" x-data="{ isChecked_1 : false, isChecked_2:false}"> 
-                                        <div class="">
-                                            <input id="radio-3" class="hidden" type="radio" name="user" value="client" checked="" >
-                                            <label @click="isChecked_1 = true , isChecked_2=false" x-bind:class="{ 'border-orange-500': isChecked_1}" class="cursor-pointer border rounded-md w-32 p-1 justify-center items-center flex" for="radio-3">Исполнитель</label>
-                                        </div>
-                                        <div class="">
-                                            <input id="radio-4" class="hidden" type="radio" name="user" value="employer" >
-                                            <label @click="isChecked_2 = true , isChecked_1=false" x-bind:class="{ 'border-orange-500': isChecked_2}" class="cursor-pointer border rounded-md w-32 p-1 justify-center items-center flex" for="radio-4">Заказчик</label>
-                                        </div>
-                                    </div>
-                                    <div class="mx-5">
-                                        <input class="w-full rounded-md border border-gray-500 p-2 block focus:outline-none bg-white" type="tel">
-                                        <input class="w-full rounded-md border border-gray-500 p-2 block focus:outline-none my-5 bg-white" type="password">
-                                        <input class="w-full rounded-full border border-blue-800 p-2 block focus:outline-none bg-blue-800 text-white font-bold my-5" type="submit" value="Войти">
-                                    </div>
-                                    <div class="my-4">
-                                        <ul class="flex justify-center ">
-                                            <li><a href="#"><img width="30px" class="mx-2" src="{{'assets/images/facebook.svg' | theme}}" alt=""></a></li>
-                                            <li><a href="#"><img width="30px" class="mx-2"  src="{{'assets/images/ok.svg' | theme}}" alt=""></a></li>
-                                            <li><a href="#"><img width="30px" class="mx-2"  src="{{'assets/images/yandex.svg' | theme}}" alt=""></a></li>
-                                            <li><a href="#"><img width="30px" class="mx-2"  src="{{'assets/images/google.svg' | theme}}" alt=""></a></li>
-                                            <li><a href="#"><img width="30px" class="mx-2" src="{{'assets/images/vk.svg' | theme}}" alt=""></a></li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <h5 class="text-gray-400 font-bold text-sm">Нет аккаунта? <a href="#" class="text-blue-600 font-semibold"> Зарегестрируйтесь</a></h5>
-                                        <h5 class="text-center my-4 text-gray-400 font-bold text-sm "><a href="#">Забыли пароль?</a></h5>
-                                    </div>
-                                    
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-            </li>
-            <li class="my-auto">
-                <select class="border rounded-full px-6 py-1" x-on:click="open = ! open">
-                    <option href="#">Ru</option>
-                    <option href="#">Uz</option>
-                    <option href="#">En</option>
-                </select>
-            </li>
-        </ul>
-    </nav>
-    <section class="relative">
-        <section class="w-full">
-            <video class="object-cover" src="{{ 'assets/videos/videobg.mp4' | theme }}" width="100%" height="100%" autoplay allowfullscreen muted loop></video>
-        </section>
-        <section class="bg-header-pattern absolute top-36 left-20 w-11/12">
-            <h2 class="text-4xl font-bold mb-10 text-white">Работа в Узбекистане</h2>
-            <p class="text-xl font-bold my-10 text-white">538 603 клиента доверили дела WorkBase</p>
-            <form action="/action_page.php" >
-                    <input type="text" placeholder="Профессия, должность или специалист" name="search" class="text-black outline-none rounded-tl-full rounded-bl-full px-8 py-2 bg-white mr-0 border-2 border-white w-1/2 -mr-2">
-                    <button type="submit" class="bg-white text-white m-0 outline-none rounded-tr-full rounded-br-full -ml-1 border-2 border-white focus:outline-none">
-                        <div class="bg-orange-400 rounded-full px-11 py-2">Заказать услугу</div>
-                    </button>
-              </form>
-              <ul class="flex mt-10 text-white text-sm text-xl ">
-                  <li class=""><a class="border-b border-white" href="#"># создание сайтов</a></li>
-                  <li class="ml-5"><a class="border-b border-white" href="#"># выгул собак</a></li>
-                  <li class="ml-5"><a class="border-b border-white" href="#"># ремонт под ключ</a></li>
-                  <li class="ml-5"><a class="border-b border-white" href="#"># математика дистанционно</a></li>
-              </ul>
-        </section>
-    </section> 
+          </ul>
+        </div>
+    </div>
+      </nav>
+
 </header>
 
+<section class="relative">
+    <section class="w-full">
+        <video class="object-cover" src="{{ 'assets/videos/videobg.mp4' | theme }}" width="100%" height="100%" autoplay allowfullscreen muted loop></video>
+    </section>
+    <section class="bg-header-pattern absolute top-36 left-20 w-11/12">
+        <h2 class="text-4xl font-bold mb-10 text-white">Работа в Узбекистане</h2>
+        <p class="text-xl font-bold my-10 text-white">538 603 клиента доверили дела WorkBase</p>
+        <form action="/action_page.php" >
+                <input type="text" placeholder="Профессия, должность или специалист" name="search" class="text-black outline-none rounded-tl-full rounded-bl-full px-8 py-2 bg-white mr-0 border-2 border-white w-1/2 -mr-2">
+                <button type="submit" class="bg-white text-white m-0 outline-none rounded-tr-full rounded-br-full -ml-1 border-2 border-white focus:outline-none">
+                    <div class="bg-orange-400 rounded-full px-11 py-2">Заказать услугу</div>
+                </button>
+          </form>
+          <ul class="flex mt-10 text-white text-sm text-xl ">
+              <li class=""><a class="border-b border-white" href="#"># создание сайтов</a></li>
+              <li class="ml-5"><a class="border-b border-white" href="#"># выгул собак</a></li>
+              <li class="ml-5"><a class="border-b border-white" href="#"># ремонт под ключ</a></li>
+              <li class="ml-5"><a class="border-b border-white" href="#"># математика дистанционно</a></li>
+          </ul>
+    </section>
+</section> 
