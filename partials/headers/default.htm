@@ -1,5 +1,6 @@
 ==
 {##}
+{% if this.page.id == 'home' %}
 <header class="">
     <nav class="flex items-center justify-between flex-wrap h-20 fixed w-full z-20 top-0" x-data="{ isOpen: false }" @keydown.escape="isOpen = false" :class="{ 'shadow-lg bg-white' : isOpen , 'bg-white' : !isOpen}">
         <div class="container flex">
@@ -93,25 +94,75 @@
         </div>
     </nav>
 </header>
-<section class="relative flex mt-20 w-full items-center justify-center" style="height: calc(100vh - 80px);">
-    <div class="bg-black bg-opacity-40 h-full w-full z-10 absolute block"></div>
-    <div class="w-full absolute h-full block">
-        <video class="object-cover object-center h-full w-full" src="{{ 'assets/videos/videobg.mp4' | theme }}" autoplay allowfullscreen muted loop></video>
-    </div>
-    <div class="container z-10 px-5">
-        <h1 class="md:text-5xl text-3xl font-bold text-white leading-3">Работа в Узбекистане</h1>
-        <p class="text-xl font-bold my-10 text-white">538 603 клиента доверили дела WorkBase</p>
-        <form action="/action_page.php">
-            <input type="text" placeholder="Профессия, должность или специалист" name="search" class="text-black outline-none rounded-tl-full rounded-bl-full px-8 py-2 bg-white mr-0 border-2 border-white w-1/2 -mr-2 md:text-lg text-md">
-            <button type="submit" class="bg-white text-white m-0 outline-none rounded-tr-full rounded-br-full -ml-1 border-2 border-white focus:outline-none md:text-lg text-md">
-                <div class="bg-orange-400 rounded-full px-11 py-2">Заказать услугу</div>
+{% else %}
+<header class="">
+    <nav class="flex items-center justify-between flex-wrap h-20 fixed w-full z-20 top-0" x-data="{ isOpen: false }" @keydown.escape="isOpen = false" :class="{ 'shadow-lg bg-white' : isOpen , 'bg-blue-900' : !isOpen}">
+        <div class="container flex">
+            <div class="flex items-center flex-shrink-0 w-40 mr-11">
+                <a href="{{ 'home' | page }}" class="mr-auto">
+                    <img src="{{'assets/images/logowhite.svg' | theme}}" width="100%">
+                </a>
+            </div>
+            <!--Toggle button (hidden on large screens)-->
+            <button @click="isOpen = !isOpen" type="button" class="block lg:hidden px-2 text-gray-500 hover:text-white focus:outline-none focus:text-white" :class="{ 'transition transform-180': isOpen }">
+                <svg class="h-6 w-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path x-show="isOpen" fill-rule="evenodd" clip-rule="evenodd" d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z" />
+                    <path x-show="!isOpen" fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z" />
+                </svg>
             </button>
-        </form>
-        <ul class="md:block grid grid-cols-2  mt-10 text-white text-sm text-xl">
-            <li class="ml-5 md:text-xl text-sm md:inline-block"><a class="border-b border-white" href="#"># создание сайтов</a></li>
-            <li class="ml-5 md:text-xl text-sm md:inline-block"><a class="border-b border-white" href="#"># выгул собак</a></li>
-            <li class="ml-5 md:text-xl text-sm md:inline-block"><a class="border-b border-white" href="#"># ремонт под ключ</a></li>
-            <li class="ml-5 md:text-xl text-sm md:inline-block"><a class="border-b border-white" href="#"># математика дистанционно</a></li>
-        </ul>
-    </div>
-</section>
+            <!--Menu-->
+            <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto" :class="{ 'block shadow-3xl': isOpen, 'hidden': !isOpen }" @click.away="isOpen = false" x-show.transition="true">
+                <ul class="pt-6 lg:pt-0 list-reset lg:flex justify-start flex-1 items-center">
+                    <li class="">
+                        <a href="#" class="flex items-center justify-center flex-col h-20 px-6 text-white hover:bg-blue-800">
+                            <i class="icon-menu1 text-3xl leading-none pb-1 relative">
+                                <span class="messageCount"></span>
+                            </i>
+                            <span>Заказы</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#" class="flex items-center justify-center flex-col h-20 px-6 text-white hover:bg-blue-800">
+                            <i class="icon-menu2 text-3xl leading-none pb-1 relative">
+                                <span class="messageCount"></span>
+                            </i>
+                            <span>Кошелек</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#" class="flex items-center justify-center flex-col h-20 px-6 text-white hover:bg-blue-800">
+                            <i class="icon-menu3 text-3xl leading-none pb-1 relative">
+                                <span class="messageCount"></span>
+                            </i>
+                            <span>Анкета</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#" class="flex items-center justify-center flex-col h-20 px-6 text-white hover:bg-blue-800">
+                            <i class="icon-menu4 text-3xl leading-none pb-1 relative">
+                                <span class="messageCount"></span>
+                            </i>
+                            <span>Поддержка</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#" class="flex items-center justify-center flex-col h-20 px-6 text-white hover:bg-blue-800">
+                            <i class="icon-bonus text-3xl leading-none pb-1 relative">
+                                <span class="messageCount"></span>
+                            </i>
+                            <span>Бонусы</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="pt-6 lg:pt-0 list-reset lg:flex justify-end flex-1 items-center">
+                    <li class="flex flex-col items-center justify-center relative cursor-pointer">
+                        <img src="" class="w-7 h-7 overflow-hidden rounded-full mb-0.5" alt="" />
+
+                    </li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+{% endif %}
