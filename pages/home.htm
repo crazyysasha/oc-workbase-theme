@@ -1,9 +1,7 @@
 url = "/"
 layout = "default"
 title = "Home"
-==
-<?php
-?>
+[servicesList ]
 ==
 {##}
 <section class="bg-gray-100 pt-10">
@@ -52,7 +50,6 @@ title = "Home"
             <h3 class="text-lg pt-5">Оставьте отзыв по окончанию работы.</h3>
             <p class="text-gray-400">После выполнения работы не забудьте оставить отзыв и <br> оценку выбранному специалисту.</p>
         </div>
-    
         <div class="relative">
             <img src="{{'assets/images/MaskGroup.png' | theme}}" alt="">
             <div class="absolute -bottom-4 left-8 bg-gray-100 p-5 rounded-tr-3xl rounded-bl-3xl w-7/12">
@@ -80,7 +77,6 @@ title = "Home"
             <h1 class="text-2xl font-bold mb-4">Для максимального <br> удобства, скачайте <br> бесплатное <span class="text-blue-800">мобильное <br> приложение.</span></h1>
             <a class="inline-block" href="#"><img src="{{'assets/images/appstorerus.png' | theme }}" alt="" width="110px"></a>
             <a class="inline-block ml-5" href="#"><img src="{{'assets/images/icongoogleplay.png' | theme }}" alt="" width="120px"></a>
-
         </div>
         <div class=" flex relative w-1/2">
 
@@ -107,10 +103,10 @@ title = "Home"
         {% endput %}
     </div>
 </section>
-<section class="mb-20">
-    <div class="md:flex justify-between container mt-10 md:px-5 px-10">
+<section>
+    <div class="flex container">
         <div class="flex-1">
-             <div class="feedback-left__circleimg">
+            <div class="feedback-left__circleimg">
                 <div class="feedback-circleimg__border1" >
                     <div class="feedback-circleimg__border2">
                         <span>95%</span>
@@ -136,10 +132,10 @@ title = "Home"
                 </div>
             </div>
         </div>
-        <div class="flex-1 md:px-5 px-10">
-            <h1 class="text-2xl font-bold mb-5 text-center sm:text-left">За 12 месяцев 416 047 отзывов</h1>
-            <div class="bg-gray-100 p-5 rounded-tl-3xl rounded-br-3xl mt-5">
-                <img src="{{'assets/images/ClientMale.png' | theme}}" alt="" class="inline-block mr-5 border-2 border-white rounded-full"> 
+        <div class="flex-1">
+            <h1 class="text-2xl font-bold">За 12 месяцев 416 047 отзывов</h1>
+            <div>
+                <img src="" alt="" class="inline-block">
                 <p class="inline-block font-bold">Фарух Усманов</p>
                 <p class="float-right inline-block text-orange-500 font-bold">10 из 10</p>
                 <p class="mt-5">
