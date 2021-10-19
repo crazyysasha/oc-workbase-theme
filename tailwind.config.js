@@ -559,6 +559,7 @@ module.exports = {
             full: '100%',
             screen: '100vh',
             "calc": 'var(--tw-min-height-calc-value)',
+            
         },
         minWidth: {
             0: '0px',
@@ -813,6 +814,7 @@ module.exports = {
             screen: '100vw',
             min: 'min-content',
             max: 'max-content',
+            'calc-minus': 'calc(100% - var(--minus))',
         }),
         zIndex: {
             auto: 'auto',

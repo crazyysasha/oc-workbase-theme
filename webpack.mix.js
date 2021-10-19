@@ -8,7 +8,7 @@ mix.js('src/js/app.js', 'assets/js')
     ])
     .setPublicPath("/")
     .browserSync({
-        proxy: "http://october.loc",
+        proxy: "http://workbase.loc",
         files: [
             '../*/partials/**/*.*',
             '../*/content/**/*.*',
