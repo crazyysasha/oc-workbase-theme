@@ -1,6 +1,13 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
+
+    plugins: [
+      require('daisyui'),
+    ],
+
+  }
+module.exports = {
     important: true,
     purge: {
         enabled: false,

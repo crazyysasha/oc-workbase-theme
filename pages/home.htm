@@ -1,7 +1,6 @@
 url = "/"
 layout = "default"
 title = "Home"
-[servicesList ]
 ==
 {##}
 <section class="relative flex mt-20 w-full items-center justify-center" style="height: calc(100vh - 80px);">
@@ -26,36 +25,70 @@ title = "Home"
         </ul>
     </div>
 </section>
+{% set services = [
+    {
+        'name': 'service 1',
+        'children': [
+        
+            {
+                'name': 'service 1',
+                'children': [
+                ], 
+            },    
+            {
+                'name': 'service 1',
+                'children': [
+                ], 
+            },    
+            {
+                'name': 'service 1',
+                'children': [
+                ], 
+            },    
+        ], 
+    },    
+] %}
 <section class="bg-gray-100 pt-10">
     <div class="container">
         <div class="text-center sm:text-left">
             <h1 class="text-3xl font-bold">В Ташкенте работает 325 779 специалистов, 205 469 дистанционно</h1>
         </div>
+        
         <div class="md:grid grid-cols-3 gap-4 py-10">
-            <div class="bg-white rounded-xl px-5 py-4 m-3">
-                <div class=" p-2 rounded-full bg-gray-200 inline-block">
-                    <img src="{{ 'assets/images/notebook.png' | theme }}" alt="">
+            {% for service in services %}
+                {% partial 'cards/default' footerBorder='dashed' body %}
+                
+                    {% put cardHeader %}
+                        <div class=" p-2 rounded-full bg-gray-200 inline-block">
+                            <img src="{{ 'assets/images/notebook.png' | theme }}" alt="">
 
-                </div>
-               <div class="inline-block">
-                    <h3 class=" font-aeroport">
-                        Репетиторы
-                    </h3>
-                    <span class="text-gray-300">(2)</span>
-               </div>
-               <div class="border-b border-dashed border-gray-400 mt-2">
-                   <ul class="mb-5">
-                       <li><a href="#"><i class="icon-frameBorder"></i> Английский язык</a></li>
-                       <li><a href="#"><i class="icon-frameBorder"></i> Математика</a></li>
-                       <li><a href="#"><i class="icon-frameBorder"></i> Русский язык</a></li>
-                       <li><a href="#"><i class="icon-frameBorder"></i> Начальная школа</a></li>
-                       <li><a href="#"><i class="icon-frameBorder"></i> Музыка</a></li>
-                   </ul>
-               </div>
-               <div class="mt-5 text-blue-400">
-                   <a href="#">Все категории <img class="inline-block" src="{{ 'assets/images/Vectorline.png' | theme }}" alt=""></a>
-               </div>
-            </div>
+                        </div>   
+                        
+                        <div class="inline-block">
+                            <h3 class=" font-aeroport">
+                                {{ service.name }}
+                            </h3>
+                            <span class="text-gray-300">(2)</span>
+                        </div>
+                     
+                    {% endput %}
+                    
+                    
+                    <div class=" mt-2">
+                        <ul class="mb-5">
+                            {% for child in service.children %}
+                            
+                                <li><a href="#"><i class="icon-frameBorder"></i> {{ child.name }}</a></li>
+                            
+                            {% endfor %}
+                        
+                        </ul>
+                    </div>
+                   
+                {% endpartial %}
+                
+            {% endfor %}
+        
         </div>
     </div>
 </section>

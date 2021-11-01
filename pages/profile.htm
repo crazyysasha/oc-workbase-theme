@@ -1,0 +1,126 @@
+url = "/profile"
+layout = "default"
+title = "profile"
+==
+<?php
+?>
+==
+{##}
+<section class="bg-gray-100">
+    <div class="md:grid grid-cols-3 pt-28 container">
+        <div class="col-span-2 mt-5">
+            <div class="bg-white rounded-sm mx-2 px-6 py-4 ">
+                <div>
+                    <div class="flex justify-between">
+                        <h5>Электрика. Монтаж проводки</h5>
+                        <a class="text-sm text-gray-300" href="#">Пожаловаться на заказ</a>
+                    </div>
+                    <div class="mt-4">
+                        <span class="test-sm text-gray-300">Создан: сегодня 11:55</span>
+                    </div>
+                    <div class="flex mt-4">
+                        <div class="mr-3">
+                            <img src="{{'assets/images/userphotobig.png' | theme}}" alt="">
+                        </div>
+                        <div class="w-full flex justify-between">
+                            <div>
+                                <h5 class="text-sm text-blue-800">Заказчик</h5>
+                                <h5 class="font-medium">Аваз Абдуллаев</h5>
+                                <h5 class="text-sm text-gray-300">Был в сети сегодня в 12:18</h5>
+                                <h5><i class="icon-orangestar"></i> 10 из 10</h5>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-blue-800 text-right">До 150 000 сум</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <span class="text-sm text-gray-300"><i class="icon-frameBorder"></i> Телефон подтвержден</span>
+                    </div>
+
+                    <div class="flex">
+                        <span>Услуга:</span>
+                        <ul class="flex">
+                            <li class="mx-3">Монтаж и подключение</li>
+                            <li class="mx-3 list-disc">установка розеток 3шт</li>
+                            <li class="mx-3 list-disc">установка выключателей 4шт</li>
+                        </ul>
+                    </div>
+                    <div class="mt-4 border-dashed border-b pb-5" >
+                        <ul>
+                            <li class="mt-3">
+                                <span class="font-medium">Адрес:</span>
+                                <span> г. Ташкент, Юнусабад</span>
+                            </li>
+                            <li class="mt-3">
+                                <span class="font-medium">Дата:</span>
+                                <span>17 (вт) нояб 13:00-14:00, 19 (чт) нояб 17:00-18:00</span>
+                            </li>
+                            <li class="mt-3">
+                                <span class="font-medium">Объект:</span>
+                                <span> Квартира</span>
+                            </li>
+                            <li class="mt-3">
+                                <span class="font-medium">Пожелания к заказу:</span>
+                                <span> Цена указана с учетом выезда. Розетки должны быть у электрика за них будет одельная доплата</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div>
+                    <div class="mx-5 mt-5">
+                        <h5 class="font-medium text-lg ">Как вы оцените работу?</h5>
+                    </div>
+                    <div class="flex mt-4">
+                       <div class="relative w-48 h-14 text-gray-300">
+                            <span class="absolute left-3 top-4">от</span>
+                            <input class="w-48 h-14 border border-gray-300 focus:outline-none px-10 py-5" type="text" width="">
+                            <span class="absolute right-3 top-4">UZS</span>
+                       </div>
+                       <div class=" h-14 py-4">
+                           <span class="font-medium px-2"> - </span>
+                       </div>
+                       <div class="relative w-48 h-14 text-gray-300">
+                            <span class="absolute left-3 top-4">до</span>
+                            <input class="w-48 h-14 border border-gray-300 focus:outline-none px-10 py-5" type="text" width="">
+                            <span class="absolute right-3 top-4">UZS</span>
+                       </div>
+                    </div>
+
+                    <div class="flex items-stretch mt-5">
+                        <h5 class="font-medium mr-5">Предложение/комментарий клиенту</h5>
+                        <a class="text-blue-800" href="#">Использовать шаблон</a>
+                    </div>
+                    <div class="mt-5 ">
+                        <form action="">
+                            <textarea class="h-44 w-full border-2 border-gray-300 p-4" name="" id="" cols="30" rows="10" 
+                            placeholder="Пример отклика:
+Здравствуйте, Аваз. У меня большой опыт в монтажной работе. Буду рад помочь вам. Посмотрите в моей анкете работу и отзывы. буду рад обсудить детали работы в удобное для вас время"></textarea>
+                        </form>
+                    </div>
+                    
+                    <div class="mt-8 flex justify-between">
+                        <a class="text-blue-900 py-2" href="#">
+                            Не подходит
+                        </a>
+                        <a class="bg-blue-900 py-2 px-6 rounded-full text-white font-medium" href="#">
+                            Откликнуться
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-span-1 my-5">
+            <div class="bg-white rounded-sm mx-2 px-6 py-4 flex">
+                <img class="mr-5" src="{{'assets/images/error.png' | theme}}" alt="">
+                <div class="">
+                    <span>Возникла проблема?</span>
+                    <span class="font-medium text-blue-800 block">Напишите нам о ней</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

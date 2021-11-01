@@ -6,6 +6,19 @@ title = "About"
 ?>
 ==
 {##}
+<style>
+    /* CHECKBOX TOGGLE SWITCH */
+    /* @apply rules for documentation, these do not work as inline style */
+    .toggle-checkbox:checked {
+      @apply: right-0 border-green-400;
+      right: 0;
+      border-color: #68d391;
+    }
+    .toggle-checkbox:checked + .toggle-label {
+      @apply: bg-green-400;
+      background-color: #68d391;
+    }
+  </style>
 <div class="bg-gray-100 pt-28">
    <div class="container">
         <div class="">
@@ -85,7 +98,7 @@ title = "About"
                 </div>
             </div>
 
-            <div class="p-5 m-1 mt-4 bg-white rounded-md">
+            <div class="p-5 m-1 mt-4 bg-white rounded-md ">
                 <div class="flex justify-between">
                     <span class="text-lg font-medium">О себе</span>
                     <a class="rounded-md bg-blue-800 text-center w-8 h-8 pt-1 cursor-pointer" href="#"><i class="icon-pencil"></i></a>
@@ -120,7 +133,7 @@ title = "About"
 
             </div>
 
-            <div class="p-5 m-1 mt-4 bg-white rounded-md">
+            <div class="p-5 m-1 mt-4 bg-white rounded-md ">
                 <div class="flex justify-between">
                     <span class="text-lg font-medium">Районы и адреса</span>
                     <a class="rounded-md bg-blue-800 text-center w-8 h-8 pt-1 cursor-pointer" href="#"><i class="icon-pencil"></i></a>
@@ -151,16 +164,41 @@ title = "About"
 
             </div>
 
-            <div class="p-5 m-1 mt-4 bg-white rounded-md">
-                <h4 class="">Специальности</h4>
+            <div class="p-5 m-1 mt-4 bg-white rounded-md ">
+                
+                <div class="flex justify-between mb-4">
+                    <h4 class="font-medium text-lg">Специальности</h4>
+                    <a class="text-blue-500 " href="#">Добавить новую специальность</a>
+                </div>
 
-                <div>
-                    <div class="inline-block rounded-full bg-gray-200 w-9 h-9 p-2 text-center"><i class="icon-settings my-auto"></i></div>
-                    <h4 class="inline-block">Мастера по ремонту</h4>
+                <div class="flex justify-between">
+                    <div>
+                        <span class="rounded-full bg-gray-200 w-9 h-9 p-2 text-center">
+                            <i class="icon-settings"></i>
+                        </span> 
+                        <h4 class="inline-block ml-2">Мастера по ремонту</h4>
+                    </div>
+                    <div>
+                        <div class="relative inline-block w-9 mr-2 align-middle select-none transition duration-200 ease-in">
+                            <input
+                                type="checkbox"
+                                name="toggle"
+                                id="toggle"
+                                class="toggle-checkbox absolute block w-4 h-4 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                            <label
+                                for="toggle"
+                                class="toggle-label block overflow-hidden h-4 rounded-full bg-gray-300 cursor-pointer">
+                                
+                            </label>
+                        </div>
+                        <label for="toggle">Статус</label>
+                    </div>
+                    
+                    
                 </div>
 
                 <div class="md:grid md:grid-cols-3 gap-4 p-4 mt-5">
-                    <div class="border border-gray-300 rounded-md p-5">
+                    <div class="border border-gray-300 rounded-md p-5 mt-2">
                         <div class="flex justify-between text-orange-600">
                             <span>Электрика</span>
                             <span class=""><i class="fa fa-trash"></i></span>
@@ -180,8 +218,34 @@ title = "About"
                                </div>
                             </div>
                         </div>
+                        <div class="flex justify-between mt-4">
+                            <div>
+                                <span class="text-center">
+                                    <i class="icon-pencil"></i>
+                                </span> 
+                                <h4 class="inline-block ml-2">Редактировать</h4>
+                            </div>
+                            <div>
+                                <div class="relative inline-block w-9 mr-2 align-middle select-none transition duration-200 ease-in">
+                                    <input
+                                        type="checkbox"
+                                        name="toggl"
+                                        id="toggl"
+                                        class="toggle-checkbox absolute block w-4 h-4 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                                    <label
+                                        for="toggl"
+                                        class="toggle-label block overflow-hidden h-4 rounded-full bg-gray-300 cursor-pointer">
+                                        
+                                    </label>
+                                </div>
+                                <label for="toggl">Статус</label>
+                            </div>
+                            
+                            
+                        </div>
+        
                     </div>
-                    <div class="border border-gray-300 rounded-md p-5">
+                    <div class="border border-gray-300 rounded-md p-5 mt-2">
                         <div class="flex justify-between ">
                             <span>Ремонт под ключ</span>
                             <span class="text-orange-600"><i class="fa fa-trash"></i></span>
@@ -201,22 +265,74 @@ title = "About"
                                </div>
                             </div>
                         </div>
+                        <div class="flex justify-between mt-4">
+                            <a href="#">
+                                <span class="text-center text-black">
+                                    <i class="icon-pencil"></i>
+                                </span> 
+                                <span href="#" class="inline-block ml-1">Редактировать</span>
+                            </a>
+                            <div>
+                                <div class="relative inline-block w-9 mr-2 align-middle select-none transition duration-200 ease-in">
+                                    <input
+                                        type="checkbox"
+                                        name="togg"
+                                        id="togg"
+                                        class="toggle-checkbox absolute block w-4 h-4 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                                    <label
+                                        for="togg"
+                                        class="toggle-label block overflow-hidden h-4 rounded-full bg-gray-300 cursor-pointer">
+                                        
+                                    </label>
+                                </div>
+                                <label for="togg">Статус</label>
+                            </div>
+                            
+                            
+                        </div>
+        
                     </div>
-                    <div class="border border-gray-300 rounded-md p-5 text-center cursor-pointer">
+                    <div class="border border-gray-300 rounded-md p-5 mt-2 text-center cursor-pointer">
                         <div class="bg-gray-300  w-10 h-10  mx-auto text-white rounded-full">
                             <span class="font-black text-3xl -mt-1 w-9 h-9 p-2">+</span>
                         </div>
                         <div>
                             <p class="text-gray-300 ">Добавить специальность</p>
                         </div>
+                        
                     </div>
                 </div>
             </div>
 
             <div class="p-5 m-1 mt-4 ">
                 <div class="md:grid md:grid-cols-4" >
-                    <div>
+
+                    <div class="mx-2">
                         <h3 class="text-xl font-medium my-4">Фото работ</h3>
+                        <div class="bg-white rounded-md text-center py-10">
+                            <div class="text-7xl"><i class="icon-camera"></i></div>
+                            <span class="text-gray-300 my-5 font-medium block">Нет фото</span>
+                            <a class="rounded-md bg-blue-100 text-blue-700 px-4 py-2 w-24 h-10 block mx-auto" href="#"><span>Добавить</span></a>
+                        </div>
+                        <div class="my-5 text-center">
+                            <a class="border border-blue-700 text-blue-700 px-4 py-2 my-2 rounded-md bg-blue-100" href="#"><span>Пройти сертификацию</span></a>
+                        </div>
+                    </div>
+
+                    <div class="mx-2">
+                        <h3 class="text-xl font-medium my-4">Фото дипломов</h3>
+                        <div class="bg-white rounded-md text-center py-10">
+                            <div class="text-7xl"><i class="icon-camera"></i></div>
+                            <span class="text-gray-300 my-5 font-medium block">Нет фото</span>
+                            <a class="rounded-md bg-blue-100 text-blue-700 px-4 py-2 w-24 h-10 block mx-auto" href="#"><span>Добавить</span></a>
+                        </div>
+                        <div class="my-5 text-center">
+                            <a class="border border-blue-700 text-blue-700 px-4 py-2 my-2 rounded-md bg-blue-100" href="#"><span>Пройти сертификацию</span></a>
+                        </div>
+                    </div>
+
+                    <div class="mx-2">
+                        <h3 class="text-xl font-medium my-4">Загрузите паспорт</h3>
                         <div class="bg-white rounded-md text-center py-10">
                             <div class="text-7xl"><i class="icon-camera"></i></div>
                             <span class="text-gray-300 my-5 font-medium block">Нет фото</span>
