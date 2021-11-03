@@ -7,6 +7,44 @@ title = "electriclog"
 ==
 {##}
 <section class="bg-gray-100 pt-28">
+
+    <div>
+        <div class="owl-carousel owl-theme">
+            <div class="item"><h4>1</h4></div>
+            <div class="item"><h4>2</h4></div>
+            <div class="item"><h4>3</h4></div>
+            <div class="item"><h4>4</h4></div>
+            <div class="item"><h4>5</h4></div>
+            <div class="item"><h4>6</h4></div>
+            <div class="item"><h4>7</h4></div>
+            <div class="item"><h4>8</h4></div>
+            <div class="item"><h4>9</h4></div>
+            <div class="item"><h4>10</h4></div>
+            <div class="item"><h4>11</h4></div>
+            <div class="item"><h4>12</h4></div>
+        </div>
+
+        <script>
+            $('.owl-carousel').owlCarousel({
+                loop:true,
+                margin:10,
+                nav:true,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    600:{
+                        items:3
+                    },
+                    1000:{
+                        items:5
+                    }
+                }
+            })
+        </script>
+    </div>
+
+
     <div class="md:grid grid-cols-3 container">
         <div class="md:col-span-2 px-3">
             <div class="bg-white mt-5 p-4 rounded-md">
@@ -120,27 +158,76 @@ title = "electriclog"
                 </div>
             </div>
 
-            <div class="bg-white rounded-md w-full p-4 mt-5">
-                <div class="bg-gray-50 mt-10">
-                    <div class="swiper">
-                        <!-- Additional required wrapper -->
-                        <div class="swiper-wrapper">
-                          <!-- Slides -->
-                          <div class="swiper-slide">Slide 1</div>
-                          <div class="swiper-slide">Slide 2</div>
-                          <div class="swiper-slide">Slide 3</div>
-                          ...
+            <div class="rounded-md w-full mt-5">
+                <div class=" rounded-md">
+                    <div class="w-full my-5">
+                            <div class="relative">
+                    
+                                <div class="swiper mySwiper w-full">
+                                    <div class="swiper-wrapper w-full">
+                                      <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner1.jpg' | theme}}" width="100%" alt=""></div>
+                                      <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner6.jpg' | theme}}" width="100%" alt=""></div>
+                                    </div>
+                                </div>                                                 
+                            </div>
+                            {% put scripts %}
+                                <script>
+                                    var swiper = new Swiper('.mySwiper', {
+                                        autoplay: {
+                                             delay: 5000,
+                                            },
+                                        effect: 'fade'
+                                        });
+                                </script>
+                            {% endput %}
+                    </div>
+                    
+
+                    <div class="w-full my-5">
+                        <div class="relative">
+                
+                            <div class="swiper mySwiper w-full">
+                                <div class="swiper-wrapper w-full">
+                                  <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner4.jpg' | theme}}" width="100%" alt=""></div>
+                                  <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner5.jpg' | theme}}" width="100%" alt=""></div>
+                                </div>
+                            </div>                                                 
                         </div>
-                        <!-- If we need pagination -->
-                        <div class="swiper-pagination"></div>
-                      
-                        <!-- If we need navigation buttons -->
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-button-next"></div>
-                      
-                        <!-- If we need scrollbar -->
-                        <div class="swiper-scrollbar"></div>
-                      </div>
+                        {% put scripts %}
+                            <script>
+                                var swiper = new Swiper('.mySwiper', {
+                                    autoplay: {
+                                         delay: 5000,
+                                        },
+                                    effect: 'fade'
+                                    });
+                            </script>
+                        {% endput %}
+                </div>
+
+                <div class="w-full my-5">
+                    <div class="relative">
+            
+                        <div class="swiper mySwiper w-full">
+                            <div class="swiper-wrapper w-full">
+                              <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner3.jpg' | theme}}" width="100%" alt=""></div>
+                              <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner2.jpg' | theme}}" width="100%" alt=""></div>
+                            </div>
+                        </div>                                                 
+                    </div>
+                    {% put scripts %}
+                        <script>
+                            var swiper = new Swiper('.mySwiper', {
+                                autoplay: {
+                                     delay: 5000,
+                                    },
+                                effect: 'fade'
+                                });
+                        </script>
+                    {% endput %}
+            </div>
+
+            
                 </div>
             </div>
         </div>

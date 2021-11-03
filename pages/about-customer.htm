@@ -1,0 +1,159 @@
+url = "/about-customer"
+layout = "default"
+title = "about-customer"
+==
+<?php
+?>
+==
+{##}
+<style>
+    /* CHECKBOX TOGGLE SWITCH */
+    /* @apply rules for documentation, these do not work as inline style */
+    .toggle-checkbox:checked {
+      @apply: right-0 border-green-400;
+      right: 0;
+      border-color: #68d391;
+    }
+    .toggle-checkbox:checked + .toggle-label {
+      @apply: bg-green-400;
+      background-color: #68d391;
+    }
+  </style>
+<div class="bg-gray-100 pt-28">
+   <div class="container">
+        <div class="">
+            <div class="pl-2 mt-5">
+                <a class="py-2 px-4 rounded-md mr-3 border boderder-gray-600 text-gray-400 focus:bg-orange-500 focus:border focus:border focus:bg-orange-500 focus:text-white focus:border-orange-500" href="#">Анкета</a>
+                <a class="py-2 px-4 rounded-md border boderder-gray-600 text-gray-400 focus:bg-orange-500 focus:border focus:border focus:bg-orange-500 focus:text-white focus:border-orange-500" href="#">Настройки</a>
+            </div>
+
+            <div class="md:flex">
+                <div class="p-5 m-1 mt-4 bg-white rounded-md md:w-80">
+                    <div class="relative mt-3 mx-auto w-28 h-28" >
+                        <img class="rounded-full w-28 h-28" src="{{'assets/images/userlistchatbig.png' | theme}}" alt="">
+                        <div class="absolute right-0 bottom-3 bg-white border border-blue-500 text-blue-500 rounded-full text-center w-7 h-7 cursor-pointer" ><i class="icon-camera"></i></div>
+                    </div>
+                    <div class="text-center mt-4 font-medium">
+                        <span class="text-xl">Акмаль Халиков Ботирович</span>
+                    </div>
+                    <div class="grid grid-cols-2 text-center mt-4">
+                        <div class="border-r-gray-500 border-r-2 border-dashed">
+                            <i class="icon-orangestar"></i>
+                            <p>10 из 10</p>
+                        </div>
+                        <div>
+                            <i class="icon-comments"></i>
+                            <p>20</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-5 m-1 mt-4 bg-white rounded-md w-full">
+                    <div class="flex justify-between">
+                        <span class="text-lg font-medium">Описание профиля:</span>
+                        <a class="rounded-md bg-blue-800 text-center w-8 h-8 pt-1 cursor-pointer" href="#"><i class="icon-pencil"></i></a>
+                    </div>
+                    <div class="md:flex flex-col flex-wrap md:max-h-64">
+                        <div class="mb-3" >
+                            <div class="mb-1 text-gray-400 md:text-lg font-medium" >
+                                <span>Ф.И.О.</span>
+                            </div>
+                            <div class="mb-1" >
+                                <span>Акмаль Халиков Ботирович</span>
+                            </div>
+                        </div>
+                        <div class="mb-3" >
+                            <div class="mb-1 text-gray-400 md:text-lg font-medium" >
+                                <span>Дата рождения:</span>
+                            </div>
+                            <div class="mb-1" >
+                                <span>14.03.1985</span>
+                            </div>
+                        </div>
+                        <div class="mb-3" >
+                            <div class="mb-1 text-gray-400 md:text-lg font-medium" >
+                                <span>Место Проживания:</span>
+                            </div>
+                            <div class="mb-1" >
+                                <span>г.Ташкент</span>
+                            </div>
+                        </div>
+                        <div class="mb-3" >
+                            <div class="mb-1 text-gray-400 md:text-lg font-medium" >
+                                <span>Номер телефона:</span>
+                            </div>
+                            <div class="mb-1" >
+                                <span>+99894 923-03-14</span>
+                            </div>
+                        </div>
+                        <div class="mb-3" >
+                            <div class="mb-1 text-gray-400 md:text-lg font-medium" >
+                                <span>Электронная почта:</span>
+                            </div>
+                            <div class="mb-1" >
+                                <span>AkmalKhalikov@gmail.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="py-5 px-10 m-1 mt-4 bg-white rounded-md my-5">
+                <div class="flex justify-between">
+                    <span class="text-lg font-medium">О себе</span>
+                    <a class="rounded-md bg-blue-800 text-center w-8 h-8 pt-1 cursor-pointer" href="#"><i class="icon-pencil"></i></a>
+                </div>
+
+                <div class="mt-5 md:flex pb-2 text-center md:text-left  md:justify-between border-b ">
+                    <div class="w-1/2 mx-auto">
+                        <span class="text-lg font-medium text-gray-300">Образование:</span>
+                    </div>
+                    <div class="w-1/2 mx-auto">
+                        <span>Ташкентский государственный технический унивеситет</span>
+                    </div>
+                </div>
+
+
+                <div class="mt-5 md:flex pb-2 text-center md:text-left  md:justify-between border-b ">
+                    <div class="w-1/2 mx-auto">
+                        <span class="text-lg font-medium text-gray-300">Род деятельности:</span>
+                    </div>
+                    <div class="w-1/2 mx-auto">
+                        <span>Предприниматель</span>
+                    </div>
+                </div>
+
+
+                <div class="mt-5 md:flex pb-2 text-center md:text-left  md:justify-between border-b ">
+                    <div class="w-1/2 mx-auto">
+                        <span class="text-lg font-medium text-gray-300">Проверить ИНН через <a class="text-blue-500" href="#">Soliq.uz</a>:</span>
+                    </div>
+                    <div class="w-1/2 mx-auto">
+                        <span>3664069397</span>
+                        <div class="md:inline-block">
+                            <a class=" bg-blue-100 rounded-md px-3 py-1 text-sm ml-4 text-blue-400" href="#">Пройти сертификацию</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="mt-5 md:flex pb-2 text-center md:text-left  md:justify-between border-b">
+                    <div class="w-1/2 mx-auto">
+                        <span class="text-lg font-medium text-gray-300">Загрузите ваш паспорт:</span>
+                    </div>
+                    <div class="w-1/2 mx-auto md:flex text-center md:text-left  md:justify-items-center items-center">
+                        <div class="rounded-md border border-blue-900 my-3 inline-block px-4 py-5 text-center">
+                            <div class="text-3xl ">
+                                <i class="icon-camera"></i>
+                            </div>
+                            <a class="bg-blue-100 rounded-md px-3 py-1 text-sm text-blue-400" href="#">Добавить</a>
+                        </div>
+                        <span>
+                             <a class="bg-blue-100 rounded-md px-3 py-1 text-sm ml-4 text-blue-400" href="#">Пройти сертификацию</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </div>
+</div>
