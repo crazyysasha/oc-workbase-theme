@@ -8,42 +8,39 @@ title = "electriclog"
 {##}
 <section class="bg-gray-100 pt-28">
 
-    <div>
-        <div class="owl-carousel owl-theme">
-            <div class="item"><h4>1</h4></div>
-            <div class="item"><h4>2</h4></div>
-            <div class="item"><h4>3</h4></div>
-            <div class="item"><h4>4</h4></div>
-            <div class="item"><h4>5</h4></div>
-            <div class="item"><h4>6</h4></div>
-            <div class="item"><h4>7</h4></div>
-            <div class="item"><h4>8</h4></div>
-            <div class="item"><h4>9</h4></div>
-            <div class="item"><h4>10</h4></div>
-            <div class="item"><h4>11</h4></div>
-            <div class="item"><h4>12</h4></div>
-        </div>
-
-        <script>
-            $('.owl-carousel').owlCarousel({
-                loop:true,
-                margin:10,
-                nav:true,
-                responsive:{
-                    0:{
-                        items:1
-                    },
-                    600:{
-                        items:3
-                    },
-                    1000:{
-                        items:5
-                    }
-                }
-            })
-        </script>
+    <div class="w-full">
+        <div class="swiper w-full h-full slider-work">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide flex justify-center items-center"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block w-full object-cover" alt=""></div>
+              <div class="swiper-slide flex justify-center items-center"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block w-full object-cover" alt=""></div>
+              <div class="swiper-slide flex justify-center items-center"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block w-full object-cover" alt=""></div>
+              <div class="swiper-slide flex justify-center items-center"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block w-full object-cover" alt=""></div>
+              <div class="swiper-slide flex justify-center items-center"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block w-full object-cover" alt=""></div>
+              <div class="swiper-slide flex justify-center items-center"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block w-full object-cover" alt=""></div>
+              <div class="swiper-slide flex justify-center items-center"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block w-full object-cover" alt=""></div>
+              <div class="swiper-slide flex justify-center items-center"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block w-full object-cover" alt=""></div>
+              <div class="swiper-slide flex justify-center items-center"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block w-full object-cover" alt=""></div>
+            </div>
+            
+          </div>
     </div>
-
+    {% put scripts %}
+        <script>
+            var swiper = new Swiper(".slider-work", {
+            slidesPerView: 7,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: false,
+            },
+            });
+        </script>
+    {% endput %}
 
     <div class="md:grid grid-cols-3 container">
         <div class="md:col-span-2 px-3">
