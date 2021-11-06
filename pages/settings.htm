@@ -1,0 +1,25 @@
+url = "/settings"
+layout = "default"
+title = "settings"
+==
+<?php
+?>
+==
+{##}
+<section class="pt-28 bg-gray-100">
+    <div class="container">
+        <div class="bg-white rounded-md mt-5 py-4 px-6">
+            <div class="my-3 text-xl font-medium">
+                <span>Изменить пароль</span>
+            </div>
+            <div class="my-3">
+                <label for="Генератор">Новый пароль</label>
+                <p class="my-3">
+                    <a href="#" class="generate_password text-blue-500">Генератор пароля:</a>
+                    <b id="generate_pass"></b>
+                </p>
+                <input class="border border-gray-300 px-3 py-1 w-full rounded-md focus:outline-none" name="password" type="text " id="password_value" autocomplete="new-password" aria-autocomplete="list">
+            </div>
+        </div>
+    </div>
+</section>

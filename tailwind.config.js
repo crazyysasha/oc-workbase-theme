@@ -92,13 +92,16 @@ module.exports = {
             64: '16rem',
             72: '18rem',
             80: '20rem',
+            92: '22.25rem',
             96: '24rem',
+            108: '29.25rem',
             1920: '1920px',
             1080: '1080px',
         },
         animation: {
             none: 'none',
-            spin: 'spin 1s linear infinite',
+            spin: 'spin 16s linear infinite',
+            spin1: 'spin1 16s linear infinite',
             ping: 'ping 1s cubic-bezier(0, 0, 0.2, 1) infinite',
             pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             bounce: 'bounce 1s infinite',
@@ -478,6 +481,11 @@ module.exports = {
             spin: {
                 to: {
                     transform: 'rotate(360deg)',
+                },
+            },
+            spin1: {
+                to: {
+                    transform: 'rotate(-360deg)',
                 },
             },
             ping: {

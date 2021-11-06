@@ -161,36 +161,34 @@ title = "Home"
 <section>
     <div class="flex container">
         <div class="flex-1">
-            <div class="feedback-left__circleimg">
-                <div class="feedback-circleimg__border1" >
-                    <div class="feedback-circleimg__border2">
-                        <span>95%</span>
-                        <small>положительных
-                            <br>
-                            отзывов</small>
-                    </div>
-                </div>
-                <div class="feedback-circleimg__user user1">
-                    <img src="{{ 'assets/images/circleImg1.png'|theme }}" alt="">
-                </div>
-                <div class="feedback-circleimg__user user2">
-                    <img src="{{ 'assets/images/circleImg2.png'|theme }}" alt="">
-                </div>
-                <div class="feedback-circleimg__user user3">
-                    <img src="{{ 'assets/images/circleImg3.png'|theme }}" alt="">
-                </div>
-                <div class="feedback-circleimg__user user4">
-                    <img src="{{ 'assets/images/circleImg4.png'|theme }}" alt="">
-                </div>
-                <div class="feedback-circleimg__user user5">
-                    <img src="{{ 'assets/images/circleImg5.png'|theme }}" alt="">
+            <div class="">
+                <div class="animate-spin relative flex justify-items-center items-center rounded-full w-108 h-108 border border-gary-300">
+                   <div class="flex justify-items-center items-center rounded-full w-92 h-92 border border-gary-300 m-auto">
+                        <div class="flex justify-items-center items-center bg-blue-200 rounded-full w-56 h-56 m-auto text-center">
+                            <div class="m-auto rounded-full flex justify-items-center items-center bg-blue-100 w-48 h-48">
+                                <div class="animate-spin1 m-auto animate-none">
+                                    <span class="font-bold text-3xl text-blue-900 block">95%</span>
+                                    <span>
+                                        положительных
+                                        <br>
+                                        отзывов
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+
+                   <div class="animate-spin1 absolute border-2 border-white rounded-full w-16 h-16 shadow-xl -left-8">
+                       <img class="w-full h-full rounded-full" src="{{'assets/images/circleImg5.png' | theme}}" alt="">
+                   </div>
+
                 </div>
             </div>
         </div>
         <div class="flex-1">
             <h1 class="text-2xl font-bold">За 12 месяцев 416 047 отзывов</h1>
-            <div>
-                <img src="" alt="" class="inline-block">
+            <div class="bg-gray-100 p-5 rounded-tl-3xl rounded-br-3xl mt-5 ">
+                <img src="{{'assets/images/ClientMale.png' | theme}}" alt="" class="inline-block">
                 <p class="inline-block font-bold">Фарух Усманов</p>
                 <p class="float-right inline-block text-orange-500 font-bold">10 из 10</p>
                 <p class="mt-5">
@@ -219,7 +217,7 @@ title = "Home"
                     10 ноября 2020
                 </p>
             </div>
-            <button class="my-5 px-4 py-2 rounded-full bg-blue-800 text-white"><span class=""> Все отзывы <i class="icon-rightAngle text-white"></i> </span></button>
+            <button class="my-5 px-6 py-2 rounded-full bg-blue-800 text-white"><span class=""> Все отзывы <i class="icon-rightAngle text-white"></i> </span></button>
         </div>
         
     </div>
