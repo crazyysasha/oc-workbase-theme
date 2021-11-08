@@ -1,17 +1,12 @@
-[viewBag]
-==
-<?php
-?>
-==
 {##}
-<div class="bg-white rounded-xl px-5 py-4 m-3">
-    <div>
+<div class="bg-white rounded-xl px-8 py-6">
+    <div class="flex items-center mb-5">
         {% placeholder cardHeader %}
     </div>
     {{ body | raw }}
 
     {% if placeholder('cardFooter') %}
-        <div class="mt-5 text-blue-400 border-t border{{boder ? '-' ~ border}} border-gray-400">
+        <div class="border-t border-dashed pt-3 border-gray-400">
             {% placeholder cardFooter %}
         </div>
     {% endif %}

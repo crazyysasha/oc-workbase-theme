@@ -2,6 +2,17 @@ url = "/"
 layout = "default"
 title = "Home"
 ==
+<?php
+use Crazy\FreeLancer\Models\Category;
+use Crazy\FreeLancer\Models\Service;
+
+function onStart()
+{
+    $this['cats'] = Category::get();
+    $this['serv'] = Service::get();
+}
+?>
+==
 {##}
 <section class="relative flex mt-20 w-full items-center justify-center" style="height: calc(100vh - 80px);">
     <div class="bg-black bg-opacity-40 h-full w-full z-10 absolute block"></div>
@@ -25,48 +36,24 @@ title = "Home"
         </ul>
     </div>
 </section>
-{% set services = [
-    {
-        'name': 'service 1',
-        'children': [
-        
-            {
-                'name': 'service 1',
-                'children': [
-                ], 
-            },    
-            {
-                'name': 'service 1',
-                'children': [
-                ], 
-            },    
-            {
-                'name': 'service 1',
-                'children': [
-                ], 
-            },    
-        ], 
-    },    
-] %}
-<section class="bg-gray-100 pt-10">
+<section class="bg-gray-50 pt-10">
     <div class="container">
         <div class="text-center sm:text-left">
-            <h1 class="text-3xl font-bold">В Ташкенте работает 325 779 специалистов, 205 469 дистанционно</h1>
+            <h1 class="text-3xl font-bold">В <span class="text-blue-800">Ташкенте работает</span> 325 779 специалистов, 205 469 дистанционно</h1>
         </div>
         
-        <div class="md:grid grid-cols-3 gap-4 py-10">
-            {% for service in services %}
-                {% partial 'cards/default' footerBorder='dashed' body %}
+        <div class="md:grid grid-cols-3 gap-7 py-10">
+            {% for category in cats %}
+                {% partial 'cards/default' body %}
                 
                     {% put cardHeader %}
-                        <div class=" p-2 rounded-full bg-gray-200 inline-block">
+                        <div class="p-3 rounded-full bg-green-50">
                             <img src="{{ 'assets/images/notebook.png' | theme }}" alt="">
-
                         </div>   
                         
-                        <div class="inline-block">
-                            <h3 class=" font-aeroport">
-                                {{ service.name }}
+                        <div class="ml-2">
+                            <h3 class="font-aeroport font-medium text-lg">
+                                {{ category.name }}
                             </h3>
                             <span class="text-gray-300">(2)</span>
                         </div>
@@ -74,17 +61,26 @@ title = "Home"
                     {% endput %}
                     
                     
-                    <div class=" mt-2">
+                    <div class="mt-2">
                         <ul class="mb-5">
-                            {% for child in service.children %}
-                            
-                                <li><a href="#"><i class="icon-frameBorder"></i> {{ child.name }}</a></li>
-                            
+                            {% for index, service in category.services if index < 5 %}
+                                <li class="mb-2">
+                                    <a href="#">
+                                        <i class="icon-frameBorder text-sm mr-2"></i> 
+                                        {{ service.name }}
+                                    </a>
+                                </li>
                             {% endfor %}
-                        
                         </ul>
                     </div>
                    
+
+                    {% put cardFooter %}
+                        <a href="#" class="text-blue-900 flex items-center">
+                            Все категории
+                            <i class="icon-rightAngle text-sm ml-2 mt-1"></i>
+                        </a>
+                    {% endput %}
                 {% endpartial %}
                 
             {% endfor %}
