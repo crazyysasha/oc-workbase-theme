@@ -2,48 +2,43 @@ url = "/"
 layout = "default"
 title = "Home"
 ==
-<?php
-use Crazy\FreeLancer\Models\Category;
-use Crazy\FreeLancer\Models\Service;
 
-function onStart()
-{
-    $this['cats'] = Category::get();
-    $this['serv'] = Service::get();
-}
-?>
 ==
 {##}
-<section class="relative flex mt-20 w-full items-center justify-center" style="height: calc(100vh - 80px);">
+<section class="relative flex mt-18 w-full items-center justify-center" style="height: calc(100vh - 66px);">
     <div class="bg-black bg-opacity-40 h-full w-full z-10 absolute block"></div>
     <div class="w-full absolute h-full block">
         <video class="object-cover object-center h-full w-full" src="{{ 'assets/videos/videobg.mp4' | theme }}" autoplay allowfullscreen muted loop></video>
     </div>
-    <div class="container z-10 px-5">
-        <h1 class="md:text-5xl text-3xl font-bold text-white leading-3">Работа в Узбекистане</h1>
-        <p class="text-xl font-bold my-10 text-white">538 603 клиента доверили дела WorkBase</p>
-        <form action="/action_page.php">
-            <input type="text" placeholder="Профессия, должность или специалист" name="search" class="text-black outline-none rounded-tl-full rounded-bl-full px-8 py-2 bg-white mr-0 border-2 border-white w-1/2 -mr-2 md:text-lg text-md">
-            <button type="submit" class="bg-white text-white m-0 outline-none rounded-tr-full rounded-br-full -ml-1 border-2 border-white focus:outline-none md:text-lg text-md">
-                <div class="bg-orange-400 rounded-full px-11 py-2">Заказать услугу</div>
+    <div class="container z-10 px-4 md:px-0">
+        <h1 class="md:text-5xl text-xl md:text-3xl font-medium md:font-bold text-white leading-3">Работа в Узбекистане</h1>
+        <p class="md:text-xl text-md font-medium md:font-bold my-10 text-white">538 603 клиента доверили дела WorkBase</p>
+        <form action="/action_page.php" class="flex ">
+            <input type="text" placeholder="Профессия, должность или специалист" name="search" 
+            class="text-black outline-none rounded-tl-full rounded-bl-full px-3 py-1 md:px-8 md:py-1 bg-white mr-0 
+            border-2 border-white w-full md:w-1/2  -mr-2 md:text-md lg:text-lg text-xs flex justify-items-center items-center">
+            <button type="submit" class="bg-white text-white m-0 outline-none rounded-tr-full rounded-br-full -
+            ml-1 border-2 border-white focus:outline-none md:text-lg text-md py-1 md:py-0 flex justify-items-center items-center">
+                <span class="hidden md:block bg-orange-400 rounded-full px-11 py-2 ">Заказать услугу</span>
+                <span class="md:hidden bg-orange-400 rounded-full px-6 py-1 mr-1"><i class="fa fa-search" aria-hidden="true"></i></span>  
             </button>
         </form>
-        <ul class="md:block grid grid-cols-2  mt-10 text-white text-sm text-xl">
-            <li class="ml-5 md:text-xl text-sm md:inline-block"><a class="border-b border-white" href="#"># создание сайтов</a></li>
-            <li class="ml-5 md:text-xl text-sm md:inline-block"><a class="border-b border-white" href="#"># выгул собак</a></li>
-            <li class="ml-5 md:text-xl text-sm md:inline-block"><a class="border-b border-white" href="#"># ремонт под ключ</a></li>
-            <li class="ml-5 md:text-xl text-sm md:inline-block"><a class="border-b border-white" href="#"># математика дистанционно</a></li>
+        <ul class="md:block mt-10 text-white text-sm text-xl">
+            <li class="ml-5 md:text-xl text-sm md:inline-block my-3"><a class="border-b border-white" href="#"># создание сайтов</a></li>
+            <li class="ml-5 md:text-xl text-sm md:inline-block my-3"><a class="border-b border-white" href="#"># выгул собак</a></li>
+            <li class="ml-5 md:text-xl text-sm md:inline-block my-3"><a class="border-b border-white" href="#"># ремонт под ключ</a></li>
+            <li class="ml-5 md:text-xl text-sm md:inline-block my-3"><a class="border-b border-white" href="#"># математика дистанционно</a></li>
         </ul>
     </div>
 </section>
-<section class="bg-gray-50 pt-10">
+<section class="bg-gray-50 pt-5 md:pt-10">
     <div class="container">
-        <div class="text-center sm:text-left">
-            <h1 class="text-3xl font-bold">В <span class="text-blue-800">Ташкенте работает</span> 325 779 специалистов, 205 469 дистанционно</h1>
+        <div class="text-center sm:text-left px-5">
+            <h1 class="text-xl md:text-3xl font-bold">В <span class="text-blue-800">Ташкенте работает</span> 325 779 специалистов, 205 469 дистанционно</h1>
         </div>
         
-        <div class="md:grid grid-cols-3 gap-7 py-10">
-            {% for category in cats %}
+        <div class="md:grid grid-cols-3 gap-7 my-5 md:py-10">
+            <!-- {% for category in cats %}
                 {% partial 'cards/default' body %}
                 
                     {% put cardHeader %}
@@ -83,56 +78,56 @@ function onStart()
                     {% endput %}
                 {% endpartial %}
                 
-            {% endfor %}
+            {% endfor %} -->
         
         </div>
     </div>
 </section>
 <section>
-    <div class="md:flex justify-between container py-10 px-5">
+    <div class="md:flex justify-between container py-5 md:py-10 px-5">
         <div class="px-5">
-            <h1 class="text-3xl font-bold py-5 ">
+            <h1 class="text-xl font-medium md:text-3xl md:font-bold py-5 ">
                 Как нанять <span class="text-blue-800">специалиста?</span>
             </h1>
-            <h3 class="text-lg"> Оставьте вашу заявку.</h3>
-            <p class="text-gray-400">Опишите работу которую необходимо выполнить для подбора <br> подходящего специалиста.</p>
-            <h3 class="text-lg pt-5">Исполнители свяжутся с вами.</h3>
-            <p class="text-gray-400">Выберите подходящего специалиста по отзывам и цене.</p>
-            <h3 class="text-lg pt-5">Оставьте отзыв по окончанию работы.</h3>
-            <p class="text-gray-400">После выполнения работы не забудьте оставить отзыв и <br> оценку выбранному специалисту.</p>
+            <h3 class="text-md md:text-lg"> Оставьте вашу заявку.</h3>
+            <p class="text-sm md:text-md text-gray-400">Опишите работу которую необходимо выполнить для подбора <br> подходящего специалиста.</p>
+            <h3 class="text-md md:text-lg pt-5">Исполнители свяжутся с вами.</h3>
+            <p class="text-sm md:text-md text-gray-400">Выберите подходящего специалиста по отзывам и цене.</p>
+            <h3 class="text-md md:text-lg pt-5">Оставьте отзыв по окончанию работы.</h3>
+            <p class="text-sm md:text-md text-gray-400">После выполнения работы не забудьте оставить отзыв и <br> оценку выбранному специалисту.</p>
         </div>
-        <div class="relative">
+        <div class="relative pt-4 md:pt-0">
             <img src="{{'assets/images/MaskGroup.png' | theme}}" alt="">
-            <div class="absolute -bottom-4 left-8 bg-gray-100 p-5 rounded-tr-3xl rounded-bl-3xl w-7/12">
+            <div class="absolute -bottom-10 left-0 md:left-8 bg-gray-100 p-5 rounded-tr-3xl rounded-bl-3xl w-full md:w-7/12">
                 <ul class="flex justify-between">
                     <li>
                         <img src="{{ 'assets/images/Clock.png' | theme}}" alt="" class="h-4 mb-2 mx-auto">
-                        <p>Заявка</p>
+                        <p class="text-sm md:text-md" >Заявка</p>
                     </li>
                     <li>
                         <img src="{{ 'assets/images/Search.png' | theme}}" alt="" class="h-4 mb-2 mx-auto">
-                        <p>Поиск</p>
+                        <p class="text-sm md:text-md" >Поиск</p>
                     </li>
                     <li>
                         <img src="{{ 'assets/images/Stars.png' | theme}}" alt="" class="h-4 mb-2 mx-auto">
-                        <p>Отзыв</p>
+                        <p class="text-sm md:text-md" >Отзыв</p>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
 </section>
-<section class="bg-gray-50 mt-10">
+<section class="bg-gray-50 mt-5 md:mt-10">
     <div class="md:flex justify-between my-5 container md:px-5 px-10 mx-auto">
-        <div class="flex-1 mx-auto my-auto mx-auto">
-            <h1 class="text-2xl font-bold mb-4">Для максимального <br> удобства, скачайте <br> бесплатное <span class="text-blue-800">мобильное <br> приложение.</span></h1>
+        <div class="mx-auto my-auto mx-auto">
+            <h1 class="text-lg md:text-2xl font-medium md:font-bold mb-4">Для максимального <br> удобства, скачайте <br> бесплатное <span class="text-blue-800">мобильное <br> приложение.</span></h1>
             <a class="inline-block" href="#"><img src="{{'assets/images/appstorerus.png' | theme }}" alt="" width="110px"></a>
             <a class="inline-block ml-5" href="#"><img src="{{'assets/images/icongoogleplay.png' | theme }}" alt="" width="120px"></a>
         </div>
-        <div class=" flex relative w-1/2">
+        <div class="relative w-1/2 mx-auto my-5">
 
             <div class="swiper mySwiper w-full">
-                <div class="swiper-wrapper">
+                <div class="swiper-wrapper mx-auto">
                   <div class="swiper-slide"><img src="{{'assets/images/smartphone.png'|theme}}" alt=""></div>
                   <div class="swiper-slide"><img src="{{'assets/images/smartphone2.png'|theme}}" alt=""></div>
                   <div class="swiper-slide"><img src="{{'assets/images/smartphone3.png'|theme}}" alt=""></div>
@@ -156,15 +151,15 @@ function onStart()
 </section>
 <section>
     <div class="md:grid grid-cols-2 container">
-        <div class="col-span-1 mx-3 mt-10">
-            <div class="">
-                <div class="animate-spin relative flex justify-items-center items-center rounded-full w-108 h-108 border border-gary-300">
-                   <div class="flex justify-items-center items-center rounded-full w-92 h-92 border border-gary-300 m-auto">
-                        <div class="flex justify-items-center items-center bg-blue-200 rounded-full w-56 h-56 m-auto text-center">
-                            <div class="m-auto rounded-full flex justify-items-center items-center bg-blue-100 w-48 h-48">
+        <div class="col-span-1 mx-3 flex justify-items-center items-center mt-10 overflow-hidden py-5">
+            <div class="mx-auto ">
+                <div class="animate-spin relative flex justify-items-center items-center rounded-full w-64 md:w-108 h-64 md:h-108 border border-gary-300">
+                   <div class="flex justify-items-center items-center rounded-full w-52 md:w-92 h-52 md:h-92 border border-gary-300 m-auto">
+                        <div class="flex justify-items-center items-center bg-blue-200 rounded-full w-28 h-28 md:w-56 md:h-56 m-auto text-center">
+                            <div class="m-auto rounded-full flex justify-items-center items-center bg-blue-100 w-24 h-24 md:w-48 md:h-48">
                                 <div class="animate-spin1 m-auto animate-none">
-                                    <span class="font-bold text-3xl text-blue-900 block">95%</span>
-                                    <span>
+                                    <span class="font-bold text-md text-blue-900 md:text-3xl block">95%</span>
+                                    <span class="text-xs md:text-md">
                                         положительных
                                         <br>
                                         отзывов
@@ -174,23 +169,23 @@ function onStart()
                         </div>
                    </div>
 
-                   <div class="animate-spin1 absolute border-2 border-white rounded-full w-14 h-14 shadow-xl  top-16 left-4">
+                   <div class="animate-spin1 absolute border-2 border-white rounded-full md:w-14 w-9 md:h-14 h-9 shadow-xl top-8 left-2 md:top-16 md:left-4">
                        <img class="w-full h-full rounded-full" src="{{'assets/images/circleImg5.png' | theme}}" alt="">
                    </div>
 
-                   <div class="animate-spin1 absolute border-2 border-white rounded-full w-24 h-24 shadow-xl -right-12">
+                   <div class="animate-spin1 absolute border-2 border-white rounded-full md:w-24 w-12 md:h-24 h-12 shadow-xl -right-6 md:-right-12">
                         <img class="w-full h-full rounded-full" src="{{'assets/images/circleImg4.png' | theme}}" alt="">
                     </div>
 
-                    <div class="animate-spin1 absolute border-2 border-white rounded-full w-12 h-12 shadow-xl -top-6 left-1/2">
+                    <div class="animate-spin1 absolute border-2 border-white rounded-full md:w-12 w-8 md:h-12 h-8 shadow-xl -top-3 left-1/2 md:-top-6 md:left-1/2">
                         <img class="w-full h-full rounded-full" src="{{'assets/images/circleImg3.png' | theme}}" alt="">
                     </div>
 
-                    <div class="animate-spin1 absolute border-2 border-white rounded-full w-20 h-20 shadow-xl bottom-16 ">
+                    <div class="animate-spin1 absolute border-2 border-white rounded-full md:w-20 w-11 md:h-20 h-11 shadow-xl bottom-8 md:bottom-16 ">
                         <img class="w-full h-full rounded-full" src="{{'assets/images/circleImg2.png' | theme}}" alt="">
                     </div>
 
-                    <div class="animate-spin1 absolute border-2 border-white rounded-full w-16 h-16 shadow-xl left-1/2 -bottom-7">
+                    <div class="animate-spin1 absolute border-2 border-white rounded-full md:w-16 w-10 md:h-16 h-10 shadow-xl left-1/2 -bottom-3 md:left-1/2 md:-bottom-7">
                         <img class="w-full h-full rounded-full" src="{{'assets/images/circleImg1.png' | theme}}" alt="">
                     </div>
 
@@ -198,15 +193,19 @@ function onStart()
             </div>
         </div>
         <div class="col-span-1 mx-3 mt-10">
-            <h1 class="text-2xl font-bold">За 12 месяцев 416 047 отзывов</h1>
-            <div class="bg-gray-100 p-5 rounded-tl-3xl rounded-br-3xl mt-5 ">
-                <img src="{{'assets/images/ClientMale.png' | theme}}" alt="" class="inline-block">
-                <p class="inline-block font-bold">Фарух Усманов</p>
-                <p class="float-right inline-block text-orange-500 font-bold">10 из 10</p>
-                <p class="mt-5">
+            <h1 class="text-md font-medium md:text-2xl md:font-bold text-center md:text-left">За 12 месяцев 416 047 отзывов</h1>
+            <div class="bg-gray-100 p-2 md:p-5 rounded-tl-3xl rounded-br-3xl mt-5">
+                <div class="flex justify-items-center items-center justify-between">
+                    <div class="flex justify-items-center items-center">
+                        <img src="{{'assets/images/ClientMale.png' | theme}}" alt="" class="border-2 border-white rounded-full">
+                        <p class=" font-medium md:text-md  md:font-bold ml-3">Фарух Усманов</p>
+                    </div>
+                    <p class="text-orange-500 text-sm font-medium md:text-md font-bold">10 из 10</p>
+                </div>
+                <p class="mt-5 text-sm md:text-md">
                     Нам нужен был электрик. Мастер произвел отличное впечатление. Работу выполнил хорошо, установил розетки. Мастер сказал, что если понадобятся еще услуги электрика, то всегда можно к нему обратиться.P/s: Мастер пришел в перчатках и маске.
                 </p>
-                <p class=" text-gray-500">
+                <p class=" text-gray-500 text-sm md:text-md" >
                     Азамат
                     <span class="bg-gray-300 rounded-full w-2 h-2 inline-block"></span>
                     «двери и замки»
@@ -215,13 +214,19 @@ function onStart()
                     11 ноября 2020
                 </p>
             </div>
-            <div class="bg-gray-100 p-5 rounded-tl-3xl rounded-br-3xl mt-5 ">
-                <img src="{{'assets/images/ClinetFamale.png' | theme}}" alt="" class="inline-block mr-5 border-2 border-white rounded-full"> 
-                <p class="inline-block font-bold">Муниса Акрамова</p>
-                <p class="float-right inline-block text-orange-500 font-bold">9 из 10</p>
-                <p class="mt-5">
+            <div class="bg-gray-100 p-5 rounded-tl-3xl rounded-br-3xl mt-5">
+                <div class="flex justify-items-center items-center justify-between">
+                    <div class="flex justify-items-center items-center">
+                        <img src="{{'assets/images/ClinetFamale.png' | theme}}" alt="" class="border-2 border-white rounded-full"> 
+                        <p class="md:text-md font-bold ml-3">Муниса Акрамова</p>
+                    </div>
+                    <div>
+                        <p class="text-sm md:text-md text-orange-500 font-medium font-medium md:font-bold">9 из 10</p>
+                    </div>
+                </div>
+                <p class="mt-5 text-sm md:text-md">
                     Поклеили обои. Отличная работа , все сделали безупречно Настоятельно рекомендую! Как Феи ))) прилетели и навели волшебство.                </p>
-                <p class=" text-gray-500">
+                <p class=" text-gray-500 text-sm md:text-md">
                     Саид
                     <span class="bg-gray-300 rounded-full w-2 h-2 inline-block"></span>
                     «поклейка обоев»
@@ -229,7 +234,9 @@ function onStart()
                     10 ноября 2020
                 </p>
             </div>
-            <button class="my-5 px-6 py-2 rounded-full bg-blue-800 text-white"><span class=""> Все отзывы <i class="icon-rightAngle text-white"></i> </span></button>
+            <div class="flex justify-center md:block">
+                <button class="my-5 px-6 py-2 rounded-full bg-blue-800 text-white text-center flex justify-items-center items-center"><span class=""> Все отзывы</span> <i class="icon-rightAngle text-white"></i> </button>
+            </div>
         </div>
         
     </div>
