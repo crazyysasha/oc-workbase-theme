@@ -160,7 +160,7 @@
                                     <input class="w-full rounded-md border border-gray-500 text-xs  md:text-md p-2 block focus:outline-none bg-white" placeholder="Телефон"  pattern="[0-9]{3}-[0-9]{2}-[0-9]{2}-[0-9]{2}" type="tel">
                                     <input class="w-full rounded-md border border-gray-500 text-xs  md:text-md p-2 block focus:outline-none my-5 bg-white" placeholder="Пароль" autocomplet="new-password" type="password">
                                     <input class="w-full rounded-md border border-gray-500 text-xs  md:text-md p-2 block focus:outline-none my-5 bg-white" placeholder="Повторите пароль" autocomplet="new-password" type="password">
-                                    <input class="w-full rounded-full border border-blue-800 text-sm  md:text-md p-2 block focus:outline-none bg-blue-800 text-white font-bold my-5" type="submit" value="Войти">
+                                    <input class="w-full rounded-full border border-blue-800 text-sm  md:text-md p-2 block focus:outline-none bg-blue-800 text-white font-bold my-5" type="submit" value="Сохранить">
                                 </div>
                                 <div class="my-4">
                                     <ul class="flex justify-center ">
@@ -199,7 +199,7 @@
                                 <div class="mx-5">
                                     <input class="w-full rounded-md border border-gray-500 text-xs  md:text-md p-2 block focus:outline-none bg-white"  pattern="[0-9]{3}-[0-9]{2}-[0-9]{2}-[0-9]{2}" type="tel">
                                     <input class="w-full rounded-md border border-gray-500 text-xs  md:text-md p-2 block focus:outline-none my-5 bg-white" type="password">
-                                    <input class="w-full rounded-full border border-blue-800 text-sm  md:text-md p-2 block focus:outline-none bg-blue-800 text-white font-bold my-5" type="submit" value="Войти">
+                                    <a href="{{ 'profile' | page }}" class="w-full rounded-full border border-blue-800 text-sm  md:text-md p-2 block focus:outline-none bg-blue-800 text-white font-bold my-5 text-center">Войти</a>
                                 </div>
                                 <div class="my-4">
                                     <ul class="flex justify-center ">
@@ -234,44 +234,46 @@
                            <div>
                                 <ul class="list-reset lg:flex justify-start flex-1 items-center">
                                     <li class="">
-                                            <a href="{{ 'home' | page }}" class="px-4 w-44 h-20">
+                                        <div class="w-44 px-2">
+                                            <a href="{{ 'home' | page }}" class="">
                                                 <img src="{{'assets/images/logowhite.svg' | theme}}" width="100%">
                                             </a>
+                                        </div>
                                     </li>
-                                    <li class="w-28">
-                                        <a href="#" class="flex items-center justify-center flex-col px-4 py-2 h-full text-white hover:bg-blue-800">
+                                    <li class="">
+                                        <a href="#" class="flex items-center justify-center flex-col px-4 py-3 h-20 h-full text-white hover:bg-blue-800 w-28">
                                             <i class="icon-menu1 text-3xl leading-none pb-1 relative">
                                                 <span class="messageCount"></span>
                                             </i>
                                             <span>Заказы</span>
                                         </a>
                                     </li>
-                                    <li class="w-28">
-                                        <a href="#" class="flex items-center justify-center flex-col px-4 py-2  text-white hover:bg-blue-800">
+                                    <li class="">
+                                        <a href="#" class="flex items-center justify-center flex-col px-4 py-3 h-20  text-white hover:bg-blue-800 w-28">
                                             <i class="icon-menu2 text-3xl leading-none pb-1 relative">
                                                 <span class="messageCount"></span>
                                             </i>
                                             <span>Кошелек</span>
                                         </a>
                                     </li>
-                                    <li class="w-28">
-                                        <a href="#" class="flex items-center justify-center flex-col px-4 py-2  text-white hover:bg-blue-800">
+                                    <li class="">
+                                        <a href="#" class="flex items-center justify-center flex-col px-4 py-3 h-20  text-white hover:bg-blue-800 w-28">
                                             <i class="icon-menu3 text-3xl leading-none pb-1 relative">
                                                 <span class="messageCount"></span>
                                             </i>
                                             <span>Анкета</span>
                                         </a>
                                     </li>
-                                    <li class="w-28">
-                                        <a href="#" class="flex items-center justify-center flex-col px-4 py-2  text-white hover:bg-blue-800">
+                                    <li class="">
+                                        <a href="#" class="flex items-center justify-center flex-col px-4 py-3 h-20  text-white hover:bg-blue-800 w-28">
                                             <i class="icon-menu4 text-3xl leading-none pb-1 relative">
                                                 <span class="messageCount"></span>
                                             </i>
                                             <span>Поддержка</span>
                                         </a>
                                     </li>
-                                    <li class="w-28">
-                                        <a href="#" class="flex items-center justify-center flex-col px-4 py-2  text-white hover:bg-blue-800">
+                                    <li class="">
+                                        <a href="#" class="flex items-center justify-center flex-col px-4 py-3 h-20  text-white hover:bg-blue-800 w-28">
                                             <i class="icon-bonus text-3xl leading-none pb-1 relative">
                                                 <span class="messageCount"></span>
                                             </i>
@@ -286,7 +288,7 @@
 
                                     <li class="mr-3">
                                         <div>
-                                            <button @click="showModalReg = !showModalReg" class="border flex items-center rounded-full px-5 py-2 focus:outline-none">
+                                            <button @click="showModalReg = !showModalReg" class="border flex items-center rounded-full px-5 text-white py-2 focus:outline-none">
                                                 <img class="mr-2" src="{{'assets/images/enter.png' | theme}}" alt="">
                                                 Регистрация
                                             </button>
@@ -299,8 +301,8 @@
                                                 Ru
                                                 <i class="fa fa-angle-down ml-2" aria-hidden="true"></i>
                                             </button>
-                                            <div x-show="Modal" class="bg-white w-full absolute z-10 pt-2 px-2 rounded-xl top-16">
-                                                <div class="flex flex-col text-black text-center">
+                                            <div x-show="Modal" class="bg-blue-900 text-white w-full absolute z-10 pt-2 px-2 rounded-xl top-16">
+                                                <div class="flex flex-col text-black text-center text-white">
                                                     <a class="mb-2" href="#"><span>Ru</span></a>
                                                     <a class="mb-2" href="#"><span>En</span></a>
                                                     <a class="mb-2" href="#"><span>Uz</span></a>
