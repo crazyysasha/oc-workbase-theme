@@ -1,7 +1,7 @@
 {
-    "name": "crazy/crazy.tailpine-theme",
+    "name": "crazy/oc-workbase-theme",
     "type": "october-theme",
-    "description": "Base Tailwindcss + Alpine.js theme for OctoberCMS",
+    "description": "WorkBase theme in OctoberCMS",
     "require": {
         "composer/installers": "~1.0"
     }

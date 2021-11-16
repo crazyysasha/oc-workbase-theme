@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="{{ 'assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css'|theme }}">
     <link rel="stylesheet" href="{{ 'assets/fonts/icomoon/style.css'|theme }}">
     <link rel="stylesheet" href="{{ 'assets/fonts/aeroport/stylesheet.css'|theme }}">
-    <link rel="stylesheet" href="{{['assets/css/re-style.css', '@framework.extras.css']|theme}}">
     <link rel="stylesheet" href="{{['assets/css/app.css', '@framework.extras.css']|theme}}">
     <link rel="icon" href="{{ this.theme.favicon.path }}">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
@@ -21,6 +20,7 @@
     {% styles %}
 </head>
 <body class="font-montserrat">
+    
     {% partial "headers/default" %}
   
         {% page %}        
@@ -31,10 +31,9 @@
 
 
     {% placeholder modals %}
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
- 
+    
+    <script defer src="https://unpkg.com/alpinejs@3.5.0/dist/cdn.min.js"></script>
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="{{ 'assets/js/app.js' |theme }}"></script>
     <script src="{{ [
         '@jquery',
