@@ -17,7 +17,7 @@
                                 <ul class="pt-6 lg:pt-0 list-reset lg:flex justify-end flex-1 items-center">
                                     <li class="mr-3">
                                         <div class="relative" x-data="{ Modal : false }"  @click.away="Modal = false">
-                                            <button class="border flex items-center rounded-full px-5 py-2 focus:outline-none" @click="Modal = !Modal">
+                                            <button class="border-2 flex items-center rounded-full px-5 py-2 focus:outline-none" @click="Modal = !Modal">
                                                 <img class="mr-2" src="{{'assets/images/location.png' | theme}}" alt="">
                                                 г. Ташкент
                                             </button>
@@ -350,12 +350,16 @@
                                     </a>
                                     <button class="focus:outline-none" @click="showMenu = ! showMenu"><i class="icon-x text-xs"></i></button>
                                 </li>
-                                <li @click="showModal = !showModal" class="border-b border-blue-700 font-semibold py-2"><a href="#">Вход</a></li>
-                                <li @click="showModalReg = !showModalReg" class="border-b border-blue-700 font-semibold py-2"><a href="#">Регистрация</a></li>
+                                <li class="border-b border-blue-700 font-semibold py-2"><a href="#"> Я исполнитель </a></li>
+                                <li class="border-b border-blue-700 font-semibold py-2"><a href="{{ 'order' | page }}"><i class="icon-menu1"></i> Заказы</a></li>
+                                <li class="border-b border-blue-700 font-semibold py-2"><a href="{{ 'balance' | page }}"><i class="icon-menu2"></i> Кошелек</a></li>
+                                <li class="border-b border-blue-700 font-semibold py-2"><a href="{{ 'profile' | page }}"><i class="icon-menu3"></i> Анкета</a></li>
+                                <li class="border-b border-blue-700 font-semibold py-2"><a href="{{ 'bonuses' | page }}"><i class="icon-menu4"></i> Бонусы</a></li>
                                 <li class="border-b border-blue-700 font-semibold py-2"><a href="#">Служба поддержки</a></li>
                                 <li class="border-b border-blue-700 font-semibold py-2"><a href="#">Инструкция по оплате</a></li>
                                 <li class="border-b border-blue-700 font-semibold py-2"><a href="#">Частые вопросы</a></li>
                                 <li class="border-b border-blue-700 font-semibold py-2"><a href="#">Условия использования</a></li>
+                                
                             </ul>
                         </div>
                         <div class="mt-10">
