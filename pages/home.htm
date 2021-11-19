@@ -1,8 +1,13 @@
 url = "/"
 layout = "default"
-title = "Home"
+title = "WorkBase"
 ==
+use Crazy\Freelancer\Models\Category;
 
+function onStart()
+{
+    $this['cats'] = Category::get();
+}
 ==
 {##}
 <section class="relative flex mt-18 w-full items-center justify-center" style="height: calc(100vh - 66px);">
@@ -27,14 +32,14 @@ title = "Home"
         </ul>
     </div>
 </section>
-<section class="bg-gray-50 pt-5 md:pt-10">
+<section class="bg-gray-50 pt-5 md:pt-20">
     <div class="container">
-        <div class="text-center sm:text-left px-5">
-            <h1 class="text-xl md:text-3xl font-bold">В <span class="text-blue-800">Ташкенте работает</span> 325 779 специалистов, 205 469 дистанционно</h1>
+        <div class="text-center sm:text-left">
+            <h1 class="text-xl  md:text-3xl font-bold">В <span class="text-blue-800">Ташкенте работает</span> 325 779 специалистов, 205 469 дистанционно</h1>
         </div>
         
         <div class="md:grid grid-cols-3 gap-7 my-5 md:py-10">
-            <!-- {% for category in cats %}
+          {% for category in cats %}
                 {% partial 'cards/default' body %}
                 
                     {% put cardHeader %}
@@ -74,23 +79,43 @@ title = "Home"
                     {% endput %}
                 {% endpartial %}
                 
-            {% endfor %} -->
+            {% endfor %}
         
         </div>
     </div>
 </section>
 <section>
-    <div class="md:flex justify-between container py-5 md:py-10 px-5">
-        <div class="px-5">
-            <h1 class="text-xl font-medium md:text-3xl md:font-bold py-5 ">
+    <div class="md:flex justify-between container py-5 md:py-10">
+        <div class="">
+            <h2 class="text-xl  md:text-3xl font-bold mb-8">
                 Как нанять <span class="text-blue-800">специалиста?</span>
-            </h1>
-            <h3 class="text-md md:text-lg"> Оставьте вашу заявку.</h3>
-            <p class="text-sm md:text-md text-gray-400">Опишите работу которую необходимо выполнить для подбора <br> подходящего специалиста.</p>
-            <h3 class="text-md md:text-lg pt-5">Исполнители свяжутся с вами.</h3>
-            <p class="text-sm md:text-md text-gray-400">Выберите подходящего специалиста по отзывам и цене.</p>
-            <h3 class="text-md md:text-lg pt-5">Оставьте отзыв по окончанию работы.</h3>
-            <p class="text-sm md:text-md text-gray-400">После выполнения работы не забудьте оставить отзыв и <br> оценку выбранному специалисту.</p>
+            </h2>
+            <ul>
+                <li class="flex mb-8">
+                    <i class="w-3.5 h-3.5 rounded-full bg-orange-400 flex mr-5 mt-2"></i>
+                    <div>
+                        <h4 class="font-medium text-md md:text-lg"> Оставьте вашу заявку.</h4>
+                        <p class="text-sm md:text-md text-gray-400">Опишите работу которую необходимо выполнить для подбора <br> подходящего специалиста.</p>
+                    </div>
+                </li>
+                <li class="flex mb-8">
+                    <i class="w-3.5 h-3.5 rounded-full bg-orange-400 flex mr-5 mt-2"></i>
+                    <div>
+                        <h4 class="font-medium text-md md:text-lg">Исполнители свяжутся с вами.</h4>
+                        <p class="text-sm md:text-md text-gray-400">Выберите подходящего специалиста по отзывам и цене.</p>
+                    </div>
+                </li>
+                <li class="flex mb-8">
+                    <i class="w-3.5 h-3.5 rounded-full bg-orange-400 flex mr-5 mt-2"></i>
+                    <div>
+                        <h4 class="font-medium text-md md:text-lg">Оставьте отзыв по окончанию работы.</h4>
+                        <p class="text-sm md:text-md text-gray-400">После выполнения работы не забудьте оставить отзыв и <br> оценку выбранному специалисту.</p>
+                    </div>
+                </li>
+            </ul>
+            
+            
+           
         </div>
         <div class="relative pt-4 md:pt-0">
             <img src="{{'assets/images/MaskGroup.png' | theme}}" alt="">
@@ -114,11 +139,13 @@ title = "Home"
     </div>
 </section>
 <section class="bg-gray-50 mt-5 md:mt-10">
-    <div class="md:flex justify-between my-5 container md:px-5 px-10 mx-auto">
-        <div class="mx-auto my-auto mx-auto">
-            <h1 class="text-lg md:text-2xl font-medium md:font-bold mb-4">Для максимального <br> удобства, скачайте <br> бесплатное <span class="text-blue-800">мобильное <br> приложение.</span></h1>
-            <a class="inline-block" href="#"><img src="{{'assets/images/appstorerus.png' | theme }}" alt="" width="110px"></a>
-            <a class="inline-block ml-5" href="#"><img src="{{'assets/images/icongoogleplay.png' | theme }}" alt="" width="120px"></a>
+    <div class="md:flex items-center justify-between my-5 container  mx-auto">
+        <div class="">
+            <h2 class="text-xl  md:text-3xl font-bold mb-8">Для максимального <br> удобства, скачайте <br> бесплатное <span class="text-blue-800">мобильное <br> приложение.</span></h2>
+            <div class="flex">
+                <a class="mr-4" href="#"><img class="w-30 h-10" src="{{'assets/images/apple.png' | theme }}" alt=""></a>
+                <a class="" href="#"><img class="w-30 h-10" src="{{'assets/images/android.png' | theme }}" alt=""></a>
+            </div>
         </div>
         <div class="relative w-1/2 mx-auto my-5">
 
@@ -189,7 +216,7 @@ title = "Home"
             </div>
         </div>
         <div class="col-span-1 mx-3 mt-10">
-            <h1 class="text-md font-medium md:text-2xl md:font-bold text-center md:text-left">За 12 месяцев 416 047 отзывов</h1>
+            <h2 class="text-xl  md:text-3xl font-bold mb-8 md:text-2xl md:font-bold text-center md:text-left">За 12 месяцев <span class="text-blue-800"> 416 047 отзывов</span></h2>
             <div class="bg-gray-100 p-2 md:p-5 rounded-tl-3xl rounded-br-3xl mt-5">
                 <div class="flex justify-items-center items-center justify-between">
                     <div class="flex justify-items-center items-center">
