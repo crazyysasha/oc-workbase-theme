@@ -14,6 +14,44 @@ title = "make-order"
         specialist: false,
         chat: false 
     }">
+
+
+    <div class="w-full">
+        <div class="swiper w-full h-full slider-work">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide flex justify-center items-center"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block w-full object-cover" alt=""></div>
+              <div class="swiper-slide flex justify-center items-center"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block w-full object-cover" alt=""></div>
+              <div class="swiper-slide flex justify-center items-center"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block w-full object-cover" alt=""></div>
+              <div class="swiper-slide flex justify-center items-center"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block w-full object-cover" alt=""></div>
+              <div class="swiper-slide flex justify-center items-center"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block w-full object-cover" alt=""></div>
+              <div class="swiper-slide flex justify-center items-center"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block w-full object-cover" alt=""></div>
+              <div class="swiper-slide flex justify-center items-center"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block w-full object-cover" alt=""></div>
+              <div class="swiper-slide flex justify-center items-center"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block w-full object-cover" alt=""></div>
+              <div class="swiper-slide flex justify-center items-center"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block w-full object-cover" alt=""></div>
+            </div>
+            
+        </div>
+    </div>
+    
+    {% put scripts %}
+        <script>
+            var swiper = new Swiper(".slider-work", {
+            slidesPerView: 7,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: false,
+            },
+            });
+        </script>
+    {% endput %}
+
+
     <div class="md:grid grid-cols-3 container">
 
         <div class="md:col-span-1 m-2 relative">
