@@ -321,7 +321,7 @@
     <nav
         x-data="{ showBar: false }" 
         class="w-full bg-blue-900 max-h-16 py-3 md:py-0 "
-        :class="{ 'shadow-xl border-b border-b-gray-300 transition duration-100' : showBar }"
+        :class="{ 'shadow-xl transition duration-100' : showBar }"
         @scroll.window="showBar = (window.pageYOffset > 20) ? true : false">
         
         <div class="container">

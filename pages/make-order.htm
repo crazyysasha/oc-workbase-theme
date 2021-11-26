@@ -13,10 +13,10 @@ title = "make-order"
         help: false, 
         specialist: false,
         chat: false 
-    }">
+    }" >
 
 
-    <div class="w-full">
+    <div class="w-full py-5 px-2">
         <div class="swiper w-full h-full slider-work">
             <div class="swiper-wrapper">
               <div class="swiper-slide flex justify-center items-center"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block w-full object-cover" alt=""></div>
@@ -52,12 +52,12 @@ title = "make-order"
     {% endput %}
 
 
-    <div class="md:grid grid-cols-3 container">
+    <div class="lg:grid grid-cols-3 container">
 
-        <div class="md:col-span-1 m-2 relative">
+        <div class="lg:col-span-1 col-start-2 m-2 relative sticky lg:static z-40"
+            x-bind:style="{top: `${document.querySelector('header').offsetHeight}px`}">
 
-
-            <div class="hidden md:block md:show bg-white rounded-md p-4 sticky"
+            <div class="hidden  lg:block md:show bg-white rounded-md p-4 sticky z-20"
                 x-bind:style="{top: `${document.querySelector('header').offsetHeight + 8}px`}">
                 <ul>
                     <li @click="IsActive = false , IsActive1 = true , IsActive2 = true , order = true , help = false , specialist = false"
@@ -90,8 +90,11 @@ title = "make-order"
                 </div>
             </div>
             
-            <div class="md:hidden bg-white rounded-md px-4 py-1 sticky"
-            x-bind:style="{top: `${document.querySelector('header').offsetHeight + 8}px`}">
+            <div class=" lg:hidden bg-white rounded-md px-4 py-1 sticky z-20" 
+                x-bind:style="{top: `${document.querySelector('header').offsetHeight}px`}"
+                x-data="{ showBar: false }" 
+                :class="{ 'border-b border-gray-300 shadow-2xl transition duration-100' : showBar }"
+                @scroll.window="showBar = (window.pageYOffset > 20) ? true : false">
                 <ul class="flex justify-between text-center">
                     <li class="" @click="IsActive = false , IsActive1 = true , IsActive3= true, IsActive2 = true , order = true , help = false , chat = false, specialist = false">
                         <div class="flex items-center justify-center" >
@@ -99,7 +102,7 @@ title = "make-order"
                             <!-- <span class="text-2xs text-left">1%</span> -->
                         </div>
                         <div>
-                            <span class="text-2xs">Заказ</span>
+                            <span class="text-2xs lg:text-sm md:text-xs">Заказ</span>
                         </div>
                     </li>
                     
@@ -110,7 +113,7 @@ title = "make-order"
                             </span>
                         </div>
                         <div>
-                            <span class="text-2xs">Специалисты</span>
+                            <span class="text-2xs lg:text-sm md:text-xs">Специалисты</span>
                         </div>
                     </li>
 
@@ -119,7 +122,7 @@ title = "make-order"
                             <span  class="text-xl mr-1 text-gray-500"><i :class="{ 'text-black': ! IsActive3 }" class="fa fa-comments" aria-hidden="true"></i></span>
                         </div>
                         <div>
-                            <span class="text-2xs">Отклики</span>
+                            <span class="text-2xs lg:text-sm md:text-xs">Отклики</span>
                         </div>
                     </li>
 
@@ -128,67 +131,103 @@ title = "make-order"
                             <span  class="text-xl mr-1 text-gray-500"><i :class="{ 'text-black': ! IsActive1 }" class="fa fa-question-circle" aria-hidden="true"></i></span>
                         </div>
                         <div>
-                            <span class="text-2xs">Поддержка</span>
+                            <span class="text-2xs lg:text-sm md:text-xs">Поддержка</span>
                         </div>
                     </li>
                 </ul>
             </div>
+
+            <div class="hidden lg:block rounded-md w-full mt-5">
+                <div class=" rounded-md">
+                    <div class="w-full my-5">
+                            <div class="relative">
+                    
+                                <div class="swiper mySwiper w-full">
+                                    <div class="swiper-wrapper w-full">
+                                      <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner1.jpg' | theme}}" width="100%" alt=""></div>
+                                      <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner6.jpg' | theme}}" width="100%" alt=""></div>
+                                    </div>
+                                </div>                                                 
+                            </div>
+                            {% put scripts %}
+                                <script>
+                                    var swiper = new Swiper('.mySwiper', {
+                                        autoplay: {
+                                             delay: 5000,
+                                            },
+                                        effect: 'fade'
+                                        });
+                                </script>
+                            {% endput %}
+                    </div>
+                    
+
+                    <div class="w-full my-5">
+                        <div class="relative">
+                
+                            <div class="swiper mySwiper w-full">
+                                <div class="swiper-wrapper w-full">
+                                  <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner4.jpg' | theme}}" width="100%" alt=""></div>
+                                  <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner5.jpg' | theme}}" width="100%" alt=""></div>
+                                </div>
+                            </div>                                                 
+                        </div>
+                        {% put scripts %}
+                            <script>
+                                var swiper = new Swiper('.mySwiper', {
+                                    autoplay: {
+                                         delay: 5000,
+                                        },
+                                    effect: 'fade'
+                                    });
+                            </script>
+                        {% endput %}
+                </div>
+
+                <div class="w-full my-5">
+                    <div class="relative">
+            
+                        <div class="swiper mySwiper w-full">
+                            <div class="swiper-wrapper w-full">
+                              <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner3.jpg' | theme}}" width="100%" alt=""></div>
+                              <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner2.jpg' | theme}}" width="100%" alt=""></div>
+                            </div>
+                        </div>                                                 
+                    </div>
+                    {% put scripts %}
+                        <script>
+                            var swiper = new Swiper('.mySwiper', {
+                                autoplay: {
+                                     delay: 5000,
+                                    },
+                                effect: 'fade'
+                                });
+                        </script>
+                    {% endput %}
+            </div>
+
+            
+                </div>
+            </div>
         </div>
 
 
-        <div class="md:col-span-2 mt-2 mx-2">
-            <div class="bg-white pt-4 rounded-md w-full" id="MakeOrderRadio">
+        <div class="lg:col-span-2 col-start-1 col-end-2 m-2 mb-0 relative">
+            <div 
+                class="bg-white pt-4 rounded-md w-full lg:sticky " 
+                id="MakeOrderRadio"
+                x-bind:style="{top: `${document.querySelector('header').offsetHeight +8}px`}">
 
-                <div x-cloak x-show="order" class="px-4 relative">
+                <div 
+                    x-cloak 
+                    x-show="order" 
+                    class="px-4 relative"
+                    >
                     <div x-data="{ isOpen1: true }">
                         <h5 class="text-sm font-bold text-gray-500">Математика</h5>
-                        <h2 class="text-lg font-semibold md:text-3xl md:font-medium my-4">Какая цель занятий?</h2>
+                        <h2 class="text-lg font-semibold md:text-xl lg-text-2xl xl-text-3xl md:font-medium my-4">Какая цель занятий?</h2>
                         <div class="">
-                            <ul class="text-sm md:text-md" x-data="{field: null}">
-                                <li class="my-2">
-
-                                    <input hidden id="radioField" x-model="field" type="radio" value="0">
-                                    <label class="flex items-center" for="radioField">
-                                        <div
-                                            class="rounded-full h-7 w-7 bg-gray-300 flex items-center justify-center mr-3">
-                                            <div x-show="field == 0" class="w-2 h-2 bg-white rounded-full"></div>
-                                        </div>
-                                        ОГЭ по английскому
-                                    </label>
-                                </li>
-                                <li class="my-2">
-                                    <input hidden id="radioField1" x-model="field" type="radio" value="1">
-                                    <label class="flex items-center " for="radioField1">
-                                        <div
-                                            class="mr-3 rounded-full h-7 w-7 bg-gray-300 flex items-center justify-center">
-                                            <div x-show="field == 1" x-transition.opacity.scale
-                                                class="w-2 h-2 bg-white rounded-full"></div>
-                                        </div>
-                                        ОГЭ по английскому
-                                    </label>
-                                </li>
-                                <li class="my-2">
-                                    <input hidden id="radioField2" x-model="field" type="radio" value="2">
-                                    <label class="flex items-center " for="radioField2">
-                                        <div
-                                            class="mr-3 rounded-full h-7 w-7 bg-gray-300 flex items-center justify-center">
-                                            <div x-show="field == 2" x-transition.opacity.scale
-                                                class="w-2 h-2 bg-white rounded-full"></div>
-                                        </div>
-                                        ОГЭ по английскому
-                                    </label>
-                                </li>
-                                <li class="my-2">
-
-                                    <input hidden id="radioField3" x-model="field" type="radio" value="3">
-                                    <label class="flex items-center" for="radioField3">
-                                        <div
-                                            class="rounded-full h-7 w-7 bg-gray-300 flex items-center justify-center mr-3">
-                                            <div x-show="field == 3" class="w-2 h-2 bg-white rounded-full"></div>
-                                        </div>
-                                        ОГЭ по английскому
-                                    </label>
-                                </li>
+                            <ul class="text-xs md:text-sm lg-text-md" x-data="{field: null}">
                                 <li class="my-2">
                                     <input hidden id="radioField4" x-model="field" type="radio" value="4">
                                     <label class="flex items-center " for="radioField4">
@@ -211,6 +250,8 @@ title = "make-order"
                                         ОГЭ по английскому
                                     </label>
                                 </li>
+
+
                                 <li class="my-2">
                                     <input hidden id="radioField6" x-model="field" type="radio" value="6">
                                     <label class="flex items-center " for="radioField6">
@@ -226,13 +267,13 @@ title = "make-order"
                         </div>
 
                     </div>
-                    <div class="sticky w-full bg-white bottom-0 shadow-3xl" >
+                    <div class="sticky w-full bg-white bottom-0 shadow-3xl mt-auto" >
                         <div class="flex justify-between items-center h-20">
-                            <button class="font-medium text-xs md:text-lg w-32 h-10 md:w-48 md:h-12 bg-gray-200 rounded-lg">
+                            <button class="shadow-3xl font-medium text-xs md-text-md lg-text-lg w-32 h-10 md:w-48 md:h-12 bg-gray-200 rounded-lg">
                                 <span><i class=""></i></span>
                                 <span>Начать заново</span>
                             </button>
-                            <button class="font-medium text-xs md:text-lg w-32 h-10 md:w-48 md:h-12 bg-black text-white rounded-lg">
+                            <button class="font-medium text-xs md-text-md lg-text-lg w-32 h-10 md:w-48 md:h-12 bg-black text-white rounded-lg">
                                 <span><i class=""></i></span>
                                 <span>Продолжить</span>
                             </button>
