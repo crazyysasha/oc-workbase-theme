@@ -40,8 +40,10 @@
                                             </span>
                                             <div class="rounded-full bg-gray-300 justify-center flex items-center w-6 h-6 cursor-pointer group hover:bg-blue-900"
                                                 @click="Modal = !Modal">
-                                                <i
-                                                    class="fa fa-times font-light text-xs leading-none group-hover:text-white"></i>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                                </svg>
+                                                
                                             </div>
                                         </div>
                                         <div class="flex justify-between mt-5">
@@ -181,8 +183,13 @@
                         x-transition:leave-start="opacity-100 scale-100 translate-y-0"
                         x-transition:leave-end="opacity-0 scale-90 translate-y-1">
                         <h3 class="font-bold block text-sm md:text-xl mb-3 text-center mb-6">Авторизация</h3>
-                        <div class="absolute top-3 right-3 text-sm inline-block py-0 cursor-pointer"
-                            @click="isOpen = !isOpen"><i class="fa fa-times font-light"></i></div>
+                        <div class="absolute top-3 right-3 rounded-full bg-gray-300 justify-center flex items-center w-6 h-6 cursor-pointer group hover:bg-blue-900"
+                            @click="isOpen = !isOpen">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </div>
+                        
                         <form action="https://workbase.mdg.uz/new/ru/form/reg/login" class="login-form active" method="post"
                             accept-charset="utf-8">
                             <input type="hidden" name="csrf_test_name" value="93365a2df35b6aa7cf296e49822ee4f1">
@@ -262,8 +269,13 @@
                         x-transition:leave-start="opacity-100 scale-100 translate-y-0"
                         x-transition:leave-end="opacity-0 scale-90 translate-y-1">
                         <h3 class="font-bold block text-sm md:text-xl mb-3 text-center mb-6">Авторизация</h3>
-                        <div class="absolute top-3 right-3 text-sm inline-block py-0 cursor-pointer"
-                            @click="isOpen = !isOpen"><i class="fa fa-times font-light"></i></div>
+                        
+                        <div class="absolute top-3 right-3 rounded-full bg-gray-300 justify-center flex items-center w-6 h-6 cursor-pointer group hover:bg-blue-900"
+                            @click="isOpen = !isOpen">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </div>
                         <form action="https://workbase.mdg.uz/new/ru/form/reg/login" class="login-form active" method="post"
                             accept-charset="utf-8">
                             <input type="hidden" name="csrf_test_name" value="93365a2df35b6aa7cf296e49822ee4f1">
