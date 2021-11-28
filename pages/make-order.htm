@@ -1,0 +1,300 @@
+url = "/make-order"
+layout = "make-order"
+title = "make-order"
+==
+{##}
+<section 
+    x-data="{
+        IsActive: false, 
+        IsActive1: true, 
+        IsActive2: true, 
+        IsActive3: true,
+        order: true, 
+        help: false, 
+        specialist: false,
+        chat: false 
+    }" >
+
+
+    <div class="w-full py-5 px-2">
+        <div class="swiper w-full h-full slider-work">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide flex justify-center items-center"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block w-full object-cover" alt=""></div>
+              <div class="swiper-slide flex justify-center items-center"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block w-full object-cover" alt=""></div>
+              <div class="swiper-slide flex justify-center items-center"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block w-full object-cover" alt=""></div>
+              <div class="swiper-slide flex justify-center items-center"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block w-full object-cover" alt=""></div>
+              <div class="swiper-slide flex justify-center items-center"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block w-full object-cover" alt=""></div>
+              <div class="swiper-slide flex justify-center items-center"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block w-full object-cover" alt=""></div>
+              <div class="swiper-slide flex justify-center items-center"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block w-full object-cover" alt=""></div>
+              <div class="swiper-slide flex justify-center items-center"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block w-full object-cover" alt=""></div>
+              <div class="swiper-slide flex justify-center items-center"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block w-full object-cover" alt=""></div>
+            </div>
+            
+        </div>
+    </div>
+    
+    {% put scripts %}
+        <script>
+            var swiper = new Swiper(".slider-work", {
+            slidesPerView: 7,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: false,
+            },
+            });
+        </script>
+    {% endput %}
+
+
+    <div class="lg:grid grid-cols-3 container">
+
+        <div class="lg:col-span-1 col-start-2 m-2 relative sticky lg:static z-40"
+            x-bind:style="{top: `${document.querySelector('header').offsetHeight}px`}">
+
+            <div class="hidden  lg:block md:show bg-white rounded-md p-4 sticky z-20"
+                x-bind:style="{top: `${document.querySelector('header').offsetHeight + 8}px`}">
+                <ul>
+                    <li @click="IsActive = false , IsActive1 = true , IsActive2 = true , order = true , help = false , specialist = false"
+                        class="my-2">
+                        <div :class="{ 'bg-gray-300': ! IsActive }"
+                            class="flex justify-between px-3 justify-items-center items-center cursor-pointer rounded-md h-12 hover:bg-gray-200">
+                            <span class="font-bold text-lg">Заказ</span>
+                            <span class="text-gray-500">Заполнен на 1 %</span>
+                        </div>
+                    </li>
+                    <li @click="IsActive = true , IsActive1 = false , IsActive2 = true, order = false , help = true , specialist = false"
+                        class="my-2">
+                        <div :class="{ 'bg-gray-300': ! IsActive1 }"
+                            class="flex justify-between px-3 justify-items-center items-center cursor-pointer rounded-md h-12 hover:bg-gray-200">
+                            <span class="font-bold text-lg">Поддержка</span>
+                        </div>
+                    </li>
+                    <li @click="IsActive = true , IsActive1 = true , IsActive2 = false, order = false , help = false , specialist = true"
+                        class="my-2">
+                        <div :class="{ 'bg-gray-300': ! IsActive2 }"
+                            class="flex justify-between px-3 justify-items-center items-center cursor-pointer rounded-md h-12 hover:bg-gray-200">
+                            <span class="font-bold text-lg">Специалисты</span>
+                            <span class="text-gray-500">32360</span>
+                        </div>
+                    </li>
+                </ul>
+                <div class="mt-5 px-3">
+                    <p class="text-gray-500 font-bold text-md">Отклики</p>
+                    <p class="text-gray-500 text-sm">Будут появляться здесь, когда опубликуете заказ</p>
+                </div>
+            </div>
+            
+            <div class=" lg:hidden bg-white rounded-md px-4 py-1 sticky z-20" 
+                x-bind:style="{top: `${document.querySelector('header').offsetHeight}px`}"
+                x-data="{ showBar: false }" 
+                :class="{ 'border-b border-gray-300 shadow-2xl transition duration-100' : showBar }"
+                @scroll.window="showBar = (window.pageYOffset > 20) ? true : false">
+                <ul class="flex justify-between text-center">
+                    <li class="" @click="IsActive = false , IsActive1 = true , IsActive3= true, IsActive2 = true , order = true , help = false , chat = false, specialist = false">
+                        <div class="flex items-center justify-center" >
+                            <span  class="text-xl text-gray-500"><i :class="{ 'text-black': ! IsActive }" class="fa fa-pie-chart" aria-hidden="true"></i></span>
+                            <!-- <span class="text-2xs text-left">1%</span> -->
+                        </div>
+                        <div>
+                            <span class="text-2xs lg:text-sm md:text-xs">Заказ</span>
+                        </div>
+                    </li>
+                    
+                    <li class="" @click="IsActive = true , IsActive1 = true , IsActive3= true, IsActive2 = false, order = false , help = false , chat = false, specialist = true">
+                        <div class="flex items-center justify-center">
+                            <span  class="text-xl text-gray-500 before:content-['123']  before:absolute">
+                                <i :class="{ 'text-black': ! IsActive2 }" class="fa fa-users" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                        <div>
+                            <span class="text-2xs lg:text-sm md:text-xs">Специалисты</span>
+                        </div>
+                    </li>
+
+                    <li class="" @click="IsActive = true , IsActive1 = true , IsActive3 = false, IsActive2 = true, order = false , help = false , chat = true, specialist = false">
+                        <div class="flex items-center justify-center">
+                            <span  class="text-xl mr-1 text-gray-500"><i :class="{ 'text-black': ! IsActive3 }" class="fa fa-comments" aria-hidden="true"></i></span>
+                        </div>
+                        <div>
+                            <span class="text-2xs lg:text-sm md:text-xs">Отклики</span>
+                        </div>
+                    </li>
+
+                    <li class="" @click="IsActive = true , IsActive1 = false , IsActive3= true, IsActive2 = true, order = false , help = true , chat = false, specialist = false">
+                        <div class="flex items-center justify-center">
+                            <span  class="text-xl mr-1 text-gray-500"><i :class="{ 'text-black': ! IsActive1 }" class="fa fa-question-circle" aria-hidden="true"></i></span>
+                        </div>
+                        <div>
+                            <span class="text-2xs lg:text-sm md:text-xs">Поддержка</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="hidden lg:block rounded-md w-full mt-5">
+                <div class=" rounded-md">
+                    <div class="w-full my-5">
+                            <div class="relative">
+                    
+                                <div class="swiper mySwiper w-full">
+                                    <div class="swiper-wrapper w-full">
+                                      <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner1.jpg' | theme}}" width="100%" alt=""></div>
+                                      <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner6.jpg' | theme}}" width="100%" alt=""></div>
+                                    </div>
+                                </div>                                                 
+                            </div>
+                            {% put scripts %}
+                                <script>
+                                    var swiper = new Swiper('.mySwiper', {
+                                        autoplay: {
+                                             delay: 5000,
+                                            },
+                                        effect: 'fade'
+                                        });
+                                </script>
+                            {% endput %}
+                    </div>
+                    
+
+                    <div class="w-full my-5">
+                        <div class="relative">
+                
+                            <div class="swiper mySwiper w-full">
+                                <div class="swiper-wrapper w-full">
+                                  <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner4.jpg' | theme}}" width="100%" alt=""></div>
+                                  <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner5.jpg' | theme}}" width="100%" alt=""></div>
+                                </div>
+                            </div>                                                 
+                        </div>
+                        {% put scripts %}
+                            <script>
+                                var swiper = new Swiper('.mySwiper', {
+                                    autoplay: {
+                                         delay: 5000,
+                                        },
+                                    effect: 'fade'
+                                    });
+                            </script>
+                        {% endput %}
+                </div>
+
+                <div class="w-full my-5">
+                    <div class="relative">
+            
+                        <div class="swiper mySwiper w-full">
+                            <div class="swiper-wrapper w-full">
+                              <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner3.jpg' | theme}}" width="100%" alt=""></div>
+                              <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner2.jpg' | theme}}" width="100%" alt=""></div>
+                            </div>
+                        </div>                                                 
+                    </div>
+                    {% put scripts %}
+                        <script>
+                            var swiper = new Swiper('.mySwiper', {
+                                autoplay: {
+                                     delay: 5000,
+                                    },
+                                effect: 'fade'
+                                });
+                        </script>
+                    {% endput %}
+            </div>
+
+            
+                </div>
+            </div>
+        </div>
+
+
+        <div class="lg:col-span-2 col-start-1 col-end-2 m-2 mb-0 relative">
+            <div 
+                class="bg-white pt-4 rounded-md w-full lg:sticky " 
+                id="MakeOrderRadio"
+                x-bind:style="{top: `${document.querySelector('header').offsetHeight +8}px`}">
+
+                <div 
+                    x-cloak 
+                    x-show="order" 
+                    class="px-4 relative"
+                    >
+                    <div x-data="{ isOpen1: true }">
+                        <h5 class="text-sm font-bold text-gray-500">Математика</h5>
+                        <h2 class="text-lg font-semibold md:text-xl lg-text-2xl xl-text-3xl md:font-medium my-4">Какая цель занятий?</h2>
+                        <div class="">
+                            <ul class="text-xs md:text-sm lg-text-md" x-data="{field: null}">
+                                <li class="my-2">
+                                    <input hidden id="radioField4" x-model="field" type="radio" value="4">
+                                    <label class="flex items-center " for="radioField4">
+                                        <div
+                                            class="mr-3 rounded-full h-7 w-7 bg-gray-300 flex items-center justify-center">
+                                            <div x-show="field == 4" x-transition.opacity.scale
+                                                class="w-2 h-2 bg-white rounded-full"></div>
+                                        </div>
+                                        ОГЭ по английскому
+                                    </label>
+                                </li>
+                                <li class="my-2">
+                                    <input hidden id="radioField5" x-model="field" type="radio" value="5">
+                                    <label class="flex items-center " for="radioField5">
+                                        <div
+                                            class="mr-3 rounded-full h-7 w-7 bg-gray-300 flex items-center justify-center">
+                                            <div x-show="field == 5" x-transition.opacity.scale
+                                                class="w-2 h-2 bg-white rounded-full"></div>
+                                        </div>
+                                        ОГЭ по английскому
+                                    </label>
+                                </li>
+
+
+                                <li class="my-2">
+                                    <input hidden id="radioField6" x-model="field" type="radio" value="6">
+                                    <label class="flex items-center " for="radioField6">
+                                        <div
+                                            class="mr-3 rounded-full h-7 w-7 bg-gray-300 flex items-center justify-center">
+                                            <div x-show="field == 6" x-transition.opacity.scale
+                                                class="w-2 h-2 bg-white rounded-full"></div>
+                                        </div>
+                                        <input id="radioField6" class="bg-gray-100 rounded-md max-w-36 max-h-8 p-3 focus:outline-none text-sm md:text-md" placeholder="Другое" type="text">
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="sticky w-full bg-white bottom-0 shadow-3xl mt-auto" >
+                        <div class="flex justify-between items-center h-20">
+                            <button class="shadow-3xl font-medium text-xs md-text-md lg-text-lg w-32 h-10 md:w-48 md:h-12 bg-gray-200 rounded-lg">
+                                <span><i class=""></i></span>
+                                <span>Начать заново</span>
+                            </button>
+                            <button class="font-medium text-xs md-text-md lg-text-lg w-32 h-10 md:w-48 md:h-12 bg-black text-white rounded-lg">
+                                <span><i class=""></i></span>
+                                <span>Продолжить</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div x-cloak x-show="help">
+                    help
+                </div>
+
+                <div x-cloak x-show="specialist">
+                    specialist
+                </div>
+
+                <div x-cloak x-show="chat">
+                    chat
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
