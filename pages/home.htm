@@ -52,9 +52,9 @@ function onStart()
     </div>
 </section>
 <section class="bg-gray-50 pt-5 md:pt-20">
-    <div class="container">
+    <div class="container  px-2 md:px-0 ">
         <div class="text-center sm:text-left">
-            <h1 class="text-xl  md:text-3xl font-bold">В <span class="text-blue-800">Ташкенте работает</span> 325 779 специалистов, 205 469 дистанционно</h1>
+            <h2 class="text-xl md:text-3xl font-bold">В <span class="text-blue-800">Ташкенте работает</span> 325 779 специалистов, 205 469 дистанционно</h2>
         </div>
         
         <div class="md:grid grid-cols-3 gap-7 my-5 md:py-10">
@@ -80,7 +80,7 @@ function onStart()
                         <ul class="mb-5">
                             {% for index, service in category.services if index < 5 %}
                                 <li class="mb-2">
-                                    <a href="#">
+                                    <a href="{{'make-order' | page }}">
                                         <i class="icon-frameBorder text-sm mr-2"></i> 
                                         {{ service.name }}
                                     </a>
