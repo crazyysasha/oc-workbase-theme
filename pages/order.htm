@@ -6,179 +6,333 @@ title = "order"
 ?>
 ==
 {##}
-<section class=" pb-10 bg-gray-100">
-    <div class="container">
-        <div class="md:flex mx-2">
-            <div class="flex justify-center mt-3">
-                <a class="w-32 h-9 flex justify-items-center items-center justify-center rounded-md mr-3 border boderder-gray-600 text-gray-400 focus:bg-orange-500 focus:border focus:border focus:bg-orange-500 focus:text-white focus:border-orange-500" href="#">
+<section class="bg-gray-100" x-data="{ openTab: 1 }">
+    <div class="container p-4">
+        <div class="hidden md:flex justify-between lg:justify-start py-2 text-gray-400">
+                <a 
+                    class="w-32 h-9 flex justify-items-center items-center justify-center 
+                            rounded-md mr-3 border 
+                            text-xs sm:text-sm md:text-md" 
+                    href="#"
+                    @click="openTab = 1"
+                    :class="{ 'bg-orange-500 text-white border-orange-500': openTab === 1 }">
                     <span>
                         Новые
                     </span>
                 </a>
-                <a class="w-32 h-9 flex justify-items-center items-center justify-center rounded-md mr-3 border boderder-gray-600 text-gray-400 focus:bg-orange-500 focus:border focus:border focus:bg-orange-500 focus:text-white focus:border-orange-500" href="#">
+                <a 
+                    class="w-32 h-9 flex justify-items-center items-center justify-center 
+                            rounded-md mr-3 border 
+                            text-xs sm:text-sm md:text-md" 
+                    href="#"
+                    @click="openTab = 2"
+                    :class="{ 'bg-orange-500 text-white border-orange-500': openTab === 2 }">
                     <span>
                         Открытые
                     </span>
                 </a>
-                <a class="w-32 h-9 flex justify-items-center items-center justify-center rounded-md mr-3 border boderder-gray-600 text-gray-400 focus:bg-orange-500 focus:border focus:border focus:bg-orange-500 focus:text-white focus:border-orange-500" href="#">
+                <a 
+                    class="w-32 h-9 flex justify-items-center items-center justify-center 
+                            rounded-md mr-3 border 
+                            text-xs sm:text-sm md:text-md" 
+                    href="#"
+                    @click="openTab = 3"
+                    :class="{ 'bg-orange-500 text-white border-orange-500': openTab === 3 }">
                     <span>
                         В работе
                     </span>
                 </a>
-            </div>
-            <div class="flex justify-center mt-3">
-                <a class="w-32 h-9 flex justify-items-center items-center justify-center rounded-md mr-3 border boderder-gray-600 text-gray-400 focus:bg-orange-500 focus:border focus:border focus:bg-orange-500 focus:text-white focus:border-orange-500" href="#">
-                    <span>
-                        Выполненные
-                    </span>
-                </a>
-                <a class="w-32 h-9 flex justify-items-center items-center justify-center rounded-md border boderder-gray-600 text-gray-400 focus:bg-orange-500 focus:border focus:border focus:bg-orange-500 focus:text-white focus:border-orange-500" href="#">
-                    <span>
+                    <a 
+                        class="w-32 h-9 flex justify-items-center items-center 
+                                justify-center rounded-md mr-3 border 
+                                text-xs md:text-md" 
+                        href="#"
+                        @click="openTab = 4"
+                        :class="{ 'bg-orange-500 text-white border-orange-500': openTab === 4 }">
+                        <span>
+                            Выполненные
+                        </span>
+                    </a>
+                    <a 
+                        class="w-32 h-9 flex justify-items-center items-center 
+                                justify-center rounded-md border 
+                                text-xs md:text-md" 
+                        href="#"
+                        @click="openTab = 5"
+                        :class="{ 'bg-orange-500 text-white border-orange-500': openTab === 5 }">
+                        <span>
+                            Архив
+                        </span>
+                    </a>
+        </div>
+
+        <div class="md:hidden">
+            <div class="flex items-center text-center justify-between p-4 bg-white rounded-md my-2 text-gray-400">
+                <div 
+                    class="flex flex-col items-center"
+                    :class="{ 'text-black ': openTab === 1 }" 
+                    @click="openTab = 1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-6 ms:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span class="text-2xs sm:text-xs font-medium">Новые</span>
+                </div>
+                <div 
+                    class="flex flex-col items-center"
+                    :class="{ 'text-black ': openTab === 2 }" 
+                    @click="openTab = 2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-6 ms:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                    <span class="text-2xs sm:text-xs font-medium">Открытые</span>
+                </div>
+                <div 
+                    class="flex flex-col items-center"
+                    :class="{ 'text-black ': openTab === 3 }" 
+                    @click="openTab = 3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-6 ms:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z" />
+                    </svg>
+                    <span class="text-2xs sm:text-xs font-medium">В работе</span>
+                </div>
+                <div 
+                    class="flex flex-col items-center"
+                    :class="{ 'text-black ': openTab === 4 }" 
+                    @click="openTab = 4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-6 ms:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                    </svg>
+                    <span class="text-2xs sm:text-xs font-medium">Выполненные</span>
+                </div>
+                <div 
+                    class="flex flex-col items-center"
+                    :class="{ 'text-black ': openTab === 5 }" 
+                    @click="openTab = 5">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-6 ms:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                    </svg>
+                    <span class="text-2xs sm:text-xs font-medium">
                         Архив
                     </span>
-                </a>
+                </div>
+
             </div>
         </div>
-        <div class="md:grid grid-cols-3 mt-5 ">
-            <div class="md:col-span-2 mx-2  bg-white p-4 rounded-sm">
-               <div class=" relative">
-                <a href="#" class="border-b-2">
-                    <div >
-                        <div class="mt-5 w-3/4">
-                            <span>Электрика. Монтаж проводки</span>
+
+
+        <div class="lg:grid grid-cols-3 mt-4">
+
+
+            <div class="col-span-2 mr-0 lg:mr-4">
+               <div class="bg-white p-4 rounded-md mb-4">
+
+                    <div x-cloak x-show="openTab === 1">
+                        <div class="">
+                            <a href="{{'profile' | page}}" class="">
+                                <div class="flex flex-col md:flex-row">
+                                    <div class="">
+                                        <div class="text-sm md:text-md">
+                                            <span>Электрика. Монтаж проводки</span>
+                                        </div>
+                                        <div class="text-sm md:text-md my-4">
+                                            <p>
+                                                Установка розеток 3шт, установка выключателей 4шт. У нас в
+                                                квартире ремонт нужен грамотный и компетентный специалист
+                                            </p>
+                                        </div>
+                                        <ul class="flex flex-col md:flex-row justify-between text-xs md:text-sm text-gray-300">
+                                            <li>
+                                                <i  class="icon-clock"></i>
+                                                <span>17 нояб 13:00-14:00...</span>
+                                            </li>
+                                            <li class="">
+                                                <i class="icon-location"></i>
+                                                <span>г. Ташкент, Юнусабад</span>
+                                            </li>
+                                            <li class="">
+                                                <i class="icon-frameBorder"></i>
+                                                <span>Телефон подтвержден</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+            
+                                    <div class="flex-none">
+                                        <span class="text-gray-300 text-sm md:text-md">Создан: сегодня 11:55</span>
+                                        <h4 class="font-medium text-blue-900 text-sm md:text-md">До 150 000 сум</h4>
+                                    </div>
+                                </div>
+                            </a>
+            
+                            <hr class="my-5 border-dashed">
+            
                         </div>
-                        <div class="mt-5 w-3/4">
-                            <p>
-                                Установка розеток 3шт, установка выключателей 4шт. У нас в
-                                квартире ремонт нужен грамотный и компетентный специалист
-                            </p>
-                        </div>
-                        <div class="text-sm text-gray-300 mt-5 w-3/4">
-                            <ul class="md:flex">
-                                <li>
-                                    <i  class="icon-clock"></i>
-                                    <span>17 нояб 13:00-14:00...</span>
-                                </li>
-                                <li class="ml-0 md:ml-10">
-                                    <i class="icon-location"></i>
-                                    <span>г. Ташкент, Юнусабад</span>
-                                </li>
-                                <li class="ml-0 md:ml-10">
-                                    <i class="icon-frameBorder"></i>
-                                    <span>Телефон подтвержден</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="md:absolute top-0 right-5 md:text-right">
-                            <span class="text-gray-300 text-md">Создан: сегодня 11:55</span>
-                            <h4 class="font-medium text-blue-900">До 150 000 сум</h4>
+            
+                        <div class="">
+                            <a href="{{'profile' | page}}" class="">
+                                <div class="flex flex-col md:flex-row">
+                                    <div class="">
+                                        <div class="text-sm md:text-md">
+                                            <span>Электрика. Монтаж проводки</span>
+                                        </div>
+                                        <div class="text-sm md:text-md my-4">
+                                            <p>
+                                                Установка розеток 3шт, установка выключателей 4шт. У нас в
+                                                квартире ремонт нужен грамотный и компетентный специалист
+                                            </p>
+                                        </div>
+                                        <ul class="flex flex-col md:flex-row justify-between text-xs md:text-sm text-gray-300">
+                                            <li>
+                                                <i  class="icon-clock"></i>
+                                                <span>17 нояб 13:00-14:00...</span>
+                                            </li>
+                                            <li class="">
+                                                <i class="icon-location"></i>
+                                                <span>г. Ташкент, Юнусабад</span>
+                                            </li>
+                                            <li class="">
+                                                <i class="icon-frameBorder"></i>
+                                                <span>Телефон подтвержден</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+            
+                                    <div class="flex-none">
+                                        <span class="text-gray-300 text-sm md:text-md">Создан: сегодня 11:55</span>
+                                        <h4 class="font-medium text-blue-900 text-sm md:text-md">От 200 000 сум</h4>
+                                        <h4 class="font-medium text-blue-900 text-sm md:text-md">До 150 000 сум</h4>
+                                    </div>
+                                </div>
+                            </a>
+            
+                            <hr class="my-5 border-dashed">
+            
                         </div>
                     </div>
-                </a>
+
+                    <div x-cloak x-show="openTab === 2">
+                        tab2
+                    </div>
+
+                    <div x-cloak x-show="openTab === 3">
+                        tab3
+                    </div>
+                    
+                    <div x-cloak x-show="openTab === 4">
+                        tab4
+                    </div>
+
+                    <div x-cloak x-show="openTab === 5">
+                        tab5
+                    </div>
                </div>
-
-                <hr class="my-5 border-dashed">
-
-               <div class="relative">
-                    <a href="#" class="border-b-2  ">
-                        <div >
-                            <div class="mt-5 w-3/4">
-                                <span>Электрика. Монтаж проводки</span>
-                            </div>
-                            <div class="mt-5 w-3/4">
-                                <p>
-                                    Установка розеток 3шт, установка выключателей 4шт. У нас в
-                                    квартире ремонт нужен грамотный и компетентный специалист
-                                </p>
-                            </div>
-                            <div class="text-sm text-gray-300 mt-5 w-3/4">
-                                <ul class="md:flex">
-                                    <li>
-                                        <i  class="icon-clock"></i>
-                                        <span>17 нояб 13:00-14:00...</span>
-                                    </li>
-                                    <li class="ml-0 md:ml-10">
-                                        <i class="icon-location"></i>
-                                        <span>г. Ташкент, Юнусабад</span>
-                                    </li>
-                                    <li class="ml-0 md:ml-10">
-                                        <i class="icon-frameBorder"></i>
-                                        <span>Телефон подтвержден</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="md:absolute top-0 right-5 md:text-right">
-                                <span class="text-gray-300 text-md">Создан: сегодня 11:55</span>
-                                <h4 class="font-medium text-blue-900">От 200 000 сум</h4>
-                                <h4 class="font-medium text-blue-900">До 150 000 сум</h4>
-                            </div>
-                        </div>
-                    </a>
-               </div>
-
-               <hr class="my-5 border-dashed">
-
-
             </div>
 
+            <div class="col-span-1">
+                <div class="bg-white p-4 rounded-md mb-4">
 
-            <div class="md:col-span-1 mx-2">
-                <div class="relative bg-white p-4 overflow-hidden rounded-sm">
-                    <div class="mb-4">
-                        <h3 class="font-medium">Бонусы: 4 000 сум</h3>
-                    </div>
-                    <a href="#" class="mt-5 flex items-center">
-                        <span class="leading-none"> Потратить бонусы</span>
-                        <i class="icon-rightAngle leading-none"></i>
-                    </a>
-                    <img class="absolute w-20 h-16 -bottom-2 -right-2" src="{{'assets/images/surprise.png' | theme}}" alt="">
-                </div>
-                <div class=" my-4 bg-white p-4 rounded-sm">
-                    <span>Заказы на карте</span>
-                    <iframe src="https://www.google.com/embed/maps" frameborder="0"></iframe>
-                </div>
-                <div class="my-4 bg-white p-4 rounded-sm ">
-                    <div class="flex justify-between">
-                        <h3>Фильтр</h3>
-                        <a class="text-blue-600" href="#">
-                            Сбросить
-                        </a>
-                    </div>
-                    <div class="mt-4">
-                        <div class="flex justify-between">
-                            <h3>Город</h3>
-                            <a class="text-blue-600" href="#">Как в анкете</a>
+                    <div x-cloak x-show="openTab === 1" class="">
+
+                        <div class="relative overflow-hidden">
+                            <div class="mb-4">
+                                <h3 class="text-sm md:text-md font-medium">Бонусы: 4 000 сум</h3>
+                            </div>
+                            <a href="#" class="mt-5 flex items-center text-blue-900">
+                                <span class="text-sm md:text-md leading-none"> Потратить бонусы</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                </svg>
+                            </a>
+                            <img class="absolute w-20 h-16 -bottom-2 -right-2" src="{{'assets/images/surprise.png' | theme}}" alt="">
                         </div>
-                        <div class="mt-4">
-                            <a href="#" class="bg-gray-200 rounded-full py-1 px-4 text-center"><span class="mr-2 text-md md:text-xl font-bold text-blue-300">+</span><span>Добавить</span></a>
+                        <div class=" my-4">
+                            <span class="text-sm md:text-md">Заказы на карте</span>
                         </div>
-                    </div>
-                    <div class="mt-4">
-                        <div>
-                            <h3>Район</h3>
+                        <div class="">
+                            <div class="flex justify-between text-sm md:text-md">
+                                <h3>Фильтр</h3>
+                                <a class="text-blue-600" href="#">
+                                    Сбросить
+                                </a>
+                            </div>
+                            <div class="mt-4">
+                                <div class="flex justify-between text-sm md:text-md">
+                                    <h3>Город</h3>
+                                    <a class="text-blue-600" href="#">Как в анкете</a>
+                                </div>
+                                <div class="mt-4">
+                                    <a href="#" class="inline-block">
+                                        <div class="flex items-center bg-gray-200 rounded-full py-1 px-4 text-center">
+                                            <span class="mr-2 text-md md:text-xl font-bold text-blue-300">+</span>
+                                            <span class="text-sm md:text-md">Добавить</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <div>
+                                    <h3 class="text-sm md:text-md">Район</h3>
+                                </div>
+                                <div class="mt-4">
+                                    <a href="#" class="inline-block">
+                                        <div class="flex items-center bg-gray-200 rounded-full py-1 px-4 text-center">
+                                            <span class="mr-2 text-md md:text-xl font-bold text-blue-300">+</span>
+                                            <span class="text-sm md:text-md">Добавить</span>
+                                        </div>
+                                    </a>                            </div>
+                            </div>
+                            <div class="mt-4">
+                                <div>
+                                    <h3 class="text-sm md:text-md">Вид работы</h3>
+                                </div>
+                                <div class="mt-4">
+                                    <a href="#" class="inline-block">
+                                        <div class="flex items-center bg-gray-200 rounded-full py-2 px-4 text-center">
+                                            <span class="text-sm md:text-md">Монтаж и подключение</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="mt-4">
+                                    <a href="#" class="inline-block">
+                                        <div class="flex items-center bg-gray-200 rounded-full py-1 px-4 text-center">
+                                            <span class="mr-2 text-md md:text-xl font-bold text-blue-300">+</span>
+                                            <span class="text-sm md:text-md">Добавить</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+        
+                            <div class="mt-5 flex justify-center">
+                                <a 
+                                    class="bg-blue-900 font-medium py-2 px-5 rounded-full
+                                            text-white text-xs  sm:text-sm md:text-md lg:text-lg" 
+                                    href="#">
+                                    Применить фильтр
+                                </a>
+                            </div>
+        
                         </div>
-                        <div class="mt-4">
-                            <a href="#" class="bg-gray-200 rounded-full py-1 px-4 text-center"><span class="mr-2 text-md md:text-xl font-bold text-blue-300">+</span><span>Добавить</span></a>
-                        </div>
-                    </div>
-                    <div class="mt-4">
-                        <div>
-                            <h3>Вид работы</h3>
-                        </div>
-                        <div class="mt-4">
-                            <a href="#" class="bg-gray-200 rounded-full py-1 px-4 text-center"><span>Монтаж и подключение</span></a>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="mt-4">
-                            <a href="#" class="bg-gray-200 rounded-full py-1 px-4 text-center"><span class="mr-2 text-md md:text-xl font-bold text-blue-300">+</span><span>Добавить</span></a>
-                        </div>
+
                     </div>
 
-                    <div class="mt-5 flex justify-center">
-                        <a class="bg-blue-900 text-white font-medium py-2 px-5 rounded-full" href="#">Применить фильтр</a>
+                    <div x-cloak x-show="openTab === 2" class="">
+                        tab2
                     </div>
 
+                    <div x-cloak x-show="openTab === 3" class="">
+                        tab3
+                    </div>
+
+                    <div x-cloak x-show="openTab === 4" class="">
+                        tab4
+                    </div>
+
+                    <div x-cloak x-show="openTab === 5" class="">
+                        tab5
+                    </div>
                 </div>
             </div>
         </div>

@@ -9,8 +9,8 @@
         @scroll.window="showBar = (window.pageYOffset > 20) ? true : false">
         
         
-        <div class="container">
-            <div class="flex lg:block justify-between w-full px-4 " >
+        <div class="container px-2 md:px-4">
+            <div class="flex lg:block justify-between w-full">
                 <div class="flex justify-between">
 
                     <div class="flex items-center flex-shrink-0 w-40">
@@ -345,12 +345,12 @@
         :class="{ 'shadow-xl transition duration-100' : showBar }"
         @scroll.window="showBar = (window.pageYOffset > 20) ? true : false">
         
-        <div class="container">
-            <div class="flex xl:block justify-between w-full px-4 md:px-0">
+        <div class="container px-2 md:px-4">
+            <div class="flex xl:block justify-between w-full">
                 <div class="flex justify-items-center items-center">
 
 
-                    <div class="w-44 px-2 py-0 md:py-2">
+                    <div class="w-44 py-0 md:py-2 mr-4">
                         <a href="{{ 'home' | page }}" class="flex justify-items-center items-center">
                             <img src="{{'assets/images/logowhite.svg' | theme}}" width="100%">
                         </a>
@@ -457,16 +457,13 @@
             </div>
 
             <!-- mobile menu -->
-            <div x-data="{isOpen: false}" x-show="isOpen" x-cloak>
+            <div 
+                x-data="{isOpen: false}" 
+                x-show="isOpen" 
+                x-cloak>
                 <div 
                     @mobile-menu.window="isOpen = $event.detail" 
                     @click.away="isOpen = false"
-                    x-transition:enter="transition ease-out duration-300"
-                    x-transition:enter-start="opacity-0 transform -translate-x-full"
-                    x-transition:enter-end="opacity-100 transform traslate-x-0"
-                    x-transition:leave="transition ease-in duration-300"
-                    x-transition:leave-start="opacity-100 transform traslate-x-0"
-                    x-transition:leave-end="opacity-0 transform -translate-x-full"
                     class="text-white bg-blue-800 p-4 w-4/5 h-full fixed top-0 left-0 z-10">
 
                     <div>
