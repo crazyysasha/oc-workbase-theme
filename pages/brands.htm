@@ -6,113 +6,89 @@ title = "brands"
 ?>
 ==
 {##}
-<section class="bg-gray-100 mt-5 py-7">
-    <div class="container">
-        <div>
-            <a class="py-2 px-5 rounded-md mr-3 border boderder-gray-600 text-gray-400 focus:bg-orange-500 focus:border focus:border focus:bg-orange-500 focus:text-white focus:border-orange-500" href="#">Как заработать?</a>
-            <a class="py-2 px-5 rounded-md border boderder-gray-600 text-gray-400 focus:bg-orange-500 focus:border focus:border focus:bg-orange-500 focus:text-white focus:border-orange-500" href="#">Как потратить?</a>
+<section class="bg-gray-100 py-5">
+    <div class="container px-4">
+        
+        <div class="mx-2 flex flex-wrap">
+            <a 
+                class="px-2 sm:px-3 md:px-4 py-2 my-1 rounded-md mr-3 border text-gray-400 
+                    focus:bg-orange-500 focus:border focus:border focus:bg-orange-500 
+                    focus:text-white focus:border-orange-500 text-xs sm:text-sm md:text-md" 
+                href="#">
+                    Как заработать?
+            </a>
+            <a 
+                class="px-2 sm:px-3 md:px-4 py-2 my-1 rounded-md border text-gray-400 
+                    focus:bg-orange-500 focus:border focus:border focus:bg-orange-500 
+                    focus:text-white focus:border-orange-500 text-xs sm:text-sm md:text-md" 
+                href="#">
+                    Как потратить?
+            </a>
         </div>
-        <div class="md:grid grid-cols-3">
-            <div class="col-span-2 mt-5 mx-2">
-                <div class="md:grid grid-cols-5 bg-white rounded-md p-4 min-w-40 my-2">
-                    <div class=" col-span-1">
-                        <img class="rounded-md w-36 h-36" src="{{'assets/images/bonus1.png' | theme}}" alt="" >
+
+        <div class="lg:grid lg:grid-cols-3">
+            <div class="lg:col-span-2 mt-4 mx-2">
+                <div class="flex flex-col sm:flex-row bg-white rounded-md p-4">
+                    <div class="flex-none max-w-xs mx-auto">
+                        <img class="rounded-md w-full" src="{{'assets/images/bonus1.png' | theme}}" alt="" >
                     </div>
-                    <div class="col-span-4 flex flex-col px-2 pr-5">
-                        <h3 class="font-medium">Кофейни b&b</h3>
-                        <p>Бонусы дествуют только на кофе и пироженые</p>
-                        <div class="flex justify-between mt-auto">
-                            <a class="text-blue-500 flex items-center"  href="#">
-                                <span>Перейти <i class="icon-rightAngle"></i></span>
-                                
+                    <div class="w-full flex flex-col content-between mt-4 sm:mt-0 px-4 text-xs sm:text-sm md:text-md lg:text-base">
+                        <div>
+                            <h3 class="font-medium">Кофейни b&b</h3>
+                            <p>Бонусы дествуют только на кофе и пироженые</p>
+                        </div>
+                        <div class="flex justify-between mt-auto text-xs sm:text-sm md:text-md lg:text-base">
+                            <a class="flex items-center text-blue-900 "  href="#">
+                                <span>
+                                    Перейти 
+                                </span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>    
                             </a>
                             <a href="#"><img src="{{'assets/images/bonuslogo1.png' | theme}}" alt=""></a>
                         </div>
                     </div>
                 </div>
                 
-
-                <div class="md:grid grid-cols-5 bg-white rounded-md p-4 min-w-40 my-2">
-                    <div class=" col-span-1">
-                        <img class="rounded-md w-36 h-36" src="{{'assets/images/bonus1.png' | theme}}" alt="" >
+                <div class="flex flex-col sm:flex-row bg-white rounded-md p-4 my-2">
+                    <div class="flex-none max-w-xs mx-auto">
+                        <img class="rounded-md w-full" src="{{'assets/images/bonus1.png' | theme}}" alt="" >
                     </div>
-                    <div class="col-span-4 flex flex-col px-2 pr-5">
-                        <h3 class="font-medium">Кофейни b&b</h3>
-                        <p>Бонусы дествуют только на кофе и пироженые</p>
-                        <div class="flex justify-between mt-auto">
-                            <a class="text-blue-500 flex items-center"  href="#">
-                                <span>Перейти <i class="icon-rightAngle"></i></span>
-                                
+                    <div class="w-full flex flex-col content-between mt-4 sm:mt-0 px-4 text-xs sm:text-sm md:text-md lg:text-base">
+                        <div>
+                            <h3 class="font-medium">Кофейни b&b</h3>
+                            <p>Бонусы дествуют только на кофе и пироженые</p>
+                        </div>
+                        <div class="flex justify-between mt-auto text-xs sm:text-sm md:text-md lg:text-base">
+                            <a class="flex items-center text-blue-900 "  href="#">
+                                <span>
+                                    Перейти 
+                                </span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>    
                             </a>
                             <a href="#"><img src="{{'assets/images/bonuslogo1.png' | theme}}" alt=""></a>
                         </div>
                     </div>
                 </div>
-
-                <div class="md:grid grid-cols-5 bg-white rounded-md p-4 min-w-40 my-2">
-                    <div class=" col-span-1">
-                        <img class="rounded-md w-36 h-36" src="{{'assets/images/bonus1.png' | theme}}" alt="" >
-                    </div>
-                    <div class="col-span-4 flex flex-col px-2 pr-5">
-                        <h3 class="font-medium">Кофейни b&b</h3>
-                        <p>Бонусы дествуют только на кофе и пироженые</p>
-                        <div class="flex justify-between mt-auto">
-                            <a class="text-blue-500 flex items-center"  href="#">
-                                <span>Перейти <i class="icon-rightAngle"></i></span>
-                                
-                            </a>
-                            <a href="#"><img src="{{'assets/images/bonuslogo1.png' | theme}}" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="md:grid grid-cols-5 bg-white rounded-md p-4 min-w-40 my-2">
-                    <div class=" col-span-1">
-                        <img class="rounded-md w-36 h-36" src="{{'assets/images/bonus1.png' | theme}}" alt="" >
-                    </div>
-                    <div class="col-span-4 flex flex-col px-2 pr-5">
-                        <h3 class="font-medium">Кофейни b&b</h3>
-                        <p>Бонусы дествуют только на кофе и пироженые</p>
-                        <div class="flex justify-between mt-auto">
-                            <a class="text-blue-500 flex items-center"  href="#">
-                                <span>Перейти <i class="icon-rightAngle"></i></span>
-                                
-                            </a>
-                            <a href="#"><img src="{{'assets/images/bonuslogo1.png' | theme}}" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="md:grid grid-cols-5 bg-white rounded-md p-4 min-w-40 my-2">
-                    <div class=" col-span-1">
-                        <img class="rounded-md w-36 h-36" src="{{'assets/images/bonus1.png' | theme}}" alt="" >
-                    </div>
-                    <div class="col-span-4 flex flex-col px-2 pr-5">
-                        <h3 class="font-medium">Кофейни b&b</h3>
-                        <p>Бонусы дествуют только на кофе и пироженые</p>
-                        <div class="flex justify-between mt-auto">
-                            <a class="text-blue-500 flex items-center"  href="#">
-                                <span>Перейти <i class="icon-rightAngle"></i></span>
-                                
-                            </a>
-                            <a href="#"><img src="{{'assets/images/bonuslogo1.png' | theme}}" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-
-                
             </div>
-            <div class="col-span-1 mt-5 mx-2">
-                <div class="relative bg-white p-4 overflow-hidden my-2">
+
+            
+            <div class="lg:col-span-1 mt-4 mx-2">
+                <div class="relative overflow-hidden bg-white p-4 rounded-md ">
                     <div class="mb-4">
-                        <h3 class="font-medium">Бонусы: 4 000 сум</h3>
+                        <h3 class="text-sm md:text-md font-medium">Бонусы: 4 000 сум</h3>
                     </div>
-                    <a href="#" class="mt-5 flex items-center">
-                        <span class="leading-none"> Потратить бонусы</span>
-                        <i class="icon-rightAngle leading-none"></i>
+                    <a href="#" class="mt-5 flex items-center text-blue-900 z-20">
+                        <span class="text-sm md:text-md leading-none"> Потратить бонусы</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
                     </a>
-                    <img class="absolute w-20 h-16 -bottom-2 -right-2" src="{{'assets/images/surprise.png' | theme}}" alt="">
-                </div>
+                    <img class="absolute w-20 h-16 -bottom-2 -right-2 z-0" src="{{'assets/images/surprise.png' | theme}}" alt="">
+                </div>  
             </div>
         </div>
     </div>
