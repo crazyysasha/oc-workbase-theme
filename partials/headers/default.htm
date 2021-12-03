@@ -362,10 +362,13 @@
                         class="hidden xl:flex w-full flex-grow flex justify-between items-center w-auto"
                         x-show.transition="true">
 
-                        <ul class="list-reset lg:flex justify-start flex-1 items-center">
+                        <ul x-data="{isActive = null}" class="list-reset lg:flex justify-start flex-1 items-center">
                             <li class="">
-                                <a href="{{ 'order' | page }}"
-                                    class="flex items-center justify-center flex-col px-4  h-16 text-white hover:bg-blue-800 w-28">
+                                <a  
+                                    @click="isActive = 1"
+                                    href="{{ 'order' | page }}"
+                                    class="flex items-center justify-center flex-col px-4  h-16 text-white hover:bg-blue-800 w-28"
+                                    :class="{ 'hidden': ! isActive == 1 }">
                                     <i class="icon-menu1 text-xl leading-none pb-1 relative">
                                         <span class="messageCount"></span>
                                     </i>
