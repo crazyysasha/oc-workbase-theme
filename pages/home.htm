@@ -2,12 +2,14 @@ url = "/"
 layout = "default"
 title = "WorkBase"
 ==
+<?php
 use Crazy\Freelancer\Models\Category;
 
 function onStart()
 {
     $this['cats'] = Category::get();
 }
+?>
 ==
 {##}
 <section class="relative flex w-full items-center justify-center" style="height: calc(100vh - 66px);">
@@ -95,7 +97,7 @@ function onStart()
                    
 
                     {% put cardFooter %}
-                        <a href="#" class="text-blue-900 flex items-center">
+                        <a href="{{ 'make-order' | page({'category': category.slug }) }}" class="text-blue-900 flex items-center">
                             Все категории
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-900 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
