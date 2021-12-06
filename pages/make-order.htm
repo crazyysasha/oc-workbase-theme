@@ -50,9 +50,58 @@ function onStart() {
     {% endput %}
 
 
-    <div class="lg:grid grid-cols-3 container">
+    <div class="lg:grid grid-cols-3 container relative">
+        
 
         <div class="lg:col-span-2 col-start-1 col-end-2 m-2 mb-0 relative">
+
+            <div class=" lg:hidden bg-white rounded-md px-4 mb-4 py-1 sticky z-20" 
+            x-bind:style="{top: `${document.querySelector('header').offsetHeight}px`}"
+            x-data="{ showBar: false }" 
+            :class="{ 'border-b border-gray-300 shadow-2xl transition duration-100' : showBar }"
+            @scroll.window="showBar = (window.pageYOffset > 20) ? true : false">
+            <ul class="flex justify-between text-center">
+                <li class="" @click="IsActive = 1">
+                    <div class="flex items-center justify-center" >
+                        <span  class="text-xl text-gray-500"><i :class="{ 'text-black': IsActive === 1 }" class="fa fa-pie-chart" aria-hidden="true"></i></span>
+                        <!-- <span class="text-2xs text-left">1%</span> -->
+                    </div>
+                    <div>
+                        <span class="text-2xs lg:text-sm md:text-xs">Заказ</span>
+                    </div>
+                </li>
+                
+                <li class="" @click="IsActive = 3">
+                    <div class="flex items-center justify-center">
+                        <span  class="text-xl text-gray-500 before:content-['123']  before:absolute">
+                            <i :class="{ 'text-black': IsActive === 3 }" class="fa fa-users" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <div>
+                        <span class="text-2xs lg:text-sm md:text-xs">Специалисты</span>
+                    </div>
+                </li>
+
+                <li class="" @click="IsActive = 4">
+                    <div class="flex items-center justify-center">
+                        <span  class="text-xl mr-1 text-gray-500"><i :class="{ 'text-black': IsActive === 4 }" class="fa fa-comments" aria-hidden="true"></i></span>
+                    </div>
+                    <div>
+                        <span class="text-2xs lg:text-sm md:text-xs">Отклики</span>
+                    </div>
+                </li>
+
+                <li class="" @click="IsActive = 2">
+                    <div class="flex items-center justify-center">
+                        <span  class="text-xl mr-1 text-gray-500"><i :class="{ 'text-black': IsActive === 2 }" class="fa fa-question-circle" aria-hidden="true"></i></span>
+                    </div>
+                    <div>
+                        <span class="text-2xs lg:text-sm md:text-xs">Поддержка</span>
+                    </div>
+                </li>
+            </ul>
+            </div>
+
             <div 
                 class="bg-white pt-4 rounded-md w-full" 
                 id="MakeOrderRadio">
@@ -64,14 +113,14 @@ function onStart() {
                     >
                     <div x-data="{ isOpen1: true }">
                         <h5 class="text-sm font-bold text-gray-500">{{ category.name }}</h5>
-                        <h2 class="text-lg font-semibold md:text-xl lg-text-2xl xl-text-3xl md:font-medium my-4">Какая цель занятий?</h2>
+                        <h2 class="font-semibold text-sm ms:md md:text-lg lg:text-xl md:font-medium my-4">Какая цель занятий?</h2>
                         <div class="">
-                            <ul class="text-xs md:text-sm lg-text-md" x-data="{field: null}">
+                            <ul class=" text-xs md:text-sm lg:text-md" x-data="{field: null}">
                                 <li class="my-2">
                                     <input hidden id="radioField4" x-model="field" type="radio" value="4">
                                     <label class="flex items-center " for="radioField4">
                                         <div
-                                            class="mr-3 rounded-full h-7 w-7 bg-gray-300 flex items-center justify-center">
+                                            class="mr-3 rounded-full w-5 sm:w-6 md:h-7 h-5 sm:h-6 md:w-7 bg-gray-300 flex items-center justify-center">
                                             <div x-show="field == 4" x-transition.opacity.scale
                                                 class="w-2 h-2 bg-white rounded-full"></div>
                                         </div>
@@ -82,7 +131,7 @@ function onStart() {
                                     <input hidden id="radioField5" x-model="field" type="radio" value="5">
                                     <label class="flex items-center " for="radioField5">
                                         <div
-                                            class="mr-3 rounded-full h-7 w-7 bg-gray-300 flex items-center justify-center">
+                                            class="mr-3 rounded-full w-5 sm:w-6 md:h-7 h-5 sm:h-6 md:w-7 bg-gray-300 flex items-center justify-center">
                                             <div x-show="field == 5" x-transition.opacity.scale
                                                 class="w-2 h-2 bg-white rounded-full"></div>
                                         </div>
@@ -95,11 +144,11 @@ function onStart() {
                                     <input hidden id="radioField6" x-model="field" type="radio" value="6">
                                     <label class="flex items-center " for="radioField6">
                                         <div
-                                            class="mr-3 rounded-full h-7 w-7 bg-gray-300 flex items-center justify-center">
+                                            class="mr-3 rounded-full w-5 sm:w-6 md:h-7 h-5 sm:h-6 md:w-7 bg-gray-300 flex items-center justify-center">
                                             <div x-show="field == 6" x-transition.opacity.scale
                                                 class="w-2 h-2 bg-white rounded-full"></div>
                                         </div>
-                                        <input id="radioField6" class="bg-gray-100 rounded-md max-w-36 max-h-8 p-3 focus:outline-none text-sm md:text-md" placeholder="Другое" type="text">
+                                        <input id="radioField6" class="bg-gray-100 rounded-md w-auto h-5 ms:h-6 md:h-7 lg:h-8  max-h-8 p-3 focus:outline-none text-xs ms:text-sm md:text-md" placeholder="Другое" type="text">
                                     </label>
                                 </li>
                             </ul>
@@ -107,12 +156,12 @@ function onStart() {
 
                     </div>
                     <div class="sticky w-full bg-white bottom-0 shadow-3xl mt-auto" >
-                        <div class="flex justify-between items-center h-20">
-                            <button class="shadow-3xl font-medium text-xs md-text-md lg-text-lg w-32 h-10 md:w-48 md:h-12 bg-gray-200 rounded-lg">
+                        <div class="flex justify-between items-center h-10 ms:h-14 md:h-16 lg:h-20">
+                            <button class="shadow-3xl  sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-lg w-20 sm:w-32 h-7 sm:h-10 md:w-48 md:h-12 bg-gray-200 rounded-lg">
                                 <span><i class=""></i></span>
                                 <span>Начать заново</span>
                             </button>
-                            <button class="font-medium text-xs md-text-md lg-text-lg w-32 h-10 md:w-48 md:h-12 bg-black text-white rounded-lg">
+                            <button class=" sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-lg w-20 sm:w-32 h-7 sm:h-10 md:w-48 md:h-12 bg-black text-white rounded-lg">
                                 <span><i class=""></i></span>
                                 <span>Продолжить</span>
                             </button>
@@ -327,6 +376,7 @@ function onStart() {
                 </div>
 
             </div>
+
         </div>
 
         <div class="lg:col-span-1 col-start-2 m-2">
@@ -361,53 +411,6 @@ function onStart() {
                     <p class="text-gray-500 font-bold text-md">Отклики</p>
                     <p class="text-gray-500 text-sm">Будут появляться здесь, когда опубликуете заказ</p>
                 </div>
-            </div>
-            
-            <div class=" lg:hidden bg-white rounded-md px-4 py-1 sticky z-20" 
-                x-bind:style="{top: `${document.querySelector('header').offsetHeight + 60}px`}"
-                x-data="{ showBar: false }" 
-                :class="{ 'border-b border-gray-300 shadow-2xl transition duration-100' : showBar }"
-                @scroll.window="showBar = (window.pageYOffset > 20) ? true : false">
-                <ul class="flex justify-between text-center">
-                    <li class="" @click="IsActive = 1">
-                        <div class="flex items-center justify-center" >
-                            <span  class="text-xl text-gray-500"><i :class="{ 'text-black': IsActive === 1 }" class="fa fa-pie-chart" aria-hidden="true"></i></span>
-                            <!-- <span class="text-2xs text-left">1%</span> -->
-                        </div>
-                        <div>
-                            <span class="text-2xs lg:text-sm md:text-xs">Заказ</span>
-                        </div>
-                    </li>
-                    
-                    <li class="" @click="IsActive = 3">
-                        <div class="flex items-center justify-center">
-                            <span  class="text-xl text-gray-500 before:content-['123']  before:absolute">
-                                <i :class="{ 'text-black': IsActive === 3 }" class="fa fa-users" aria-hidden="true"></i>
-                            </span>
-                        </div>
-                        <div>
-                            <span class="text-2xs lg:text-sm md:text-xs">Специалисты</span>
-                        </div>
-                    </li>
-
-                    <li class="" @click="IsActive = 4">
-                        <div class="flex items-center justify-center">
-                            <span  class="text-xl mr-1 text-gray-500"><i :class="{ 'text-black': IsActive === 4 }" class="fa fa-comments" aria-hidden="true"></i></span>
-                        </div>
-                        <div>
-                            <span class="text-2xs lg:text-sm md:text-xs">Отклики</span>
-                        </div>
-                    </li>
-
-                    <li class="" @click="IsActive = 2">
-                        <div class="flex items-center justify-center">
-                            <span  class="text-xl mr-1 text-gray-500"><i :class="{ 'text-black': IsActive === 2 }" class="fa fa-question-circle" aria-hidden="true"></i></span>
-                        </div>
-                        <div>
-                            <span class="text-2xs lg:text-sm md:text-xs">Поддержка</span>
-                        </div>
-                    </li>
-                </ul>
             </div>
 
             <div class="hidden lg:block rounded-md w-full mt-5">

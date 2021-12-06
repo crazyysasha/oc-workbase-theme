@@ -79,21 +79,25 @@
                                 </div>
                             </li>
                             <li class="mr-3">
-                                <div class="relative text-white" x-data="{ Modal : false }" @click.away="Modal = false">
+                                <div class="relative text-white" x-data="{ Modal : false , lang: 'Ru' }" @click.away="Modal = false">
                                     <button
-                                        class="border-2 bg-blue-900 flex items-center rounded-full px-5 py-2 focus:outline-none"
+                                        class="border-2 bg-blue-900 flex items-center rounded-full w-20 py-2 justify-center focus:bg-blue-800 hover:bg-blue-800 focus:bg-blue-700 focus:outline-none"
                                         @click="Modal = !Modal">
-                                        Ru
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 text-white ml-1 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                        <span  x-text="lang" ></span>
+                                        <svg x-show="!Modal" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                        <svg x-show="Modal" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
                                         </svg>
                                     </button>
-                                    <div x-show="Modal" x-cloak
-                                        class="bg-white w-full absolute z-10 pt-2 px-2 rounded-xl top-16">
+                                    <div x-show="Modal" 
+                                         x-cloak
+                                         class="bg-white w-full absolute z-10  p-2 rounded-xl top-16">
                                         <div class="flex flex-col text-black text-center">
-                                            <a class="mb-2" href="#"><span>Ru</span></a>
-                                            <a class="mb-2" href="#"><span>En</span></a>
-                                            <a class="mb-2" href="#"><span>Uz</span></a>
+                                            <a @click="lang = 'Ru',Modal = !Modal" class="px-2 py-1  hover:text-white hover:bg-blue-900 rounded-lg" href="#"><span>Ru</span></a>
+                                            <a @click="lang = 'En',Modal = !Modal" class="px-2 py-1 my-1 hover:text-white hover:bg-blue-900 rounded-lg" href="#"><span>En</span></a>
+                                            <a @click="lang = 'Uz',Modal = !Modal" class="px-2 py-1  hover:text-white hover:bg-blue-900 rounded-lg" href="#"><span>Uz</span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -132,37 +136,37 @@
                     </div>
                     <div>
                         <ul>
-                            <li class="border-b border-blue-700 font-semibold flex justify-start py-2">
-                                <a href="{{ 'home' | page }}" class="">
+                            <li class="border-b border-blue-700 font-semibold flex justify-start rounded-lg hover:bg-blue-700 p-2">
+                                <a href="{{ 'home' | page }}" class=" focus:bg-blue-700 rounded-lg">
                                     <img class="" src="{{'assets/images/logowhite.svg' | theme}}" width="65%">
                                 </a>
                             </li>
-                            <li @click="$dispatch('login-modal', true)" class="border-b border-blue-700 font-semibold py-2"><a
-                                    href="#">Вход</a></li>
-                            <li @click="$dispatch('register-modal', true)" class="border-b border-blue-700 font-semibold py-2"><a
-                                    href="#">Регистрация</a></li>
-                            <li class="border-b border-blue-700 font-semibold py-2"><a href="#">Служба поддержки</a></li>
-                            <li class="border-b border-blue-700 font-semibold py-2"><a href="#">Инструкция по оплате</a>
+                            <li @click="$dispatch('login-modal', true)" class="border-b border-blue-700 font-semibold hover:bg-blue-700 rounded-lg p-2"><a
+                                   class="focus:bg-blue-700 rounded-lg" href="#">Вход</a></li>
+                            <li @click="$dispatch('register-modal', true)" class="border-b border-blue-700 font-semibold hover:bg-blue-700 rounded-lg p-2"><a
+                                   class="focus:bg-blue-700 rounded-lg" href="#">Регистрация</a></li>
+                            <li class="border-b border-blue-700 font-semibold rounded-lg hover:bg-blue-700 p-2"><a class="focus:bg-blue-700 rounded-lg" href="#">Служба поддержки</a></li>
+                            <li class="border-b border-blue-700 font-semibold rounded-lg hover:bg-blue-700 p-2"><a class="focus:bg-blue-700 rounded-lg" href="#">Инструкция по оплате</a>
                             </li>
-                            <li class="border-b border-blue-700 font-semibold py-2"><a href="#">Частые вопросы</a></li>
-                            <li class="border-b border-blue-700 font-semibold py-2"><a href="#">Условия использования</a>
+                            <li class="border-b border-blue-700 font-semibold rounded-lg hover:bg-blue-700 p-2"><a class="focus:bg-blue-700 rounded-lg" href="#">Частые вопросы</a></li>
+                            <li class="border-b border-blue-700 font-semibold rounded-lg hover:bg-blue-700 p-2"><a class="focus:bg-blue-700 rounded-lg" href="#">Условия использования</a>
                             </li>
                         </ul>
                     </div>
                     <div class="mt-10">
                         <ul class="flex justify-center">
                             <li
-                                class="mx-1 flex items-center justify-items-center border border-gray-300 rounded-md h-8 w-8 ">
-                                <a class="  mx-auto" href="#">O'z</a></li>
+                                class="mx-1 hover:bg-blue-700  flex items-center justify-items-center border border-gray-300 rounded-md h-8 w-8 ">
+                                <a class="w-full focus:bg-blue-700 mx-auto" href="#">O'z</a></li>
                             <li
-                                class="mx-1 flex items-center justify-items-center border border-gray-300 rounded-md h-8 w-8 ">
-                                <a class="  mx-auto" href="#">РУ</a></li>
+                                class="mx-1 hover:bg-blue-700  flex items-center justify-items-center border border-gray-300 rounded-md h-8 w-8 ">
+                                <a class="w-full focus:bg-blue-700 mx-auto" href="#">РУ</a></li>
                             <li
-                                class="mx-1 flex items-center justify-items-center border border-gray-300 rounded-md h-8 w-8 ">
-                                <a class="  mx-auto" href="#">УЗ</a></li>
+                                class="mx-1 hover:bg-blue-700  flex items-center justify-items-center border border-gray-300 rounded-md h-8 w-8 ">
+                                <a class="w-full focus:bg-blue-700 mx-auto" href="#">УЗ</a></li>
                             <li
-                                class="mx-1 flex items-center justify-items-center border border-gray-300 rounded-md h-8 w-8 ">
-                                <a class="  mx-auto" href="#">EN</a></li>
+                                class="mx-1 hover:bg-blue-700  flex items-center justify-items-center border border-gray-300 rounded-md h-8 w-8 ">
+                                <a class="w-full focus:bg-blue-700 mx-auto" href="#">EN</a></li>
                         </ul>
                     </div>
                 </div>
@@ -182,7 +186,7 @@
                         x-transition:leave="transition ease duration-100 transform"
                         x-transition:leave-start="opacity-100 scale-100 translate-y-0"
                         x-transition:leave-end="opacity-0 scale-90 translate-y-1">
-                        <h3 class="font-bold block text-sm md:text-xl mb-3 text-center mb-6">Авторизация</h3>
+                        <h3 class="font-bold block text-sm md:text-xl text-center">Регистрация</h3>
                         <div class="absolute top-3 right-3 rounded-full bg-gray-300 justify-center flex items-center w-6 h-6 cursor-pointer group hover:bg-blue-900"
                             @click="isOpen = !isOpen">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -193,7 +197,7 @@
                         <form action="https://workbase.mdg.uz/new/ru/form/reg/login" class="login-form active" method="post"
                             accept-charset="utf-8">
                             <input type="hidden" name="csrf_test_name" value="93365a2df35b6aa7cf296e49822ee4f1">
-                            <div class="flex mb-5 md:mb-10 mx-5 justify-between"
+                            <div class="flex my-4 mx-5 justify-between"
                                 x-data="{ isChecked_1 : false, isChecked_2:false}">
                                 <div class="">
                                     <input id="radio-3" class="hidden" type="radio" name="user" value="client" checked="">
@@ -245,10 +249,7 @@
                                 </ul>
                             </div>
                             <div>
-                                <h5 class="text-center text-gray-400 font-medium md:font-bold text-xs md:text-sm">Нет
-                                    аккаунта? <a href="#" class="text-blue-600 font-semibold"> Зарегестрируйтесь</a></h5>
-                                <h5 class="text-center my-4 text-gray-400 font-medium md:font-bold text-xs md:text-sm "><a
-                                        href="#">Забыли пароль?</a></h5>
+                                <h5 class="text-center text-gray-400 font-medium md:font-bold text-xs md:text-sm">Есть аккаунт? <a href="#" @click="$dispatch('login-modal', true,isOpen = !isOpen)" @click="$dispatch('register-modal', false" class="text-blue-600 font-semibold"> Войти</a></h5>
                             </div>
                         </form>
                     </div>
@@ -321,10 +322,13 @@
                                 </ul>
                             </div>
                             <div>
-                                <h5 class="text-center text-gray-400 font-medium md:font-bold text-xs md:text-sm">Нет
-                                    аккаунта? <a href="#" class="text-blue-600 font-semibold"> Зарегестрируйтесь</a></h5>
-                                <h5 class="text-center my-4 text-gray-400 font-medium md:font-bold text-xs md:text-sm "><a
-                                        href="#">Забыли пароль?</a></h5>
+                                <h5 class="text-center text-gray-400 font-medium md:font-bold text-xs md:text-sm">
+                                    Нет аккаунта? 
+                                    <a @click="$dispatch('register-modal', true,isOpen = !isOpen) " href="#" class="text-blue-600 font-semibold"> Зарегестрируйтесь</a>
+                                </h5>
+                                <h5 class="text-center my-4 text-gray-400 font-medium md:font-bold text-xs md:text-sm ">
+                                    <a href="#">Забыли пароль?</a>
+                                </h5>
                             </div>
                         </form>
                     </div>
@@ -364,6 +368,7 @@
                         x-show.transition="true">
 
                         <ul x-data="{isActive: undefined }" class="list-reset lg:flex justify-start flex-1 items-center">
+                            
                             <li class="">
                                 <a  x-init="console.log(isActive)"
                                     href="{{ 'order' | page }}"
@@ -429,19 +434,24 @@
                             </li>
 
                             <li class="mr-3">
-                                <div class="relative text-white" x-data="{ Modal : false }" @click.away="Modal = false">
+                                <div class="relative text-white" x-data="{ Modal : false, lang: 'Ru' }" @click.away="Modal = false">
                                     <button
-                                        class="border-2 bg-blue-900 flex items-center rounded-full px-5 py-2 focus:outline-none"
+                                        class="border-2 bg-blue-900 flex items-center justify-center rounded-full w-20 py-2 focus:outline-none focus:bg-blue-800"
                                         @click="Modal = !Modal">
-                                        Ru
-                                        <i class="fa fa-angle-down ml-2" aria-hidden="true"></i>
+                                        <span x-text="lang"></span>
+                                        <svg x-show="!Modal" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                        <svg x-show="Modal" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                                        </svg>
                                     </button>
                                     <div x-show="Modal" x-cloak
                                         class="bg-blue-900 text-white w-full absolute z-10 p-1 rounded-xl top-16">
                                         <div class="flex flex-col text-black text-center text-white">
-                                            <a class="hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1"  href="#"><span>Ru</span></a>
-                                            <a class="my-1 hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1"  href="#"><span>En</span></a>
-                                            <a class="hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1"  href="#"><span>Uz</span></a>
+                                            <a @click="lang = 'Ru',Modal = !Modal" class="hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1"  href="#"><span>Ru</span></a>
+                                            <a @click="lang = 'En',Modal = !Modal" class="my-1 hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1"  href="#"><span>En</span></a>
+                                            <a @click="lang = 'UZ',Modal = !Modal" class="hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1"  href="#"><span>Uz</span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -482,29 +492,30 @@
                                 <button class="focus:outline-none" @click="isOpen = ! isOpen"><i
                                         class="icon-x text-xs"></i></button>
                             </li>
-                            <li class="border-b border-blue-700 font-semibold py-2">
-                                <ul>
-                                    <li>
-                                        <a href="#"></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"></a>
-                                    </li>
-                                </ul>
+                            <li x-data="{SwtichActivity: false, UserType = '' }" class="border-b border-blue-700 font-semibold py-2">
+                                <div x-text="UserType"></div>
+                                <div x-cloak x-show="SwtichActivity">
+                                    <div>
+                                        <span>Я исполнитель</span>
+                                    </div>
+                                    <div>
+                                        <span>Я заказчик</span>
+                                    </div>
+                                </div>
                             </li>
-                            <li class="border-b border-blue-700 font-semibold py-2"><a href="{{ 'order' | page }}"><i
+                            <li class="border-b border-blue-700 font-semibold py-2  hover:bg-blue-700 rounded-lg"><a class="w-full p-2 rounded-lg focus:bg-blue-700" href="{{ 'order' | page }}"><i
                                         class="icon-menu1"></i> Заказы</a></li>
-                            <li class="border-b border-blue-700 font-semibold py-2"><a href="{{ 'balance' | page }}"><i
+                            <li class="border-b border-blue-700 font-semibold py-2  hover:bg-blue-700 rounded-lg"><a class="w-full p-2 rounded-lg focus:bg-blue-700" href="{{ 'balance' | page }}"><i
                                         class="icon-menu2"></i> Кошелек</a></li>
-                            <li class="border-b border-blue-700 font-semibold py-2"><a href="{{ 'about-customer' | page }}"><i
+                            <li class="border-b border-blue-700 font-semibold py-2  hover:bg-blue-700 rounded-lg"><a class="w-full p-2 rounded-lg focus:bg-blue-700" href="{{ 'about-customer' | page }}"><i
                                         class="icon-menu3"></i> Анкета</a></li>
-                            <li class="border-b border-blue-700 font-semibold py-2"><a href="{{ 'brands' | page }}"><i
+                            <li class="border-b border-blue-700 font-semibold py-2  hover:bg-blue-700 rounded-lg"><a class="w-full p-2 rounded-lg focus:bg-blue-700" href="{{ 'brands' | page }}"><i
                                         class="icon-menu4"></i> Бонусы</a></li>
-                            <li class="border-b border-blue-700 font-semibold py-2"><a href="#">Служба поддержки</a></li>
-                            <li class="border-b border-blue-700 font-semibold py-2"><a href="#">Инструкция по оплате</a>
+                            <li class="border-b border-blue-700 font-semibold py-2  hover:bg-blue-700 rounded-lg"><a class="w-full p-2 rounded-lg focus:bg-blue-700" href="#">Служба поддержки</a></li>
+                            <li class="border-b border-blue-700 font-semibold py-2  hover:bg-blue-700 rounded-lg"><a class="w-full p-2 rounded-lg focus:bg-blue-700" href="#">Инструкция по оплате</a>
                             </li>
-                            <li class="border-b border-blue-700 font-semibold py-2"><a href="#">Частые вопросы</a></li>
-                            <li class="border-b border-blue-700 font-semibold py-2"><a href="#">Условия использования</a>
+                            <li class="border-b border-blue-700 font-semibold py-2  hover:bg-blue-700 rounded-lg"><a class="w-full p-2 rounded-lg focus:bg-blue-700" href="#">Частые вопросы</a></li>
+                            <li class="border-b border-blue-700 font-semibold py-2  hover:bg-blue-700 rounded-lg"><a class="w-full p-2 rounded-lg focus:bg-blue-700" href="#">Условия использования</a>
                             </li>
 
                         </ul>
