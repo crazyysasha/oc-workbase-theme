@@ -6,23 +6,24 @@ title = "about-customer"
 ?>
 ==
 {##}
-<section class="bg-gray-100">
+<section class="bg-gray-100" x-data="{Tab: 1}">
    <div class="container p-2 sm:p-4 md:p-6 lg:p-8 xl:px-10">
         <div class="">
-            <div class="flex">
+            <div class="flex text-gray-400">
                 <a 
-                    class="text-xs sm:text-sm md:text-md lg:text-lg py-2 px-4 rounded-md mr-3 border boderder-gray-600 
-                            text-gray-400 focus:bg-orange-500 focus:border focus:border 
-                            focus:bg-orange-500 focus:text-white focus:border-orange-500" 
+                    class="text-xs sm:text-sm md:text-md lg:text-lg py-2 px-4 rounded-md mr-3 border 
+                        hover:border-orange-500 hover:text-orange-500 hover:bg-white"
+                    @click="Tab = 1" 
+                    :class="{ 'border-orange-500 bg-orange-500 text-white': Tab == 1 }"
                     href="#">
 
                     Анкета
                 </a>
                 <a 
-                    class="text-xs sm:text-sm md:text-md lg:text-lg py-2 px-4 rounded-md border boderder-gray-600 
-                            text-gray-400 focus:bg-orange-500 focus:border 
-                            focus:border focus:bg-orange-500 focus:text-white 
-                            focus:border-orange-500" 
+                    class="text-xs sm:text-sm md:text-md lg:text-lg py-2 px-4 rounded-md border 
+                        hover:border-orange-500 hover:text-orange-500 hover:bg-white" 
+                    @click="Tab = 2" 
+                    :class="{ 'border-orange-500 bg-orange-500 text-white': Tab == 2 }"
                     href="#">
 
                     Настройки
@@ -39,7 +40,7 @@ title = "about-customer"
                                 flex justify-center cursor-pointer justify-items-center" >
                                 <label class="m-auto w-full cursor-pointer" for="Avater">
                                     <input id="Avater" type="file" hidden>
-                                    <i class="icon-camera"></i>
+                                    <i class="icon-camera transition hover:scale-110"></i>
                                 </label>
                         </div>
                     </div>
@@ -59,9 +60,11 @@ title = "about-customer"
                 </div>
 
                 <div class="p-5 md:p-6 lg:p-10 mt-4 bg-white rounded-md w-full">
-                    <div class="flex justify-between items-center">
+                    <div class="flex justify-between items-center ">
                         <span class="text-xs sm:text-sm md:text-md lg:text-lg font-medium">Описание профиля:</span>
-                        <a class="rounded-md bg-blue-800 flex items-center text-center w-8 h-8 cursor-pointer" href="#">
+                        <a class="rounded-md bg-blue-800 flex items-center text-center border border-white
+                                w-8 h-8 cursor-pointer  hover:border-blue-700 hover:bg-blue-700 transition-all duration-500" 
+                           href="#">
                             <i class="icon-pencil m-auto"></i>
                         </a>
                     </div>
@@ -113,7 +116,9 @@ title = "about-customer"
             <div class="p-5 md:p-6 lg:p-10 mt-4 bg-white rounded-md">
                 <div class="flex justify-between items-center">
                     <span class="text-xs sm:text-sm md:text-md lg:text-lg  font-medium">О себе</span>
-                    <a class="rounded-md bg-blue-800 text-center w-8 h-8 flex items-center cursor-pointer" href="#">
+                    <a  class="rounded-md bg-blue-800 text-center w-8 h-8 flex items-center border border-white cursor-pointer
+                            hover:border-blue-700 hover:bg-blue-700 transition-all duration-500" 
+                        href="#">
                         <i class="icon-pencil m-auto"></i>
                     </a>
                 </div>
@@ -140,12 +145,12 @@ title = "about-customer"
 
                 <div class="mt-5 flex flex-col md:flex-row pb-2 text-center md:text-left  md:justify-between border-b ">
                     <div class="">
-                        <span class="text-xs sm:text-sm md:text-md lg:text-lg  font-medium text-gray-300">Проверить ИНН через <a class="text-blue-500" href="#">Soliq.uz</a>:</span>
+                        <span class="text-xs sm:text-sm md:text-md lg:text-lg  font-medium text-gray-300">Проверить ИНН через <a class="text-blue-500 decoration-500 hover:underline-offset-4 transition-all duration-500" href="#">Soliq.uz</a>:</span>
                     </div>
                     <div class="">
                         <span class="text-xs sm:text-sm md:text-md lg:text-lg">3664069397</span>
                         <div class="md:inline-block">
-                            <a class=" bg-blue-100 rounded-md px-3 py-1 text-xs sm:text-sm md:text-md lg:text-lg ml-4 text-blue-400" href="#">Пройти сертификацию</a>
+                            <a class=" bg-blue-100 rounded-md px-3 py-1 text-xs sm:text-sm md:text-md lg:text-lg ml-4 text-blue-400 hover:bg-blue-400 hover:text-blue-100 transition-all duration-500" href="#">Пройти сертификацию</a>
                         </div>
                     </div>
                 </div>
@@ -163,7 +168,7 @@ title = "about-customer"
                             <a 
                                 class="bg-blue-100 rounded-md px-3 py-1 
                                     text-xs sm:text-sm md:text-md lg:text-lg 
-                                    text-blue-400" 
+                                    text-blue-400 hover:bg-blue-400 hover:text-blue-100 transition-all duration-500" 
                                 href="#">
                                 Добавить
                             </a>
@@ -172,7 +177,7 @@ title = "about-customer"
                             <a 
                                 class="bg-blue-100 rounded-md px-3 py-1 
                                 text-xs sm:text-sm md:text-md lg:text-lg 
-                                mx-4 text-blue-400" 
+                                mx-4 text-blue-400 hover:bg-blue-400 hover:text-blue-100 transition-all duration-500" 
                                 href="#">
                                     Пройти сертификацию
                             </a>
