@@ -24,11 +24,20 @@ use Crazy\Freelancer\Models\Category;
         <div class="relative md:w-2/3 mb-4" x-data="{
                 search: 'ds',
                 items: ['Услуга 1', 'Услуга 1', 'Услуга 1', 'Услуга 1',  'Услуга 1', 'Услуга 1', 'Услуга 1', 'Услуга 1','Услуга 1', 'Услуга 1', 'Услуга 1', 'Услуга 1','Услуга 1', 'Услуга 1', 'Услуга 1', 'Услуга 1',],
+                focused: false,
+                hovered: false,
             }">
-            <div class="rounded-full bg-white flex p-1 shadow" x-ref="searchInput">
+            <div class="rounded-full bg-white flex p-1 shadow-lg"
+                :style="focused || hovered > 0 ? `box-shadow: 0 0 10px  rgba(251, 146, 60, ${focused ? .5 : hovered ? .2 : 0}), 0 0 15px 0 rgba(251, 146, 60, ${focused ? .5 : hovered ? .2 : 0}) !important`: ''"
+                x-ref="searchInput" 
+                @mouseover="hovered = true" 
+                @mouseout="hovered = false" 
+                @focusin="focused = true" 
+                @focusout="focused = false">
                 <input type="text" x-model="search"
                     class="rounded-full p-1 px-4 sm:p-2 w-full focus:outline-none text-xs sm:text-sm md:text-md lg:text-base"
-                    placeholder="Услуга или специалист" name="search">
+                    placeholder="Услуга или специалист" name="search"
+                    autocomplete="off">
                 <button type="button"
                     class="bg-orange-400 rounded-full whitespace-nowrap py-1 px-5 sm:py-2 text-white flex items-center">
                     <span class="hidden sm:inline-block">
@@ -43,8 +52,9 @@ use Crazy\Freelancer\Models\Category;
                     </span>
                 </button>
             </div>
-            <div x-cloak x-transition x-show="search.length > 0" class="absolute top-0 inset-x-0 bg-white rounded-3xl overflow-hidden -z-10">
-                
+            <div x-cloak x-transition x-show="search.length > 0"
+                class="absolute top-0 inset-x-0 bg-white rounded-3xl overflow-hidden -z-10">
+
                 <ul class="overflow-y-auto h-60" x-init="" :style="{'max-height': (document.height - 120) + 'px'}">
                     <li class="w-full mb-2" x-bind:style="{height: `${$refs.searchInput.offsetHeight}px`}">
                     </li>
