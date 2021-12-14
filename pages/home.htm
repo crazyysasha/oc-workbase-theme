@@ -12,7 +12,7 @@ use Crazy\Freelancer\Models\Category;
 ?>
 ==
 {##}
-<section class="relative flex w-full items-center justify-center" style="height: calc(100vh - 66px);">
+<section x-init="console.log((window.innerHeight))" class="relative flex w-full items-center justify-center" style="height: calc(100vh - 66px);">
     <div class="bg-black bg-opacity-40 h-full w-full z-10 absolute block"></div>
     <div class="w-full absolute h-full block">
         <video class="object-cover object-center h-full w-full" src="{{ 'assets/videos/videobg.mp4' | theme }}" autoplay
@@ -22,7 +22,7 @@ use Crazy\Freelancer\Models\Category;
         <h1 class="md:text-5xl text-xl font-bold text-white leading-3">Работа в Узбекистане</h1>
         <p class="text-md md:text-xl font-bold my-10 text-white">538 603 клиента доверили дела WorkBase</p>
         <div class="relative md:w-2/3 mb-4" x-data="{
-                search: 'ds',
+                search: 's',
                 items: ['Услуга 1', 'Услуга 1', 'Услуга 1', 'Услуга 1',  'Услуга 1', 'Услуга 1', 'Услуга 1', 'Услуга 1','Услуга 1', 'Услуга 1', 'Услуга 1', 'Услуга 1','Услуга 1', 'Услуга 1', 'Услуга 1', 'Услуга 1',],
             }">
             <div class="rounded-full bg-white flex p-1 shadow" x-ref="searchInput">
@@ -43,9 +43,9 @@ use Crazy\Freelancer\Models\Category;
                     </span>
                 </button>
             </div>
-            <div x-cloak x-transition x-show="search.length > 0" class="absolute top-0 inset-x-0 bg-white rounded-3xl overflow-hidden -z-10">
+            <div x-cloak x-transition x-show="search.length > 0" class="absolute top-0 inset-x-0 bg-white rounded-3xl overflow-hidden -z-10 shadow-2xl pb-3">
                 
-                <ul class="overflow-y-auto h-60" x-init="" :style="{'max-height': (document.height - 120) + 'px'}">
+                <ul class="overflow-y-auto" x-init="" x-bind:style="{height: `${((window.innerHeight)*0.5)}px`}" >
                     <li class="w-full mb-2" x-bind:style="{height: `${$refs.searchInput.offsetHeight}px`}">
                     </li>
                     <template x-for="item in items">
