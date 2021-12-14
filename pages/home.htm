@@ -5,14 +5,14 @@ title = "WorkBase"
 <?php
 use Crazy\Freelancer\Models\Category;
 
-function onStart()
-{
-    $this['cats'] = Category::get();
-}
+    function onStart()
+    {
+        $this['cats'] = Category::get();
+    }
 ?>
 ==
 {##}
-<section class="relative flex w-full items-center justify-center" style="height: calc(100vh - 66px);">
+<section x-init="console.log((window.innerHeight))" class="relative flex w-full items-center justify-center" style="height: calc(100vh - 66px);">
     <div class="bg-black bg-opacity-40 h-full w-full z-10 absolute block"></div>
     <div class="w-full absolute h-full block">
         <video class="object-cover object-center h-full w-full" src="{{ 'assets/videos/videobg.webm' | theme }}" autoplay allowfullscreen muted loop></video>
@@ -20,28 +20,54 @@ function onStart()
     <div class="container z-10 px-2 md:px-4">
         <h1 class="md:text-5xl text-xl font-semibold text-white leading-3">Работа в Узбекистане</h1>
         <p class="text-md md:text-xl font-medium my-10 text-white">538 603 клиента доверили дела WorkBase</p>
-        <form>
-            <div class="flex items-center">
-                <input type="text" placeholder="Профессия, должность или специалист" name="search" class="text-black outline-none h-9 md:h-12 w-full md:w-1/2 rounded-tl-full rounded-bl-full pl-2 md:px-5 bg-white mr-0 border-2 border-white text-xs md:text-lg">
-                <button type="submit" class="bg-white text-white h-9 md:h-12 rounded-tr-full rounded-br-full border-2 border-white focus:outline-none md:text-lg text-md">
-                    <div class="hidden md:flex items-center bg-orange-400 rounded-full text-center px-4 h-full  hover:bg-orange-500 hover:text-gray-100 focus:shadow-2xl focus:border-orange-500">
-                        <span class="">Заказать услугу</span>
-                    </div>
-                    <div class="flex items-center text-center md:hidden bg-orange-400 rounded-full h-full w-16 text-center  ">
-                        <span class="m-auto">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                            </svg>
-                        </span>
-                    </div>
+        <div class="relative md:w-2/3 mb-4" x-data="{
+                search: 's',
+                items: ['Услуга 1', 'Услуга 1', 'Услуга 1', 'Услуга 1',  'Услуга 1', 'Услуга 1', 'Услуга 1', 'Услуга 1','Услуга 1', 'Услуга 1', 'Услуга 1', 'Услуга 1','Услуга 1', 'Услуга 1', 'Услуга 1', 'Услуга 1',],
+            }">
+            <div class="rounded-full bg-white flex p-1 shadow" x-ref="searchInput">
+                <input type="text" x-model="search"
+                    class="rounded-full p-1 px-4 sm:p-2 w-full focus:outline-none text-xs sm:text-sm md:text-md lg:text-base"
+                    placeholder="Услуга или специалист" name="search">
+                <button type="button"
+                    class="bg-orange-400 rounded-full whitespace-nowrap py-1 px-5 sm:py-2 text-white flex items-center">
+                    <span class="hidden sm:inline-block">
+                        Заказать услугу
+                    </span>
+                    <span class="inline-block sm:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </span>
                 </button>
             </div>
-        </form>
+            <div x-cloak x-transition x-show="search.length > 0" class="absolute top-0 inset-x-0 bg-white rounded-3xl overflow-hidden -z-10 shadow-2xl pb-3">
+                
+                <ul class="overflow-y-auto" x-init="" x-bind:style="{height: `${((window.innerHeight)*0.5)}px`}" >
+                    <li class="w-full mb-2" x-bind:style="{height: `${$refs.searchInput.offsetHeight}px`}">
+                    </li>
+                    <template x-for="item in items">
+                        <li x-text="item" class="p-2 px-4 hover:bg-gray-100 cursor-pointer"> </li>
+                    </template>
+
+                </ul>
+            </div>
+        </div>
+
         <ul class="flex flex-wrap mt-10 text-white text-sm text-xl">
-            <li class="mr-5 my-2 md:text-xl text-sm md:inline-block"><a class="border-b border-white" href="#"># создание сайтов</a></li>
-            <li class="mr-5 my-2 md:text-xl text-sm md:inline-block"><a class="border-b border-white" href="#"># выгул собак</a></li>
-            <li class="mr-5 my-2 md:text-xl text-sm md:inline-block"><a class="border-b border-white" href="#"># ремонт под ключ</a></li>
-            <li class="mr-5 my-2 md:text-xl text-sm md:inline-block"><a class="border-b border-white" href="#"># математика дистанционно</a></li>
+            <li class="mr-5 my-2 md:text-xl text-sm md:inline-block"><a
+                    class="border-b border-white hover:border-transparent transition-all duration-500" href="#">#
+                    создание сайтов</a></li>
+            <li class="mr-5 my-2 md:text-xl text-sm md:inline-block"><a
+                    class="border-b border-white hover:border-transparent transition-all duration-500" href="#"># выгул
+                    собак</a></li>
+            <li class="mr-5 my-2 md:text-xl text-sm md:inline-block"><a
+                    class="border-b border-white hover:border-transparent transition-all duration-500" href="#"># ремонт
+                    под ключ</a></li>
+            <li class="mr-5 my-2 md:text-xl text-sm md:inline-block"><a
+                    class="border-b border-white hover:border-transparent transition-all duration-500" href="#">#
+                    математика дистанционно</a></li>
         </ul>
     </div>
 </section>
@@ -49,41 +75,57 @@ function onStart()
     <div class="container px-2 md:px-4">
         <div class="text-center sm:text-left">
             <h2 class="text-xl md:text-3xl font-medium">В <span class="text-blue-800">Ташкенте работает</span> 325 779 специалистов, 205 469 дистанционно</h2>
+       
         </div>
-        <div class="md:grid grid-cols-3 gap-7 md:py-10">
+
+        <div class="md:grid grid-cols-3 gap-7 my-5 md:py-10">
             {% for category in cats %}
             {% partial 'cards/default' body %}
+
             {% put cardHeader %}
             <div class="p-3 rounded-full bg-green-50">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9 text-blue-900" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                 </svg>
             </div>
+
             <div class="ml-2">
                 <h3 class="font-aeroport font-medium text-lg">
                     {{ category.name }}
                 </h3>
                 <span class="text-gray-300">(2)</span>
             </div>
+
             {% endput %}
+
+
             <div class="mt-2">
                 <ul class="mb-5">
-                    {% for index, service in category.services if index < 5 %} <li class="mb-2">
+                    {% for index, service in category.services if index < 5 %}
+                    <li class="mb-2">
                         <a class="flex items-center" href="#">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 mr-2" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
                             </svg>
                             {{ service.name }}
                         </a>
-                        </li>
+                    </li>
                     {% endfor %}
                 </ul>
             </div>
+
+
             {% put cardFooter %}
             <a href="{{ 'make-order' | page({'category': category.slug }) }}" class="text-blue-900 flex items-center">
                 Все категории
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-900 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-900 ml-2" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
             </a>
             {% endput %}
@@ -235,8 +277,10 @@ function onStart()
         <div class="">
             <h2 class="text-xl text-center md:text-left  md:text-3xl font-medium mb-8">Для максимального <br> удобства, скачайте <br> бесплатное <span class="text-blue-800">мобильное <br> приложение.</span></h2>
             <div class="flex justify-center md:justify-start">
-                <a class="mr-4" href="#"><img class="w-30 h-10" src="{{'assets/images/apple.png' | theme }}" alt=""></a>
-                <a class="" href="#"><img class="w-30 h-10" src="{{'assets/images/android.png' | theme }}" alt=""></a>
+                <a class="mr-4 transition-all duration-500 transform hover:scale-110" href="#"><img class="w-30 h-10"
+                        src="{{'assets/images/apple.png' | theme }}" alt=""></a>
+                <a class="transition-all duration-500 transform hover:scale-110" href="#"><img class="w-30 h-10"
+                        src="{{'assets/images/android.png' | theme }}" alt=""></a>
             </div>
         </div>
         <div class="relative w-1/2 mx-auto my-5">
@@ -315,13 +359,16 @@ function onStart()
             <div class="bg-gray-100 p-2 xl:p-5 rounded-tl-3xl rounded-br-3xl mt-5">
                 <div class="flex justify-items-center items-center justify-between">
                     <div class="flex justify-items-center items-center">
-                        <img src="{{'assets/images/ClientMale.png' | theme}}" alt="" class="border-2 border-white rounded-full">
+                        <img src="{{'assets/images/ClientMale.png' | theme}}" alt=""
+                            class="border-2 border-white rounded-full">
                         <p class=" font-medium xl:text-md  xl:font-bold ml-3">Фарух Усманов</p>
                     </div>
                     <p class="text-orange-500 text-sm font-medium xl:text-md font-bold">10 из 10</p>
                 </div>
                 <p class="mt-5 text-sm xl:text-md">
-                    Нам нужен был электрик. Мастер произвел отличное впечатление. Работу выполнил хорошо, установил розетки. Мастер сказал, что если понадобятся еще услуги электрика, то всегда можно к нему обратиться.P/s: Мастер пришел в перчатках и маске.
+                    Нам нужен был электрик. Мастер произвел отличное впечатление. Работу выполнил хорошо, установил
+                    розетки. Мастер сказал, что если понадобятся еще услуги электрика, то всегда можно к нему
+                    обратиться.P/s: Мастер пришел в перчатках и маске.
                 </p>
                 <p class=" text-gray-500 text-sm xl:text-md">
                     Азамат

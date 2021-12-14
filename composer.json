@@ -1,5 +1,5 @@
 {
-    "name": "crazy/oc-workbase-theme",
+    "name": "crazy/crazy.workbase-theme",
     "type": "october-theme",
     "description": "WorkBase theme in OctoberCMS",
     "require": {

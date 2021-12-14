@@ -1,8 +1,10 @@
 {##}
 <div class="bg-white rounded-xl px-8 py-6">
+
     <div class="flex items-center mb-5">
         {% placeholder cardHeader %}
     </div>
+
     {{ body | raw }}
 
     {% if placeholder('cardFooter') %}
@@ -10,4 +12,5 @@
             {% placeholder cardFooter %}
         </div>
     {% endif %}
+
 </div>
