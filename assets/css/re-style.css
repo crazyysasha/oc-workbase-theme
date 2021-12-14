@@ -1,3 +1,15 @@
-.icon-rightAngle::before {
-    color: #303f9f;
+::-webkit-scrollbar {
+    width: 8px;
+    height: 10px;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(119 119 119 / 56%);
+    border-radius: 9em;
+
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
 }
