@@ -28,7 +28,7 @@ use Crazy\Freelancer\Models\Category;
                 loading: false,
             }" x-init="$watch('search', async function () {
                 loading = true;
-                let response = await (await fetch(`/api/crazy/freelancer/v1.0.1/services?with[]=category&search=${search}`)).json();
+                let response = await (await fetch(`/api/crazy/freelancer/v1.0.1/services?perPage=1000&with[]=category&search=${search}`)).json();
                 items = response.data;
                 loading = false;
             })">
@@ -45,7 +45,8 @@ use Crazy\Freelancer\Models\Category;
                     placeholder="Услуга или специалист" name="search"
                     autocomplete="off">
                 <button type="button"
-                    class="bg-orange-400 rounded-full whitespace-nowrap py-1 px-5 sm:py-2 text-white flex items-center">
+                    class="bg-orange-400 rounded-full whitespace-nowrap py-1 px-5 sm:py-2 text-white flex items-center"
+                    @click="window.location.href = '{{ 'make-order' | page({'category': 'raznoye'}) }}'">
                     <span class="hidden sm:inline-block">
                         Заказать услугу
                     </span>

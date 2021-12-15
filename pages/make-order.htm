@@ -34,13 +34,17 @@ function onStart() {
     {% put scripts %}
         <script>
             var swiper = new Swiper(".slider-work", {
+                freeMode: true,
+                freeModeSticky: false,
+                allowTouchMove: false,
+                autoplay: {
+                    delay: "auto",
+                },
+                loop: true,
+                speed: 10000,
                 slidesPerView: 9,
                 spaceBetween: 0,
                 loop: true,
-                autoplay: {
-                    delay: 0,
-                    disableOnInteraction: true,
-                },
                 pagination: {
                     el: ".swiper-pagination",
                     clickable: false,
