@@ -14,7 +14,7 @@ function onStart() {
     class="relative" >
 
 
-    <div x-cloak class="hidden md:block w-full py-2 px-2">
+    <div x-cloak class="hidden md:block w-full py-2 ">
         <div class="swiper w-full slider-work">
             <div class="swiper-wrapper">
               <div class="swiper-slide mx-0 flex justify-center items-center brightness-50 p-0"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block rounded-lg  w-10/12 object-cover" alt=""></div>
@@ -34,17 +34,14 @@ function onStart() {
     {% put scripts %}
         <script>
             var swiper = new Swiper(".slider-work", {
-                freeMode: true,
-                freeModeSticky: false,
-                allowTouchMove: false,
-                autoplay: {
-                    delay: "auto",
-                },
-                loop: true,
-                speed: 10000,
                 slidesPerView: 9,
                 spaceBetween: 0,
                 loop: true,
+                speed: 80000,
+                autoplay: {
+                    delay: 0,
+                    disableOnInteraction: true,
+                },
                 pagination: {
                     el: ".swiper-pagination",
                     clickable: false,
@@ -117,47 +114,8 @@ function onStart() {
                     >
                     <div x-data="{ isOpen1: true }">
                         <h5 class="text-sm font-bold text-gray-500">{{ category.name }}</h5>
-                        <h2 class="font-semibold text-sm ms:md md:text-lg lg:text-xl md:font-medium my-4">Какая цель занятий?</h2>
-                        <div class="">
-                            <ul class=" text-xs md:text-sm lg:text-md" x-data="{field: null}">
-                                <li class="my-2">
-                                    <input hidden id="radioField4" x-model="field" type="radio" value="4">
-                                    <label class="flex items-center " for="radioField4">
-                                        <div
-                                            class="mr-3 rounded-full w-5 sm:w-6 md:h-7 h-5 sm:h-6 md:w-7 bg-gray-300 flex items-center justify-center">
-                                            <div x-show="field == 4" x-transition.opacity.scale
-                                                class="w-2 h-2 bg-white rounded-full"></div>
-                                        </div>
-                                        ОГЭ по английскому
-                                    </label>
-                                </li>
-                                <li class="my-2">
-                                    <input hidden id="radioField5" x-model="field" type="radio" value="5">
-                                    <label class="flex items-center " for="radioField5">
-                                        <div
-                                            class="mr-3 rounded-full w-5 sm:w-6 md:h-7 h-5 sm:h-6 md:w-7 bg-gray-300 flex items-center justify-center">
-                                            <div x-show="field == 5" x-transition.opacity.scale
-                                                class="w-2 h-2 bg-white rounded-full"></div>
-                                        </div>
-                                        ОГЭ по английскому
-                                    </label>
-                                </li>
-
-
-                                <li class="my-2">
-                                    <input hidden id="radioField6" x-model="field" type="radio" value="6">
-                                    <label class="flex items-center " for="radioField6">
-                                        <div
-                                            class="mr-3 rounded-full w-5 sm:w-6 md:h-7 h-5 sm:h-6 md:w-7 bg-gray-300 flex items-center justify-center">
-                                            <div x-show="field == 6" x-transition.opacity.scale
-                                                class="w-2 h-2 bg-white rounded-full"></div>
-                                        </div>
-                                        <input id="radioField6" class="bg-gray-100 rounded-md w-auto h-5 ms:h-6 md:h-7 lg:h-8  max-h-8 p-3 focus:outline-none text-xs ms:text-sm md:text-md" placeholder="Другое" type="text">
-                                    </label>
-                                </li>
-                            </ul>
-                        </div>
-
+                        <h2 class="font-semibold text-sm ms:md md:text-lg lg:text-3xl md:font-medium mt-3 mb-4">Какая цель занятий?</h2>
+                        {% partial "formsOrders/forms" %}
                     </div>
                     <div class="sticky w-full bg-white bottom-0 shadow-3xl mt-auto" >
                         <div class="flex justify-between items-center h-10 ms:h-14 md:h-16 lg:h-20">
