@@ -119,9 +119,11 @@ use Crazy\Freelancer\Models\Category;
             </div>
 
             <div class="ml-2">
-                <h3 class="font-aeroport font-medium text-lg">
-                    {{ category.name }}
-                </h3>
+                <a href="{{ category.slug }}">
+                    <h3 class="font-aeroport font-medium text-lg">
+                        {{ category.name }}
+                    </h3>
+                </a>
                 <span class="text-gray-300">(2)</span>
             </div>
 
@@ -132,7 +134,7 @@ use Crazy\Freelancer\Models\Category;
                 <ul class="mb-5">
                     {% for index, service in category.services if index < 5 %}
                     <li class="mb-2">
-                        <a class="flex items-center" href="#">
+                        <a class="flex items-center" href="{{ service.slug }}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 mr-2" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
