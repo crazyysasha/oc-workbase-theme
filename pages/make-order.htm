@@ -1,10 +1,21 @@
-url = "/:category/:service*?"
+url = "/:category/:service?*"
 layout = "make-order"
 title = "make-order"
 ==
 <?php
 function onStart() {
-    $this['category'] = Crazy\FreeLancer\Models\Category::where('slug', $this->param('category'))->first();
+    $category = Crazy\FreeLancer\Models\Category::where('slug', $this->param('category'))
+        ->first();
+
+    if (!$category) {
+        return $this->controller->run('404');
+    }
+    
+    $services = Crazy\FreeLancer\Models\Service::whereIn('slug', explode('/', $this->param('service')))->getNested();
+
+    $this['category'] = $category;
+
+    $this['services'] = $services;
 }
 ?>
 ==
