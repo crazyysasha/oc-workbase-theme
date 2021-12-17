@@ -10,7 +10,10 @@
     {% component 'alternateHrefLangElements' %}
     <link rel="icon" type="image/png" sizes="32x32" href="{{ 'assets/images/favicon-32x32.png'|theme }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ 'assets/images/favicon-16x16.png'|theme }}">
-    <link rel="stylesheet" href="{{['assets/css/app.css', '@framework.extras.css']|theme}}">
+    <link rel="stylesheet" href="{{[ 
+        'assets/css/app.css', 
+        '@framework.extras.css'
+    ] | theme}}">
     <link rel="icon" href="{{ this.theme.favicon.path }}">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,22 +24,23 @@
     </style>
     {% styles %}
 </head>
-<body class="font-sans bg-gray-100 relative">
+<body class="font-sans">
     
-    {% partial "headers/default" %}
-  
-        {% page %}        
+ 
+
+    {% page %}        
 
 
-    {% placeholder modals %}
-    
+
+
     <script defer src="https://unpkg.com/alpinejs@3.7.0/dist/cdn.min.js"></script>
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
     <script src="{{ [
         '@jquery',
         '@framework',
         '@framework.extras',
-    ]|theme }}"></script>
+        ]|theme }}">
+    </script>
     {% scripts %}
 </body>
 </html>

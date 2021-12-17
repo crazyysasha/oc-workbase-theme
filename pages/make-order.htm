@@ -20,98 +20,107 @@ function onStart() {
 ?>
 ==
 {##}
-<section 
-    x-data="{IsActive: 1,}"
-    class="relative" >
+<section x-data="{IsActive: 1,}" class="relative" >
+  {#
+    {% partial "swiper/specs" %}
+  
+  #}  
 
 
-    <div x-cloak class="hidden md:block w-full py-2 ">
-        <div class="swiper w-full slider-work">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide mx-0 flex justify-center items-center filter  brightness-75 p-0"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block rounded-lg  w-10/12 object-cover" alt=""></div>
-              <div class="swiper-slide mx-0 flex justify-center items-center filter  brightness-75 p-0"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block rounded-lg  w-10/12 object-cover" alt=""></div>
-              <div class="swiper-slide mx-0 flex justify-center items-center filter  brightness-75 p-0"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block rounded-lg  w-10/12 object-cover" alt=""></div>
-              <div class="swiper-slide mx-0 flex justify-center items-center filter  brightness-75 p-0"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block rounded-lg  w-10/12 object-cover" alt=""></div>
-              <div class="swiper-slide mx-0 flex justify-center items-center filter  brightness-75 p-0"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block rounded-lg  w-10/12 object-cover" alt=""></div>
-              <div class="swiper-slide mx-0 flex justify-center items-center filter  brightness-75 p-0"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block rounded-lg  w-10/12 object-cover" alt=""></div>
-              <div class="swiper-slide mx-0 flex justify-center items-center filter  brightness-75 p-0"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block rounded-lg  w-10/12 object-cover" alt=""></div>
-              <div class="swiper-slide mx-0 flex justify-center items-center filter  brightness-75 p-0"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block rounded-lg  w-10/12 object-cover" alt=""></div>
-              <div class="swiper-slide mx-0 flex justify-center items-center filter  brightness-75 p-0"><img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block rounded-lg  w-10/12 object-cover" alt=""></div>
-            </div>
-            
-        </div>
-    </div>
-    
-    {% put scripts %}
-        <script>
-            var swiper = new Swiper(".slider-work", {
-                slidesPerView: 9,
-                spaceBetween: 0,
-                loop: true,
-                speed: 80000,
-                autoplay: {
-                    delay: 0,
-                    disableOnInteraction: true,
-                },
-                pagination: {
-                    el: ".swiper-pagination",
-                    clickable: false,
-                },
-            });
-        </script>
-    {% endput %}
-
-
-    <div class="lg:grid grid-cols-3 container relative">
+    <div class="grid grid-cols-1 lg:grid-cols-3 container gap-4" x-data="{activeTab: 'order'}">
+        <div class="lg:col-span-2 order-2 lg:order-1 bg-white rounded-md">
+            <div class="p-4">
         
-
-        <div class="lg:col-span-2 col-start-1 col-end-2 m-2 mb-0 relative">
-
-            <div class=" lg:hidden bg-white rounded-md px-4 mb-4 py-1 sticky z-20" 
-            x-bind:style="{top: `${document.querySelector('header').offsetHeight}px`}"
-            x-data="{ showBar: false }" 
-            :class="{ 'border-b border-gray-300 shadow-2xl transition duration-100' : showBar }"
-            @scroll.window="showBar = (window.pageYOffset > 20) ? true : false">
-            <ul class="flex justify-between text-center">
-                <li class="" @click="IsActive = 1">
-                    <div class="flex items-center justify-center" >
-                        <span  class="text-xl text-gray-500"><i :class="{ 'text-black': IsActive === 1 }" class="fa fa-pie-chart" aria-hidden="true"></i></span>
-                        <!-- <span class="text-2xs text-left">1%</span> -->
-                    </div>
-                    <div>
-                        <span class="text-2xs lg:text-sm md:text-xs">Заказ</span>
-                    </div>
+                <h5 class="text-sm font-bold text-gray-500">
+                    {{ category.name }}
+                </h5>
+                <h2 class="font-semibold text-sm ms:md md:text-lg lg:text-3xl md:font-medium mt-3 mb-4">
+                    Какая цель занятий?
+                </h2>
+                        
+                {% partial 'fields/search/with-tags' placeholder="Услуга или специалист" %}
+            </div>
+            <div>
+                2
+            </div>
+            <div>
+                3
+            </div>
+            <div>
+                4
+            </div>
+        </div>
+        <div class="lg:col-span-1 order-1 lg:order-2 bg-white rounded-md">
+            <ul class="p-4 flex flex-row lg:flex-col justify-around">
+                <li class="p-2 bg-gray-300 bg-opacity-0 hover:bg-opacity-50 mb-1 rounded-md font-semibold" :class="{'hover:bg-opacity-100 bg-opacity-75': true}">
+                    Заказ
                 </li>
                 
-                <li class="" @click="IsActive = 3">
-                    <div class="flex items-center justify-center">
-                        <span  class="text-xl text-gray-500 before:content-['123']  before:absolute">
-                            <i :class="{ 'text-black': IsActive === 3 }" class="fa fa-users" aria-hidden="true"></i>
-                        </span>
-                    </div>
-                    <div>
-                        <span class="text-2xs lg:text-sm md:text-xs">Специалисты</span>
-                    </div>
+                <li class="p-2 bg-gray-300 bg-opacity-0 hover:bg-opacity-50 my-1 rounded-md font-semibold" :class="{'hover:bg-opacity-100 bg-opacity-75': false}">
+                    Поддержка
                 </li>
-
-                <li class="" @click="IsActive = 4">
-                    <div class="flex items-center justify-center">
-                        <span  class="text-xl mr-1 text-gray-500"><i :class="{ 'text-black': IsActive === 4 }" class="fa fa-comments" aria-hidden="true"></i></span>
-                    </div>
-                    <div>
-                        <span class="text-2xs lg:text-sm md:text-xs">Отклики</span>
-                    </div>
+                
+                <li class="p-2 bg-gray-300 bg-opacity-0 hover:bg-opacity-50 my-1 rounded-md font-semibold" :class="{'hover:bg-opacity-100 bg-opacity-75': false}">
+                    Специалисты
                 </li>
-
-                <li class="" @click="IsActive = 2">
-                    <div class="flex items-center justify-center">
-                        <span  class="text-xl mr-1 text-gray-500"><i :class="{ 'text-black': IsActive === 2 }" class="fa fa-question-circle" aria-hidden="true"></i></span>
-                    </div>
-                    <div>
-                        <span class="text-2xs lg:text-sm md:text-xs">Поддержка</span>
-                    </div>
+                
+                <li class="p-2 bg-gray-300 bg-opacity-0 hover:bg-opacity-50 mt-1 rounded-md font-semibold" :class="{'hover:bg-opacity-100 bg-opacity-75': false}">
+                    Отклики
                 </li>
+                
             </ul>
+        </div>
+    </div>
+    <div class="lg:grid grid-cols-3 container relative">
+        <div class="lg:col-span-2 col-start-1 col-end-2 m-2 mb-0 relative">
+            <div class=" lg:hidden bg-white rounded-md px-4 mb-4 py-1 sticky z-20" 
+                x-bind:style="{top: `${document.querySelector('header').offsetHeight}px`}"
+                x-data="{ showBar: false }" 
+                :class="{ 'border-b border-gray-300 shadow-2xl transition duration-100' : showBar }"
+                @scroll.window="showBar = (window.pageYOffset > 20) ? true : false">
+                <ul class="flex justify-between text-center">
+                    <li class="" @click="IsActive = 1">
+                        <div class="flex items-center justify-center" >
+                            <span  class="text-xl text-gray-500">
+                                <i :class="{ 'text-black': IsActive === 1 }" class="fa fa-pie-chart" aria-hidden="true">
+                                </i>
+                            </span>
+                            <!-- <span class="text-2xs text-left">1%</span> -->
+                        </div>
+                        <div>
+                            <span class="text-2xs lg:text-sm md:text-xs">Заказ</span>
+                        </div>
+                    </li>
+                    
+                    <li class="" @click="IsActive = 3">
+                        <div class="flex items-center justify-center">
+                            <span  class="text-xl text-gray-500 before:content-['123']  before:absolute">
+                                <i :class="{ 'text-black': IsActive === 3 }" class="fa fa-users" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                        <div>
+                            <span class="text-2xs lg:text-sm md:text-xs">Специалисты</span>
+                        </div>
+                    </li>
+
+                    <li class="" @click="IsActive = 4">
+                        <div class="flex items-center justify-center">
+                            <span  class="text-xl mr-1 text-gray-500"><i :class="{ 'text-black': IsActive === 4 }" class="fa fa-comments" aria-hidden="true"></i></span>
+                        </div>
+                        <div>
+                            <span class="text-2xs lg:text-sm md:text-xs">Отклики</span>
+                        </div>
+                    </li>
+
+                    <li class="" @click="IsActive = 2">
+                        <div class="flex items-center justify-center">
+                            <span  class="text-xl mr-1 text-gray-500"><i :class="{ 'text-black': IsActive === 2 }" class="fa fa-question-circle" aria-hidden="true"></i></span>
+                        </div>
+                        <div>
+                            <span class="text-2xs lg:text-sm md:text-xs">Поддержка</span>
+                        </div>
+                    </li>
+                </ul>
             </div>
 
             <div 
@@ -124,9 +133,7 @@ function onStart() {
                     class="px-4 relative"
                     >
                     <div x-data="{ isOpen1: true }">
-                        <h5 class="text-sm font-bold text-gray-500">{{ category.name }}</h5>
-                        <h2 class="font-semibold text-sm ms:md md:text-lg lg:text-3xl md:font-medium mt-3 mb-4">Какая цель занятий?</h2>
-                        {% partial "formsOrders/forms" %}
+                        {# {% partial "formsOrders/forms" %} #}
                     </div>
                     <div class="sticky w-full bg-white bottom-0 shadow-3xl mt-auto" >
                         <div class="flex justify-between items-center h-10 ms:h-14 md:h-16 lg:h-20">
@@ -354,7 +361,7 @@ function onStart() {
 
         <div class="lg:col-span-1 col-start-2 m-2">
 
-            <div class="hidden  lg:block md:show bg-white rounded-md p-4">
+            <div class="hidden lg:block bg-white rounded-md p-4">
                 <ul>
                     <li @click="IsActive = 1"
                         class="my-2">
@@ -398,16 +405,6 @@ function onStart() {
                                     </div>
                                 </div>                                                 
                             </div>
-                            {% put scripts %}
-                                <script>
-                                    var swiper = new Swiper('.mySwiper', {
-                                        autoplay: {
-                                             delay: 5000,
-                                            },
-                                        effect: 'fade'
-                                        });
-                                </script>
-                            {% endput %}
                     </div>
                     
 
@@ -421,16 +418,6 @@ function onStart() {
                                 </div>
                             </div>                                                 
                         </div>
-                        {% put scripts %}
-                            <script>
-                                var swiper = new Swiper('.mySwiper', {
-                                    autoplay: {
-                                         delay: 5000,
-                                        },
-                                    effect: 'fade'
-                                    });
-                            </script>
-                        {% endput %}
                     </div>
 
                     <div class="w-full my-5">
@@ -443,16 +430,6 @@ function onStart() {
                                 </div>
                             </div>                                                 
                         </div>
-                        {% put scripts %}
-                            <script>
-                                var swiper = new Swiper('.mySwiper', {
-                                    autoplay: {
-                                        delay: 5000,
-                                        },
-                                    effect: 'fade'
-                                    });
-                            </script>
-                        {% endput %}
                     </div>
 
             
@@ -462,5 +439,15 @@ function onStart() {
 
 
 
+        {% put scripts %}
+            <script>
+                var swiper = new Swiper('.mySwiper', {
+                    autoplay: {
+                         delay: 5000,
+                        },
+                    effect: 'fade'
+                    });
+            </script>
+        {% endput %}
     </div>
 </section>

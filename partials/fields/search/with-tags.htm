@@ -1,0 +1,80 @@
+{##}
+<div class="relative w-full mb-4 z-10" x-data="{
+        search: '',
+        items: [],
+        loading: false,
+    }" x-init="$watch('search', async function () {
+        loading = true;
+        let response = await (await fetch(`/api/crazy/freelancer/v1.0.1/services?perPage=1000&with[]=category&search=${search}`)).json();
+        items = response.data;
+        loading = false;
+    })" id="searchWidget">
+    <div x-bind:style="{height: `${$refs.searchInput.offsetHeight}px`}"></div>
+    <div class="rounded-lg border bg-white flex p-1 shadow-lg absolute top-0 inset-x-0 z-40" x-ref="searchInput">
+
+        <input type="text" x-model="search"
+            class="rounded-lg p-1  px-4 sm:p-2 w-full focus:outline-none text-xs sm:text-sm md:text-md lg:text-base"
+            {% if placeholder is null or placeholder != false %} placeholder="{{ placeholder ?? 'Поиск...'  }}"
+            {% endif %} name="search" autocomplete="off">
+    </div>
+    <div x-cloak x-transition x-show="search.length > 0"
+        class="absolute border top-0 inset-x-0 bg-white rounded-3xl overflow-hidden ">
+
+        <ul class="overflow-y-auto" x-init="" :style="`max-height: ${window.innerHeight*.5}px;`">
+            <li class="w-full mb-2" x-bind:style="{height: `${$refs.searchInput.offsetHeight}px`}">
+            </li>
+            <template x-for="index in (loading ? 10 : 0)">
+                <li class="p-2 px-4 cursor-pointer">
+                    <div class="h-4 animate my-1 rounded-lg animate-pulse bg-gray-400"
+                        :style="{width: `${100 + Math.random() * 100}px`}"></div>
+                </li>
+            </template>
+            <template x-if="items.length == 0">
+                <li x-text="search" class="p-2 px-4 hover:bg-gray-100 cursor-pointer"
+                    @click="window.location.href = '{{ 'make-order' | page({'category': 'raznoye'}) }}'"> </li>
+            </template>
+            <template x-for="item in (!loading ? items: [])">
+                <li x-text="item.name" class="p-2 px-4 hover:bg-gray-100 cursor-pointer"
+                    @click="window.location.href = `${item.category.length > 0 ? item.category[0].slug : 'raznoye'}/${item.slug}`">
+                </li>
+            </template>
+
+        </ul>
+    </div>
+    <div>
+        <div class="mb-4">Например:</div>
+        <div class="flex flex-wrap" x-data="{
+        items: [],
+        loading: true,
+        
+        async init () {
+            loading = true;
+            let response = await (await fetch('/api/crazy/freelancer/v1.0.1/categories/{{ category.id }}')).json();
+            exmaples = Array.from(response.services);
+            loading = false;
+        },
+    }">
+            <template x-for="example in loadedExamples">
+                <button class="bg-gray-100 text-sm rounded-full py-2 px-3 mr-1 mb-2"
+                    :style="{width: `${Math.random() * 50 + 50}px`}"
+                    x-bind:class="{'animation animation-pulse': example.loading}" x-text="example.name">
+                    &nbsp;
+                </button>
+            </template>
+            <!-- <template x-if="isLoading">
+        <template x-for="i in 10">
+            <button class="animation animation-pulse bg-gray-100 text-sm rounded-full py-2 px-3 mr-1 mb-2" :style="{width: `${Math.random() * 50 + 50}px`}">
+                &nbsp;
+            </button>
+        </template>
+    </template>
+    <template x-if="! isLoading">
+        <button class="animation animation-pulse bg-gray-100 text-sm rounded-full py-2 px-3 mr-1 mb-2">
+            &nbsp;
+        </button>
+    
+    </template> -->
+
+        </div>
+    </div>
+</div>

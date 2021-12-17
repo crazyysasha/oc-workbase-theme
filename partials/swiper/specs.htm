@@ -1,0 +1,52 @@
+<div x-cloak class="hidden md:block w-full py-2 ">
+    <div class="swiper w-full slider-work">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide mx-0 flex justify-center items-center filter  brightness-75 p-0">
+                <img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block rounded-lg  w-10/12 object-cover" alt="">
+            </div>
+            <div class="swiper-slide mx-0 flex justify-center items-center filter  brightness-75 p-0">
+                <img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block rounded-lg  w-10/12 object-cover" alt="">
+            </div>
+            <div class="swiper-slide mx-0 flex justify-center items-center filter  brightness-75 p-0">
+                <img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block rounded-lg  w-10/12 object-cover" alt="">
+            </div>
+            <div class="swiper-slide mx-0 flex justify-center items-center filter  brightness-75 p-0">
+                <img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block rounded-lg  w-10/12 object-cover" alt="">
+            </div>
+            <div class="swiper-slide mx-0 flex justify-center items-center filter  brightness-75 p-0">
+                <img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block rounded-lg  w-10/12 object-cover" alt="">
+            </div>
+            <div class="swiper-slide mx-0 flex justify-center items-center filter  brightness-75 p-0">
+                <img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block rounded-lg  w-10/12 object-cover" alt="">
+            </div>
+            <div class="swiper-slide mx-0 flex justify-center items-center filter  brightness-75 p-0">
+                <img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block rounded-lg  w-10/12 object-cover" alt="">
+            </div>
+            <div class="swiper-slide mx-0 flex justify-center items-center filter  brightness-75 p-0">
+                <img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block rounded-lg  w-10/12 object-cover" alt="">
+            </div>
+            <div class="swiper-slide mx-0 flex justify-center items-center filter  brightness-75 p-0">
+                <img src="{{ 'assets/images/mancarousel4.png' | theme }}" class="block rounded-lg  w-10/12 object-cover" alt="">
+            </div>
+        </div>    
+    </div>
+</div>
+
+{% put scripts %}
+    <script>
+        var swiper = new Swiper(".slider-work", {
+            slidesPerView: 9,
+            spaceBetween: 0,
+            loop: true,
+            speed: 80000,
+            autoplay: {
+                delay: 0,
+                disableOnInteraction: true,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: false,
+            },
+        });
+    </script>
+{% endput %}
