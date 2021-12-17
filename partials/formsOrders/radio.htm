@@ -1,22 +1,25 @@
 <div class="">
     <ul class=" text-xs md:text-sm lg:text-md" x-data="{field: null}">
         <li class="my-2">
-            <input hidden id="radioField4" x-model="field" type="radio" value="4">
+            <input hidden id="radioField4" x-model="field" type="radio" value="1">
             <label class="flex items-center " for="radioField4">
                 <div
-                    class="mr-3 rounded-full w-5 sm:w-6 md:h-7 h-5 sm:h-6 md:w-7 bg-gray-300 flex items-center justify-center">
-                    <div x-show="field == 4" x-transition.opacity.scale
-                        class="w-2 h-2 bg-white rounded-full"></div>
+                    class="mr-3 rounded-full w-4 sm:w-5 md:w-6  h-4 sm:h-5 md:h-6 flex items-center justify-center"
+                    x-bind:class="{ 'border border-blue-600 bg-blue-700' : field == 1 , 'border border-gray-300 bg-gray-300' : field != 1}">
+                    <div x-show="field == 1" x-transition.opacity.scale
+                        class=" w-2 h-2 bg-white rounded-full">
+                    </div>
                 </div>
                 ОГЭ по английскому
             </label>
         </li>
         <li class="my-2">
-            <input hidden id="radioField5" x-model="field" type="radio" value="5">
+            <input hidden id="radioField5" x-model="field" type="radio" value="2">
             <label class="flex items-center " for="radioField5">
                 <div
-                    class="mr-3 rounded-full w-5 sm:w-6 md:h-7 h-5 sm:h-6 md:w-7 bg-gray-300 flex items-center justify-center">
-                    <div x-show="field == 5" x-transition.opacity.scale
+                    class="mr-3 rounded-full w-4 sm:w-5 md:w-6 h-4 sm:h-5 md:h-6 flex items-center justify-center"
+                    x-bind:class="{ 'border border-blue-600 bg-blue-700' : field == 2 , 'border border-gray-300 bg-gray-300' : field != 2}">
+                    <div x-show="field == 2" x-transition.opacity.scale
                         class="w-2 h-2 bg-white rounded-full"></div>
                 </div>
                 ОГЭ по английскому
@@ -25,11 +28,12 @@
 
 
         <li class="my-2">
-            <input hidden id="radioField6" x-model="field" type="radio" value="6">
+            <input hidden id="radioField6" x-model="field" type="radio" value="3">
             <label class="flex items-center " for="radioField6">
                 <div
-                    class="mr-3 rounded-full w-5 sm:w-6 md:h-7 h-5 sm:h-6 md:w-7 bg-gray-300 flex items-center justify-center">
-                    <div x-show="field == 6" x-transition.opacity.scale
+                    class="mr-3 rounded-full w-4 sm:w-5 md:w-6 h-4 sm:h-5 md:h-6 flex items-center justify-center"
+                    x-bind:class="{ 'border border-blue-600 bg-blue-700' : field == 3 , 'border border-gray-300 bg-gray-300' : field != 3}">
+                    <div x-show="field == 3" x-transition.opacity.scale
                         class="w-2 h-2 bg-white rounded-full"></div>
                 </div>
                 <input id="radioField6" class="bg-gray-100 rounded-md w-auto h-5 ms:h-6 md:h-7 lg:h-8  max-h-8 p-3 focus:outline-none text-xs ms:text-sm md:text-md" placeholder="Другое" type="text">
