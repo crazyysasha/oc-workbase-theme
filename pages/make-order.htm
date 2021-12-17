@@ -51,13 +51,11 @@ function getCurrentCategory()
 ==
 {##}
 <section x-data="{IsActive: 1,}" class="relative" >
-  {#
-    {% partial "swiper/specs" %}
+    {# 
+        {% partial "swiper/specs" %}
+    #}
   
-  #}  
-
-
-    <div class="grid grid-cols-1 lg:grid-cols-3 container gap-4" x-data="{activeTab: 'order'}">
+    <div class="grid grid-cols-1 lg:grid-cols-3 container gap-4 mt-2" x-data="{activeTab: 'order'}">
         <div class="lg:col-span-2 order-2 lg:order-1 bg-white rounded-md">
             <div class="p-4" id="slideContainer" x-init="$.request('onGetSlideView')">
             </div>
@@ -124,41 +122,17 @@ function getCurrentCategory()
                         </div>
                     </li>
 
-                    <li class="" @click="IsActive = 2">
-                        <div class="flex items-center justify-center">
-                            <span  class="text-xl mr-1 text-gray-500"><i :class="{ 'text-black': IsActive === 2 }" class="fa fa-question-circle" aria-hidden="true"></i></span>
-                        </div>
-                        <div>
-                            <span class="text-2xs lg:text-sm md:text-xs">Поддержка</span>
-                        </div>
-                    </li>
                 </ul>
             </div>
 
             <div 
-                class="bg-white pt-4 rounded-md w-full" 
+                class="hidden pt-4 rounded-md w-full" 
                 id="MakeOrderRadio">
 
                 <div 
                     x-cloak 
                     x-show="IsActive === 1" 
-                    class="px-4 relative"
-                    >
-                    <div x-data="{ isOpen1: true }">
-                        {% partial "formsOrders/forms" %}
-                    </div>
-                    <div class="sticky w-full bg-white bottom-0 shadow-3xl mt-auto" >
-                        <div class="flex justify-between items-center h-10 ms:h-14 md:h-16 lg:h-20">
-                            <button class="shadow-3xl  sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-lg w-20 sm:w-32 h-7 sm:h-10 md:w-48 md:h-12 bg-gray-200 rounded-lg">
-                                <span><i class=""></i></span>
-                                <span>Начать заново</span>
-                            </button>
-                            <button class=" sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-lg w-20 sm:w-32 h-7 sm:h-10 md:w-48 md:h-12 bg-black text-white rounded-lg">
-                                <span><i class=""></i></span>
-                                <span>Продолжить</span>
-                            </button>
-                        </div>
-                    </div>
+                    class="px-4 relative">
                 </div>
 
                 <div x-cloak x-show="IsActive === 2">
