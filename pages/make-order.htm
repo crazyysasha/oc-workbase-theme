@@ -4,18 +4,48 @@ title = "make-order"
 ==
 <?php
 function onStart() {
-    $category = Crazy\FreeLancer\Models\Category::where('slug', $this->param('category'))
-        ->first();
 
-    if (!$category) {
+    if (!$category =  $this->getCurrentCategory()) {
         return $this->controller->run('404');
     }
     
-    $services = Crazy\FreeLancer\Models\Service::whereIn('slug', explode('/', $this->param('service')))->getNested();
+    $services = $this->getCurrentServices();
 
     $this['category'] = $category;
 
     $this['services'] = $services;
+}
+
+
+function onGetSlideView()
+{
+    $category = $this->getCurrentCategory();
+
+    $services = $this->getCurrentServices();
+    
+    if (! $category) {
+        \Flash::error('Категория не найдена!');
+    }
+    
+    if ($services->isNotEmpty()) {
+        return ['#slideContainer' => $this->renderPartial('make-order/select-child-service'), ];
+    }
+
+    return ["#slideContainer" => $this->renderPartial('make-order/search-service'), ];
+}
+
+function getCurrentServices()
+{
+    return $this['services'] = 
+        Crazy\FreeLancer\Models\Service
+            ::whereIn('slug', explode('/', $this->param('service')))
+            ->getNested();
+}
+
+function getCurrentCategory()
+{
+    return $this['category'] = Crazy\FreeLancer\Models\Category::where('slug', $this->param('category'))
+        ->first();
 }
 ?>
 ==
@@ -29,25 +59,7 @@ function onStart() {
 
     <div class="grid grid-cols-1 lg:grid-cols-3 container gap-4" x-data="{activeTab: 'order'}">
         <div class="lg:col-span-2 order-2 lg:order-1 bg-white rounded-md">
-            <div class="p-4">
-        
-                <h5 class="text-sm font-bold text-gray-500">
-                    {{ category.name }}
-                </h5>
-                <h2 class="font-semibold text-sm ms:md md:text-lg lg:text-3xl md:font-medium mt-3 mb-4">
-                    Какая цель занятий?
-                </h2>
-                        
-                {% partial 'fields/search/with-tags' placeholder="Услуга или специалист" %}
-            </div>
-            <div>
-                2
-            </div>
-            <div>
-                3
-            </div>
-            <div>
-                4
+            <div class="p-4" id="slideContainer" x-init="$.request('onGetSlideView')">
             </div>
         </div>
         <div class="lg:col-span-1 order-1 lg:order-2 bg-white rounded-md">
