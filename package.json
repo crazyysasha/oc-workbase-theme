@@ -26,6 +26,7 @@
     "tailwindcss": "^2.1.4"
   },
   "dependencies": {
+    "@alpinejs/persist": "^3.7.0",
     "alpinejs": "^3.2.3",
     "daisyui": "^1.14.7",
     "swiper": "^7.2.0"
