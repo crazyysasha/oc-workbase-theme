@@ -15,8 +15,9 @@
         {% endfor %}
     
     {% elseif item.getLevel() == 0 %}
- 
-        {{ 'radio' }}
+        {% partial 'fields/radio/with-entry' 
+            serviceId = item.id 
+        %}
     {% else %}
         {{ 'inner radio' }}
     {% endif %}

@@ -1,0 +1,65 @@
+{##}
+<div class="">
+    <ul class=" text-xs md:text-sm lg:text-md" x-data="{
+        checked: null,
+        entry: '',
+        loading: false,
+        items: [],
+        async init() {
+            this.loading = true;
+            let response = await (await fetch('/api/crazy/freelancer/v1.0.1/services?parent={{serviceId}}')).json();
+            this.items = response.data;
+            setTimeout(() => {
+                this.loading = false;
+            }, 5000);
+        },
+    }">
+        <template x-if="loading">
+            <template x-for="index in 5">
+                <li class="my-2">
+                    <div class="animate animate-pulse w-40 h-8 bg-gray-300"></div>
+                </li>
+            </template>
+        </template>
+        <template x-for="item in (! loading ? items : [])" :key="item.id">
+            <li class="my-2" x-id="['radioField']">
+                <input hidden :id="$id('radioField')" x-model="checked" type="radio" :value="item.id">
+                <label class="flex items-center" :for="$id('radioField')">
+                    <div class="mr-3  cursor-pointer rounded-full w-4 sm:w-5 md:w-6  h-4 sm:h-5 md:h-6 flex items-center justify-center"
+                        x-bind:class="{ 
+                            'border border-blue-600 bg-blue-700' : checked ==  item.id, 
+                            'border border-gray-300 bg-gray-300' : checked != item.id,
+                        }">
+                        <div x-show="checked == item.id" x-transition.opacity.scale
+                            class=" w-2.5 h-2.5 bg-white rounded-full">
+                        </div>
+                    </div>
+                    <span x-text="item.name"></span>
+                </label>
+            </li>
+        </template>
+        <template x-if="!loading">
+            <li class="my-2" x-id="['radioField']">
+                <input hidden :id="$id('radioField')" x-model="checked" type="radio" value="entry"
+                    @click="$nextTick(() => $refs.input.focus());">
+                <label class="flex items-center " :for="$id('radioField')">
+                    <div class="mr-3 cursor-pointer rounded-full w-4 sm:w-5 md:w-6 h-4 sm:h-5 md:h-6 flex items-center justify-center"
+                        x-bind:class="{ 
+                            'border border-blue-600 bg-blue-700' : checked == 'entry', 
+                            'border border-gray-300 bg-gray-300' : checked != 'entry',
+                        }">
+                        <div x-show="checked == 'entry'" 
+                            x-transition.opacity.scale 
+                            class="w-2.5 h-2.5 bg-white rounded-full">
+                        </div>
+                    </div>
+                    <input id="input" x-ref="input" @click="checked = 'entry'" 
+                        class="bg-gray-100 rounded-md w-auto h-5 ms:h-6 md:h-7 lg:h-8 max-h-8 p-3 focus:outline-none text-xs ms:text-sm md:text-md border-2 border-gray-100 focus:border-gray-300" 
+                        placeholder="Другое"
+                        x-model="entry"
+                        type="text">
+                </label>
+            </li>
+        </template>
+    </ul>
+</div>
