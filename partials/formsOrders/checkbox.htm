@@ -1,13 +1,24 @@
-<div class="flex items-center" x-data="{ field: null }">
-    <input @click="field = 1" type="checkbox" hidden id="checkbox_1" />
-    <label for="checkbox_1">
+<div class="flex items-center" x-data="{ isChecked: false }">
+    <input @click="isChecked = !isChecked" type="checkbox" hidden id="checkbox_1" />
+    <label class="flex items-center" for="checkbox_1">
 
-        <div class="w-6 h-6 rounded-md"
-        x-bind:class="{ 'border border-blue-600 bg-blue-700' : field == 1, 'border border-gray-300 bg-gray-300' : field != 1}">
-
+        <div class="w-6 h-6 rounded-md flex items-center"
+            x-transition.opacity.scale
+            x-bind:class="{ 'border border-blue-600 bg-blue-700' : isChecked, 'border border-gray-300 bg-gray-300' : !isChecked}">
+            <svg 
+                x-transition.opacity.scale
+                x-transition:enter.duration.500ms
+                x-transition:leave.duration.300ms 
+                x-show="isChecked" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white mx-auto" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+            </svg>
         </div>
 
-        <span>Заниматься буду я</span>
+        <span 
+            class="px-2 text-xs sm:text-sm md:text-md lg:text-base"
+            x-bind:class="{ 'text-gray-900' : isChecked, 'text-gray-400' : !isChecked}">
+            Заниматься буду я
+        </span>
 
     </label>
 </div>
