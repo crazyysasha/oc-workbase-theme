@@ -9,19 +9,15 @@
             let response = await (await fetch(`/api/crazy/freelancer/v1.0.1/services?perPage=1000&with[]=category&search=${search}`)).json();
             items = response.data;
             loading = false;
-        })">
+        })" x-ref="searchWidget">
         <div x-bind:style="{height: `${$refs.searchInput.offsetHeight}px`}"></div>
         <div class="rounded-lg border bg-white flex p-1 shadow-lg absolute top-0 inset-x-0 z-40"
-            x-ref="searchInput" 
-            @mouseover="hovered = true" 
-            @mouseout="hovered = false" 
-            @focusin="focused = true" 
-            @focusout="focused = false">
-            <input type="text" x-model="search" x-text="WorkType"
-                class="rounded-lg p-1  px-4 sm:p-2 w-full focus:outline-none text-xs sm:text-sm md:text-md lg:text-base"
-                placeholder="Услуга или специалист" name="search"
-                autocomplete="off">
+            x-ref="searchInput">
             
+            <input type="text" x-model="search"
+                class="rounded-lg p-1  px-4 sm:p-2 w-full focus:outline-none text-xs sm:text-sm md:text-md lg:text-base"
+                {% if placeholder is null or placeholder != false %} placeholder="{{ placeholder ?? 'Поиск...'  }}" {% endif %} name="search"
+                autocomplete="off">
         </div>
         <div x-cloak x-transition x-show="search.length > 0"
             class="absolute border top-0 inset-x-0 bg-white rounded-3xl overflow-hidden ">
@@ -45,32 +41,7 @@
             </ul>
         </div>
     </div>
-    <div class="mb-4">Например:</div>
-        <div class="flex flex-wrap">
-            <a href="/ds" class="bg-gray-100 text-sm rounded-full py-2 px-3 mr-1 mb-2">
-                Математика
-            </a>
-            <a href="/ds" class="bg-gray-100 text-sm rounded-full py-2 px-3 mr-1 mb-2">
-                Английский язык
-            </a>
-            <a href="/ds" class="bg-gray-100 text-sm rounded-full py-2 px-3 mr-1 mb-2">
-                Психология
-            </a>
-            <a href="/ds" class="bg-gray-100 text-sm rounded-full py-2 px-3 mr-1 mb-2">
-                Уборка
-            </a>
-            <a href="/ds" class="bg-gray-100 text-sm rounded-full py-2 px-3 mr-1 mb-2">
-                Математика
-            </a>
-            <a href="/ds" class="bg-gray-100 text-sm rounded-full py-2 px-3 mr-1 mb-2">
-                Английский язык
-            </a>
-            <a href="/ds" class="bg-gray-100 text-sm rounded-full py-2 px-3 mr-1 mb-2">
-                Психология
-            </a>
-            <a href="/ds" class="bg-gray-100 text-sm rounded-full py-2 px-3 mr-1 mb-2">
-                Уборка
-            </a>
-            
-        </div>
+    <div>
+        {% partial 'fields/tag/default' %}
+    </div>
 </div>
