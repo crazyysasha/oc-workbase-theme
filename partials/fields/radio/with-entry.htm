@@ -17,7 +17,14 @@
         <template x-if="loading">
             <template x-for="index in 5">
                 <li class="my-2">
-                    <div class="animate animate-pulse w-40 h-8 bg-gray-300"></div>
+                    <div class=" flex items-center">
+                        <div class="animate animate-pulse bg-gray-300 rounded-full h-6 w-6 mr-3"></div>
+                        <div x-bind:style="{width: `${(1 + Math.random()) * 100}px` }" 
+                            class="animate animate-pulse rounded-lg bg-gray-300"
+                            :class="{'h-5': index != 5, 'h-7': index == 5}">
+                            
+                        </div>
+                    </div>
                 </li>
             </template>
         </template>
