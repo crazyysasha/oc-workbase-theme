@@ -15,7 +15,7 @@
             this.items = response.data;
             setTimeout(() => {
                 this.loading = false;
-            }, 5000);
+            }, 0);
         },
     }">
         <template x-if="loading">
@@ -33,69 +33,55 @@
             </template>
         </template>
         <template x-for="item in (! loading ? items : [])" :key="item.id">
-            <li class="my-2" x-id="['radioField']">
-
-                <div class="flex items-center" x-data="{ isChecked: false }">
-                    <input @click="isChecked = !isChecked" type="checkbox" hidden id="checkbox_1" />
-                    <label class="flex items-center" for="checkbox_1">
-                
-                        <div class="w-6 h-6 rounded-md flex items-center"
-                            x-transition.opacity.scale
-                            x-bind:class="{ 'border border-blue-600 bg-blue-700' : isChecked, 'border border-gray-300 bg-gray-300' : !isChecked}">
-                            <svg 
-                                x-transition.opacity.scale
-                                x-transition:enter.duration.500ms
-                                x-transition:leave.duration.300ms 
-                                x-show="isChecked" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white mx-auto" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                            </svg>
-                        </div>
-                
-                        <span 
-                            class="px-2 text-xs sm:text-sm md:text-md lg:text-base"
-                            x-bind:class="{ 'text-gray-900' : isChecked, 'text-gray-400' : !isChecked}">
-                            Заниматься буду я
-                        </span>
-                
-                    </label>
-                </div>
-
-
-                <input hidden :id="$id('radioField')" x-model="checked" type="radio" :value="item.id">
+            <li class="my-2" x-id="['radioField']" x-data="{ isChecked: false }">
+                <input @click="isChecked = !isChecked" type="checkbox" hidden :id="$id('radioField')" />
                 <label class="flex items-center" :for="$id('radioField')">
-                    <div class="mr-3  cursor-pointer rounded-full w-4 sm:w-5 md:w-6  h-4 sm:h-5 md:h-6 flex items-center justify-center"
-                        x-bind:class="{ 
-                            'border border-blue-600 bg-blue-700' : checked ==  item.id, 
-                            'border border-gray-300 bg-gray-300' : checked != item.id,
-                        }">
-                        <div x-show="checked == item.id" x-transition.opacity.scale
-                            class=" w-2.5 h-2.5 bg-white rounded-full">
-                        </div>
+
+                    <div class="w-6 h-6 rounded-md flex items-center cursor-pointer"
+                        x-transition.opacity.scale
+                        x-bind:class="{ 'border border-blue-600 bg-blue-700' : isChecked, 'border border-gray-300 bg-gray-300' : !isChecked}">
+                        <svg 
+                            x-transition.opacity.scale
+                            x-transition:enter.duration.500ms
+                            x-transition:leave.duration.300ms 
+                            x-show="isChecked" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white mx-auto" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        </svg>
                     </div>
-                    <span x-text="item.name"></span>
+
+                    <span 
+                        class="px-2 text-xs sm:text-sm md:text-md lg:text-base cursor-pointer"
+                        x-bind:class="{ 'text-gray-900' : isChecked, 'text-gray-400' : !isChecked}" x-text="item.name">
+                        Заниматься буду я
+                    </span>
+
                 </label>
             </li>
         </template>
         <template x-if="!loading">
-            <li class="my-2" x-id="['radioField']">
-                <input hidden :id="$id('radioField')" x-model="checked" type="radio" value="entry"
-                    @click="$nextTick(() => $refs.input.focus());">
+            
+            <li class="my-2" x-id="['radioField']" x-data="{ isChecked: false }">
+                <input hidden :id="$id('radioField')" x-model="checked" type="checkbox"
+                    @click="$nextTick(() => $refs.input.focus()) , isChecked = !isChecked">
                 <label class="flex items-center " :for="$id('radioField')">
-                    <div class="mr-3 cursor-pointer rounded-full w-4 sm:w-5 md:w-6 h-4 sm:h-5 md:h-6 flex items-center justify-center"
-                        x-bind:class="{ 
-                            'border border-blue-600 bg-blue-700' : checked == 'entry', 
-                            'border border-gray-300 bg-gray-300' : checked != 'entry',
-                        }">
-                        <div x-show="checked == 'entry'" 
-                            x-transition.opacity.scale 
-                            class="w-2.5 h-2.5 bg-white rounded-full">
-                        </div>
+                    <div class="w-6 h-6 rounded-md flex items-center cursor-pointer"
+                        x-transition.opacity.scale
+                        x-bind:class="{ 'border border-blue-600 bg-blue-700' : isChecked, 'border border-gray-300 bg-gray-300' : !isChecked}">
+                        <svg 
+                            x-transition.opacity.scale
+                            x-transition:enter.duration.500ms
+                            x-transition:leave.duration.300ms 
+                            x-show="isChecked" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white mx-auto" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        </svg>
                     </div>
-                    <input id="input" x-ref="input" @click="checked = 'entry'" 
+                    <div class="px-2">
+                        <input id="input" x-ref="input" @click="isChecked = true" 
                         class="bg-gray-100 rounded-md w-auto h-5 ms:h-6 md:h-7 lg:h-8 max-h-8 p-3 focus:outline-none text-xs ms:text-sm md:text-md border-2 border-gray-100 focus:border-gray-300" 
                         placeholder="Другое"
                         x-model="entry"
                         type="text">
+                    </div>
                 </label>
             </li>
         </template>
