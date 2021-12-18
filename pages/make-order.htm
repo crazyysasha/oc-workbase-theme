@@ -36,6 +36,20 @@ function onGetSlideView()
     return ["#slideContainer" => $this->renderPartial('make-order/search-service'), ];
 }
 
+function onRenderSearchServiceView()
+{
+    $category = $this->getCurrentCategory();
+    
+    if (! $category) {
+        \Flash::error('Категория не найдена!');
+    }
+    
+    return [
+        'url' => $this->controller->pageUrl('make-order', ['category' => $category->slug, 'service' => '']),
+        "#slideContainer" => $this->renderPartial('make-order/search-service'),
+    ];
+}
+
 function getCurrentServices($slug = null)
 {
     return $this['services'] = 
@@ -76,13 +90,69 @@ function onSearchService()
     if ($service->children->isNotEmpty()) {
         $nextPartial = 'make-order/select-child-service.htm';
     } else {
-        $nextPartial = '';
+        $nextPartial = 'make-order/select-place.htm';
     }
     $this->getCurrentServices($servSlug);
     return [
         'url' => $url,
         '#slideContainer' => $this->renderPartial($nextPartial),
     ];
+}
+
+function onSelectService()
+{
+    $category = $this->param('category');
+    $services = explode('/', $this->param('service'));
+
+    $services = array_filter($services, function ($item) {
+        return strlen($item);
+    });
+
+    $service = \Crazy\FreeLancer\Models\Service::where('id', post('service'))->first();
+
+    if (!$service) {
+        return [
+            '#slideContainer' => $this->renderPartial('make-order/select-place')
+        ];
+    }
+    
+    $servSlug = implode('/', [ ...$services, $service->slug,]);
+    
+    $url = $this->controller->pageUrl('make-order', [
+        'category' => $category, 
+        'service' => $servSlug
+    ]);
+
+    if ($service->children->isNotEmpty()) {
+        $nextPartial = 'make-order/select-child-service.htm';
+    } else {
+        $nextPartial = 'make-order/select-place.htm';
+    }
+    $this->getCurrentServices($servSlug);
+    return [
+        'url' => $url,
+        '#slideContainer' => $this->renderPartial($nextPartial),
+    ];
+   
+}
+
+function onSelectPlace()
+{
+    return [
+        '#slideContainer' => $this->renderPartial('make-order/set-description')
+    ];
+}
+
+function onSetDescription()
+{
+    return [
+        '#slideContainer' => $this->renderPartial('make-order/set-price')
+    ];
+}
+
+function onSetPrice()
+{
+    \Flash::success('Ваша заявка успешно принята');
 }
 ?>
 ==
@@ -95,12 +165,12 @@ function onSearchService()
     <div class="grid grid-cols-1 lg:grid-cols-3 container gap-4 mt-2" x-data="{activeTab: 'order'}">
 
         <div class="lg:col-span-2 order-2 lg:order-1 h-full bg-white rounded-md">
-            <!-- <div class="p-4" id="slideContainer" x-init="$.request('onGetSlideView')">
-            </div> -->
-
-            <div class="p-4 h-full">
-                {% partial "make-order/search-service" %}
+            <div class="p-4 h-full" id="slideContainer" x-init="$.request('onGetSlideView')">
             </div>
+
+            <!-- <div class="p-4 h-full">
+                {% partial "make-order/search-service" %}
+            </div> -->
 
         </div>
 

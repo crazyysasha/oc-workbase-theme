@@ -1,43 +1,15 @@
-{##}
-{% macro renderServiceField(item) %}
-    {% import _self as SELF %}
 
-    {% if item.children is empty %}
-        <h2 class="font-semibold text-sm ms:md md:text-lg lg:text-3xl md:font-medium mt-3 mb-4">
-            {{item.select_title }}
-        </h2>
-    {% endif %}
-
-    {% if item.children is not empty %}
-
-        {% for service in item.children %}
-            {{SELF.renderServiceField(service) | raw }}
-        {% endfor %}
-    
-    {% elseif item.getLevel() in [0, 1, 2, 3, 4] %}
-        {% partial 'fields/radio/with-entry'
-            serviceId = item.id
-        %}
-    {% else %}
-        {{ 'inner radio' }}
-    {% endif %}
-{% endmacro %}
 <form 
-    data-request="onSearchService" 
-    data-request-success="window.history.pushState({}, '', data.url)"
+    data-request="onSelectPlace"
     data-request-flash
     class="flex flex-col h-full">
 
     <h5 class="text-sm font-bold text-gray-500">
-        {{ category.name }}
+        Где должна проводится услуга ?
     </h5>
 
     <div>
-        {% import _self as SELF %}
-        
-        {% for service in services %}
-            {{ SELF.renderServiceField(service) | raw }}
-        {% endfor %}
+
 
     </div>
     

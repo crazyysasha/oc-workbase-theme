@@ -4,11 +4,7 @@
         checked: null,
         entry: '',
         loading: false,
-        items: [
-        {id: 1, name: 'подыва'},
-        {id: 2, name: 'подыва fsd'},
-        {id: 3, name: 'подыва fsd dsfsd'},
-        ],
+        items: [],
         async init() {
             this.loading = true;
             let response = await (await fetch('/api/crazy/freelancer/v1.0.1/services?parent={{serviceId}}')).json();
