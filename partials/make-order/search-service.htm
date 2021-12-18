@@ -4,16 +4,6 @@
       data-request-flash
       class="flex flex-col h-full">
     <div>
-        <h5 class="text-sm font-bold text-gray-500">
-            {{ category.name }}
-        </h5>
-        <h2 class="font-semibold text-sm ms:md md:text-lg lg:text-3xl md:font-medium mt-3 mb-4">
-            {{category.search_title ?? 'Что нужно сделать?' }}
-        </h2>
-        {% partial 'fields/search/with-tags'
-            placeholder="Услуга или специалист"
-        %}
-
     <div>
         <h5 class="text-sm font-bold text-gray-500">
             {{ category.name }}
