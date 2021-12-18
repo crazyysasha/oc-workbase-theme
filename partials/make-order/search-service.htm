@@ -1,7 +1,7 @@
 {##}
-<form data-request="onSetData" 
-      data-request-success="console.log(data);"
-      class="flex flex-col h-full">
+<form data-request="onSearchService" 
+      data-request-success="window.history.pushState({}, '', data.url)"
+      data-request-flash>
 
     <div>
         <h5 class="text-sm font-bold text-gray-500">
