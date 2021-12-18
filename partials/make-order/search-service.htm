@@ -1,13 +1,14 @@
 {##}
-<form x-on:submit.prevent="console.log()">
+<form data-request="onSetData" 
+      data-request-success="console.log(data);">
 
     <h5 class="text-sm font-bold text-gray-500">
         {{ category.name }}
     </h5>
     <h2 class="font-semibold text-sm ms:md md:text-lg lg:text-3xl md:font-medium mt-3 mb-4">
-        {{category.search_title }}
+        {{category.search_title ?? 'Что нужно сделать?' }}
     </h2>
-    {% partial 'fields/search/with-tags' 
+    {% partial 'fields/search/with-tags'
         placeholder="Услуга или специалист"
     %}
     <div class="sticky w-full bg-white bottom-0 shadow-3xl mt-auto" >
