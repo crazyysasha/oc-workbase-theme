@@ -16,13 +16,13 @@
     
     {% elseif item.getLevel() == 0 %}
         {% partial 'fields/radio/with-entry' 
-            serviceId = item.id 
+            serviceId = item.id
         %}
     {% else %}
         {{ 'inner radio' }}
     {% endif %}
 {% endmacro %}
-<form x-on:submit.prevent="console.log()">
+<form data-request="onSearchService" data-request-success="window.history.pushState({}, '', data.url)">
 
     <h5 class="text-sm font-bold text-gray-500">
         {{ category.name }}

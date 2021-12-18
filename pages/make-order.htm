@@ -15,13 +15,7 @@ function onStart() {
 
     $this['services'] = $services;
     
-    $category = $this->param('category');
-    $services = explode('/', $this->param('service'));
-    $services = array_filter($services, function ($item) {
-        return strlen($item);
-    });
     
-    /** dump($category, [...$services]); */
 }
 
 
@@ -42,11 +36,11 @@ function onGetSlideView()
     return ["#slideContainer" => $this->renderPartial('make-order/search-service'), ];
 }
 
-function getCurrentServices()
+function getCurrentServices($slug = null)
 {
     return $this['services'] = 
         Crazy\FreeLancer\Models\Service
-            ::whereIn('slug', explode('/', $this->param('service')))
+            ::whereIn('slug', explode('/', $slug ?? $this->param('service')))
             ->getNested();
 }
 
@@ -56,16 +50,39 @@ function getCurrentCategory()
         ->first();
 }
 
-function onSetData()
+function onSearchService()
 {
     
     $category = $this->param('category');
-    $services = explode('/', $this->param('services'));
+    $services = explode('/', $this->param('service'));
+
     $services = array_filter($services, function ($item) {
         return strlen($item);
     });
 
+    $service = \Crazy\FreeLancer\Models\Service::where('id', post('service'))
+        ->orSearchWhere(post('search'), ['name', 'slug'])->first();
+    
+    if (!$service) {
+        throw new \ValidationException(['search' => ['Услуга не найдена']]);
+    }
+    $servSlug = implode('/', [ ...$services, $service->slug,]);
+    
+    $url = $this->controller->pageUrl('make-order', [
+        'category' => $category, 
+        'service' => $servSlug
+    ]);
 
+    if ($service->children->isNotEmpty()) {
+        $nextPartial = 'make-order/select-child-service.htm';
+    } else {
+        $nextPartial = '';
+    }
+    $this->getCurrentServices($servSlug);
+    return [
+        'url' => $url,
+        '#slideContainer' => $this->renderPartial($nextPartial),
+    ];
 }
 ?>
 ==
