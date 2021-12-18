@@ -1,0 +1,29 @@
+{##}
+<form data-request="onSetData" 
+      data-request-success="console.log(data);"
+      class="flex flex-col h-full">
+
+    <div>
+        <h5 class="text-sm font-bold text-gray-500">
+            {{ category.name }}
+        </h5>
+        <h2 class="font-semibold text-sm ms:md md:text-lg lg:text-3xl md:font-medium mt-3 mb-4">
+            {{category.search_title ?? 'Where' }}
+        </h2>
+        {% partial 'fields/radio/with-entry'%}
+    </div>
+
+
+    <div class="sticky bottom-6 w-full bg-white shadow-3xl mt-auto py-3" >
+        <div class="flex justify-between items-center">
+            <button class="shadow-3xl  sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-lg w-20 sm:w-32 h-7 sm:h-10 md:w-48 md:h-12 bg-gray-200 rounded-lg">
+                <span><i class=""></i></span>
+                <span>Начать заново</span>
+            </button>
+            <button type="submit" class=" sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-lg w-20 sm:w-32 h-7 sm:h-10 md:w-48 md:h-12 bg-black text-white rounded-lg">
+                <span><i class=""></i></span>
+                <span>Продолжить</span>
+            </button>
+        </div>
+    </div>
+</form>

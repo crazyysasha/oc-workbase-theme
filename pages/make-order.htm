@@ -77,9 +77,14 @@ function onSetData()
   
     <div class="grid grid-cols-1 lg:grid-cols-3 container gap-4 mt-2" x-data="{activeTab: 'order'}">
 
-        <div class="lg:col-span-2 order-2 lg:order-1 bg-white rounded-md">
-            <div class="p-4" id="slideContainer" x-init="$.request('onGetSlideView')">
+        <div class="lg:col-span-2 order-2 lg:order-1 h-full bg-white rounded-md">
+            <!-- <div class="p-4" id="slideContainer" x-init="$.request('onGetSlideView')">
+            </div> -->
+
+            <div class="p-4 h-full">
+                {% partial "make-order/search-service" %}
             </div>
+
         </div>
 
         <div class="lg:col-span-1 order-1 lg:order-2 bg-white rounded-md">
