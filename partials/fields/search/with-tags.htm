@@ -1,64 +1,92 @@
 {##}
 <div class="relative w-full mb-4 z-10" x-data="{
         search: '',
+        service: null,
         items: [],
         loading: false,
-    }" x-init="$watch('search', async function () {
-        loading = true;
-        let response = await (await fetch(`/api/crazy/freelancer/v1.0.1/services?perPage=1000&with[]=category&search=${search}`)).json();
-        items = response.data;
-        loading = false;
-    })">
+        open: false,
+    }" x-init="
+        $watch('search', async function () {
+            loading = true;
+            open = true;
+            service = null;
+            let response = await (await fetch(`/api/crazy/freelancer/v1.0.1/services?perPage=50&search=${search}&categoryId={{ category.id }}`)).json();
+            items = response.data;
+            loading = false;
+        });
+        $watch('service', val => {
+            if (val == null) {
+                return;
+            }
+            $($el.closest('form')).submit();
+        });
+    " @click.outside="open = false">
     <div x-bind:style="{height: `${$refs.searchInput.offsetHeight}px`}"></div>
     <div class="rounded-lg border bg-white flex p-1 shadow-lg absolute top-0 inset-x-0 z-40" x-ref="searchInput">
-
+        <input type="hidden" 
+                name="service"
+                x-model="service" />
         <input type="text" x-model="search"
             class="rounded-lg p-1  px-4 sm:p-2 w-full focus:outline-none text-xs sm:text-sm md:text-md lg:text-base"
-            {% if placeholder is null or placeholder != false %} placeholder="{{ placeholder ?? 'Поиск...'  }}"
-            {% endif %} name="search" autocomplete="off">
+            {% if placeholder is null or placeholder != false %}
+                placeholder="{{ placeholder ?? 'Поиск...'  }}"
+            {% endif %}
+            @keydown.enter.prevent=""
+            @focus="open = true"
+            name="search" autocomplete="off">
     </div>
-    <div x-cloak x-transition x-show="search.length > 0"
-        class="absolute border top-0 inset-x-0 bg-white rounded-3xl overflow-hidden ">
-
-        <ul class="overflow-y-auto" x-init="" :style="`max-height: ${window.innerHeight*.5}px;`">
-            <li class="w-full mb-2" x-bind:style="{height: `${$refs.searchInput.offsetHeight}px`}">
-            </li>
-            <template x-for="index in (loading ? 10 : 0)">
-                <li class="p-2 px-4 cursor-pointer">
-                    <div class="h-4 animate my-1 rounded-lg animate-pulse bg-gray-400"
-                        :style="{width: `${100 + Math.random() * 100}px`}"></div>
-                </li>
-            </template>
-            <template x-if="items.length == 0">
-                <li x-text="search" class="p-2 px-4 hover:bg-gray-100 cursor-pointer"
-                    @click="window.location.href = '{{ 'make-order' | page({'category': 'raznoye'}) }}'"> </li>
-            </template>
-            <template x-for="item in (!loading ? items: [])">
-                <li x-text="item.name" class="p-2 px-4 hover:bg-gray-100 cursor-pointer"
-                    @click="window.location.href = `${item.category.length > 0 ? item.category[0].slug : 'raznoye'}/${item.slug}`">
-                </li>
-            </template>
-
-        </ul>
+    <div x-cloak x-transition x-show="open && search.length > 0 && service == null"
+        class="absolute border top-0 inset-x-0 bg-white rounded-lg overflow-hidden overflow-y-auto"
+        :style="`max-height: ${window.innerHeight*.5}px;`">
+        <div class="w-full mb-2" :style="{height: `${$refs.searchInput.offsetHeight}px`}"></div>
+        <template x-if="loading && service == null">
+            <ul>
+                <template x-for="index in 10">
+                    <li class="p-2 px-4 cursor-pointer">
+                        <div class="h-4 animate my-1 rounded-lg animate-pulse bg-gray-400"
+                            :style="{width: `${100 + Math.random() * 100}px`}"></div>
+                    </li>
+                </template>
+            </ul>        
+        </template>
+        <template x-if="! loading && open">
+            <ul>
+                <template x-if="items.length == 0">
+                    <li class="p-2 px-4 cursor-not-allowed select-none"> 
+                         Не удалось найти услугу с названием: "<span x-text="search"></span>"
+                    </li>
+                </template>
+                <template x-for="item in items">
+                    <li x-text="item.name" class="p-2 px-4 hover:bg-gray-100 cursor-pointer"
+                        @click="
+                            $data.search = item.name;
+                            $data.service = item.id;
+                        ">
+                    </li>
+                </template>
+            </ul>
+        </template>
     </div>
-    <div>
-        <div class="mb-4">Например:</div>
+    <div class="mt-4">
+        <div class="mb-2">Например:</div>
         <div class="flex flex-wrap" x-data="{
                 items: [],
                 loading: true,                
                 async init () {
                     loading = true;
-                    let response = await (await fetch('/api/crazy/freelancer/v1.0.1/categories/{{ category.id }}')).json();
-                    this.items = response.services;
-                    console.log(items);
+                    let response = await (await fetch('/api/crazy/freelancer/v1.0.1/services?categoryId={{ category.id }}&root=1')).json();
+                    this.items = response;
                     loading = false;
                 },
             }">
-            <template x-for="item in items.slice(0, 3)">
-                <button 
+            <template x-for="item in items">
+                <button type="button"
                     class="bg-gray-100 text-sm rounded-full py-2 px-3 mr-1 mb-2"
                     x-text="item.name"
-                    @click="$data.search = item.name; $el.closest('form').submit();">
+                    @click="
+                        $data.search = item.name;
+                        $data.service = item.id;
+                    ">
                 </button>
             </template>
         </div>
