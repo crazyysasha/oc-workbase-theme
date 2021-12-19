@@ -14,24 +14,46 @@
             {{SELF.renderServiceField(service) | raw }}
         {% endfor %}
     
-    {% elseif item.getLevel() == 0 %}
-        {% partial 'fields/radio/with-entry' 
-            serviceId = item.id 
+    {% elseif item.getLevel() in [0, 1, 2, 3, 4] %}
+        {% partial 'fields/radio/with-entry'
+            serviceId = item.id
         %}
     {% else %}
         {{ 'inner radio' }}
     {% endif %}
 {% endmacro %}
-<form x-on:submit.prevent="console.log()">
+<form 
+    data-request="onSelectService" 
+    data-request-success="window.history.pushState({}, '', data.url)"
+    data-request-flash
+    class="flex flex-col h-full">
 
     <h5 class="text-sm font-bold text-gray-500">
         {{ category.name }}
     </h5>
+
+    <div>
+        {% import _self as SELF %}
+        
+        {% for service in services %}
+            {{ SELF.renderServiceField(service) | raw }}
+        {% endfor %}
+
+    </div>
     
-    {% import _self as SELF %}
-    
-    {% for service in services %}
-        {{ SELF.renderServiceField(service) | raw }}
-    {% endfor %}
-    
+    <div class="sticky w-full bg-white bottom-6 shadow-3xl mt-auto" >
+        <div class="flex justify-between items-center h-10 ms:h-14 md:h-16 lg:h-20">
+            <button type="button" 
+                data-request="onRenderSearchServiceView" 
+                data-request-success="window.history.pushState({}, '', data.url)"
+                class="shadow-3xl  sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-lg w-20 sm:w-32 h-7 sm:h-10 md:w-48 md:h-12 bg-gray-200 rounded-lg">
+                <span><i class=""></i></span>
+                <span>Начать заново</span>
+            </button>
+            <button type="submit" class=" sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-lg w-20 sm:w-32 h-7 sm:h-10 md:w-48 md:h-12 bg-black text-white rounded-lg">
+                <span><i class=""></i></span>
+                <span>Продолжить</span>
+            </button>
+        </div>
+    </div>
 </form>

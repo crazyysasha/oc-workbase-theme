@@ -1,0 +1,137 @@
+
+<form 
+    data-request="onSelectPlace"
+    data-request-flash
+    class="flex flex-col h-full">
+
+    <h5 class="text-sm font-bold text-gray-500">
+        Где должна проводится услуга ?
+    </h5>
+
+    <div>
+        <ul>
+            <li class="my-2">
+                <div class="flex items-center" x-data="{ isChecked: false }">
+                    <input @click="isChecked = !isChecked" type="checkbox" hidden id="checkbox_1" />
+                    <label class="flex items-center" for="checkbox_1">
+                
+                        <div class="w-6 h-6 rounded-md flex items-center"
+                            x-transition.opacity.scale
+                            x-bind:class="{ 'border border-blue-600 bg-blue-700' : isChecked, 'border border-gray-300 bg-gray-300' : !isChecked}">
+                            <svg 
+                                x-transition.opacity.scale
+                                x-transition:enter.duration.500ms
+                                x-transition:leave.duration.300ms 
+                                x-show="isChecked" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white mx-auto" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                
+                        <span 
+                            class="px-2 text-xs sm:text-sm md:text-md lg:text-base"
+                            x-bind:class="{ 'text-gray-900' : isChecked, 'text-gray-400' : !isChecked}">
+                            Дистанционно
+                        </span>
+                
+                    </label>
+                </div>
+            </li>
+            <li class="my-2">
+                <div class="flex items-center" x-data="{ isChecked: false }">
+                    <input @click="isChecked = !isChecked" type="checkbox" hidden id="checkbox_2" />
+                    <label class="flex items-center" for="checkbox_2">
+                
+                        <div class="w-6 h-6 rounded-md flex items-center"
+                            x-transition.opacity.scale
+                            x-bind:class="{ 'border border-blue-600 bg-blue-700' : isChecked, 'border border-gray-300 bg-gray-300' : !isChecked}">
+                            <svg 
+                                x-transition.opacity.scale
+                                x-transition:enter.duration.500ms
+                                x-transition:leave.duration.300ms 
+                                x-show="isChecked" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white mx-auto" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                
+                        <span 
+                            class="px-2 text-xs sm:text-sm md:text-md lg:text-base"
+                            x-bind:class="{ 'text-gray-900' : isChecked, 'text-gray-400' : !isChecked}">
+                            У репетитора
+                        </span>
+                
+                    </label>
+                </div>
+            </li>
+            <li class="my-2">
+                <div class="flex items-center" x-data="{ isChecked: false }">
+                    <input @click="isChecked = !isChecked" type="checkbox" hidden id="checkbox_3" />
+                    <label class="flex items-center" for="checkbox_3">
+                
+                        <div class="w-6 h-6 rounded-md flex items-center"
+                            x-transition.opacity.scale
+                            x-bind:class="{ 'border border-blue-600 bg-blue-700' : isChecked, 'border border-gray-300 bg-gray-300' : !isChecked}">
+                            <svg 
+                                x-transition.opacity.scale
+                                x-transition:enter.duration.500ms
+                                x-transition:leave.duration.300ms 
+                                x-show="isChecked" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white mx-auto" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                
+                        <span 
+                            class="px-2 text-xs sm:text-sm md:text-md lg:text-base"
+                            x-bind:class="{ 'text-gray-900' : isChecked, 'text-gray-400' : !isChecked}">
+                            У меня
+                        </span>
+                
+                    </label>
+                </div>
+            </li>
+            <li class="my-2">
+                <div class="flex items-center" x-data="{ isChecked: false }">
+                    <input @click="isChecked = !isChecked" type="checkbox" hidden id="checkbox_4" />
+                    <label class="flex items-center" for="checkbox_4">
+                
+                        <div class="w-6 h-6 rounded-md flex items-center"
+                            x-transition.opacity.scale
+                            x-bind:class="{ 'border border-blue-600 bg-blue-700' : isChecked, 'border border-gray-300 bg-gray-300' : !isChecked}">
+                            <svg 
+                                x-transition.opacity.scale
+                                x-transition:enter.duration.500ms
+                                x-transition:leave.duration.300ms 
+                                x-show="isChecked" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white mx-auto" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                
+                        <span 
+                            class="px-2 text-xs sm:text-sm md:text-md lg:text-base"
+                            x-bind:class="{ 'text-gray-900' : isChecked, 'text-gray-400' : !isChecked}">
+                            Неважно
+                        </span>
+                
+                    </label>
+                </div>
+            </li>
+        </ul>
+        
+
+    </div>
+    
+    <div class="sticky w-full bg-white bottom-6 shadow-3xl mt-auto" >
+        <div class="flex justify-between items-center h-10 ms:h-14 md:h-16 lg:h-20">
+            <button type="button" 
+                data-request="onRenderSearchServiceView" 
+                data-request-success="window.history.pushState({}, '', data.url)"
+                class="shadow-3xl  sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-lg w-20 sm:w-32 h-7 sm:h-10 md:w-48 md:h-12 bg-gray-200 rounded-lg">
+                <span><i class=""></i></span>
+                <span>Начать заново</span>
+            </button>
+            <button type="submit" class=" sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-lg w-20 sm:w-32 h-7 sm:h-10 md:w-48 md:h-12 bg-black text-white rounded-lg">
+                <span><i class=""></i></span>
+                <span>Продолжить</span>
+            </button>
+        </div>
+    </div>
+</form>

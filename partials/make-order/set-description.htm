@@ -1,0 +1,75 @@
+
+<form 
+    data-request="onSetDescription"
+    data-request-flash
+    class="flex flex-col h-full">
+
+    <h5 class="text-sm font-bold text-gray-500">
+        Укажите описание
+    </h5>
+
+    <div>
+
+        <div class="">
+            <textarea 
+                class="rounded-lg shadow-lg p-1 resize-y border mb-4 px-4 sm:p-3 w-full focus:outline-none text-xs sm:text-sm md:text-md lg:text-base"
+                placeholder="Укажите, что нибудь" rows="5"></textarea>
+        </div>
+        <div x-data="{
+                files: [],
+                init() {
+                    $watch('files', value => console.log(value))
+                }
+            }" class="flex flex-wrap">
+            <template x-for="file in files">
+                <template x-if="file.type.startsWith('image/')">
+                    <div x-data="{
+                        src: '',
+                        init() {
+                            let reader = new FileReader();
+                            reader.readAsDataURL(file);
+                            reader.onload = e => this.src = e.target.result;
+                        }   
+                    }">
+                        <img :src="src" alt="">
+                    </div>
+                </template>
+                <div x-text="file.name"></div>
+                
+            </template>
+            <div>
+                <input  id="fileUpload" type="file" @change="files.push(...$event.target.files)" multiple hidden >
+                <label 
+                    for="fileUpload"  
+                    class="inline-block border-2 border-dashed px-4 py-2 border-gray-400 text-gray-400 font-medium 
+                           transition-all duration-600  hover:border-gray-900 hover:text-gray-900">                
+                    <div class="flex">
+                        <span 
+                            class="pr-2 text-xs sm:text-sm md:text-md lg:text-base">
+                            Загрузить
+                        </span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                        </svg>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+    </div>
+    
+    <div class="sticky w-full bg-white bottom-6 shadow-3xl mt-auto" >
+        <div class="flex justify-between items-center h-10 ms:h-14 md:h-16 lg:h-20">
+            <button type="button" 
+                data-request="onRenderSearchServiceView" 
+                class="shadow-3xl  sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-lg w-20 sm:w-32 h-7 sm:h-10 md:w-48 md:h-12 bg-gray-200 rounded-lg">
+                <span><i class=""></i></span>
+                <span>Начать заново</span>
+            </button>
+            <button type="submit" class=" sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-lg w-20 sm:w-32 h-7 sm:h-10 md:w-48 md:h-12 bg-black text-white rounded-lg">
+                <span><i class=""></i></span>
+                <span>Продолжить</span>
+            </button>
+        </div>
+    </div>
+</form>

@@ -1,13 +1,31 @@
 {##}
-<form x-on:submit.prevent="console.log()">
+<form data-request="onSearchService" 
+      data-request-success="window.history.pushState({}, '', data.url)"
+      data-request-flash
+      class="flex flex-col h-full">
+    <div>
+    <div>
+        <h5 class="text-sm font-bold text-gray-500">
+            {{ category.name }}
+        </h5>
+        <h2 class="font-semibold text-sm ms:md md:text-lg lg:text-3xl md:font-medium mt-3 mb-4">
+            {{category.search_title ?? 'Что нужно сделать?' }}
+        </h2>
+        {% partial 'fields/search/with-tags'
+            placeholder="Услуга или специалист"
+        %}
+    </div>
 
-    <h5 class="text-sm font-bold text-gray-500">
-        {{ category.name }}
-    </h5>
-    <h2 class="font-semibold text-sm ms:md md:text-lg lg:text-3xl md:font-medium mt-3 mb-4">
-        {{category.search_title }}
-    </h2>
-    {% partial 'fields/search/with-tags' 
-        placeholder="Услуга или специалист" 
-    %}
+    <div class="sticky w-full bg-white bottom-6 shadow-3xl mt-auto" >
+        <div class="flex justify-between items-center h-10 ms:h-14 md:h-16 lg:h-20">
+            <button type="button" @click="window.location.href = '{{ 'home' | page }}';" class="shadow-3xl  sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-lg w-20 sm:w-32 h-7 sm:h-10 md:w-48 md:h-12 bg-gray-200 rounded-lg">
+                <span><i class=""></i></span>
+                <span>Начать заново</span>
+            </button>
+            <button type="submit" class=" sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-lg w-20 sm:w-32 h-7 sm:h-10 md:w-48 md:h-12 bg-black text-white rounded-lg">
+                <span><i class=""></i></span>
+                <span>Продолжить</span>
+            </button>
+        </div>
+    </div>
 </form>

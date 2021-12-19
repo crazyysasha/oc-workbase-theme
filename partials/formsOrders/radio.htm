@@ -1,5 +1,7 @@
 <div class="">
+
     <ul class=" text-xs md:text-sm lg:text-md" x-data="{field: null}">
+
         <li class="my-2">
             <input hidden id="radioField4" x-model="field" type="radio" value="1">
             <label class="flex items-center " for="radioField4">
@@ -13,6 +15,7 @@
                 ОГЭ по английскому
             </label>
         </li>
+        
         <li class="my-2">
             <input hidden id="radioField5" x-model="field" type="radio" value="2">
             <label class="flex items-center " for="radioField5">
@@ -25,7 +28,6 @@
                 ОГЭ по английскому
             </label>
         </li>
-
 
         <li class="my-2">
             <input hidden id="radioField6" x-model="field" type="radio" value="3"  @click="$nextTick(() => $refs.input.focus());" >
@@ -45,5 +47,7 @@
                     type="text">
             </label>
         </li>
+
     </ul>
+
 </div>

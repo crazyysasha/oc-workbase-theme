@@ -14,6 +14,8 @@ function onStart() {
     $this['category'] = $category;
 
     $this['services'] = $services;
+    
+    
 }
 
 
@@ -34,11 +36,25 @@ function onGetSlideView()
     return ["#slideContainer" => $this->renderPartial('make-order/search-service'), ];
 }
 
-function getCurrentServices()
+function onRenderSearchServiceView()
+{
+    $category = $this->getCurrentCategory();
+    
+    if (! $category) {
+        \Flash::error('Категория не найдена!');
+    }
+    
+    return [
+        'url' => $this->controller->pageUrl('make-order', ['category' => $category->slug, 'service' => '']),
+        "#slideContainer" => $this->renderPartial('make-order/search-service'),
+    ];
+}
+
+function getCurrentServices($slug = null)
 {
     return $this['services'] = 
         Crazy\FreeLancer\Models\Service
-            ::whereIn('slug', explode('/', $this->param('service')))
+            ::whereIn('slug', explode('/', $slug ?? $this->param('service')))
             ->getNested();
 }
 
@@ -47,44 +63,176 @@ function getCurrentCategory()
     return $this['category'] = Crazy\FreeLancer\Models\Category::where('slug', $this->param('category'))
         ->first();
 }
+
+function onSearchService()
+{
+    
+    $category = $this->param('category');
+    $services = explode('/', $this->param('service'));
+
+    $services = array_filter($services, function ($item) {
+        return strlen($item);
+    });
+
+    $service = \Crazy\FreeLancer\Models\Service::where('id', post('service'))
+        ->orSearchWhere(post('search'), ['name', 'slug'])->first();
+    
+    if (!$service) {
+        throw new \ValidationException(['search' => ['Услуга не найдена']]);
+    }
+    $servSlug = implode('/', [ ...$services, $service->slug,]);
+    
+    $url = $this->controller->pageUrl('make-order', [
+        'category' => $category, 
+        'service' => $servSlug
+    ]);
+
+    if ($service->children->isNotEmpty()) {
+        $nextPartial = 'make-order/select-child-service.htm';
+    } else {
+        $nextPartial = 'make-order/select-place.htm';
+    }
+    $this->getCurrentServices($servSlug);
+    return [
+        'url' => $url,
+        '#slideContainer' => $this->renderPartial($nextPartial),
+    ];
+}
+
+function onSelectService()
+{
+    $category = $this->param('category');
+    $services = explode('/', $this->param('service'));
+
+    $services = array_filter($services, function ($item) {
+        return strlen($item);
+    });
+
+    $service = \Crazy\FreeLancer\Models\Service::where('id', post('service'))->first();
+
+    if (!$service) {
+        return [
+            '#slideContainer' => $this->renderPartial('make-order/select-place')
+        ];
+    }
+    
+    $servSlug = implode('/', [ ...$services, $service->slug,]);
+    
+    $url = $this->controller->pageUrl('make-order', [
+        'category' => $category, 
+        'service' => $servSlug
+    ]);
+
+    if ($service->children->isNotEmpty()) {
+        $nextPartial = 'make-order/select-child-service.htm';
+    } else {
+        $nextPartial = 'make-order/select-place.htm';
+    }
+    $this->getCurrentServices($servSlug);
+    return [
+        'url' => $url,
+        '#slideContainer' => $this->renderPartial($nextPartial),
+    ];
+   
+}
+
+function onSelectPlace()
+{
+    return [
+        '#slideContainer' => $this->renderPartial('make-order/set-description')
+    ];
+}
+
+function onSetDescription()
+{
+    return [
+        '#slideContainer' => $this->renderPartial('make-order/set-price')
+    ];
+}
+
+function onSetPrice()
+{
+    \Flash::success('Ваша заявка успешно принята');
+}
 ?>
 ==
 {##}
-<section x-data="{IsActive: 1,}" class="relative" >
-  {#
-    {% partial "swiper/specs" %}
+<section x-data="{IsActive: 1,}" class="relative px-1 sm:px-2 md:px-4 lg:px-0" >
+    {# 
+        {% partial "swiper/specs" %}
+    #}
   
-  #}  
+    <div class="grid grid-cols-1 lg:grid-cols-3 container gap-4 mt-2" x-data="{activeTab: 'order'}">
 
-
-    <div class="grid grid-cols-1 lg:grid-cols-3 container gap-4" x-data="{activeTab: 'order'}">
-        <div class="lg:col-span-2 order-2 lg:order-1 bg-white rounded-md">
-            <div class="p-4" id="slideContainer" x-init="$.request('onGetSlideView')">
+        <div class="lg:col-span-2 order-2 lg:order-1 h-full bg-white rounded-md">
+            <div class="p-4 h-full" id="slideContainer" x-init="$.request('onGetSlideView')">
             </div>
         </div>
+
         <div class="lg:col-span-1 order-1 lg:order-2 bg-white rounded-md">
             <ul class="p-4 flex flex-row lg:flex-col justify-around">
-                <li class="p-2 bg-gray-300 bg-opacity-0 hover:bg-opacity-50 mb-1 rounded-md font-semibold" :class="{'hover:bg-opacity-100 bg-opacity-75': true}">
+                <li class="p-2 text-xs sm:text-sm md:text-md lg:text-base bg-gray-300 bg-opacity-0 hover:bg-opacity-50 my-1 rounded-md font-semibold" :class="{'hover:bg-opacity-100 bg-opacity-75': true}">
                     Заказ
                 </li>
                 
-                <li class="p-2 bg-gray-300 bg-opacity-0 hover:bg-opacity-50 my-1 rounded-md font-semibold" :class="{'hover:bg-opacity-100 bg-opacity-75': false}">
+                <li class="p-2 text-xs sm:text-sm md:text-md lg:text-base bg-gray-300 bg-opacity-0 hover:bg-opacity-50 my-1 rounded-md font-semibold" :class="{'hover:bg-opacity-100 bg-opacity-75': false}">
                     Поддержка
                 </li>
                 
-                <li class="p-2 bg-gray-300 bg-opacity-0 hover:bg-opacity-50 my-1 rounded-md font-semibold" :class="{'hover:bg-opacity-100 bg-opacity-75': false}">
+                <li class="p-2 text-xs sm:text-sm md:text-md lg:text-base bg-gray-300 bg-opacity-0 hover:bg-opacity-50 my-1 rounded-md font-semibold" :class="{'hover:bg-opacity-100 bg-opacity-75': false}">
                     Специалисты
                 </li>
-                
-                <li class="p-2 bg-gray-300 bg-opacity-0 hover:bg-opacity-50 mt-1 rounded-md font-semibold" :class="{'hover:bg-opacity-100 bg-opacity-75': false}">
-                    Отклики
-                </li>
-                
             </ul>
+            <div class="hidden lg:block rounded-md w-full mt-5">
+                <div class=" rounded-md">
+                    <div class="w-full my-5">
+                            <div class="relative">
+                    
+                                <div class="swiper mySwiper w-full">
+                                    <div class="swiper-wrapper w-full">
+                                      <div class="swiper-slide mx-0 w-full rounded-md "><img class="r p-0ounded-md" src="{{'assets/images/el-banner1.jpg' | theme}}" width="100%" alt=""></div>
+                                      <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner6.jpg' | theme}}" width="100%" alt=""></div>
+                                    </div>
+                                </div>                                                 
+                            </div>
+                    </div>
+                    
+
+                    <div class="w-full my-5">
+                        <div class="relative">
+                
+                            <div class="swiper mySwiper w-full">
+                                <div class="swiper-wrapper w-full">
+                                  <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner4.jpg' | theme}}" width="100%" alt=""></div>
+                                  <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner5.jpg' | theme}}" width="100%" alt=""></div>
+                                </div>
+                            </div>                                                 
+                        </div>
+                    </div>
+
+                    <div class="w-full my-5">
+                        <div class="relative">
+                
+                            <div class="swiper mySwiper w-full">
+                                <div class="swiper-wrapper w-full">
+                                <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner3.jpg' | theme}}" width="100%" alt=""></div>
+                                <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner2.jpg' | theme}}" width="100%" alt=""></div>
+                                </div>
+                            </div>                                                 
+                        </div>
+                    </div>
+
+            
+                </div>
+            </div>
         </div>
+
     </div>
+
     <div class="lg:grid grid-cols-3 container relative">
+        
         <div class="lg:col-span-2 col-start-1 col-end-2 m-2 mb-0 relative">
+            <!--
             <div class=" lg:hidden bg-white rounded-md px-4 mb-4 py-1 sticky z-20" 
                 x-bind:style="{top: `${document.querySelector('header').offsetHeight}px`}"
                 x-data="{ showBar: false }" 
@@ -97,10 +245,9 @@ function getCurrentCategory()
                                 <i :class="{ 'text-black': IsActive === 1 }" class="fa fa-pie-chart" aria-hidden="true">
                                 </i>
                             </span>
-                            <!-- <span class="text-2xs text-left">1%</span> -->
                         </div>
                         <div>
-                            <span class="text-2xs lg:text-sm md:text-xs">Заказ</span>
+                            <span class="text-xs sm:text-sm md:text-md ">Заказ</span>
                         </div>
                     </li>
                     
@@ -111,7 +258,7 @@ function getCurrentCategory()
                             </span>
                         </div>
                         <div>
-                            <span class="text-2xs lg:text-sm md:text-xs">Специалисты</span>
+                            <span class="text-xs sm:text-sm md:text-md ">Специалисты</span>
                         </div>
                     </li>
 
@@ -120,45 +267,22 @@ function getCurrentCategory()
                             <span  class="text-xl mr-1 text-gray-500"><i :class="{ 'text-black': IsActive === 4 }" class="fa fa-comments" aria-hidden="true"></i></span>
                         </div>
                         <div>
-                            <span class="text-2xs lg:text-sm md:text-xs">Отклики</span>
+                            <span class="text-xs sm:text-sm md:text-md ">Отклики</span>
                         </div>
                     </li>
 
-                    <li class="" @click="IsActive = 2">
-                        <div class="flex items-center justify-center">
-                            <span  class="text-xl mr-1 text-gray-500"><i :class="{ 'text-black': IsActive === 2 }" class="fa fa-question-circle" aria-hidden="true"></i></span>
-                        </div>
-                        <div>
-                            <span class="text-2xs lg:text-sm md:text-xs">Поддержка</span>
-                        </div>
-                    </li>
                 </ul>
             </div>
+            -->
 
             <div 
-                class="bg-white pt-4 rounded-md w-full" 
+                class="hidden pt-4 rounded-md w-full" 
                 id="MakeOrderRadio">
 
                 <div 
                     x-cloak 
                     x-show="IsActive === 1" 
-                    class="px-4 relative"
-                    >
-                    <div x-data="{ isOpen1: true }">
-                        {% partial "formsOrders/forms" %}
-                    </div>
-                    <div class="sticky w-full bg-white bottom-0 shadow-3xl mt-auto" >
-                        <div class="flex justify-between items-center h-10 ms:h-14 md:h-16 lg:h-20">
-                            <button class="shadow-3xl  sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-lg w-20 sm:w-32 h-7 sm:h-10 md:w-48 md:h-12 bg-gray-200 rounded-lg">
-                                <span><i class=""></i></span>
-                                <span>Начать заново</span>
-                            </button>
-                            <button class=" sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-lg w-20 sm:w-32 h-7 sm:h-10 md:w-48 md:h-12 bg-black text-white rounded-lg">
-                                <span><i class=""></i></span>
-                                <span>Продолжить</span>
-                            </button>
-                        </div>
-                    </div>
+                    class="px-4 relative">
                 </div>
 
                 <div x-cloak x-show="IsActive === 2">
@@ -370,86 +494,6 @@ function getCurrentCategory()
             </div>
 
         </div>
-
-        <div class="lg:col-span-1 col-start-2 m-2">
-
-            <div class="hidden lg:block bg-white rounded-md p-4">
-                <ul>
-                    <li @click="IsActive = 1"
-                        class="my-2">
-                        <div :class="{ 'bg-gray-300': IsActive === 1 }"
-                            class="flex justify-between px-3 justify-items-center items-center cursor-pointer rounded-md h-12 hover:bg-gray-200">
-                            <span class="font-bold text-lg">Заказ</span>
-                            <span class="text-gray-500">Заполнен на 1 %</span>
-                        </div>
-                    </li>
-                    <li @click="IsActive = 2"
-                        class="my-2">
-                        <div :class="{ 'bg-gray-300': IsActive === 2 }"
-                            class="flex justify-between px-3 justify-items-center items-center cursor-pointer rounded-md h-12 hover:bg-gray-200">
-                            <span class="font-bold text-lg">Поддержка</span>
-                        </div>
-                    </li>
-                    <li @click="IsActive = 3"
-                        class="my-2">
-                        <div :class="{ 'bg-gray-300': IsActive === 3 }"
-                            class="flex justify-between px-3 justify-items-center items-center cursor-pointer rounded-md h-12 hover:bg-gray-200">
-                            <span class="font-bold text-lg">Специалисты</span>
-                            <span class="text-gray-500">32360</span>
-                        </div>
-                    </li>
-                </ul>
-                <div class="mt-5 px-3">
-                    <p class="text-gray-500 font-bold text-md">Отклики</p>
-                    <p class="text-gray-500 text-sm">Будут появляться здесь, когда опубликуете заказ</p>
-                </div>
-            </div>
-
-            <div class="hidden lg:block rounded-md w-full mt-5">
-                <div class=" rounded-md">
-                    <div class="w-full my-5">
-                            <div class="relative">
-                    
-                                <div class="swiper mySwiper w-full">
-                                    <div class="swiper-wrapper w-full">
-                                      <div class="swiper-slide mx-0 w-full rounded-md "><img class="r p-0ounded-md" src="{{'assets/images/el-banner1.jpg' | theme}}" width="100%" alt=""></div>
-                                      <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner6.jpg' | theme}}" width="100%" alt=""></div>
-                                    </div>
-                                </div>                                                 
-                            </div>
-                    </div>
-                    
-
-                    <div class="w-full my-5">
-                        <div class="relative">
-                
-                            <div class="swiper mySwiper w-full">
-                                <div class="swiper-wrapper w-full">
-                                  <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner4.jpg' | theme}}" width="100%" alt=""></div>
-                                  <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner5.jpg' | theme}}" width="100%" alt=""></div>
-                                </div>
-                            </div>                                                 
-                        </div>
-                    </div>
-
-                    <div class="w-full my-5">
-                        <div class="relative">
-                
-                            <div class="swiper mySwiper w-full">
-                                <div class="swiper-wrapper w-full">
-                                <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner3.jpg' | theme}}" width="100%" alt=""></div>
-                                <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner2.jpg' | theme}}" width="100%" alt=""></div>
-                                </div>
-                            </div>                                                 
-                        </div>
-                    </div>
-
-            
-                </div>
-            </div>
-        </div>
-
-
 
         {% put scripts %}
             <script>

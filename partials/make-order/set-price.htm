@@ -1,0 +1,55 @@
+<style>
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+</style>
+<form 
+    data-request="onSetPrice"
+    data-request-flash
+    data-request-redirect="/"
+    class="flex flex-col h-full">
+
+    <h5 class="text-sm font-bold text-gray-500">
+        Укажите цену
+    </h5>
+
+    <div class="flex py-4">
+
+        <div x-data="{isFocused: false}"
+            @click="isFocused = !isFocused"
+            @click.outside="isFocused = false"
+            :class="{ 'border-gray-600': isFocused , 'border-gray-300': !isFocused }" 
+            class="flex items-center border-2 bg-gray-300 w-48 h-10 px-2 mr-4 rounded-md text-gray-700 font-medium">
+            <span class="text-xs sm:text-sm md:text-md bg-gray-300">от</span>
+            <input class="focus:outline-none p-2 w-full bg-gray-300 text-xs sm:text-sm md:text-md" type="number">
+        </div>
+        
+        
+        <div x-data="{isFocused: false}"
+            @click="isFocused = !isFocused"
+            @click.outside="isFocused = false"
+            :class="{ 'border-gray-600': isFocused , 'border-gray-300': !isFocused }"
+            class="flex items-center border-2 w-48 h-10 px-2 bg-gray-300 rounded-md text-gray-700 font-medium">
+            <span class="text-xs sm:text-sm md:text-md bg-gray-300">до</span>
+            <input class="focus:outline-none p-2 w-full bg-gray-300 text-xs sm:text-sm md:text-md" type="number">
+        </div>
+    
+    </div>
+    
+    <div class="sticky w-full bg-white bottom-6 shadow-3xl mt-auto" >
+        <div class="flex justify-between items-center h-10 ms:h-14 md:h-16 lg:h-20">
+            <button type="button" 
+                data-request="onRenderSearchServiceView" 
+                class="shadow-3xl  sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-lg w-20 sm:w-32 h-7 sm:h-10 md:w-48 md:h-12 bg-gray-200 rounded-lg">
+                <span><i class=""></i></span>
+                <span>Начать заново</span>
+            </button>
+            <button type="submit" class=" sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-lg w-20 sm:w-32 h-7 sm:h-10 md:w-48 md:h-12 bg-black text-white rounded-lg">
+                <span><i class=""></i></span>
+                <span>Продолжить</span>
+            </button>
+        </div>
+    </div>
+</form>
