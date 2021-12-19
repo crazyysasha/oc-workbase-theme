@@ -20,24 +20,32 @@
                 init() {
                     $watch('files', value => console.log(value))
                 }
-            }" class="flex flex-wrap">
-            <template x-for="file in files">
-                <template x-if="file.type.startsWith('image/')">
-                    <div x-data="{
-                        src: '',
-                        init() {
-                            let reader = new FileReader();
-                            reader.readAsDataURL(file);
-                            reader.onload = e => this.src = e.target.result;
-                        }   
-                    }">
-                        <img :src="src" alt="">
-                    </div>
+            }" class="flex flex-wrap items-center">
+                <template x-for="file in files">
+                    <template x-if="file.type.startsWith('image/')">
+                        <div x-data="{
+                            src: '',
+                            init() {
+                                let reader = new FileReader();
+                                reader.readAsDataURL(file);
+                                reader.onload = e => this.src = e.target.result;
+                            }   
+                        }"
+                            class="flex w-40 h-20 p-3">
+                            <img :src="src" alt="">
+                            <div class="inline-block">
+                                <span class="flex items-center justify-center text-gray-700 cursor-pointer rounded-full">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                    </template>
+                    <div x-text="file.name"></div>
+                    
                 </template>
-                <div x-text="file.name"></div>
-                
-            </template>
-            <div>
+            <div class="p-3">
                 <input  id="fileUpload" type="file" @change="files.push(...$event.target.files)" multiple hidden >
                 <label 
                     for="fileUpload"  
