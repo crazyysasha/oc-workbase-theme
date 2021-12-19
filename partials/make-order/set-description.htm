@@ -15,8 +15,13 @@
                 class="rounded-lg shadow-lg p-1 resize-y border mb-4 px-4 sm:p-3 w-full focus:outline-none text-xs sm:text-sm md:text-md lg:text-base"
                 placeholder="Укажите, что нибудь" rows="5"></textarea>
         </div>
-        <div>
-            <input @click="IsActive = !IsActive" id="fileUpload" type="file" hidden >
+        <div x-data="{
+                files: [],
+                init() {
+                    $watch('files', value => console.log(value))
+                }
+            }">
+            <input  id="fileUpload" type="file" @change="files.push($event.target.files)" multiple hidden >
             <label 
                 for="fileUpload"  
                 class="inline-block border-2 border-dashed px-4 py-2 border-gray-400 text-gray-400 font-medium 
