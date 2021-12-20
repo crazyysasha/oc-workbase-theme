@@ -11,10 +11,9 @@ title = "about-customer"
         <div class="">
             <div class="flex text-gray-400">
                 <a 
-                    class="text-xs sm:text-sm md:text-md lg:text-lg py-2 px-4 rounded-md mr-3 border 
-                        hover:border-orange-500 hover:text-orange-500 hover:bg-white"
+                    class="text-xs sm:text-sm md:text-md lg:text-lg py-2 px-4 rounded-md mr-3 border"
                     @click="Tab = 1" 
-                    :class="{ 'border-orange-500 bg-orange-500 text-white': Tab == 1 }"
+                    :class="{ 'border-orange-500 bg-orange-500 text-white': Tab == 1, 'hover:border-orange-500 hover:text-orange-500 hover:bg-white': Tab != 1 }"
                     href="#">
 
                     Анкета
@@ -23,7 +22,7 @@ title = "about-customer"
                     class="text-xs sm:text-sm md:text-md lg:text-lg py-2 px-4 rounded-md border 
                         hover:border-orange-500 hover:text-orange-500 hover:bg-white" 
                     @click="Tab = 2" 
-                    :class="{ 'border-orange-500 bg-orange-500 text-white': Tab == 2 }"
+                    :class="{ 'border-orange-500 bg-orange-500 text-white': Tab == 2, 'hover:border-orange-500 hover:text-orange-500 hover:bg-white': Tab != 2 }"
                     href="#">
 
                     Настройки

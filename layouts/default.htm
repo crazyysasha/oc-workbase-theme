@@ -1,11 +1,4 @@
-[session]
-security = "all"
 
-[account]
-redirect = "profile"
-paramCode = "code"
-forceSecure = 0
-requirePassword = 0
 ==
 {##}
 <!DOCTYPE html>
@@ -41,8 +34,6 @@ requirePassword = 0
     {% partial "footers/default" %}
 
     {% placeholder modals %}
-    
-    <!-- <script defer src="https://unpkg.com/@alpinejs/persist@3.7.0/dist/cdn.min.js"></script> -->
     <script defer src="https://unpkg.com/alpinejs@3.7.0/dist/cdn.min.js"></script>
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
     <script src="{{ [
