@@ -2,8 +2,10 @@
 {##}
 <footer class="bg-gray-700 py-6">
     <div class="container">
+        {% if this.page.id == 'home' %}
+        {% else %}
         <div class="flex flex-col md:flex-row items-center text-center md:text-left md:justify-between border-b border-2-gray-200 pb-6">
-            <h3 class="text-gray-200 text-md md:text-lg lg:text-xl font-semibold">
+            <h3 class="text-gray-200 text-sm ms:text-md md:text-lg lg:text-xl font-semibold">
                 Скачайте наше бесплатное приложение на смартфон!
             </h3>
             <div class="md:flex first:mr-5"  >
@@ -15,7 +17,8 @@
                 </a>
             </div>
         </div>
-        <div class="md:grid md:grid-cols-3 text-sm md:text-lg font-medium text-center md:text-left text-gray-200 py-5">
+        {% endif %}
+        <div class="md:grid md:grid-cols-3 text-sm md:text-lg font-medium text-center md:text-left text-gray-200 pb-5">
             <div class="">
                 <ul>
                     <li class="my-3 text-xs sm:text-sm md:text-md lg:text-lg "><a class="hover:text-blue-300"  href="#">Специалистам</a></li>
