@@ -4,21 +4,21 @@
 <header class="sticky top-0 z-50">
     <nav 
         x-data="{ showBar: false }" 
-        class="w-full  py-3 z-20 bg-white  "
+        class="w-full h-20 z-20 bg-white border border-white "
         :class="{ 'shadow-xl border-b border-b-gray-300 transition duration-100' : showBar }"
         @scroll.window="showBar = (window.pageYOffset > 20) ? true : false">
-        <div class="container px-2 md:px-4">
-            <div class="flex lg:block justify-between w-full">
-                <div class="flex justify-between">
+        <div class="container px-2 md:px-4 h-full">
+            <div class="flex lg:block justify-between h-full w-full">
+                <div class="flex justify-between h-full">
 
-                    <div class="flex items-center flex-shrink-0 w-40">
+                    <div class="flex items-center flex-shrink-0 h-full w-40">
                         <a href="{{ 'home' | page }}" class="mr-auto">
                             <img src="{{'assets/images/logo.svg' | theme}}" width="100%">
                         </a>
                     </div>
                     <!--Menu-->
-                    <div class="hidden lg:block w-full flex-grow flex items-center w-auto">
-                        <ul class="pt-6 lg:pt-0 list-reset lg:flex justify-end flex-1 items-center">
+                    <div class="hidden lg:block w-full h-full flex-grow flex items-center w-auto">
+                        <ul class="h-full list-reset lg:flex justify-end flex-1 items-center">
                             {% if not user %}
                                 <li class="mr-3">
                                     <div class="relative" x-data="{ Modal : false }" @click.away="Modal = false">
