@@ -124,9 +124,12 @@
                                          x-cloak
                                          class="bg-white w-full absolute z-10  p-2 rounded-xl top-16">
                                         <div class="flex flex-col text-black font-medium text-center">
-                                            <a @click="lang = 'Ru',Modal = !Modal" class="px-2 py-1  hover:text-white hover:bg-blue-900 rounded-lg" href="#"><span>Ru</span></a>
-                                            <a @click="lang = 'En',Modal = !Modal" class="px-2 py-1 my-1 hover:text-white hover:bg-blue-900 rounded-lg" href="#"><span>En</span></a>
-                                            <a @click="lang = 'Uz',Modal = !Modal" class="px-2 py-1  hover:text-white hover:bg-blue-900 rounded-lg" href="#"><span>Uz</span></a>
+                                            <a @click="lang = 'Ru',Modal = !Modal" class="px-2 py-1  hover:text-white hover:bg-blue-900 rounded-lg" href="#">
+                                                <span>Ru</span>
+                                            </a>
+                                            <a @click="lang = 'Uz',Modal = !Modal" class="px-2 py-1  hover:text-white hover:bg-blue-900 rounded-lg" href="#">
+                                                <span>Uz</span>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -189,24 +192,22 @@
                         <ul class="flex justify-center">
                             <li
                                 class="mx-1 hover:bg-blue-700  flex items-center justify-items-center border border-gray-300 rounded-md h-8 w-8 ">
-                                <a class="mx-auto" href="#">O'z</a></li>
+                                <a class="mx-auto" href="#">O'z</a>
+                            </li>
                             <li
                                 class="mx-1 hover:bg-blue-700  flex items-center justify-items-center border border-gray-300 rounded-md h-8 w-8 ">
-                                <a class="mx-auto" href="#">РУ</a></li>
+                                <a class="mx-auto" href="#">РУ</a>
+                            </li>
                             <li
                                 class="mx-1 hover:bg-blue-700  flex items-center justify-items-center border border-gray-300 rounded-md h-8 w-8 ">
-                                <a class="mx-auto" href="#">УЗ</a></li>
-                            <li
-                                class="mx-1 hover:bg-blue-700  flex items-center justify-items-center border border-gray-300 rounded-md h-8 w-8 ">
-                                <a class="mx-auto" href="#">EN</a></li>
+                                <a class="mx-auto" href="#">УЗ</a>
+                            </li>
+            
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-        {% put modals %}
-            {% component 'account' %}
-        {% endput %}
     </nav>
 </header>
 
@@ -217,16 +218,16 @@
 <header x-data class="sticky  top-0 z-50">
     <nav
         x-data="{ showBar: false}" 
-        class="w-full bg-blue-900 max-h-16 py-3 md:py-0 "
+        class="w-full bg-blue-900 h-20 "
         :class="{ 'shadow-xl transition duration-100' : showBar }"
         @scroll.window="showBar = (window.pageYOffset > 20) ? true : false">
         
-        <div class="container px-2 md:px-4">
-            <div class="flex xl:block justify-between w-full">
-                <div class="flex justify-items-center items-center">
+        <div class="container px-2 md:px-4 h-full">
+            <div class="flex xl:block justify-between w-full h-full">
+                <div class="flex justify-items-center items-center h-full">
 
                     
-                    <div class="w-24 sm:w-28 md:w-32 lg:w-44 py-0 md:py-2 mr-4">
+                    <div class="w-24 sm:w-28 md:w-32 lg:w-44 mr-4">
                         <a href="{{ 'home' | page }}" class="flex justify-items-center items-center">
                             <img src="{{'assets/images/logowhite.svg' | theme}}" width="100%">
                         </a>
@@ -236,15 +237,15 @@
 
                     <div 
                         x-cloak 
-                        class="hidden xl:flex  w-full flex-grow flex justify-between items-center w-auto"
+                        class="hidden xl:flex flex-grow flex justify-between items-center w-auto h-full "
                         x-show.transition="true">
 
-                        <ul x-data="{isActive: undefined }" class="list-reset lg:flex justify-start flex-1 items-center">
+                        <ul x-data="{isActive: undefined }" class="list-reset lg:flex justify-start flex-1 items-center h-full">
                             
-                            <li class="mx-1">
+                            <li class="mx-1 h-full">
                                 <a  x-init="console.log(isActive)"
                                     href="{{ 'order' | page }}"
-                                    class="flex items-center justify-center flex-col px-4  h-16 text-white hover:bg-blue-800 w-28 transition-all duration-300"
+                                    class="flex items-center justify-center flex-col px-4  h-full text-white hover:bg-blue-800 w-28 transition-all duration-300"
                                     :class="{ 'bg-blue-800': '{{this.page.id}}' === 'order' }">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
@@ -252,9 +253,9 @@
                                     <span class="text-md font-medium">Заказы</span>
                                 </a>
                             </li>
-                            <li class="mx-1">
+                            <li class="mx-1 h-full">
                                 <a href="{{ 'balance' | page }}"
-                                    class="flex items-center justify-center flex-col px-4  h-16  text-white hover:bg-blue-800 w-28 transition-all duration-300"
+                                    class="flex items-center justify-center flex-col px-4  h-full  text-white hover:bg-blue-800 w-28 transition-all duration-300"
                                     :class="{ 'bg-blue-800': '{{this.page.id}}' === 'balance' }">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
@@ -262,9 +263,9 @@
                                     <span class="text-md font-medium">Кошелек</span>
                                 </a>
                             </li>
-                            <li class="mx-1">
+                            <li class="mx-1 h-full">
                                 <a href="{{ 'about-customer' | page }}"
-                                    class="flex items-center justify-center flex-col px-4  h-16  text-white hover:bg-blue-800 w-28 transition-all duration-300"
+                                    class="flex items-center justify-center flex-col px-4  h-full  text-white hover:bg-blue-800 w-28 transition-all duration-300"
                                     :class="{ 'bg-blue-800': '{{this.page.id}}' === 'about-customer' }">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -272,9 +273,9 @@
                                     <span class="text-md font-medium">Анкета</span>
                                 </a>
                             </li>
-                            <li class="mx-1">
+                            <li class="mx-1 h-full">
                                 <a href="{{ 'help' | page }}"
-                                    class="flex items-center justify-center flex-col px-4  h-16  text-white hover:bg-blue-800 w-28 transition-all duration-300"
+                                    class="flex items-center justify-center flex-col px-4  h-full  text-white hover:bg-blue-800 w-28 transition-all duration-300"
                                     :class="{ 'bg-blue-800': '{{this.page.id}}' === 'help' }">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -282,9 +283,9 @@
                                     <span class="text-md font-medium">Поддержка</span>
                                 </a>
                             </li>
-                            <li class="mx-1">
+                            <li class="mx-1 h-full">
                                 <a href="{{ 'brands' | page }}"
-                                    class="flex items-center justify-center flex-col px-4  h-16  text-white hover:bg-blue-800 w-28 transition-all duration-300"
+                                    class="flex items-center justify-center flex-col px-4  h-full  text-white hover:bg-blue-800 w-28 transition-all duration-300"
                                     :class="{ 'bg-blue-800': '{{this.page.id}}' === 'brands' }">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
@@ -350,9 +351,12 @@
                                     <div x-show="Modal" x-cloak
                                         class="bg-blue-900 text-white w-full absolute z-10 p-1 rounded-xl top-16">
                                         <div class="flex flex-col text-black text-center text-white">
-                                            <a @click="lang = 'Ru',Modal = !Modal" class="hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1"  href="#"><span>Ru</span></a>
-                                            <a @click="lang = 'En',Modal = !Modal" class="my-1 hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1"  href="#"><span>En</span></a>
-                                            <a @click="lang = 'UZ',Modal = !Modal" class="hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1"  href="#"><span>Uz</span></a>
+                                            <a @click="lang = 'Ru',Modal = !Modal" class="hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1"  href="#">
+                                                <span>Ru</span>
+                                            </a>
+                                            <a @click="lang = 'UZ',Modal = !Modal" class="hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1"  href="#">
+                                                <span>Uz</span>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -462,16 +466,16 @@
                         <ul class="flex justify-center text-xs sm:text-sm md:text-md">
                             <li
                                 class="mx-1 flex items-center hover:bg-blue-700 justify-items-center border border-gray-300 rounded-md h-8 w-8 ">
-                                <a class="mx-auto" href="#">O'z</a></li>
+                                <a class="mx-auto" href="#">O'z</a>
+                            </li>
                             <li
                                 class="mx-1 flex items-center hover:bg-blue-700 justify-items-center border border-gray-300 rounded-md h-8 w-8 ">
-                                <a class=" mx-auto" href="#">РУ</a></li>
+                                <a class=" mx-auto" href="#">РУ</a>
+                            </li>
                             <li
                                 class="mx-1 flex items-center hover:bg-blue-700 justify-items-center border border-gray-300 rounded-md h-8 w-8 ">
-                                <a class="mx-auto" href="#">УЗ</a></li>
-                            <li
-                                class="mx-1 flex items-center hover:bg-blue-700 justify-items-center border border-gray-300 rounded-md h-8 w-8 ">
-                                <a class="mx-auto" href="#">EN</a></li>
+                                <a class="mx-auto" href="#">УЗ</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -579,4 +583,9 @@
     })
 </script>
 
+{% endput %}
+
+
+{% put modals %}
+{% component 'account' %}
 {% endput %}

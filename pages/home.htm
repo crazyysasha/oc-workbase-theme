@@ -101,7 +101,7 @@ use Crazy\Freelancer\Models\Category;
 {% put styles %}
     <style>
         .section-banner {
-            height: calc(100vh - 66px);
+            height: calc(80vh - 66px);
         }
         
         @media only screen and (max-width: 600px) {
@@ -111,14 +111,14 @@ use Crazy\Freelancer\Models\Category;
         }
     </style>
 {% endput %}
-<section class="bg-gray-50 pt-5 md:pt-20">
+<section class="bg-gray-50 pt-5">
     <div class="container px-2 md:px-4">
         <div class="text-center sm:text-left">
             <h2 class="text-xl md:text-3xl font-medium">В <span class="text-blue-800">Ташкенте работает</span> 325 779 специалистов, 205 469 дистанционно</h2>
        
         </div>
 
-        <div class="md:grid grid-cols-3 gap-7 my-5 md:py-10">
+        <div class="grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-7 py-5">
             {% for category in cats %}
                 {% partial 'cards/default' body %}
                     
@@ -177,7 +177,7 @@ use Crazy\Freelancer\Models\Category;
 <section class="py-5">
     <div class="swiper swiper_clue overflow-hidden w-full ">
         <div class="swiper-wrapper">
-            <div class="swiper-slide my-12 bg-white">
+            <div class="swiper-slide bg-white">
                 <div class="md:flex justify-between container py-5 md:py-10 px-2 md:px-4">
                     <div class="px-2">
                         <h2 class="text-xl text-center md:text-left md:text-3xl font-medium pb-4 md:pb-8">
@@ -216,7 +216,7 @@ use Crazy\Freelancer\Models\Category;
                     <div class=" w-auto h-auto pt-4 md:pt-0">
                         <div class="relative">
                             <img src="{{'assets/images/MaskGroup.png' | theme}}" alt="" class="w-full">
-                            <div class="absolute -bottom-10  left-0 md:left-8 bg-gray-100 p-5 rounded-tr-3xl rounded-bl-3xl w-full md:w-7/12">
+                            <!-- <div class="absolute -bottom-10  left-0 md:left-8 bg-gray-100 p-5 rounded-tr-3xl rounded-bl-3xl w-full md:w-7/12">
                                 <ul class="flex justify-between">
                                     <li>
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-2 mx-auto text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -237,7 +237,7 @@ use Crazy\Freelancer\Models\Category;
                                         <p class="text-sm md:text-md">Отзыв</p>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -281,7 +281,7 @@ use Crazy\Freelancer\Models\Category;
                     <div class=" w-auto h-auto pt-4 md:pt-0">
                         <div class="relative">
                             <img src="{{'assets/images/MaskGroup.png' | theme}}" alt="" class="w-full">
-                            <div class="absolute -bottom-10  left-0 md:left-8 bg-gray-100 p-5 rounded-tr-3xl rounded-bl-3xl w-full md:w-7/12">
+                            <!-- <div class="absolute -bottom-10  left-0 md:left-8 bg-gray-100 p-5 rounded-tr-3xl rounded-bl-3xl w-full md:w-7/12">
                                 <ul class="flex justify-between">
                                     <li>
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-2 mx-auto text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -302,7 +302,7 @@ use Crazy\Freelancer\Models\Category;
                                         <p class="text-sm md:text-md">Отзыв</p>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -312,10 +312,10 @@ use Crazy\Freelancer\Models\Category;
         <div class="swiper-button-prev"></div>
     </div>
 </section>
-<section class="bg-gray-50 py-5 px-2 md:px-4">
-    <div class="md:flex items-center justify-between container  mx-auto">
+<section class="bg-gray-50 py-5">
+    <div class="container md:flex items-center justify-between px-2 md:px-4  mx-auto">
         <div class="">
-            <h2 class="text-xl text-center md:text-left  md:text-3xl font-medium mb-8">Для максимального <br> удобства, скачайте <br> бесплатное <span class="text-blue-800">мобильное <br> приложение.</span></h2>
+            <h2 class="text-sm md:text-md  lg:text-2xl text-center md:text-left font-medium mb-8">Для максимального <br> удобства, скачайте <br> бесплатное <span class="text-blue-800">мобильное <br> приложение.</span></h2>
             <div class="flex justify-center md:justify-start">
                 <a class="mr-4 transition-all duration-500 transform hover:scale-110" href="#"><img class="w-30 h-10"
                         src="{{'assets/images/apple.png' | theme }}" alt=""></a>
@@ -323,7 +323,7 @@ use Crazy\Freelancer\Models\Category;
                         src="{{'assets/images/android.png' | theme }}" alt=""></a>
             </div>
         </div>
-        <div class="relative w-1/2 mx-auto my-5">
+        <div class="relative mx-auto w-5/12 mt-5 lg:my-0">
             <div class="swiper mySwiper w-full">
                 <div class="swiper-wrapper mx-auto">
                     <div class="swiper-slide"><img src="{{'assets/images/smartphone.png'|theme}}" alt=""></div>
