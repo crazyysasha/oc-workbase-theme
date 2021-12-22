@@ -28,14 +28,14 @@
                             <input id="radio-1" x-model="type" class="hidden" type="radio" name="type" value="customer" checked="">
                             <label @click="type = customer"
                                 x-bind:class="{ 'border-orange-500 text-orange-500': type == 'customer'}"
-                                class="cursor-pointer font-medium  text-sm md:text-md border rounded-sm w-25 md:w-36 p-2 justify-center items-center flex"
+                                class="cursor-pointer font-medium  text-sm md:text-md border rounded-sm w-36 p-2 justify-center flex items-center"
                                 for="radio-1">Заказчик</label>
                         </div>
                         <div class="">
                             <input id="radio-2" x-model="type" class="hidden" type="radio" name="type" value="executor">
                             <label @click="type = executor"
                                 x-bind:class="{ 'border-orange-500 text-orange-500': type == 'executor'}"
-                                class="cursor-pointer font-medium text-sm md:text-md border rounded-sm w-25 md:w-36 p-2 justify-center items-center flex"
+                                class="cursor-pointer font-medium text-sm md:text-md border rounded-sm w-36 p-2 justify-center flex items-center"
                                 for="radio-2">Исполнитель</label>
                         </div>
                     </div>
