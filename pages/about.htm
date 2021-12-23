@@ -20,78 +20,105 @@ title = "About"
       background-color: #68d391;
     }
   </style>
-<div class="bg-gray-100">
-   <div class="container">
+<section class="bg-gray-100" x-data="{Tab: 1 ,  Modal: false}">
+   <div class="container px-2 md:px-4 2xl:px-20 py-4">
         <div class="">
-            <div class="pl-2 mt-5">
-                <a class="py-2 px-4 rounded-md mr-3 border boderder-gray-600 text-gray-400 focus:bg-orange-500 focus:border focus:border focus:bg-orange-500 focus:text-white focus:border-orange-500" href="#">Анкета</a>
-                <a class="py-2 px-4 rounded-md border boderder-gray-600 text-gray-400 focus:bg-orange-500 focus:border focus:border focus:bg-orange-500 focus:text-white focus:border-orange-500" href="#">Настройки</a>
+            <div class="flex text-gray-400">
+                <a 
+                    class="text-xs sm:text-sm md:text-md lg:text-lg py-2 px-4 rounded-md mr-3 border"
+                    @click="Tab = 1" 
+                    :class="{ 'border-orange-500 bg-orange-500 text-white': Tab == 1, 'hover:border-orange-500 hover:text-orange-500 hover:bg-white': Tab != 1 }"
+                    href="#">
+
+                    Анкета
+                </a>
+                <a 
+                    class="text-xs sm:text-sm md:text-md lg:text-lg py-2 px-4 rounded-md border 
+                        hover:border-orange-500 hover:text-orange-500 hover:bg-white" 
+                    @click="Tab = 2" 
+                    :class="{ 'border-orange-500 bg-orange-500 text-white': Tab == 2, 'hover:border-orange-500 hover:text-orange-500 hover:bg-white': Tab != 2 }"
+                    href="#">
+
+                    Настройки
+                </a>
             </div>
 
             <div class="md:flex">
-                <div class="p-5 m-1 mt-4 bg-white rounded-md md:w-80">
+                <div class="p-5 md:p-6 lg:p-10 mt-4 mr-2 bg-white rounded-md lg:w-80">
                     <div class="relative mt-3 mx-auto w-28 h-28" >
                         <img class="rounded-full w-28 h-28" src="{{'assets/images/userlistchatbig.png' | theme}}" alt="">
-                        <div class="absolute right-0 bottom-3 bg-white border border-blue-500 text-blue-500 rounded-full text-center w-7 h-7 cursor-pointer" ><i class="icon-camera"></i></div>
+                        <div 
+                            class="absolute right-0 bottom-3 bg-white border border-gray-300 
+                                text-blue-500 rounded-full text-center w-7 h-7 
+                                flex justify-center cursor-pointer justify-items-center" >
+                                <label class="m-auto w-full cursor-pointer" for="Avater">
+                                    <input id="Avater" type="file" hidden>
+                                    <i class="icon-camera transition hover:scale-110"></i>
+                                </label>
+                        </div>
                     </div>
                     <div class="text-center mt-4 font-medium">
-                        <span class="text-xl">Акмаль Халиков Ботирович</span>
+                        <span class="text-xs sm:text-sm md:text-md lg:text-lg">Акмаль Халиков Ботирович</span>
                     </div>
                     <div class="grid grid-cols-2 text-center mt-4">
                         <div class="border-r-gray-500 border-r-2 border-dashed">
                             <i class="icon-orangestar"></i>
-                            <p>10 из 10</p>
+                            <p class="text-xs sm:text-sm md:text-md lg:text-lg">10 из 10</p>
                         </div>
                         <div>
-                            <i class="icon-comments"></i>
+                            <i class="icon-comments text-xs sm:text-sm md:text-md lg:text-lg"></i>
                             <p>20</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="p-5 m-1 mt-4 bg-white rounded-md w-full">
-                    <div class="flex justify-between">
-                        <span class="text-lg font-medium">Описание профиля:</span>
-                        <a class="rounded-md bg-blue-800 text-center w-8 h-8 pt-1 cursor-pointer" href="#"><i class="icon-pencil"></i></a>
+                <div class="p-5 md:p-6 lg:p-10 mt-4 bg-white rounded-md w-full">
+                    <div class="flex justify-between items-center ">
+                        <span class="text-xs sm:text-sm md:text-md lg:text-lg font-medium">Описание профиля:</span>
+                        <a class="rounded-md bg-blue-800 flex items-center text-center border border-white
+                                w-8 h-8 cursor-pointer  hover:border-blue-700 hover:bg-blue-700 transition-all duration-500" 
+                           href="#">
+                            <i class="icon-pencil m-auto"></i>
+                        </a>
                     </div>
-                    <div class="md:flex flex-col flex-wrap md:max-h-64">
+                    <div class="lg:flex flex-col flex-wrap md:max-h-64">
                         <div class="mb-3" >
-                            <div class="mb-1 text-gray-400 md:text-lg font-medium" >
+                            <div class="mb-1 text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium" >
                                 <span>Ф.И.О.</span>
                             </div>
-                            <div class="mb-1" >
+                            <div class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
                                 <span>Акмаль Халиков Ботирович</span>
                             </div>
                         </div>
                         <div class="mb-3" >
-                            <div class="mb-1 text-gray-400 md:text-lg font-medium" >
+                            <div class="mb-1 text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium" >
                                 <span>Дата рождения:</span>
                             </div>
-                            <div class="mb-1" >
+                            <div class="mb-1 text-ms lg:text-md" >
                                 <span>14.03.1985</span>
                             </div>
                         </div>
                         <div class="mb-3" >
-                            <div class="mb-1 text-gray-400 md:text-lg font-medium" >
+                            <div class="mb-1 text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium" >
                                 <span>Место Проживания:</span>
                             </div>
-                            <div class="mb-1" >
+                            <div class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
                                 <span>г.Ташкент</span>
                             </div>
                         </div>
                         <div class="mb-3" >
-                            <div class="mb-1 text-gray-400 md:text-lg font-medium" >
+                            <div class="mb-1 text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium" >
                                 <span>Номер телефона:</span>
                             </div>
-                            <div class="mb-1" >
+                            <div class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
                                 <span>+99894 923-03-14</span>
                             </div>
                         </div>
                         <div class="mb-3" >
-                            <div class="mb-1 text-gray-400 md:text-lg font-medium" >
+                            <div class="mb-1 text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium" >
                                 <span>Электронная почта:</span>
                             </div>
-                            <div class="mb-1" >
+                            <div class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
                                 <span>AkmalKhalikov@gmail.com</span>
                             </div>
                         </div>
@@ -102,7 +129,11 @@ title = "About"
             <div class="p-5 m-1 mt-4 bg-white rounded-md ">
                 <div class="flex justify-between">
                     <span class="text-lg font-medium">О себе</span>
-                    <a class="rounded-md bg-blue-800 text-center w-8 h-8 pt-1 cursor-pointer" href="#"><i class="icon-pencil"></i></a>
+                    <a class="rounded-md bg-blue-800 flex items-center text-center border border-white
+                            w-8 h-8 cursor-pointer  hover:border-blue-700 hover:bg-blue-700 transition-all duration-500" 
+                        href="#">
+                        <i class="icon-pencil m-auto"></i>
+                    </a>
                 </div>
                 <div class="">
                     <div class="my-4" >
@@ -127,7 +158,7 @@ title = "About"
                         </div>
                         <div class="mb-1" >
                             <span>Расскажите подробно о себе, чтобы клиенты узнали вас получше. </span>
-                            <a class="ml-4 text-blue-400 " href="#"> Добавить</a>
+                            <a class="ml-4 text-blue-400 transition-all duration-500 hover:text-blue-800" href="#"> Добавить</a>
                         </div>
                     </div>
                 </div>
@@ -136,15 +167,19 @@ title = "About"
 
             <div class="p-5 m-1 mt-4 bg-white rounded-md ">
                 <div class="flex justify-between">
-                    <span class="text-lg font-medium">Районы и адреса</span>
-                    <a class="rounded-md bg-blue-800 text-center w-8 h-8 pt-1 cursor-pointer" href="#"><i class="icon-pencil"></i></a>
+                    <span class="text-sm md:text-md lg:text-lg 2xl:text-xl font-medium">Районы и адреса</span>
+                    <a class="rounded-md bg-blue-800 flex items-center text-center border border-white
+                            w-8 h-8 cursor-pointer  hover:border-blue-700 hover:bg-blue-700 transition-all duration-500" 
+                           href="#">
+                        <i class="icon-pencil m-auto"></i>
+                    </a>
                 </div>
                 <div class="">
                     <div class="my-4" >
-                        <div class="mb-1 text-gray-400 md:text-lg font-medium" >
+                        <div class="mb-1 text-gray-400 text-sm md:text-md lg:text-lg 2xl:text-xl font-medium" >
                             <span>Районы выезда к клиентам</span>
                         </div>
-                        <div class="mb-1 flex justify-items-center items-center" >
+                        <div class="mb-1 flex justify-items-center items-center text-xs md:text-sm lg:text-md 2xl:text-lg" >
                             <span class="inline-block w-2 h-2 rounded-full bg-orange-500 mr-1" ></span>
                             <span>Алмазарский район</span>
                             <span class="inline-block w-2 h-2 rounded-full bg-blue-500 ml-3 mr-1" ></span>
@@ -154,10 +189,10 @@ title = "About"
                         </div>
                     </div>
                     <div class="mb-4" >
-                        <div class="mb-1 text-gray-400 md:text-lg font-medium" >
+                        <div class="mb-1 text-gray-400 md:text-lg font-medium text-sm md:text-md lg:text-lg 2xl:text-xl" >
                             <span>Город/Регион</span>
                         </div>
-                        <div class="mb-1" >
+                        <div class="mb-1 text-xs md:text-sm lg:text-md 2xl:text-lg" >
                             <span>г. Ташкент, Ташкентская область</span>
                         </div>
                     </div>
@@ -165,45 +200,11 @@ title = "About"
 
             </div>
 
-            <div class="p-5 m-1 mt-4 bg-white rounded-md " x-data="{ Modal: false }">
+            <div class="p-5 m-1 mt-4 bg-white rounded-md ">
                 
                 <div class="flex justify-between mb-4">
-                    <h4 class="font-medium text-lg">Специальности</h4>
-                    <button @click="Modal = !Modal" class="text-blue-500 " href="#">Добавить новую специальность</button>
-                </div>
-
-
-                <div x-show="Modal" class="container fixed top-0 mt-24 w-full h-full border border-gray-300 rounded-md bg-white z-10 inset-x-0" >
-                    <div class="flex justify-between py-3 border-b border-gray-300 px-4">
-                        <span>Специальности</span>
-                        <button class="" @click="Modal = !Modal" ><span>×</span></button>
-                    </div>
-
-                    <div class="p-4" x-data="{ open: false,isOpen: false }">
-                        <div class="px-4 py-2 border boreder-gray-300 cursor-pointer rounded-md" >
-            
-                            <div class="flex justify-items-center items-center">
-                                <img class="h-5" src="{{'assets/images/repair.svg' | theme}}" alt="">
-                                <span class="text-lg ml-2" x-on:click="open = ! open">Мастера по ремонту</span>
-                            </div>
-
-                            <div x-show="open" class=" mt-5 py-2 px-4 border border-gray-300 rounded-md">
-                                <div>
-                                   <div>
-                                        <input x-on:click="isOpen = ! isOpen" type="checkbox" id="biolgy" name="biolgy">
-                                        <label for="biolgy">Благоустройство территории  79</label>
-                                   </div>
-                                </div>
-                            </div>
-                            <div x-show="isOpen" class="rounded-md py-2 px-4 border border-gray-300">
-                                <div>
-                                    <input type="checkbox" id="дорог" name="дорог">
-                                    <label for="дорог">Асфальтирование дорог</label>
-                               </div>
-                               </div>
-                        </div>
-                    </div>
-
+                    <h4 class="font-medium text-sm md:text-md lg:text-lg 2xl:text-xl">Специальности</h4>
+                    <button @click="Modal = !Modal" class="text-blue-500 text-sm md:text-sm lg:text-md 2xl:text-lg  " href="#">Добавить новую специальность</button>
                 </div>
 
                 <div class="flex justify-between">
@@ -211,22 +212,21 @@ title = "About"
                         <span class="rounded-full bg-gray-200 w-9 h-9 flex justify-items-center items-center">
                             <i class="icon-settings m-auto"></i>
                         </span> 
-                        <h4 class="inline-block ml-2">Мастера по ремонту</h4>
+                        <h4 class="inline-block ml-2  md:text-lg font-medium text-sm md:text-md lg:text-lg 2xl:text-xl">
+                            Мастера по ремонту
+                        </h4>
                     </div>
                     <div>
                         <div class="relative inline-block w-9 mr-2 align-middle select-none transition duration-200 ease-in-out">
-                            <input
-                                type="checkbox"
-                                name="toggle"
-                                id="toggle"
-                                class="toggle-checkbox absolute block w-4 h-4 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
-                            <label
-                                for="toggle"
-                                class="toggle-label block overflow-hidden h-4 rounded-full bg-gray-300 cursor-pointer focus:bg-green-400">
-                                
-                            </label>
+                            <div class="mb-2">                
+                                <div class="form-switch inline-block align-middle">
+                                    <input type="checkbox" name="1" id="1" class="form-switch-checkbox" />
+                                    <label class="form-switch-label" for="1"></label>
+                                </div>
+                                <label class="text-xs text-grey-dark" for="1">Default</label>
+                            </div>
                         </div>
-                        <label for="toggle">Статус</label>
+                        <label for="toggle" class=" md:text-lg font-medium text-sm md:text-md lg:text-lg 2xl:text-xl">Статус</label>
                     </div>
                     
                     
@@ -380,4 +380,39 @@ title = "About"
             </div>
         </div>
    </div>
+
+
+   <div x-show="Modal" class="container fixed top-0 mt-24 w-full h-full border border-gray-300 rounded-md bg-white z-10 inset-x-0" >
+    <div class="flex justify-between py-3 border-b border-gray-300 px-4">
+        <span>Специальности</span>
+        <button class="" @click="Modal = !Modal" ><span>×</span></button>
+    </div>
+
+    <div class="p-4" x-data="{ open: false,isOpen: false }">
+        <div class="px-4 py-2 border boreder-gray-300 cursor-pointer rounded-md" >
+
+            <div class="flex justify-items-center items-center">
+                <img class="h-5" src="{{'assets/images/repair.svg' | theme}}" alt="">
+                <span class="text-lg ml-2" x-on:click="open = ! open">Мастера по ремонту</span>
+            </div>
+
+            <div x-show="open" class=" mt-5 py-2 px-4 border border-gray-300 rounded-md">
+                <div>
+                   <div>
+                        <input x-on:click="isOpen = ! isOpen" type="checkbox" id="biolgy" name="biolgy">
+                        <label for="biolgy">Благоустройство территории  79</label>
+                   </div>
+                </div>
+            </div>
+            <div x-show="isOpen" class="rounded-md py-2 px-4 border border-gray-300">
+                <div>
+                    <input type="checkbox" id="дорог" name="дорог">
+                    <label for="дорог">Асфальтирование дорог</label>
+               </div>
+               </div>
+        </div>
+    </div>
+
 </div>
+</section>
+
