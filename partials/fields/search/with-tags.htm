@@ -27,7 +27,7 @@
                 name="service"
                 x-model="service" />
         <input type="text" x-model="search"
-            class="rounded-lg p-1  px-4 sm:p-2 w-full focus:outline-none text-xs sm:text-sm md:text-md lg:text-base"
+            class="rounded-lg p-1  px-4 sm:p-2 w-full focus:outline-none text-xs sm:text-sm md:text-md xl:text-lg"
             {% if placeholder is null or placeholder != false %}
                 placeholder="{{ placeholder ?? 'Поиск...'  }}"
             {% endif %}
@@ -68,7 +68,7 @@
         </template>
     </div>
     <div class="mt-4">
-        <div class="mb-2">Например:</div>
+        <div class="mb-2 text-sm md:text-md xl:text-lg 2xl:text-xl">Например:</div>
         <div class="flex flex-wrap" x-data="{
                 items: [],
                 loading: true,                
@@ -81,7 +81,7 @@
             }">
             <template x-for="item in items.slice(0,10)">
                 <button type="button"
-                    class="bg-gray-100 text-sm rounded-full py-2 px-3 mr-1 mb-2"
+                    class="bg-gray-100 text-sm md:text-md xl:text-lg 2xl:text-xl rounded-full py-2 px-3 mr-1 mb-2"
                     x-text="item.name"
                     @click="
                         $data.search = item.name;
