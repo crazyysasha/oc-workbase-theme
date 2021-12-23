@@ -1,0 +1,8 @@
+<ul class="
+        flex-col
+        {% if p %} p-{{p}} {% endif %}
+    ">
+    {% if body %}
+        {{ body | raw }}
+    {% endif %}
+</ul>

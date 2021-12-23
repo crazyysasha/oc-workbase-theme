@@ -1,0 +1,59 @@
+{##}
+<li class="
+    flex 
+    {% for type, padding in _context if type starts with 'p' %}
+        {{type}}-{{padding}}
+    {% endfor %}
+    {% for type, margin in _context if type starts with 'm' %}
+        {{type}}-{{margin}}
+    {% endfor %}
+    " 
+    {% for name, handler in events %} 
+        @{{ name }}="{{handler}}"
+    {% endfor%}>
+    
+    {% if placeholder('leading') %}
+    
+        <div>
+       
+            {% placeholder leading %}
+       
+        </div>
+    
+    {% endif %}
+    
+    <div>
+    
+        {% if placeholder('title') %}
+    
+            <div>
+                
+                {% placeholder title %}
+            
+            </div>
+    
+        {% endif %}
+    
+        {% if placeholder('subtitle') %}
+    
+            <div>
+
+                {% placeholder subtitle %}
+
+            </div>
+    
+        {% endif %}
+    
+    </div>
+    
+    {% if placeholder('trailing') %}
+
+        <div class="ml-auto">
+
+            {% placeholder trailing %}
+
+        </div>
+
+    {% endif%} 
+
+</li>
