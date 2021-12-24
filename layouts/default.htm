@@ -10,6 +10,7 @@ requirePassword = 0
 {##}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,10 +24,12 @@ requirePassword = 0
         '@framework.extras.css'
     ] | theme}}">
     <link rel="icon" href="{{ this.theme.favicon.path }}">
-    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <style>
         [x-cloak] { display: none !important; }
     input::-webkit-outer-spin-button,
@@ -37,15 +40,118 @@ requirePassword = 0
     </style>
     {% styles %}
 </head>
+
 <body class="font-sans">
-    
+
     {% partial "headers/default" %}
 
-    {% page %}        
+    {% page %}
 
     {% partial "footers/default" %}
 
     {% placeholder modals %}
+
+
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.directive('october', (
+                el, {
+                    value,
+                    modifiers,
+                    expression
+                }, {
+                    Alpine,
+                    effect,
+                    cleanup,
+                    evaluate
+                }) => {
+                if (!el.hasOwnProperty('_x_october')) {
+                    el._x_october = {
+                        request: null,
+                        url: null,
+                        partials: {},
+                        flash: false,
+
+                    };
+                }
+                if (value == 'request') {
+                    el._x_october.request = expression;
+                    addListeners(el);
+
+                }
+                if (value == 'url') {
+                    el._x_october.url = expression;
+                }
+
+                if (value == 'update') {
+
+                    update = evaluate(`{ ${expression} }`);
+
+                    el._x_october.update = {
+                        ...el._x_october.update,
+                        ...update
+                    };
+                }
+
+                if (value == 'track-input') {
+                    console.log(el.nodeName);
+                    if (!['INPUT', 'TEXTAREA'].includes(el.nodeName)) {
+                        throw new Error('input tracker used not in input or texarea tags');
+                    }
+
+                    if (el._x_october.request != null && el.form == null) {
+                        throw new Error('input tracker used without form or x-october:request directive');
+                    }
+
+
+                    el.addEventListener('input', function (e) {
+                        let trackedElement;
+                        if (el.form)
+                            trackedElement = el.form;
+                        else
+                            trackedElement = el;
+
+                        if (trackedElement._x_inputTrackerTimer)
+                            window.clearTimeout(trackedElement._x_inputTrackerTimer);
+
+
+                        trackedElement._x_inputTrackerTimer = window.setTimeout(() => fetcher(trackedElement), expression);
+                    });
+
+                }
+
+            });
+            function fetcher(el) {
+                fetch(el._x_october.url ?? window.location.href, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-OCTOBER-REQUEST-HANDLER': el._x_october.request,
+                        'X-OCTOBER-REQUEST-PARTIALS': Object.keys(el._x_october.update).join('&'),
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-XSRF-TOKEN': 'asd',
+                    },
+                }).then(response => {
+                    return response.json();
+                }).then(data => {
+                    for (partial in data) {
+                        let selector = el._x_october.update[partial] ?? partial;
+                        
+                        document.querySelector(selector).innerHTML = data[partial];
+                    }
+                });
+            }
+            function addListeners(el) {
+
+                el.addEventListener('submit', async function (event) {
+                    event.preventDefault();
+                    console.log(event);
+                    fetcher(el);
+                });
+            }
+        })
+    </script>
+
     <script defer src="https://unpkg.com/@alpinejs/persist@3.7.0/dist/cdn.min.js"></script>
     <script defer src="https://unpkg.com/alpinejs@3.7.0/dist/cdn.min.js"></script>
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
@@ -54,7 +160,8 @@ requirePassword = 0
         '@framework',
         '@framework.extras',
         ]|theme }}">
-    </script>
+        </script>
     {% scripts %}
 </body>
+
 </html>

@@ -3,6 +3,8 @@ layout = "make-order"
 title = "make-order"
 ==
 <?php
+use Crazy\FreeLancer\Models\Service;
+
 function onStart() {
 
     if (!$category =  $this->getCurrentCategory()) {
@@ -95,7 +97,7 @@ function onSearchService()
     $this->getCurrentServices($servSlug);
     return [
         'url' => $url,
-        '#slideContainer' => $this->renderPartial($nextPartial),
+        '!#slideContainer' => $this->renderPartial($nextPartial),
     ];
 }
 
@@ -154,6 +156,15 @@ function onSetPrice()
 {
     \Flash::success('Ваша заявка успешно принята');
 }
+
+function onSearch()
+{
+    $this['searches'] = Service::
+        where('name', 'like', post('search').'%')
+        ->union(Service::searchWhere(post('search'), ['name', 'slug']))
+        ->limit(10)
+        ->get();
+}
 ?>
 ==
 {##}
@@ -174,10 +185,11 @@ function onSetPrice()
 
         <div class="lg:col-span-2 order-2 lg:order-1 h-full bg-white rounded-md">
 
-            <div x-show=" activeTab == 'order' " x-cloak class="p-4 h-full" id="slideContainer" x-init="$.request('onGetSlideView')">
+            <div x-show=" activeTab == 'order' " x-cloak class="p-4 h-full" id="slideContainer"
+                x-init="$.request('onGetSlideView')">
             </div>
 
-            <div x-show=" activeTab == 'spetsialist' " x-cloak class="p-4 h-full" >
+            <div x-show=" activeTab == 'spetsialist' " x-cloak class="p-4 h-full">
                 <div>
                     <div class="md:flex">
                         <div class="flex items-center mt-2 mr-8">
@@ -205,8 +217,11 @@ function onSetPrice()
                                 <svg x-show="!Modal" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                 </svg>
-                                <svg x-show="Modal" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                                <svg x-show="Modal" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
+                                        clip-rule="evenodd" />
                                 </svg>
                             </button>
                             <div x-show="Modal" x-cloak
@@ -215,16 +230,20 @@ function onSetPrice()
                                     <a @click="lang = 'Подходящие',Modal = !Modal" class="hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1"  href="#">
                                         <span>Подходящие</span>
                                     </a>
-                                    <a @click="lang = 'По отзывам',Modal = !Modal" class="my-1 hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1"  href="#">
+                                    <a @click="lang = 'По отзывам',Modal = !Modal"
+                                        class="my-1 hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1" href="#">
                                         <span>По отзывам</span>
                                     </a>
-                                    <a @click="lang = 'Пр возрастанию цены',Modal = !Modal" class="hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1"  href="#">
+                                    <a @click="lang = 'Пр возрастанию цены',Modal = !Modal"
+                                        class="hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1" href="#">
                                         <span>Пр возрастанию цены</span>
                                     </a>
-                                    <a @click="lang = 'По убыванию цены',Modal = !Modal" class="hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1"  href="#">
+                                    <a @click="lang = 'По убыванию цены',Modal = !Modal"
+                                        class="hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1" href="#">
                                         <span>По убыванию цены</span>
                                     </a>
-                                    <a @click="lang = 'По местонахождению',Modal = !Modal" class="hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1"  href="#">
+                                    <a @click="lang = 'По местонахождению',Modal = !Modal"
+                                        class="hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1" href="#">
                                         <span>По местонахождению</span>
                                     </a>
 
@@ -241,7 +260,7 @@ function onSetPrice()
                     <div class="col-span-2">
 
                         <!-- Специалисты  -->
-                        <div >
+                        <div>
 
                             <div class="flex items-center">
 
@@ -269,8 +288,10 @@ function onSetPrice()
                                     <div class="my-1 text-xs md:text-sm lg:text-md 2xl:text-base">
                                         <span class="font-medium text-sm md:text-md">
                                             Выезд по
-                                            <a class="text-blue-500 transition-all hover:underline transition duration-500" href="#">Ташкенту,</a>
-                                            <a class="text-blue-500 transition-all hover:underline transition duration-500" href="#"> Ташкентской обл.</a>
+                                            <a class="text-blue-500 transition-all hover:underline transition duration-500"
+                                                href="#">Ташкенту,</a>
+                                            <a class="text-blue-500 transition-all hover:underline transition duration-500"
+                                                href="#"> Ташкентской обл.</a>
                                         </span>
                                     </div>
                                 </div>
@@ -307,7 +328,8 @@ function onSetPrice()
                                             Подробнее
                                         </a>
                                         <a href="#">
-                                            <img class="w-5 h-5" src="{{'assets/images/googletranslate.png' | theme}}" alt="">
+                                            <img class="w-5 h-5" src="{{'assets/images/googletranslate.png' | theme}}"
+                                                alt="">
                                         </a>
                                     </div>
                                 </div>
@@ -324,7 +346,8 @@ function onSetPrice()
                                             Подробнее
                                         </a>
                                         <a href="#">
-                                            <img class="w-5 h-5" src="{{'assets/images/googletranslate.png' | theme}}" alt="">
+                                            <img class="w-5 h-5" src="{{'assets/images/googletranslate.png' | theme}}"
+                                                alt="">
                                         </a>
                                     </div>
                                 </div>
@@ -334,15 +357,16 @@ function onSetPrice()
                                     <p class="text-xs sm:text-sm lg:text-md 2xl:text-base">
                                         Нам нужен был электрик. Мастер произвел замечательное 
                                         впечатление. Работу выполнил хорошо, установил розетки.
-                                         Мастер сказал, что если понадобятся еще услуги электрика, 
-                                         то всегда можно к нему обратиться.
+                                        Мастер сказал, что если понадобятся еще услуги электрика,
+                                        то всегда можно к нему обратиться.
                                     </p>
                                     <div class="flex justify-between py-4 border-b border-gray-500 border-dotted">
                                         <a class="text-xs sm:text-sm lg:text-md 2xl:text-base text-blue-500 transition-all duration-500 hover:underline " href="#">
                                             Все отзывы (20)
                                         </a>
                                         <a href="#">
-                                            <img class="w-5 h-5" src="{{'assets/images/googletranslate.png' | theme}}" alt="">
+                                            <img class="w-5 h-5" src="{{'assets/images/googletranslate.png' | theme}}"
+                                                alt="">
                                         </a>
                                     </div>
                                 </div>
@@ -351,21 +375,29 @@ function onSetPrice()
                                     <h5 class="text-sm md:text-md lg:text-base 2xl:text-lg font-medium">Услуги и цены</h5>
                                     <div class="text-xs sm:text-sm lg:text-md 2xl:text-base">
                                         <ul>
-                                            <li class="flex justify-between my-1 border-b border-gray-500 border-dotted">
+                                            <li
+                                                class="flex justify-between my-1 border-b border-gray-500 border-dotted">
                                                 <span class="-mb-1 bg-white">Монтаж проводки</span>
-                                                <span class="text-gray-400 font-medium -mb-1 bg-white">От 25 000 сум</span>
+                                                <span class="text-gray-400 font-medium -mb-1 bg-white">От 25 000
+                                                    сум</span>
                                             </li>
-                                            <li class="flex justify-between my-1 border-b border-gray-500 border-dotted">
+                                            <li
+                                                class="flex justify-between my-1 border-b border-gray-500 border-dotted">
                                                 <span class="-mb-1 bg-white">Установка розетки, 1 точка</span>
-                                                <span class="text-gray-400 font-medium -mb-1 bg-white">От 15 000 сум</span>
+                                                <span class="text-gray-400 font-medium -mb-1 bg-white">От 15 000
+                                                    сум</span>
                                             </li>
-                                            <li class="flex justify-between my-1 border-b border-gray-500 border-dotted">
+                                            <li
+                                                class="flex justify-between my-1 border-b border-gray-500 border-dotted">
                                                 <span class="-mb-1 bg-white">Установка выключателя</span>
-                                                <span class="text-gray-400 font-medium -mb-1 bg-white">От 10 000 сум</span>
+                                                <span class="text-gray-400 font-medium -mb-1 bg-white">От 10 000
+                                                    сум</span>
                                             </li>
-                                            <li class="flex justify-between my-1 border-b border-gray-500 border-dotted">
+                                            <li
+                                                class="flex justify-between my-1 border-b border-gray-500 border-dotted">
                                                 <span class="-mb-1 bg-white">Установка светильника</span>
-                                                <span class="text-gray-400 font-medium -mb-1 bg-white">От 25 000 сум</span>
+                                                <span class="text-gray-400 font-medium -mb-1 bg-white">От 25 000
+                                                    сум</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -374,11 +406,12 @@ function onSetPrice()
                                             Все услуги и цены (18)
                                         </a>
                                         <a href="#">
-                                            <img class="w-5 h-5" src="{{'assets/images/googletranslate.png' | theme}}" alt="">
+                                            <img class="w-5 h-5" src="{{'assets/images/googletranslate.png' | theme}}"
+                                                alt="">
                                         </a>
                                     </div>
                                 </div>
-                                
+
 
                             </div>
 
@@ -405,7 +438,7 @@ function onSetPrice()
                 <hr class="w- border-gray-500 border-dashed my-4 md:my-8">
             </div>
 
-            <div x-show=" activeTab == 'help' " x-cloak class="p-4 h-full" >
+            <div x-show=" activeTab == 'help' " x-cloak class="p-4 h-full">
                 help
             </div>
         </div>
@@ -449,22 +482,26 @@ function onSetPrice()
                         <div class="relative">
                             <div class="swiper mySwiper w-full">
                                 <div class="swiper-wrapper w-full">
-                                    <div class="swiper-slide mx-0 w-full rounded-md "><img class="r p-0ounded-md" src="{{'assets/images/el-banner1.jpg' | theme}}" width="100%" alt=""></div>
-                                    <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner6.jpg' | theme}}" width="100%" alt=""></div>
+                                    <div class="swiper-slide mx-0 w-full rounded-md "><img class="r p-0ounded-md"
+                                            src="{{'assets/images/el-banner1.jpg' | theme}}" width="100%" alt=""></div>
+                                    <div class="swiper-slide w-full rounded-md"><img class="rounded-md"
+                                            src="{{'assets/images/el-banner6.jpg' | theme}}" width="100%" alt=""></div>
                                 </div>
-                            </div>                                                 
+                            </div>
                         </div>
                     </div>
-                    
+
 
                     <div class="w-full mt-5 rounded-md ">
                         <div class="relative">
                             <div class="swiper mySwiper w-full">
                                 <div class="swiper-wrapper w-full">
-                                  <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner4.jpg' | theme}}" width="100%" alt=""></div>
-                                  <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner5.jpg' | theme}}" width="100%" alt=""></div>
+                                    <div class="swiper-slide w-full rounded-md"><img class="rounded-md"
+                                            src="{{'assets/images/el-banner4.jpg' | theme}}" width="100%" alt=""></div>
+                                    <div class="swiper-slide w-full rounded-md"><img class="rounded-md"
+                                            src="{{'assets/images/el-banner5.jpg' | theme}}" width="100%" alt=""></div>
                                 </div>
-                            </div>                                                 
+                            </div>
                         </div>
                     </div>
 
@@ -480,7 +517,7 @@ function onSetPrice()
                         </div>
                     </div> -->
 
-            
+
                 </div>
             </div>
         </div>
@@ -489,14 +526,14 @@ function onSetPrice()
 
     <div class="lg:grid grid-cols-3 container px-2 md:px-4 2xl:px-20 relative">
         {% put scripts %}
-            <script>
-                var swiper = new Swiper('.mySwiper', {
-                    autoplay: {
-                         delay: 5000,
-                        },
-                    effect: 'fade'
-                    });
-            </script>
+        <script>
+            var swiper = new Swiper('.mySwiper', {
+                autoplay: {
+                    delay: 5000,
+                },
+                effect: 'fade'
+            });
+        </script>
         {% endput %}
     </div>
 </section>

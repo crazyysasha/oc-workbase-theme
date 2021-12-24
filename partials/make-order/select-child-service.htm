@@ -23,9 +23,9 @@
     {% endif %}
 {% endmacro %}
 <form 
-    data-request="onSelectService" 
-    data-request-success="window.history.pushState({}, '', data.url)"
-    data-request-flash
+    x-october:request.flash.files="onSelectService"
+    x-october:url="https://october.loc/acount"
+    x-october:update="asd: '#asd', dasd: '#das',"
     class="flex flex-col h-full">
 
     <h5 class="text-sm font-bold text-gray-500">

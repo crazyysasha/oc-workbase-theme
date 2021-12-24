@@ -1,0 +1,28 @@
+<script>
+    function OctoRequest(handler, options) {
+        /*
+         * Validate handler name
+         */
+
+        if (handler === undefined) {
+            throw new Error('The request handler name is not specified.');
+        }
+
+        if (!handler.match(/^(?:\w+\:{2})?on*/)) {
+            throw new Error('Invalid handler name. The correct handler name format is: "onEvent".');
+        }
+        
+        fetch(options.url ?? window.location.href, {
+            headers: {
+                'X-OCTOBER-REQUEST-HANDLER': handler
+            }
+        }).then(response => {
+
+        });
+    }
+
+    OctoRequest.OPTIONS = {
+        url: null,
+        success: null,
+    };
+</script>

@@ -5,9 +5,13 @@ title = "WorkBase"
 <?php
 use Crazy\Freelancer\Models\Category;
 
+use Crazy\Freelancer\Models\Service;
+
     function onStart()
     {
-        $this['cats'] = Category::get();
+        $this['cats'] = Category::with(['services' => function ($q) {
+            $q->where('parent_id', null);
+        }])->get();
     }
 ?>
 ==
@@ -20,67 +24,8 @@ use Crazy\Freelancer\Models\Category;
     <div class="container z-30 px-2 md:px-4 2xl:px-20">
         <h1 class="md:text-5xl text-2xl font-semibold text-white leading-3">Работа в Узбекистане</h1>
         <p class="text-md md:text-xl font-medium md:my-10 my-5 text-white">538 603 клиента доверили дела WorkBase</p>
-        <div class="relative md:w-2/3 mb-4" x-data="{
-                search: '',
-                items: [],
-                focused: false,
-                hovered: false,
-                loading: false,
-            }" x-init="$watch('search', async function () {
-                loading = true;
-                let response = await (await fetch(`/api/crazy/freelancer/v1.0.1/services?perPage=1000&with[]=category&search=${search}`)).json();
-                items = response.data;
-                loading = false;
-            })">
-            <div x-bind:style="{height: `${$refs.searchInput.offsetHeight}px`}"></div>
-            <div class="rounded-full bg-white flex p-1 shadow-lg absolute top-0 inset-x-0 z-40"
-                :style="focused || hovered > 0 ? `box-shadow: 0 0 10px  rgba(251, 146, 60, ${focused ? .5 : hovered ? .2 : 0}), 0 0 15px 0 rgba(251, 146, 60, ${focused ? .5 : hovered ? .2 : 0}) !important`: ''"
-                x-ref="searchInput" 
-                @mouseover="hovered = true" 
-                @mouseout="hovered = false" 
-                @focusin="focused = true" 
-                @focusout="focused = false">
-                <input type="text" x-model="search"
-                    class="rounded-full p-1 px-4 sm:p-2 w-full focus:outline-none text-xs sm:text-sm md:text-md lg:text-base"
-                    placeholder="Услуга или специалист" name="search"
-                    autocomplete="off">
-                <button type="button"
-                    class="bg-orange-400 rounded-full whitespace-nowrap py-1 px-5 sm:py-2 text-white flex items-center"
-                    @click="window.location.href = '{{ 'make-order' | page({'category': 'raznoye'}) }}'">
-                    <span class="hidden sm:inline-block">
-                        Заказать услугу
-                    </span>
-                    <span class="inline-block sm:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </span>
-                </button>
-            </div>
-            <div x-cloak x-transition x-show="search.length > 0"
-                class="absolute top-0 inset-x-0 bg-white rounded-3xl overflow-hidden ">
-
-                <ul class="overflow-y-auto" x-init="" :style="`max-height: ${window.innerHeight*.5}px;`">
-                    <li class="w-full mb-2" x-bind:style="{height: `${$refs.searchInput.offsetHeight}px`}">
-                    </li>
-                    <template x-for="index in (loading ? 10 : 0)">
-                        <li class="p-2 px-4 cursor-pointer">
-                            <div class="h-4 animate my-1 rounded-lg animate-pulse bg-gray-400"
-                                :style="{width: `${100 + Math.random() * 100}px`}"></div>
-                        </li>
-                    </template>
-                    <template x-if="items.length == 0">
-                        <li x-text="search" class="p-2 px-4 hover:bg-gray-100 cursor-pointer" @click="window.location.href = '{{ 'make-order' | page({'category': 'raznoye'}) }}'"> </li>    
-                    </template>
-                    <template x-for="item in (!loading ? items: [])">
-                        <li x-text="item.name" class="p-2 px-4 hover:bg-gray-100 cursor-pointer"  @click="window.location.href = `${item.category.length > 0 ? item.category[0].slug : 'raznoye'}/${item.slug}`"> </li>
-                    </template>
-
-                </ul>
-            </div>
-        </div>
+        
+        {% partial 'search/field' %}
 
         <ul class="flex flex-wrap mt-10 text-white text-sm text-xl">
             <li class="mr-5 my-2 md:text-xl text-sm md:inline-block"><a

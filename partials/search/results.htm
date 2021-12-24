@@ -1,0 +1,22 @@
+{##}
+{% for result in searches %}
+    <li class="p-2 px-4 hover:bg-gray-100 cursor-pointer">
+        <a class="block" href="{{ 'make-order' | page({
+                'category': result.category.slug,
+                'service':  result.slug,
+            }) }}">
+            {{ result.name }}
+
+        </a>
+    </li>
+{% else %}
+    <li  class="p-2 px-4 hover:bg-gray-100 cursor-pointer">
+        <a class="block" href="{{ 'make-order' | page({
+            'category': 'raznye'
+        }) }}?search={{post('search')}}">
+    
+            {{ post('search') }}
+        </a>
+    
+    </li>
+{% endfor %}

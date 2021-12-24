@@ -1,0 +1,70 @@
+{##}
+<div class="relative md:w-2/3 mb-4" x-data="{
+        search: '',
+        focused: false,
+        hovered: false,
+        show: false,
+    }" x-init="$watch('search', val => {
+        show = true;
+        $.request('onSearch', {
+             url: '{{ 'make-order' | page }}',
+             update: {
+                 'search/results': '#searchResultsContainer',
+             },
+             data: {
+                 search: search,
+             },
+             error: (error) => {
+                 console.log(error);
+             }
+        });
+    });"
+    x-on:keyup.escape.window="show = false;"
+    x-on:click.outside="show = false;">
+    
+    <div x-bind:style="{height: `${$refs.searchInput.offsetHeight}px`}"></div>
+    
+    <div class="rounded-full bg-white flex p-1 shadow-lg absolute top-0 inset-x-0 z-40"
+        :style="
+        focused || hovered > 0 ? `box-shadow: 0 0 10px  rgba(251, 146, 60, ${focused ? .5 : hovered ? .2 : 0}), 0 0 15px 0 rgba(251, 146, 60, ${focused ? .5 : hovered ? .2 : 0}) !important`: ''"
+        x-ref="searchInput" 
+        @mouseover="hovered = true" 
+        @mouseout="hovered = false" 
+        @focusin="focused = true"
+        @focusout="focused = false">
+        
+        <input type="text" x-model="search"
+            class="rounded-full p-1 px-4 sm:p-2 w-full focus:outline-none text-xs sm:text-sm md:text-md lg:text-base"
+            placeholder="Услуга или специалист">
+        
+        <button type="button"
+            class="bg-orange-400 rounded-full whitespace-nowrap py-1 px-5 sm:py-2 text-white flex items-center"
+            @click="window.location.href = '{{ 'make-order' | page({'category': 'raznoye'}) }}'">
+            
+            <span class="hidden sm:inline-block">
+                Заказать услугу
+            </span>
+            
+            <span class="inline-block sm:hidden">
+                {% partial 'icons/search' %}
+            </span>
+
+        </button>
+    </div>
+    <div x-cloak x-show="show" class="absolute top-0 inset-x-0 bg-white rounded-3xl overflow-hidden ">
+
+        <ul class="overflow-y-auto" x-init="" :style="`
+                max-height: ${window.innerHeight*.5}px;
+                padding-top: ${$refs.searchInput.offsetHeight + 10}px
+            `" 
+            id="searchResultsContainer">
+            <template x-for="index in 10">
+                <li class="p-2 px-4 cursor-pointer">
+                    <div class="h-4 animate my-1 rounded-lg animate-pulse bg-gray-400"
+                        :sty00le="{width: `${100 + Math.random() * 100}px`}"></div>
+                </li>
+            </template>
+
+        </ul>
+    </div>
+</div>
