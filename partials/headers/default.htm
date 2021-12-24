@@ -7,7 +7,7 @@
         class="w-full h-20 z-20 bg-white border border-white "
         :class="{ 'shadow-xl border-b border-b-gray-300 transition duration-100' : showBar }"
         @scroll.window="showBar = (window.pageYOffset > 20) ? true : false">
-        <div class="container px-2 md:px-4 h-full">
+        <div class="container px-2 md:px-4 2xl:px-20 h-full">
             <div class="flex lg:block justify-between h-full w-full">
                 <div class="flex justify-between h-full">
 
@@ -222,7 +222,7 @@
         :class="{ 'shadow-xl transition duration-100' : showBar }"
         @scroll.window="showBar = (window.pageYOffset > 20) ? true : false">
         
-        <div class="container px-2 md:px-4 h-full">
+        <div class="container px-2 md:px-4 2xl:px-20 h-full">
             <div class="flex xl:block justify-between w-full h-full">
                 <div class="flex justify-items-center items-center h-full">
 
@@ -244,7 +244,7 @@
                             
                             <li class="mx-1 h-full">
                                 <a  x-init="console.log(isActive)"
-                                    href="{{ 'order' | page }}"
+                                    href="{{ 'orders' | page }}"
                                     class="flex items-center justify-center flex-col px-4  h-full text-white hover:bg-blue-800 w-28 transition-all duration-300"
                                     :class="{ 'bg-blue-800': '{{this.page.id}}' === 'order' }">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -294,12 +294,13 @@
                                 </a>
                             </li>
                         </ul>
-                        <ul class="pt-6 lg:pt-0 list-reset lg:flex justify-end flex-1 items-center">
+                        <ul class="h-full list-reset flex justify-end flex-1 items-center">
 
-                            <li class="mr-3">
-                                <div class="relative text-white" x-data="{ Modal : false}" @click.away="Modal = false">
+                            <li class="mr-3 h-full">
+                                <div class="relative flex flex-col items-center h-full text-white" 
+                                    x-data="{ Modal : false}" @click.away="Modal = false">
                                     <div
-                                        class="bg-blue-900 w-40 transition-all duration-300 font-medium"
+                                        class="bg-blue-900 w-40 transition-all duration-300 font-medium my-auto"
                                         @click="Modal = !Modal">
                                         <div x-show="$store.UserStatus.UserType == 'Я исполнитель'" class="w-7 h-7 rounded-full bg-white mx-auto">
                                             <img class="w-full rounded-full" src="{{'assets/images/userlistchatbig.png' | theme}}" alt="">
@@ -319,7 +320,7 @@
                                     </div>
                                     <div x-show="Modal" 
                                          x-cloak
-                                         class="bg-blue-900 text-white w-full absolute z-10 p-1 rounded-xl top-16">
+                                         class="bg-blue-900 text-white w-full absolute z-10 p-1 rounded-xl top-21">
                                         <div class="flex flex-col text-black text-center text-white">
                                             <a @click="Modal = !Modal , $store.UserStatus.UserType = 'Я исполнитель' " x-show="$store.UserStatus.UserType != 'Я исполнитель' " class="hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1"  href="#">
                                                 <span>Я исполнитель</span>
