@@ -7,46 +7,48 @@ title = "profile"
 ==
 {##}
 <section class="bg-gray-100">
-    <div class="md:grid md:grid-cols-3 container">
-        <div class="md:col-span-2 mt-5">
-            <div class="bg-white rounded-sm mx-2 px-6 py-4 ">
+    <div class="md:grid md:grid-cols-3 container px-2 md:px-4 py-4 2xl:px-20">
+        <div class="md:col-span-2">
+            <div class="bg-white rounded-md mx-2 px-6 py-4 ">
                 <div>
                     <div class="md:flex justify-between">
-                        <h5>Электрика. Монтаж проводки</h5>
-                        <a class="text-sm text-gray-300" href="#">Пожаловаться на заказ</a>
+                        <h5 class="text-sm md:text-md lg:text-base 2xl:text-lg" >Электрика. Монтаж проводки</h5>
+                        <a class="test-xs md:text-sm lg:text-md 2xl:text-base text-gray-400" href="#">Пожаловаться на заказ</a>
                     </div>
                     <div class="mt-4">
-                        <span class="test-sm text-gray-300">Создан: сегодня 11:55</span>
+                        <span class="text-sm md:text-md lg:text-base 2xl:text-lg">Создан: сегодня 11:55</span>
                     </div>
                     <div class="md:flex mt-4 text-sm md:text-md text-center md:text-left">
                         <div class="flex justify-center md:mr-3">
                             <img src="{{'assets/images/userphotobig.png' | theme}}" alt="">
                         </div>
-                        <div class="w-full md:flex justify-between">
+                        <div class="w-full md:flex justify-between ">
                             <div>
-                                <h5 class="text-sm text-blue-800">Заказчик</h5>
+                                <h5 class=" text-blue-800 text-sm md:text-md lg:text-base 2xl:text-lg">Заказчик</h5>
                                 <h5 class="font-medium">Аваз Абдуллаев</h5>
-                                <h5 class="text-sm text-gray-300">Был в сети сегодня в 12:18</h5>
+                                <h5 class=" text-gray-400">Был в сети сегодня в 12:18</h5>
                                 <h5><i class="icon-orangestar"></i> 10 из 10</h5>
                             </div>
                             <div class="">
-                                <h5 class="font-medium text-blue-800 text-left md:text-right">До 150 000 сум</h5>
+                                <h5 class="font-medium text-blue-800 text-left md:text-right text-sm md:text-md lg:text-base 2xl:text-lg">
+                                    До 150 000 сум
+                                </h5>
                             </div>
                         </div>
                     </div>
                     <div class="mt-3">
-                        <span class="text-sm text-gray-300"><i class="icon-frameBorder"></i> Телефон подтвержден</span>
+                        <span class="text-sm md:text-md lg:text-base 2xl:text-lg text-gray-400 "><i class="icon-frameBorder"></i> Телефон подтвержден</span>
                     </div>
 
-                    <div class="md:flex text-sm md:text-md">
+                    <div class="md:flex text-sm md:text-sm 2xl:text-base">
                         <span class="mr-3">Услуга:</span>
-                        <ul class="md:flex">
+                        <ul class="md:flex ">
                             <li class="mx-3 list-disc">Монтаж и подключение</li>
                             <li class="mx-3 list-disc">установка розеток 3шт</li>
                             <li class="mx-3 list-disc">установка выключателей 4шт</li>
                         </ul>
                     </div>
-                    <div class="mt-4 border-dashed border-b pb-5 text-sm md:text-md" >
+                    <div class="mt-4 border-dashed border-b pb-5 text-sm md:text-sm lg:text-md 2xl:text-base" >
                         <ul>
                             <li class="mt-3">
                                 <span class="font-medium">Адрес:</span>
@@ -70,42 +72,57 @@ title = "profile"
                 </div>
 
                 <div>
-                    <div class="mx-5 mt-5">
-                        <h5 class="font-medium text-md md:text-lg text-center md:text-left">Как вы оцените работу?</h5>
+                    <div class="mt-5">
+                        <h5 class="font-medium text-sm md:text-md lg:text-lg 2xl:text-xl text-center md:text-left">Как вы оцените работу?</h5>
                     </div>
-                    <div class="flex  mt-4">
-                       <div class="relative w-32 md:w-48 h-8 md:h-14 text-gray-300">
-                            <span class="absolute left-1 md:left-3 top-1 md:top-4">от</span>
-                            <input class="w-32 h-8 md:w-48 md:h-14 border border-gray-300 text-xs md:text-md focus:outline-none px-6 md:px-10 py-2 md:py-5" type="text" width="">
-                            <span class="absolute right-1 top-1 md:right-3 md:top-4">UZS</span>
-                       </div>
-                       <div class="h-8 md:h-14 flex justify-items-center items-center">
-                           <span class="font-medium px-2"> - </span>
-                       </div>
-                       <div class="relative w-32 md:w-48 h-8 md:h-14 text-gray-300">
-                            <span class="absolute left-1 md:left-3 top-1 md:top-4">до</span>
-                            <input class="w-32 h-8 md:w-48 md:h-14 border border-gray-300 text-xs md:text-md focus:outline-none px-6 md:px-10 py-2 md:py-5" type="text" width="">
-                            <span class="absolute right-1 top-1 md:right-3 md:top-4">UZS</span>
-                       </div>
+                    
+                    <div class="flex py-4">
+
+                        <div x-data="{isFocused: false}"
+                            @click="isFocused = !isFocused"
+                            @click.outside="isFocused = false"
+                            :class="{ 'border-blue-900': isFocused , 'border-gray-300': !isFocused }" 
+                            class="flex items-center border-2 bg-gray-300 w-48 h-10 px-2 mr-4 rounded-md text-gray-700 font-medium">
+                            <span class="text-xs sm:text-sm md:text-md bg-gray-300">от</span>
+                            <input class="focus:outline-none p-2 w-full bg-gray-300 text-xs sm:text-sm md:text-md" type="number">
+                        </div>
+                        
+                        
+                        <div x-data="{isFocused: false}"
+                            @click="isFocused = !isFocused"
+                            @click.outside="isFocused = false"
+                            :class="{ 'border-blue-900': isFocused , 'border-gray-300': !isFocused }"
+                            class="flex items-center border-2 w-48 h-10 px-2 bg-gray-300 rounded-md text-gray-700 font-medium">
+                            <span class="text-xs sm:text-sm md:text-md bg-gray-300">до</span>
+                            <input class="focus:outline-none p-2 w-full bg-gray-300 text-xs sm:text-sm md:text-md" type="number">
+                        </div>
+                    
                     </div>
 
                     <div class="flex items-stretch mt-5">
-                        <h5 class="text-sm md:text-md font-medium mr-5">Предложение/комментарий клиенту</h5>
-                        <a class="text-sm md:text-md text-blue-800" href="#">Использовать шаблон</a>
+                        <h5 class="text-sm md:text-md 2xl:text-base font-medium mr-5">Предложение/комментарий клиенту</h5>
+                        <a class="text-sm md:text-md 2xl:text-base text-blue-800" href="#">Использовать шаблон</a>
                     </div>
                     <div class="mt-5 ">
                         <form action="">
-                            <textarea class="h-44 w-full text-sm md:text-md border-2 border-gray-300 p-4" name="" id="" cols="30" rows="10" 
+                            <textarea class="h-44 w-full text-sm md:text-md 2xl:text-base border-2 border-gray-300 p-4 focus:outline-none focus:border-blue-900 " name="" id="" cols="30" rows="10" 
                             placeholder="Пример отклика:
-Здравствуйте, Аваз. У меня большой опыт в монтажной работе. Буду рад помочь вам. Посмотрите в моей анкете работу и отзывы. буду рад обсудить детали работы в удобное для вас время"></textarea>
+    Здравствуйте, Аваз. У меня большой опыт в монтажной работе. Буду рад помочь вам. Посмотрите в моей анкете работу и отзывы. буду рад обсудить детали работы в удобное для вас время"></textarea>
                         </form>
                     </div>
                     
                     <div class="mt-8 flex justify-between">
-                        <a class=" text-sm md:text-md text-blue-900 py-2" href="#">
+                        <a class="transition-all duration-500 text-sm md:text-md 2xl:text-base text-blue-900 py-2 
+                                    px-6 rounded-full bg-white font-medium 
+                                    border-2 border-blue-900 hover:bg-blue-900 hover:text-white 
+                                    focus:bg-blue-900 focus:text-white" href="#">
                             Не подходит
                         </a>
-                        <a class=" text-sm md:text-md bg-blue-900 py-2 px-6 rounded-full text-white font-medium" href="#">
+                        <a class="transition-all duration-500 text-sm md:text-md 2xl:text-base bg-blue-900 py-2 px-6 
+                                rounded-full text-white font-medium border-2 border-blue-900 
+                                hover:text-blue-900 hover:bg-white 
+                                focus:text-blue-900 focus:bg-white
+                                " href="#">
                             Откликнуться
                         </a>
                     </div>
@@ -113,10 +130,10 @@ title = "profile"
             </div>
         </div>
 
-        <div class="md:col-span-1 my-5">
-            <div class="bg-white rounded-sm mx-2 px-6 py-4 flex">
+        <div class="md:col-span-1 mt-4 md:mt-0">
+            <div class="bg-white rounded-md mx-2 px-6 py-4 flex">
                 <img class="mr-5" src="{{'assets/images/error.png' | theme}}" alt="">
-                <div class=" text-sm md:text-md">
+                <div class=" text-sm md:text-md 2xl:text-base">
                     <span>Возникла проблема?</span>
                     <span class="font-medium text-blue-800 block">Напишите нам о ней</span>
                 </div>
