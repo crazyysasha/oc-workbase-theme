@@ -3,6 +3,8 @@ layout = "make-order"
 title = "make-order"
 ==
 <?php
+use Crazy\FreeLancer\Models\Service;
+
 function onStart() {
 
     if (!$category =  $this->getCurrentCategory()) {
@@ -95,7 +97,7 @@ function onSearchService()
     $this->getCurrentServices($servSlug);
     return [
         'url' => $url,
-        '#slideContainer' => $this->renderPartial($nextPartial),
+        '!#slideContainer' => $this->renderPartial($nextPartial),
     ];
 }
 
@@ -154,69 +156,95 @@ function onSetPrice()
 {
     \Flash::success('Ваша заявка успешно принята');
 }
+
+function onSearch()
+{
+    $this['searches'] = Service::
+        where('name', 'like', post('search').'%')
+        ->union(Service::searchWhere(post('search'), ['name', 'slug']))
+        ->limit(10)
+        ->get();
+}
 ?>
 ==
 {##}
-<section x-data="{ activeTab: $persist('order') }" class="relative px-1 sm:px-2 md:px-4 lg:px-0" >
+<section x-data="{ activeTab: $persist('order') }" class="relative px-1 sm:px-2 md:px-4 lg:px-0">
     {# 
         {% partial "swiper/specs" %}
     #}
-  
+
     <div class="grid grid-cols-1 lg:grid-cols-3 container gap-4 mt-2">
 
         <div class="lg:col-span-2 order-2 lg:order-1 h-full bg-white rounded-md">
 
-            <div x-show=" activeTab == 'order' " x-cloak class="p-4 h-full" id="slideContainer" x-init="$.request('onGetSlideView')">
+            <div x-show=" activeTab == 'order' " x-cloak class="p-4 h-full" id="slideContainer"
+                x-init="$.request('onGetSlideView')">
             </div>
 
-            <div x-show=" activeTab == 'spetsialist' " x-cloak class="p-4 h-full" >
+            <div x-show=" activeTab == 'spetsialist' " x-cloak class="p-4 h-full">
                 <div>
                     <div class="md:flex">
                         <div class="flex items-center mt-2 mr-8">
                             <span class="bg-blue-100 rounded-full h-7 w-7 flex items-center justify-center mr-4">
                                 <i class="icon-settings text-sm md:text-lg xl:text-xl 2xl:text-2xl "></i>
                             </span>
-                            <span class="text-sm md:text-lg xl:text-xl 2xl:text-2xl font-medium text-blue-700"> Электрика </span>
+                            <span class="text-sm md:text-lg xl:text-xl 2xl:text-2xl font-medium text-blue-700">
+                                Электрика </span>
                         </div>
                         <div class="flex items-center mt-2">
                             <span class="bg-blue-100 rounded-full h-7 w-7 flex items-center justify-center mr-4">
                                 <i class="icon-location text-sm md:text-lg xl:text-xl 2xl:text-2xl "></i>
                             </span>
-                            <span class="text-sm md:text-lg xl:text-xl 2xl:text-2xl font-medium text-blue-700">г. Ташкент, улица Афросиаб, 41</span>
+                            <span class="text-sm md:text-lg xl:text-xl 2xl:text-2xl font-medium text-blue-700">г.
+                                Ташкент, улица Афросиаб, 41</span>
                         </div>
                     </div>
                     <div class="mt-4 flex items-center">
-                        <span class="text-xs sm:text-sm md:text-lg xl:text-xl 2xl:text-2xl text-gray-400 mr-4">Сортировка:</span>
-                        <div class="relative text-white" x-data="{ Modal : false,lang: $persist('Подходящие')}" @click.away="Modal = false">
+                        <span
+                            class="text-xs sm:text-sm md:text-lg xl:text-xl 2xl:text-2xl text-gray-400 mr-4">Сортировка:</span>
+                        <div class="relative text-white" x-data="{ Modal : false,lang: $persist('Подходящие')}"
+                            @click.away="Modal = false">
                             <button
                                 class="flex items-center justify-between border bg-white text-blue-700 rounded-md w-full sm:w-60 
                                     py-1 px-1 sm:px-2 transition-all duration-300 focus:outline-none hover:bg-blue-700 hover:text-white 
                                     focus:bg-white focus:text-blue-900 text-xs sm:text-sm md:text-md xl:text-lg 2xl:text-xl "
                                 @click="Modal = !Modal">
                                 <span x-text="lang"></span>
-                                <svg x-show="!Modal" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                <svg x-show="!Modal" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
                                 </svg>
-                                <svg x-show="Modal" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                                <svg x-show="Modal" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
+                                        clip-rule="evenodd" />
                                 </svg>
                             </button>
                             <div x-show="Modal" x-cloak
                                 class="bg-blue-900 text-white w-full absolute z-10 p-1 rounded-xl top-10">
-                                <div class="flex flex-col text-black text-center text-white text-xs sm:text-sm md:text-md xl:text-lg 2xl:text-xl ">
-                                    <a @click="lang = 'Подходящие',Modal = !Modal" class="hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1"  href="#">
+                                <div
+                                    class="flex flex-col text-black text-center text-white text-xs sm:text-sm md:text-md xl:text-lg 2xl:text-xl ">
+                                    <a @click="lang = 'Подходящие',Modal = !Modal"
+                                        class="hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1" href="#">
                                         <span>Подходящие</span>
                                     </a>
-                                    <a @click="lang = 'По отзывам',Modal = !Modal" class="my-1 hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1"  href="#">
+                                    <a @click="lang = 'По отзывам',Modal = !Modal"
+                                        class="my-1 hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1" href="#">
                                         <span>По отзывам</span>
                                     </a>
-                                    <a @click="lang = 'Пр возрастанию цены',Modal = !Modal" class="hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1"  href="#">
+                                    <a @click="lang = 'Пр возрастанию цены',Modal = !Modal"
+                                        class="hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1" href="#">
                                         <span>Пр возрастанию цены</span>
                                     </a>
-                                    <a @click="lang = 'По убыванию цены',Modal = !Modal" class="hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1"  href="#">
+                                    <a @click="lang = 'По убыванию цены',Modal = !Modal"
+                                        class="hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1" href="#">
                                         <span>По убыванию цены</span>
                                     </a>
-                                    <a @click="lang = 'По местонахождению',Modal = !Modal" class="hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1"  href="#">
+                                    <a @click="lang = 'По местонахождению',Modal = !Modal"
+                                        class="hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1" href="#">
                                         <span>По местонахождению</span>
                                     </a>
 
@@ -233,7 +261,7 @@ function onSetPrice()
                     <div class="col-span-2">
 
                         <!-- Специалисты  -->
-                        <div >
+                        <div>
 
                             <div class="flex items-center">
 
@@ -242,9 +270,12 @@ function onSetPrice()
                                 </div>
 
                                 <div class="">
-                                    <h5 class="font-bold text-sm md: xl:text-xl xl:text-xl 2xl:text-2xl">Акмаль Халиков </h5>
-                                    <span class="text-xs md:text-sm lg:text-md text-gray-400">Был в сети сегодня в 12:20</span>
-                                    <div class="flex justify-start text text-sm md:text-md text-gray-400 font-semibold my-1">
+                                    <h5 class="font-bold text-sm md: xl:text-xl xl:text-xl 2xl:text-2xl">Акмаль Халиков
+                                    </h5>
+                                    <span class="text-xs md:text-sm lg:text-md text-gray-400">Был в сети сегодня в
+                                        12:20</span>
+                                    <div
+                                        class="flex justify-start text text-sm md:text-md text-gray-400 font-semibold my-1">
                                         <div>
                                             <i class="icon-orangestar mr-2"></i>
                                             <span>10 из 10</span>
@@ -261,8 +292,10 @@ function onSetPrice()
                                     <div class="my-1">
                                         <span class="font-medium text-sm md:text-md">
                                             Выезд по
-                                            <a class="text-blue-500 transition-all hover:underline transition duration-500" href="#">Ташкенту,</a>
-                                            <a class="text-blue-500 transition-all hover:underline transition duration-500" href="#"> Ташкентской обл.</a>
+                                            <a class="text-blue-500 transition-all hover:underline transition duration-500"
+                                                href="#">Ташкенту,</a>
+                                            <a class="text-blue-500 transition-all hover:underline transition duration-500"
+                                                href="#"> Ташкентской обл.</a>
                                         </span>
                                     </div>
                                 </div>
@@ -276,7 +309,7 @@ function onSetPrice()
                                         Квалификация подтверждена
                                     </h4>
                                     <p class="text-sm md:text-md xl:text-xl">
-                                         Специалист сдал экзамен по услугам: электрика, монтраж слаботочных сетей.
+                                        Специалист сдал экзамен по услугам: электрика, монтраж слаботочных сетей.
                                     </p>
                                 </div>
                                 <div class="flex flex-wrap justify-between my-4">
@@ -288,35 +321,40 @@ function onSetPrice()
                                 <div class="my-4">
                                     <h5 class="text-md md:text-lg xl:text-xl 2xl:text-2xl font-medium">О себе:</h5>
                                     <p class="text-sm lg-text-md xl:text-xl">
-                                        Техник-электрик,Большой опыт в решении ваших 
-                                        электромонтажных задач. Выбрав меня вы облегчите 
-                                        себе текущий или наступаюшую стадию электрофикации. 
-                                        Обещаю,результатом останетесь довольны! Работу сделаю 
+                                        Техник-электрик,Большой опыт в решении ваших
+                                        электромонтажных задач. Выбрав меня вы облегчите
+                                        себе текущий или наступаюшую стадию электрофикации.
+                                        Обещаю,результатом останетесь довольны! Работу сделаю
                                         быстро и качественно.
                                     </p>
                                     <div class="flex justify-between py-4 border-b border-gray-500 border-dotted">
-                                        <a class="text-sm md:text-md lg:text-lg xl:text-xl text-blue-500 transition duration-700 ease-in-out hover:underline " href="#">
+                                        <a class="text-sm md:text-md lg:text-lg xl:text-xl text-blue-500 transition duration-700 ease-in-out hover:underline "
+                                            href="#">
                                             Подробнее
                                         </a>
                                         <a href="#">
-                                            <img class="w-5 h-5" src="{{'assets/images/googletranslate.png' | theme}}" alt="">
+                                            <img class="w-5 h-5" src="{{'assets/images/googletranslate.png' | theme}}"
+                                                alt="">
                                         </a>
                                     </div>
                                 </div>
 
                                 <div class="my-4">
-                                    <h5 class="text-md md:text-lg xl:text-xl 2xl:text-2xl font-medium">Образование и опыт:  </h5>
+                                    <h5 class="text-md md:text-lg xl:text-xl 2xl:text-2xl font-medium">Образование и
+                                        опыт: </h5>
                                     <p class="text-sm lg-text-md xl:text-lg">
-                                        Ташкентский государственный технический 
-                                        унивеситет, работал в компании "Электромонтаж Сервис" 
+                                        Ташкентский государственный технический
+                                        унивеситет, работал в компании "Электромонтаж Сервис"
                                         с 2010 по 2019год, на данный момент работаю со своей командой командой.
                                     </p>
                                     <div class="flex justify-between py-4 border-b border-gray-500 border-dotted">
-                                        <a class="text-sm md:text-md lg:text-lg xl:text-xl text-blue-500 transition-all duration-500 hover:underline " href="#">
+                                        <a class="text-sm md:text-md lg:text-lg xl:text-xl text-blue-500 transition-all duration-500 hover:underline "
+                                            href="#">
                                             Подробнее
                                         </a>
                                         <a href="#">
-                                            <img class="w-5 h-5" src="{{'assets/images/googletranslate.png' | theme}}" alt="">
+                                            <img class="w-5 h-5" src="{{'assets/images/googletranslate.png' | theme}}"
+                                                alt="">
                                         </a>
                                     </div>
                                 </div>
@@ -324,53 +362,66 @@ function onSetPrice()
                                 <div class="my-4">
                                     <h5 class="text-md md:text-lg xl:text-xl 2xl:text-2xl font-medium">Отзывы:</h5>
                                     <p class="text-sm lg-text-md xl:text-lg">
-                                        Нам нужен был электрик. Мастер произвел замечательное 
+                                        Нам нужен был электрик. Мастер произвел замечательное
                                         впечатление. Работу выполнил хорошо, установил розетки.
-                                         Мастер сказал, что если понадобятся еще услуги электрика, 
-                                         то всегда можно к нему обратиться.
+                                        Мастер сказал, что если понадобятся еще услуги электрика,
+                                        то всегда можно к нему обратиться.
                                     </p>
                                     <div class="flex justify-between py-4 border-b border-gray-500 border-dotted">
-                                        <a class="text-sm md:text-md lg:text-lg xl:text-xl text-blue-500 transition-all duration-500 hover:underline " href="#">
+                                        <a class="text-sm md:text-md lg:text-lg xl:text-xl text-blue-500 transition-all duration-500 hover:underline "
+                                            href="#">
                                             Все отзывы (20)
                                         </a>
                                         <a href="#">
-                                            <img class="w-5 h-5" src="{{'assets/images/googletranslate.png' | theme}}" alt="">
+                                            <img class="w-5 h-5" src="{{'assets/images/googletranslate.png' | theme}}"
+                                                alt="">
                                         </a>
                                     </div>
                                 </div>
 
                                 <div class="mt-4">
-                                    <h5 class="text-md md:text-lg xl:text-xl 2xl:text-2xl font-medium">Услуги и цены</h5>
+                                    <h5 class="text-md md:text-lg xl:text-xl 2xl:text-2xl font-medium">Услуги и цены
+                                    </h5>
                                     <div class="text-sm lg-text-md xl:text-lg">
                                         <ul>
-                                            <li class="flex justify-between my-1 border-b border-gray-500 border-dotted">
+                                            <li
+                                                class="flex justify-between my-1 border-b border-gray-500 border-dotted">
                                                 <span class="-mb-1 bg-white">Монтаж проводки</span>
-                                                <span class="text-gray-400 font-medium -mb-1 bg-white">От 25 000 сум</span>
+                                                <span class="text-gray-400 font-medium -mb-1 bg-white">От 25 000
+                                                    сум</span>
                                             </li>
-                                            <li class="flex justify-between my-1 border-b border-gray-500 border-dotted">
+                                            <li
+                                                class="flex justify-between my-1 border-b border-gray-500 border-dotted">
                                                 <span class="-mb-1 bg-white">Установка розетки, 1 точка</span>
-                                                <span class="text-gray-400 font-medium -mb-1 bg-white">От 15 000 сум</span>
+                                                <span class="text-gray-400 font-medium -mb-1 bg-white">От 15 000
+                                                    сум</span>
                                             </li>
-                                            <li class="flex justify-between my-1 border-b border-gray-500 border-dotted">
+                                            <li
+                                                class="flex justify-between my-1 border-b border-gray-500 border-dotted">
                                                 <span class="-mb-1 bg-white">Установка выключателя</span>
-                                                <span class="text-gray-400 font-medium -mb-1 bg-white">От 10 000 сум</span>
+                                                <span class="text-gray-400 font-medium -mb-1 bg-white">От 10 000
+                                                    сум</span>
                                             </li>
-                                            <li class="flex justify-between my-1 border-b border-gray-500 border-dotted">
+                                            <li
+                                                class="flex justify-between my-1 border-b border-gray-500 border-dotted">
                                                 <span class="-mb-1 bg-white">Установка светильника</span>
-                                                <span class="text-gray-400 font-medium -mb-1 bg-white">От 25 000 сум</span>
+                                                <span class="text-gray-400 font-medium -mb-1 bg-white">От 25 000
+                                                    сум</span>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="flex justify-between pt-4 ">
-                                        <a class="text-sm md:text-md lg:text-lg xl:text-xl text-blue-500 transition-all duration-500 hover:underline " href="#">
+                                        <a class="text-sm md:text-md lg:text-lg xl:text-xl text-blue-500 transition-all duration-500 hover:underline "
+                                            href="#">
                                             Все услуги и цены (18)
                                         </a>
                                         <a href="#">
-                                            <img class="w-5 h-5" src="{{'assets/images/googletranslate.png' | theme}}" alt="">
+                                            <img class="w-5 h-5" src="{{'assets/images/googletranslate.png' | theme}}"
+                                                alt="">
                                         </a>
                                     </div>
                                 </div>
-                                
+
 
                             </div>
 
@@ -379,10 +430,12 @@ function onSetPrice()
 
                     <div class="col-span-1">
                         <div class="w-full px-3">
-                            <a href="#" class="bg-blue-900 border transition duration-500 border-blue-900 rounded-md block w-full py-3 text-center text-white text-sm md:text-md lg:text-lg xl:text-xl 2xl:text-2xl font-medium hover:text-blue-900 hover:bg-white" >
+                            <a href="#"
+                                class="bg-blue-900 border transition duration-500 border-blue-900 rounded-md block w-full py-3 text-center text-white text-sm md:text-md lg:text-lg xl:text-xl 2xl:text-2xl font-medium hover:text-blue-900 hover:bg-white">
                                 Написать сообщение
                             </a>
-                            <p class="my-2 text-xs md:text-sm lg:text-md xl:text-lg 2xl:text-xl text-center">Вы сможете написать после заполнения деталей заказа</p>
+                            <p class="my-2 text-xs md:text-sm lg:text-md xl:text-lg 2xl:text-xl text-center">Вы сможете
+                                написать после заполнения деталей заказа</p>
                         </div>
                     </div>
 
@@ -391,7 +444,7 @@ function onSetPrice()
                 <hr class="w- border-gray-500 border-dashed my-4 md:my-8">
             </div>
 
-            <div x-show=" activeTab == 'help' " x-cloak class="p-4 h-full" >
+            <div x-show=" activeTab == 'help' " x-cloak class="p-4 h-full">
                 help
             </div>
         </div>
@@ -399,15 +452,21 @@ function onSetPrice()
         <div class="lg:col-span-1 order-1 lg:order-2">
             <div class="bg-white rounded-md">
                 <ul class="p-4 flex flex-row lg:flex-col justify-around ">
-                    <li @click="activeTab = 'order' " class=" text-sm md:text-md lg:text-xl 2xl:text-2xl p-2 text-xs bg-gray-300 bg-opacity-0 hover:bg-opacity-50 my-1 rounded-md font-semibold cursor-pointer" :class="{'hover:bg-opacity-100 bg-opacity-75': activeTab == 'order'}">
+                    <li @click="activeTab = 'order' "
+                        class=" text-sm md:text-md lg:text-xl 2xl:text-2xl p-2 text-xs bg-gray-300 bg-opacity-0 hover:bg-opacity-50 my-1 rounded-md font-semibold cursor-pointer"
+                        :class="{'hover:bg-opacity-100 bg-opacity-75': activeTab == 'order'}">
                         Заказ
                     </li>
-                    
-                    <li @click="activeTab = 'help' " class=" text-sm md:text-md lg:text-xl 2xl:text-2xl p-2 text-xs bg-gray-300 bg-opacity-0 hover:bg-opacity-50 my-1 rounded-md font-semibold cursor-pointer" :class="{'hover:bg-opacity-100 bg-opacity-75': activeTab == 'help'}">
+
+                    <li @click="activeTab = 'help' "
+                        class=" text-sm md:text-md lg:text-xl 2xl:text-2xl p-2 text-xs bg-gray-300 bg-opacity-0 hover:bg-opacity-50 my-1 rounded-md font-semibold cursor-pointer"
+                        :class="{'hover:bg-opacity-100 bg-opacity-75': activeTab == 'help'}">
                         Поддержка
                     </li>
-                    
-                    <li @click="activeTab = 'spetsialist' " class="text-sm md:text-md lg:text-xl 2xl:text-2xl p-2 text-xs bg-gray-300 bg-opacity-0 hover:bg-opacity-50 my-1 rounded-md font-semibold cursor-pointer" :class="{'hover:bg-opacity-100 bg-opacity-75': activeTab == 'spetsialist'}">
+
+                    <li @click="activeTab = 'spetsialist' "
+                        class="text-sm md:text-md lg:text-xl 2xl:text-2xl p-2 text-xs bg-gray-300 bg-opacity-0 hover:bg-opacity-50 my-1 rounded-md font-semibold cursor-pointer"
+                        :class="{'hover:bg-opacity-100 bg-opacity-75': activeTab == 'spetsialist'}">
                         Специалисты
                     </li>
                 </ul>
@@ -419,22 +478,26 @@ function onSetPrice()
                         <div class="relative">
                             <div class="swiper mySwiper w-full">
                                 <div class="swiper-wrapper w-full">
-                                    <div class="swiper-slide mx-0 w-full rounded-md "><img class="r p-0ounded-md" src="{{'assets/images/el-banner1.jpg' | theme}}" width="100%" alt=""></div>
-                                    <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner6.jpg' | theme}}" width="100%" alt=""></div>
+                                    <div class="swiper-slide mx-0 w-full rounded-md "><img class="r p-0ounded-md"
+                                            src="{{'assets/images/el-banner1.jpg' | theme}}" width="100%" alt=""></div>
+                                    <div class="swiper-slide w-full rounded-md"><img class="rounded-md"
+                                            src="{{'assets/images/el-banner6.jpg' | theme}}" width="100%" alt=""></div>
                                 </div>
-                            </div>                                                 
+                            </div>
                         </div>
                     </div>
-                    
+
 
                     <div class="w-full mt-5 rounded-md ">
                         <div class="relative">
                             <div class="swiper mySwiper w-full">
                                 <div class="swiper-wrapper w-full">
-                                  <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner4.jpg' | theme}}" width="100%" alt=""></div>
-                                  <div class="swiper-slide w-full rounded-md"><img class="rounded-md" src="{{'assets/images/el-banner5.jpg' | theme}}" width="100%" alt=""></div>
+                                    <div class="swiper-slide w-full rounded-md"><img class="rounded-md"
+                                            src="{{'assets/images/el-banner4.jpg' | theme}}" width="100%" alt=""></div>
+                                    <div class="swiper-slide w-full rounded-md"><img class="rounded-md"
+                                            src="{{'assets/images/el-banner5.jpg' | theme}}" width="100%" alt=""></div>
                                 </div>
-                            </div>                                                 
+                            </div>
                         </div>
                     </div>
 
@@ -450,7 +513,7 @@ function onSetPrice()
                         </div>
                     </div> -->
 
-            
+
                 </div>
             </div>
         </div>
@@ -459,14 +522,14 @@ function onSetPrice()
 
     <div class="lg:grid grid-cols-3 container relative">
         {% put scripts %}
-            <script>
-                var swiper = new Swiper('.mySwiper', {
-                    autoplay: {
-                         delay: 5000,
-                        },
-                    effect: 'fade'
-                    });
-            </script>
+        <script>
+            var swiper = new Swiper('.mySwiper', {
+                autoplay: {
+                    delay: 5000,
+                },
+                effect: 'fade'
+            });
+        </script>
         {% endput %}
     </div>
 </section>
