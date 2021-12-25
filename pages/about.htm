@@ -179,7 +179,7 @@ title = "About"
                         <div class="mb-1 text-gray-400 text-sm md:text-md lg:text-lg 2xl:text-xl font-medium" >
                             <span>Районы выезда к клиентам</span>
                         </div>
-                        <div class="mb-1 flex justify-items-center items-center text-xs md:text-sm lg:text-md 2xl:text-lg" >
+                        <div class="mb-1 flex flex-wrap justify-items-center items-center text-xs md:text-sm lg:text-md 2xl:text-lg" >
                             <span class="inline-block w-2 h-2 rounded-full bg-orange-500 mr-1" ></span>
                             <span>Алмазарский район</span>
                             <span class="inline-block w-2 h-2 rounded-full bg-blue-500 ml-3 mr-1" ></span>
@@ -200,55 +200,56 @@ title = "About"
 
             </div>
 
-            <div class="p-5 m-1 mt-4 bg-white rounded-md ">
+            <div class="p-5 m-1 mt-4 bg-white rounded-md " x-data="{repair: false}">
                 
-                <div class="flex justify-between mb-4">
+                <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-4">
                     <h4 class="font-medium text-sm md:text-md lg:text-lg 2xl:text-xl">Специальности</h4>
-                    <button @click="Modal = !Modal" class="text-blue-500 text-sm md:text-sm lg:text-md 2xl:text-lg  " href="#">Добавить новую специальность</button>
+                    <button @click="Modal = !Modal" 
+                            class="text-blue-500 text-left text-sm md:text-sm lg:text-md 2xl:text-lg mt-2 sm:mt-0" 
+                            href="#">Добавить новую специальность
+                    </button>
                 </div>
 
-                <div class="flex justify-between">
+                <div class="flex flex-col sm:flex-row justify-between sm:items-center">
                     <div class="flex justify-items-center items-center">
-                        <span class="rounded-full bg-gray-200 w-9 h-9 flex justify-items-center items-center">
+                        <span class="rounded-full bg-gray-200 w-6 h-6 flex justify-items-center items-center">
                             <i class="icon-settings m-auto"></i>
                         </span> 
-                        <h4 class="inline-block ml-2  md:text-lg font-medium text-sm md:text-md lg:text-lg 2xl:text-xl">
+                        <h4 class="inline-block ml-2  md:text-lg font-medium text-sm md:text-md lg:text-base 2xl:text-lg">
                             Мастера по ремонту
                         </h4>
                     </div>
-                    <div>
-                        <div class="relative inline-block w-9 mr-2 align-middle select-none transition duration-200 ease-in-out">
-                            <div class="mb-2">                
-                                <div class="form-switch inline-block align-middle">
-                                    <input type="checkbox" name="1" id="1" class="form-switch-checkbox" />
-                                    <label class="form-switch-label" for="1"></label>
+                    <div class="mt-2 ms:mt-0" x-data="{isActive: false}">
+                        <input @click="isActive = !isActive , repair = !repair" id="checkToggle" type="checkbox" hidden>
+                        <label for="checkToggle" class="flex items-center">
+                            <div class="relative w-10 rounded-full h-6 bg-gray-300 cursor-pointer mr-2"
+                                :class="{ 'bg-gray-300': !isActive , 'bg-blue-900' : isActive }">
+                                <div class="absolute  rounded-full h-4 w-4 bg-white"
+                                    :class="{ 'left-1 top-1': !isActive , 'right-1 top-1' : isActive }">
                                 </div>
-                                <label class="text-xs text-grey-dark" for="1">Default</label>
                             </div>
-                        </div>
-                        <label for="toggle" class=" md:text-lg font-medium text-sm md:text-md lg:text-lg 2xl:text-xl">Статус</label>
-                    </div>
-                    
-                    
+                            <span class="text-sm md:text-md lg:text-base 2xl:text-lg cursor-pointer">Статус</span>
+                        </label>
+                    </div>            
                 </div>
 
-                <div class="md:grid md:grid-cols-3 gap-4 p-4 mt-5">
+                <div class="md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 mt-5">
                     <div class="border border-gray-300 rounded-md p-5 mt-2">
                         <div class="flex justify-between text-orange-600">
-                            <span>Электрика</span>
+                            <span class="text-sm md:text-md lg:text-base 2xl:text-lg">Электрика</span>
                             <span class=""><i class="fa fa-trash"></i></span>
                         </div>
-                        <div class="grid grid-cols-2 mt-4 text-sm">
-                            <div>
-                                <p class="text-gray-300 ">Оказывает</p>
+                        <div class="flex mt-4 text-xs sm:text-sm lg:text-md 2xl:text-base">
+                            <div class="sm:flex-1 mr-2 ms:mr-0">
+                                <p class="text-gray-400">Оказывает</p>
                                 <span>12 из 18</span>
                             </div>
-                            <div>
+                            <div class="sm:flex-1">
                                 <div class="w-1.5 inline-block bg-blue-200 h-8 rounded-sm relative">
                                     <div class="absolute bottom-0 w-full h-3/4 bg-blue-500"></div>
                                 </div>
                                <div class="inline-block ml-3">
-                                    <p class="text-gray-300 ">Цены указаны</p>
+                                    <p class="text-gray-400 ">Цены указаны</p>
                                     <span>В 10 услугах</span>
                                </div>
                             </div>
@@ -258,122 +259,130 @@ title = "About"
                                 <span class="text-center">
                                     <i class="icon-pencil"></i>
                                 </span> 
-                                <h4 class="inline-block ml-2">Редактировать</h4>
+                                <h4 class="text-sm md:text-md lg:text-base 2xl:text-lg">Редактировать</h4>
                             </div>
-                            <div>
-                                <div class="relative inline-block w-9 mr-2 align-middle select-none transition duration-200 ease-in">
-                                    <input
-                                        type="checkbox"
-                                        name="toggl"
-                                        id="toggl"
-                                        class="toggle-checkbox absolute block w-4 h-4 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
-                                    <label
-                                        for="toggl"
-                                        class="toggle-label block overflow-hidden h-4 rounded-full bg-gray-300 cursor-pointer">
-                                        
-                                    </label>
-                                </div>
-                                <label for="toggl">Статус</label>
+                            <div x-data="{isActive: false}">
+                                <input  x-bind:disabled="!repair" @click="isActive = !isActive" id="checkToggleChild" type="checkbox" hidden>
+                                <label for="checkToggleChild" class="flex items-center">
+                                    <div class="relative w-9 rounded-full h-5 bg-gray-300 cursor-pointer mr-2"
+                                        :class="{ 'bg-gray-300': !isActive , 'bg-blue-900' : isActive }">
+                                        <div class="absolute  rounded-full h-3 w-3 bg-white"
+                                            :class="{ 'left-1 top-1': !isActive , 'right-1 top-1' : isActive }">
+                                        </div>
+                                    </div>
+                                    <span class="text-sm md:text-md lg:text-base 2xl:text-lg cursor-pointer">Статус</span>
+                                </label>
                             </div>
                             
                             
                         </div>
         
                     </div>
+
                     <div class="border border-gray-300 rounded-md p-5 mt-2">
-                        <div class="flex justify-between ">
-                            <span>Ремонт под ключ</span>
-                            <span class="text-orange-600"><i class="fa fa-trash"></i></span>
+                        <div class="flex justify-between text-orange-600">
+                            <span class="text-sm md:text-md lg:text-base 2xl:text-lg">Ремонт под ключ</span>
+                            <span class=""><i class="fa fa-trash"></i></span>
                         </div>
-                        <div class="grid grid-cols-2 mt-4 text-sm">
-                            <div>
-                                <p class="text-gray-300 ">Оказывает</p>
+                        <div class="flex mt-4 text-xs sm:text-sm lg:text-md 2xl:text-base">
+                            <div class="sm:flex-1 mr-2 ms:mr-0">
+                                <p class="text-gray-400">Оказывает</p>
                                 <span>4 из 20</span>
                             </div>
-                            <div>
+                            <div class="sm:flex-1">
                                 <div class="w-1.5 inline-block bg-blue-200 h-8 rounded-sm relative">
-                                    <div class="absolute bottom-0 w-full h-1/5 bg-blue-500"></div>
+                                    <div class="absolute bottom-0 w-full h-1/4 bg-blue-500"></div>
                                 </div>
                                <div class="inline-block ml-3">
-                                    <p class="text-gray-300 ">Цены указаны</p>
+                                    <p class="text-gray-400 ">Цены указаны</p>
                                     <span>В 1 услугах</span>
                                </div>
                             </div>
                         </div>
                         <div class="flex justify-between mt-4">
-                            <a href="#">
-                                <span class="text-center text-black">
+                            <div>
+                                <span class="text-center">
                                     <i class="icon-pencil"></i>
                                 </span> 
-                                <span href="#" class="inline-block ml-1">Редактировать</span>
-                            </a>
-                            <div>
-                                <div class="relative inline-block w-9 mr-2 align-middle select-none transition duration-200 ease-in">
-                                    <input
-                                        type="checkbox"
-                                        name="togg"
-                                        id="togg"
-                                        class="toggle-checkbox absolute block w-4 h-4 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
-                                    <label
-                                        for="togg"
-                                        class="toggle-label block overflow-hidden h-4 rounded-full bg-gray-300 cursor-pointer">
-                                        
-                                    </label>
-                                </div>
-                                <label for="togg">Статус</label>
+                                <h4 class="text-sm md:text-md lg:text-base 2xl:text-lg">Редактировать</h4>
+                            </div>
+                            <div x-data="{isActive: false}">
+                                <input  x-bind:disabled="!repair" @click="isActive = !isActive" id="checkToggleChild_2" type="checkbox" hidden>
+                                <label for="checkToggleChild_2" class="flex items-center">
+                                    <div class="relative w-9 rounded-full h-5 bg-gray-300 cursor-pointer mr-2"
+                                        :class="{ 'bg-gray-300': !isActive , 'bg-blue-900' : isActive }">
+                                        <div class="absolute  rounded-full h-3 w-3 bg-white"
+                                            :class="{ 'left-1 top-1': !isActive , 'right-1 top-1' : isActive }">
+                                        </div>
+                                    </div>
+                                    <span class="text-sm md:text-md lg:text-base 2xl:text-lg cursor-pointer">Статус</span>
+                                </label>
                             </div>
                             
                             
                         </div>
         
                     </div>
+
                     <div class="border border-gray-300 rounded-md p-5 mt-2 text-center cursor-pointer" >
-                        <div class="bg-gray-300 mx-auto w-10 h-10 flex justify-items-center items-center text-white rounded-full">
-                            <span class=" font-black text-3xl w-9 h-9 m-auto">+</span>
+                        <div class="flex justify-center items-center text-center bg-gray-300 mx-auto w-10 h-10 text-white rounded-full">
+                            <span class="font-black text-3xl text-center">+</span>
                         </div>
                         <div class="">
-                            <p class="text-gray-300 m-auto">Добавить специальность</p>
+                            <p class="text-gray-400 m-auto">Добавить специальность</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="p-5 m-1 mt-4 ">
-                <div class="md:grid md:grid-cols-4" >
+            <div class="mt-4 ">
+                <div class="md:grid md:grid-cols-3 lg:grid-cols-4 2xl-grid-cols-5" >
 
                     <div class="mx-2">
-                        <h3 class="text-xl font-medium my-4">Фото работ</h3>
+                        <h3 class="text-md md:text-base lg:text-lg 2xl:text-xl font-medium my-4">Фото работ</h3>
                         <div class="bg-white rounded-md text-center py-10">
                             <div class="text-7xl"><i class="icon-camera"></i></div>
-                            <span class="text-gray-300 my-5 font-medium block">Нет фото</span>
-                            <a class="rounded-md bg-blue-100 text-blue-700 px-4 py-2 w-24 h-10 block mx-auto" href="#"><span>Добавить</span></a>
+                            <span class="text-gray-400 my-5 font-medium block">Нет фото</span>
+                            <a class="rounded-md text-sm md:text-md lg:text-base 2xl:text-lg bg-blue-100 text-blue-700 px-4 py-2 transition-all duration-300 hover:bg-blue-900 hover:text-white" href="#">
+                                <span>Добавить</span>
+                            </a>
                         </div>
                         <div class="my-5 text-center">
-                            <a class="border border-blue-700 text-blue-700 px-4 py-2 my-2 rounded-md bg-blue-100" href="#"><span>Пройти сертификацию</span></a>
+                            <a class="border border-blue-700 text-blue-700 px-4 py-2 my-2 rounded-md bg-blue-100 transition-all duration-300 hover:bg-blue-700 hover:text-white text-sm md:text-md lg:text-base 2xl:text-lg" href="#">
+                                <span>Пройти сертификацию</span>
+                            </a>
                         </div>
                     </div>
 
                     <div class="mx-2">
-                        <h3 class="text-xl font-medium my-4">Фото дипломов</h3>
+                        <h3 class="text-md md:text-base lg:text-lg 2xl:text-xl font-medium my-4">Фото дипломов</h3>
                         <div class="bg-white rounded-md text-center py-10">
                             <div class="text-7xl"><i class="icon-camera"></i></div>
-                            <span class="text-gray-300 my-5 font-medium block">Нет фото</span>
-                            <a class="rounded-md bg-blue-100 text-blue-700 px-4 py-2 w-24 h-10 block mx-auto" href="#"><span>Добавить</span></a>
+                            <span class="text-gray-400 my-5 font-medium block">Нет фото</span>
+                            <a class="rounded-md text-sm md:text-md lg:text-base 2xl:text-lg bg-blue-100 text-blue-700 px-4 py-2 transition-all duration-300 hover:bg-blue-900 hover:text-white" href="#">
+                                <span>Добавить</span>
+                            </a>
                         </div>
                         <div class="my-5 text-center">
-                            <a class="border border-blue-700 text-blue-700 px-4 py-2 my-2 rounded-md bg-blue-100" href="#"><span>Пройти сертификацию</span></a>
+                            <a class="border border-blue-700 text-blue-700 px-4 py-2 my-2 rounded-md bg-blue-100 transition-all duration-300 hover:bg-blue-700 hover:text-white text-sm md:text-md lg:text-base 2xl:text-lg" href="#">
+                                <span>Пройти сертификацию</span>
+                            </a>
                         </div>
                     </div>
 
                     <div class="mx-2">
-                        <h3 class="text-xl font-medium my-4">Загрузите паспорт</h3>
+                        <h3 class="text-md md:text-base lg:text-lg 2xl:text-xl font-medium my-4">Загрузите паспорт</h3>
                         <div class="bg-white rounded-md text-center py-10">
                             <div class="text-7xl"><i class="icon-camera"></i></div>
-                            <span class="text-gray-300 my-5 font-medium block">Нет фото</span>
-                            <a class="rounded-md bg-blue-100 text-blue-700 px-4 py-2 w-24 h-10 block mx-auto" href="#"><span>Добавить</span></a>
+                            <span class="text-gray-400 my-5 font-medium block">Нет фото</span>
+                            <a class="rounded-md text-sm md:text-md lg:text-base 2xl:text-lg bg-blue-100 text-blue-700 px-4 py-2 transition-all duration-300 hover:bg-blue-900 hover:text-white" href="#">
+                                <span>Добавить</span>
+                            </a>
                         </div>
                         <div class="my-5 text-center">
-                            <a class="border border-blue-700 text-blue-700 px-4 py-2 my-2 rounded-md bg-blue-100" href="#"><span>Пройти сертификацию</span></a>
+                            <a class="border border-blue-700 text-blue-700 px-4 py-2 my-2 rounded-md bg-blue-100 transition-all duration-300 hover:bg-blue-700 hover:text-white text-sm md:text-md lg:text-base 2xl:text-lg" href="#">
+                                <span>Пройти сертификацию</span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -382,7 +391,7 @@ title = "About"
    </div>
 
 
-   <div x-show="Modal" class="container px-2 md:px-4 2xl:px-20 py-2 md:py-4 fixed top-0 mt-24 w-full h-full border border-gray-300 rounded-md bg-white z-10 inset-x-0" >
+   <div x-cloak x-show="Modal" class="container px-2 md:px-4 2xl:px-20 py-2 md:py-4 fixed top-0 mt-24 w-full h-full border border-gray-300 rounded-md bg-white z-10 inset-x-0" >
     <div class="flex justify-between py-3 border-b border-gray-300 px-4">
         <span>Специальности</span>
         <button class="" @click="Modal = !Modal" ><span>×</span></button>
