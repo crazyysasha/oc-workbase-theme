@@ -439,7 +439,7 @@ function onSearch()
             </div>
 
             <div x-show=" activeTab == 'help' " x-cloak class="p-4 h-full">
-                help
+
             </div>
         </div>
 
@@ -451,8 +451,11 @@ function onSearch()
                                 hover:bg-opacity-50 my-1 rounded-md font-semibold cursor-pointer" 
                         :class="{'bg-opacity-30': activeTab != 'order' , 'hover:bg-opacity-100 bg-opacity-75': activeTab == 'order' }">
                         <div class="flex justify-between items-cetner">
-                            <span>Заказ</span>
-                            <span class="text-xs md:text-sm lg:text-md 2xl:text-base">Заполнен на 58 %</span>
+                            <span class="ml-2">Заказ</span>
+                            <div>
+                                <span class="hidden md:inline-block text-xs md:text-sm lg:text-md 2xl:text-base">Заполнен на</span>
+                                <span class="text-xs md:text-sm lg:text-md 2xl:text-base">58 %</span>
+                            </div>
                         </div>
                         <div class="absolute inset-0 opacity-30 bg-gray-900 w-7/12 h-full rounded-md"
                              :class="{'bg-gray-300': activeTab != 'order','bg-gray-900': activeTab == 'order' }"
