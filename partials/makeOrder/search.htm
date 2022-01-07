@@ -1,0 +1,45 @@
+{##}
+<form x-data="{nextForm: 'select' }"
+        x-on:submit.prevent="$.request('makeOrder::onSetData', {
+            data: {
+                flash: true,
+                loading: indicator,
+                validate: 'select',
+                form: nextForm,
+            }
+        });"
+        class="flex flex-col h-full">
+    <div>
+        <h5 class="text-sm md:text-md 2xl:text-lg font-bold text-gray-500">
+            {{ category.name }}
+        </h5>
+        <h2 class="font-semibold text-sm sm:text-sm md:text-md lg:text-lg 2xl:text-xl md:font-medium mt-3 mb-4">
+            {{category.search_title ?? 'Что нужно сделать?' }}
+        </h2>
+
+        {% partial 'fields/search/with-tags'
+            placeholder="Услуга или специалист"
+        %}
+    </div>
+
+    <div class="sticky w-full bg-white bottom-4 shadow-3xl mt-auto" >
+        <div class="flex justify-between items-center h-10 ms:h-14 md:h-16 lg:h-20">
+            <button type="button" 
+                @click="window.location.href = '{{ 'home' | page }}';" 
+                class="shadow-3xl  sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-base 2xl:text-lg
+                py-2 px-6 bg-gray-200 rounded-lg text-blue-900
+                focus:outline-none focus:bg-blue-900 focus:text-white">
+                <span><i class=""></i></span>
+                <span>Начать заново</span>
+            </button>
+            <button type="submit" 
+                class=" sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-base 2xl:text-lg 
+                py-2 px-6
+                bg-blue-900 text-white rounded-lg
+                focus:outline-none focus:bg-gray-200 focus:text-blue-900 ">
+                <span><i class=""></i></span>
+                <span>Продолжить</span>
+            </button>
+        </div>
+    </div>
+</form>
