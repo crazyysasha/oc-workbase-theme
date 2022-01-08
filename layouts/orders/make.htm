@@ -1,3 +1,48 @@
+[viewBag]
+==
+<?php
+function onStart()
+{
+    $category = $this->getCurrentCategory();
+
+    if (!$category) {
+        // $this->setStatusCode('404');
+        $this->run('404');
+    }
+
+    $this['category'] = $category;
+
+    $this['order'] = $this->getCurrentDraftOrder();
+
+    
+}
+
+
+function getCurrentCategory()
+{
+    return Crazy\FreeLancer\Models\Category::where('slug', $this->param('category'))->first();
+}
+
+
+function getCurrentDraftOrder()
+{
+    $order = Crazy\FreeLancer\Models\Order::whereIn('id', \Session::get('orders', []))
+        ->firstOrCreate([
+            'category_id' => $this->category->id,
+            'status' => 'draft',
+        ]);
+
+    \Session::put('orders', array_unique([$order->id, ...\Session::get('orders', [])]));
+
+    return $order;
+}
+
+function getCurrentServices()
+{
+    
+}
+?>
+==
 {##}
 <!DOCTYPE html>
 <html lang="en">
@@ -39,8 +84,7 @@
 
                 <div x-show=" activeTab == 'order'" x-cloak class="p-4 h-full" id="slideContainer">
                     
-                   
-    {% page %}        
+                    {% page %}        
                 
                 </div>
 
