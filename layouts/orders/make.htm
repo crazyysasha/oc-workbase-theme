@@ -1,0 +1,491 @@
+[viewBag]
+==
+<?php
+function onStart()
+{
+    $category = $this->getCurrentCategory();
+
+    if (!$category) {
+        // $this->setStatusCode('404');
+        $this->run('404');
+    }
+
+    $this['category'] = $category;
+
+    $this['order'] = $this->getCurrentDraftOrder();
+
+    
+}
+
+
+function getCurrentCategory()
+{
+    return Crazy\FreeLancer\Models\Category::where('slug', $this->param('category'))->first();
+}
+
+
+function getCurrentDraftOrder()
+{
+    $order = Crazy\FreeLancer\Models\Order::whereIn('id', \Session::get('orders', []))
+        ->firstOrCreate([
+            'category_id' => $this->category->id,
+            'status' => 'draft',
+        ]);
+
+    \Session::put('orders', array_unique([$order->id, ...\Session::get('orders', [])]));
+
+    return $order;
+}
+
+function getCurrentServices()
+{
+    
+}
+?>
+==
+{##}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Создание заказа  </title>
+    {% component 'alternateHrefLangElements' %}
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ 'assets/images/favicon-32x32.png'|theme }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ 'assets/images/favicon-16x16.png'|theme }}">
+    <link rel="stylesheet" href="{{['assets/css/app.css', '@framework.extras.css']|theme}}">
+    <link rel="icon" href="{{ this.theme.favicon.path }}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <style>
+        [x-cloak] { display: none !important; }
+    </style>
+    {% styles %}
+</head>
+<body class="font-sans bg-gray-100 relative">
+    
+    {% partial "headers/default" %}
+  
+    
+    <section class="relative px-1 sm:px-2 md:px-4 lg:px-0" 
+        x-data="{ activeTab: $persist('order')}">
+    
+        {# {% partial "swiper/specs" %} #}
+   
+  
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 container px-2 md:px-4 2xl:px-20 gap-4 mt-2">
+
+            <div class="lg:col-span-2 order-2 lg:order-1 h-full bg-white rounded-md">
+
+                <div x-show=" activeTab == 'order'" x-cloak class="p-4 h-full" id="slideContainer">
+                    
+                    {% page %}        
+                
+                </div>
+
+                <div x-show=" activeTab == 'spetsialist'" x-cloak class="p-4 h-full">
+                    <div>
+                        <div class="md:flex">
+                            <div class="flex items-center mt-2 mr-8">
+                                <span class="bg-blue-100 rounded-full h-7 w-7 flex items-center justify-center mr-4">
+                                    <i class="icon-settings text-sm md:text-lg xl:text-xl 2xl:text-2xl "></i>
+                                </span>
+                                <span class="text-sm md:text-md xl:text-lg 2xl:text-xl font-medium text-blue-700">
+                                    Электрика 
+                                 </span>
+                            </div>
+                            <div class="flex items-center mt-2">
+                                <span class="bg-blue-100 rounded-full h-7 w-7 flex items-center justify-center mr-4">
+                                    <i class="icon-location text-sm md:text-lg xl:text-xl 2xl:text-2xl "></i>
+                                </span>
+                                <span class="text-sm md:text-md xl:text-lg 2xl:text-xl font-medium text-blue-700">
+                                    г. Ташкент, улица Афросиаб, 41
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex items-center">
+                            <span class="text-xs sm:text-sm md:text-lg lg:text-base 2xl:text-lg text-gray-400 mr-4">
+                                Сортировка:
+                            </span>
+                            <div class="relative text-white" 
+                                x-data="{ Modal : false,lang: $persist('Подходящие')}" 
+                                @click.away="Modal = false">
+
+                                <button
+                                    class="flex items-center justify-between border bg-white 
+                                        text-blue-700 rounded-md w-full sm:w-60 
+                                        py-1 px-1 sm:px-2 transition-all duration-300 
+                                        focus:outline-none hover:bg-blue-700 hover:text-white 
+                                        focus:bg-white focus:text-blue-900"
+                                    @click="Modal = !Modal">
+                                    
+                                    <span class="text-xs sm:text-sm md:text-md lg:text-base 2xl:text-lg" x-text="lang"></span>
+                                    <svg x-show="!Modal" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" 
+                                        viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 
+                                            1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" 
+                                        clip-rule="evenodd" />
+                                    </svg>
+                                    <svg x-show="Modal" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                        viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 
+                                                01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                                <div x-show="Modal" x-cloak
+                                    class="bg-blue-900 text-white w-full absolute z-10 p-1 rounded-xl top-10">
+                                    <div class="flex flex-col text-black text-center 
+                                        text-white text-xs sm:text-sm md:text-md 2xl:text-base ">
+                                        <a @click="lang = 'Подходящие',Modal = !Modal" 
+                                            class="hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1"  href="#">
+                                            <span>Подходящие</span>
+                                        </a>
+                                        <a @click="lang = 'По отзывам',Modal = !Modal"
+                                            class="my-1 hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1" href="#">
+                                            <span>По отзывам</span>
+                                        </a>
+                                        <a @click="lang = 'Пр возрастанию цены',Modal = !Modal"
+                                            class="hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1" href="#">
+                                            <span>Пр возрастанию цены</span>
+                                        </a>
+                                        <a @click="lang = 'По убыванию цены',Modal = !Modal"
+                                            class="hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1" href="#">
+                                            <span>По убыванию цены</span>
+                                        </a>
+                                        <a @click="lang = 'По местонахождению',Modal = !Modal"
+                                            class="hover:bg-white hover:text-blue-900 rounded-lg px-2 py-1" href="#">
+                                            <span>По местонахождению</span>
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="border-gray-500 border-dashed my-4 md:my-8">
+                    </div>
+
+                    <div class="md:grid md:grid-cols-3">
+
+
+                        <div class="col-span-2">
+
+                            <!-- Специалисты  -->
+                            <div>
+
+                                <div class="flex items-center">
+
+                                    <div class="mr-8">
+                                        <img src="{{'assets/images/userlistchatbig.png' | theme}}" alt="">
+                                    </div>
+
+                                    <div class="">
+                                        <h5 class="font-bold text-sm md:text-md lg:text-base 2xl:text-lg">
+                                            Акмаль Халиков 
+                                        </h5>
+                                        <span class="text-xs md:text-sm lg:text-md 2xl:text-base text-gray-400">
+                                            Был в сети сегодня в 12:20
+                                        </span>
+                                        <div class="flex justify-start text-xs md:text-sm 
+                                            lg:text-md 2xl:text-base text-gray-400 font-semibold my-1">
+                                            <div>
+                                                <i class="icon-orangestar mr-2"></i>
+                                                <span>10 из 10</span>
+                                            </div>
+                                            <div>
+                                                <i class="icon-comments mx-2"></i>
+                                                <span> 20 </span>
+                                            </div>
+                                            <div>
+                                                <i class="icon-like mx-2"></i>
+                                                <span> Очень хвалят </span>
+                                            </div>
+                                        </div>
+                                        <div class="my-1 text-xs md:text-sm lg:text-md 2xl:text-base">
+                                            <span class="font-medium text-sm md:text-md">
+                                                Выезд по
+                                                <a class="text-blue-500 transition-all hover:underline transition duration-500"
+                                                    href="#">Ташкенту,</a>
+                                                <a class="text-blue-500 transition-all hover:underline transition duration-500"
+                                                    href="#"> Ташкентской обл.</a>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="mt-4">
+
+                                    <div class="">
+                                        <h4 class="text-sm md:text-md lg:text-base 2xl:text-lg font-semibold text-orange-500">
+                                            Квалификация подтверждена
+                                        </h4>
+                                        <p class="text-xs sm:text-sm lg:text-md 2xl:text-base">
+                                             Специалист сдал экзамен по услугам: электрика, монтраж слаботочных сетей.
+                                        </p>
+                                    </div>
+                                    <div class="flex flex-wrap justify-between my-4">
+                                        <img class="my-1" src="{{'assets/images/groupImg.png' | theme}}" alt="">
+                                        <img class="my-1" src="{{'assets/images/groupImg2.png' | theme}}" alt="">
+                                        <img class="my-1" src="{{'assets/images/groupImg3.png' | theme}}" alt="">
+                                        <img class="my-1" src="{{'assets/images/groupImg4.png' | theme}}" alt="">
+                                    </div>
+                                    <div class="my-4">
+                                        <h5 class="text-sm md:text-md lg:text-base 2xl:text-lg font-medium">О себе:</h5>
+                                        <p class="text-xs sm:text-sm lg:text-md 2xl:text-basel">
+                                            Техник-электрик,Большой опыт в решении ваших 
+                                            электромонтажных задач. Выбрав меня вы облегчите 
+                                            себе текущий или наступаюшую стадию электрофикации. 
+                                            Обещаю,результатом останетесь довольны! Работу сделаю 
+                                            быстро и качественно.
+                                        </p>
+                                        <div class="flex justify-between py-4 border-b border-gray-500 border-dotted">
+                                            <a class="text-xs sm:text-sm lg:text-md 2xl:text-base text-blue-500 
+                                                transition duration-700 ease-in-out hover:underline " 
+                                                href="#">
+                                                Подробнее
+                                            </a>
+                                            <a href="#">
+                                                <img class="w-5 h-5" src="{{'assets/images/googletranslate.png' | theme}}"
+                                                    alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="my-4">
+                                        <h5 class="text-sm md:text-md lg:text-base 2xl:text-lg font-medium">
+                                            Образование и опыт:  
+                                        </h5>
+                                        <p class="text-xs sm:text-sm lg:text-md 2xl:text-base">
+                                            Ташкентский государственный технический 
+                                            унивеситет, работал в компании "Электромонтаж Сервис" 
+                                            с 2010 по 2019год, на данный момент работаю со своей командой командой.
+                                        </p>
+                                        <div class="flex justify-between py-4 border-b border-gray-500 border-dotted">
+                                            <a class="text-xs sm:text-sm lg:text-md 2xl:text-base text-blue-500 
+                                            transition-all duration-500 hover:underline " href="#">
+                                                Подробнее
+                                            </a>
+                                            <a href="#">
+                                                <img class="w-5 h-5" src="{{'assets/images/googletranslate.png' | theme}}"
+                                                    alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="my-4">
+                                        <h5 class="text-sm md:text-md lg:text-base 2xl:text-lg font-medium">Отзывы:</h5>
+                                        <p class="text-xs sm:text-sm lg:text-md 2xl:text-base">
+                                            Нам нужен был электрик. Мастер произвел замечательное 
+                                            впечатление. Работу выполнил хорошо, установил розетки.
+                                            Мастер сказал, что если понадобятся еще услуги электрика,
+                                            то всегда можно к нему обратиться.
+                                        </p>
+                                        <div class="flex justify-between py-4 border-b border-gray-500 border-dotted">
+                                            <a class="text-xs sm:text-sm lg:text-md 2xl:text-base 
+                                                text-blue-500 transition-all duration-500 hover:underline " href="#">
+                                                Все отзывы (20)
+                                            </a>
+                                            <a href="#">
+                                                <img class="w-5 h-5" src="{{'assets/images/googletranslate.png' | theme}}"
+                                                    alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-4">
+                                        <h5 class="text-sm md:text-md lg:text-base 2xl:text-lg font-medium">
+                                            Услуги и цены
+                                        </h5>
+                                        <div class="text-xs sm:text-sm lg:text-md 2xl:text-base">
+                                            <ul>
+                                                <li
+                                                    class="flex justify-between my-1 border-b border-gray-500 border-dotted">
+                                                    <span class="-mb-1 bg-white">Монтаж проводки</span>
+                                                    <span class="text-gray-400 font-medium -mb-1 bg-white">От 25 000
+                                                        сум</span>
+                                                </li>
+                                                <li
+                                                    class="flex justify-between my-1 border-b border-gray-500 border-dotted">
+                                                    <span class="-mb-1 bg-white">Установка розетки, 1 точка</span>
+                                                    <span class="text-gray-400 font-medium -mb-1 bg-white">От 15 000
+                                                        сум</span>
+                                                </li>
+                                                <li
+                                                    class="flex justify-between my-1 border-b border-gray-500 border-dotted">
+                                                    <span class="-mb-1 bg-white">Установка выключателя</span>
+                                                    <span class="text-gray-400 font-medium -mb-1 bg-white">От 10 000
+                                                        сум</span>
+                                                </li>
+                                                <li
+                                                    class="flex justify-between my-1 border-b border-gray-500 border-dotted">
+                                                    <span class="-mb-1 bg-white">Установка светильника</span>
+                                                    <span class="text-gray-400 font-medium -mb-1 bg-white">От 25 000
+                                                        сум</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="flex justify-between pt-4 ">
+                                            <a class="text-xs sm:text-sm lg:text-md 2xl:text-base 
+                                                text-blue-500 transition-all duration-500 hover:underline " href="#">
+                                                Все услуги и цены (18)
+                                            </a>
+                                            <a href="#">
+                                                <img class="w-5 h-5" src="{{'assets/images/googletranslate.png' | theme}}"
+                                                    alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-span-1">
+                            <div class="w-full px-3">
+                                <a href="#" 
+                                    class="bg-blue-900 border transition duration-500 border-blue-900 
+                                            rounded-md block w-full py-3 text-center text-white 
+                                            text-sm sm:text-sm md:text-md lg:text-base 2xl:text-lg 
+                                            font-medium hover:text-blue-900 hover:bg-white" >
+                                    Написать сообщение
+                                </a>
+                                <p class="my-2 text-xs sm:text-sm lg:text-md 2xl:text-base text-center">
+                                    Вы сможете написать после заполнения деталей заказа
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <hr class="w- border-gray-500 border-dashed my-4 md:my-8">
+                </div>
+
+                <div x-show=" activeTab == 'help' " x-cloak class="p-4 h-full">
+                </div>
+            </div>
+
+            <div class="lg:col-span-1 order-1 lg:order-2">
+                <div class="bg-white rounded-md">
+                    <ul class="p-4 flex flex-row lg:flex-col justify-around ">
+                        <li @click="activeTab = 'order' " 
+                            class="relative text-sm md:text-md lg:text-base 2xl:text-lg p-2 text-xs bg-gray-300 
+                                    hover:bg-opacity-50 my-1 rounded-md font-semibold cursor-pointer" 
+                            :class="{'bg-opacity-30': activeTab != 'order' , 
+                                'hover:bg-opacity-100 bg-opacity-75': activeTab == 'order' }">
+                            <div class="flex justify-between items-cetner">
+                                <div class="flex items-center">
+                                    <span class="hidden md:inline-block ml-2">Заказ</span>
+                                    <span class="md:hidden">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                                        </svg>
+                                    </span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="hidden md:inline-block text-xs md:text-sm lg:text-md 2xl:text-base">
+                                        Заполнен на
+                                    </span>
+                                    <span class="text-xs md:text-sm lg:text-md 2xl:text-base">58 %</span>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 opacity-30 bg-gray-900 w-7/12 h-full rounded-md"
+                                 :class="{'bg-gray-300': activeTab != 'order','bg-gray-900': activeTab == 'order' }"
+                            ></div>
+                        </li>               
+                        
+                        <li @click="activeTab = 'spetsialist' " 
+                            class=" text-sm md:text-md lg:text-base 2xl:text-lg p-2 text-xs bg-gray-300 bg-opacity-0 
+                                    hover:bg-opacity-50 my-1 rounded-md font-semibold cursor-pointer" 
+                            :class="{'hover:bg-opacity-100 bg-opacity-75': activeTab == 'spetsialist'}">
+                                <span class="hidden md:inline-block">Специалисты</span>
+                                <span class="md:hidden">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                      </svg>
+                                </span>
+                        </li>
+
+                        <li @click="activeTab = 'help' " 
+                            class=" text-sm md:text-md lg:text-base 2xl:text-lg p-2 text-xs bg-gray-300 bg-opacity-0 
+                                    hover:bg-opacity-50 my-1 rounded-md font-semibold cursor-pointer" 
+                            :class="{'hover:bg-opacity-100 bg-opacity-75': activeTab == 'help'}">
+                                <span class="hidden md:inline-block">Поддержка</span>
+                                <span class="md:hidden">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                      </svg>
+                                </span>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="hidden lg:block rounded-md w-full ">
+                    <div class="mt-5">
+
+                        <div class="w-full my-5 rounded-md ">
+                            <div class="relative">
+                                <div class="swiper mySwiper w-full">
+                                    <div class="swiper-wrapper w-full">
+                                        <div class="swiper-slide mx-0 w-full rounded-md "><img class="r p-0ounded-md"
+                                                src="{{'assets/images/el-banner1.jpg' | theme}}" width="100%" alt=""></div>
+                                        <div class="swiper-slide w-full rounded-md"><img class="rounded-md"
+                                                src="{{'assets/images/el-banner6.jpg' | theme}}" width="100%" alt=""></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="w-full mt-5 rounded-md ">
+                            <div class="relative">
+                                <div class="swiper mySwiper w-full">
+                                    <div class="swiper-wrapper w-full">
+                                        <div class="swiper-slide w-full rounded-md"><img class="rounded-md"
+                                                src="{{'assets/images/el-banner4.jpg' | theme}}" width="100%" alt=""></div>
+                                        <div class="swiper-slide w-full rounded-md"><img class="rounded-md"
+                                                src="{{'assets/images/el-banner5.jpg' | theme}}" width="100%" alt=""></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="lg:grid grid-cols-3 container px-2 md:px-4 2xl:px-20 relative">
+            {% put scripts %}
+            <script>
+                var swiper = new Swiper('.mySwiper', {
+                    autoplay: {
+                        delay: 5000,
+                    },
+                    effect: 'fade'
+                });
+            </script>
+            {% endput %}
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+    {% placeholder alpineScripts %}
+    
+    <script defer src="https://unpkg.com/@alpinejs/persist@3.7.0/dist/cdn.min.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.7.0/dist/cdn.min.js"></script>
+    
+    {% scripts %}
+
+</body>
+</html>

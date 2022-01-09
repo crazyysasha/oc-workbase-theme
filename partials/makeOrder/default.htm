@@ -1,0 +1,6 @@
+<div id="formContainer">
+    {% if partial('makeOrder/' ~ post('slide', 'search')) %}
+        {% partial 'makeOrder/' ~ post('slide', 'search') %}
+    {% else %}
+    {% endif %}
+</div>

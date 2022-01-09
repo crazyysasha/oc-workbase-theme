@@ -18,7 +18,7 @@
             if (val == null) {
                 return;
             }
-            $($el.closest('form')).submit();
+            $el.closest('form').dispatchEvent(new Event('submit'));
         });
     " @click.outside="open = false">
     <div x-bind:style="{height: `${$refs.searchInput.offsetHeight}px`}"></div>

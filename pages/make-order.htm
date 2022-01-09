@@ -1,195 +1,206 @@
-url = "/:category/:service?*"
+url = "/old/:category/:service?*"
 layout = "make-order"
-title = "make-order"
+title = "Создание заказа"
+
+[makeOrder]
+category = "{{ :category }}"
+services = "{{ :service }}"
 ==
 <?php
-use Crazy\FreeLancer\Models\Service;
+// use Crazy\FreeLancer\Models\Service;
 
-function onStart() {
+// function onStart() {
 
-    if (!$category =  $this->getCurrentCategory()) {
-        return $this->controller->run('404');
-    }
+//     if (!$category =  $this->getCurrentCategory()) {
+//         return $this->controller->run('404');
+//     }
     
-    $services = $this->getCurrentServices();
+//     $services = $this->getCurrentServices();
 
-    $this['category'] = $category;
+//     $this['category'] = $category;
 
-    $this['services'] = $services;
+//     $this['services'] = $services;
     
     
-}
+// }
 
+// public function getOrder()
+// {
+//     $order = Crazy\FreeLancer\Models\Order::whereIn('id', Session::get('orders', []))
+//         ->whereHas('category', function ($q) {
+//             $q->where('slug', $this->param('category'));
+//         })->firstOrCreate([
+//             'name' => '',
+//             'status' => 'draft',
+//         ]);
+// }
 
-function onGetSlideView()
-{
-    $category = $this->getCurrentCategory();
+// function onGetSlideView()
+// {
+//     $category = $this->getCurrentCategory();
 
-    $services = $this->getCurrentServices();
+//     $services = $this->getCurrentServices();
     
-    if (! $category) {
-        \Flash::error('Категория не найдена!');
-    }
+//     if (! $category) {
+//         \Flash::error('Категория не найдена!');
+//     }
     
-    if ($services->isNotEmpty()) {
-        return ['#slideContainer' => $this->renderPartial('make-order/select-child-service'), ];
-    }
+//     $order = $this->getOrder();
+//     dump($order->services()->getNested());
+//     if ($services->isNotEmpty()) {
+//         return ['#slideContainer' => $this->renderPartial('make-order/select-child-service'), ];
+//     }
 
-    return ["#slideContainer" => $this->renderPartial('make-order/search-service'), ];
-}
+//     return ["#slideContainer" => $this->renderPartial('make-order/search-service'), ];
+// }
 
-function onRenderSearchServiceView()
-{
-    $category = $this->getCurrentCategory();
+// function onRenderSearchServiceView()
+// {
+//     $category = $this->getCurrentCategory();
     
-    if (! $category) {
-        \Flash::error('Категория не найдена!');
-    }
+//     if (! $category) {
+//         \Flash::error('Категория не найдена!');
+//     }
     
-    return [
-        'url' => $this->controller->pageUrl('make-order', ['category' => $category->slug, 'service' => '']),
-        "#slideContainer" => $this->renderPartial('make-order/search-service'),
-    ];
-}
+//     return [
+//         'url' => $this->controller->pageUrl('make-order', ['category' => $category->slug, 'service' => '']),
+//         "#slideContainer" => $this->renderPartial('make-order/search-service'),
+//     ];
+// }
 
-function getCurrentServices($slug = null)
-{
-    return $this['services'] = 
-        Crazy\FreeLancer\Models\Service
-            ::whereIn('slug', explode('/', $slug ?? $this->param('service')))
-            ->getNested();
-}
+// function getCurrentServices($slug = null)
+// {
+//     return $this['services'] = 
+//         Crazy\FreeLancer\Models\Service
+//             ::whereIn('slug', explode('/', $slug ?? $this->param('service')))
+//             ->getNested();
+// }
 
-function getCurrentCategory()
-{
-    return $this['category'] = Crazy\FreeLancer\Models\Category::where('slug', $this->param('category'))
-        ->first();
-}
+// function getCurrentCategory()
+// {
+//     return $this['category'] = Crazy\FreeLancer\Models\Category::where('slug', $this->param('category'))
+//         ->first();
+// }
 
-function onSearchService()
-{
+// function onSearchService()
+// {
     
-    $category = $this->param('category');
-    $services = explode('/', $this->param('service'));
+//     $category = $this->param('category');
+//     $services = explode('/', $this->param('service'));
 
-    $services = array_filter($services, function ($item) {
-        return strlen($item);
-    });
+//     $services = array_filter($services, function ($item) {
+//         return strlen($item);
+//     });
 
-    $service = \Crazy\FreeLancer\Models\Service::where('id', post('service'))
-        ->orSearchWhere(post('search'), ['name', 'slug'])->first();
+//     $service = \Crazy\FreeLancer\Models\Service::where('id', post('service'))
+//         ->orSearchWhere(post('search'), ['name', 'slug'])->first();
     
-    if (!$service) {
-        throw new \ValidationException(['search' => ['Услуга не найдена']]);
-    }
-    $servSlug = implode('/', [ ...$services, $service->slug,]);
+//     if (!$service) {
+//         throw new \ValidationException(['search' => ['Услуга не найдена']]);
+//     }
+//     $servSlug = implode('/', [ ...$services, $service->slug,]);
     
-    $url = $this->controller->pageUrl('make-order', [
-        'category' => $category, 
-        'service' => $servSlug
-    ]);
+//     $url = $this->controller->pageUrl('make-order', [
+//         'category' => $category, 
+//         'service' => $servSlug
+//     ]);
 
-    if ($service->children->isNotEmpty()) {
-        $nextPartial = 'make-order/select-child-service.htm';
-    } else {
-        $nextPartial = 'make-order/select-place.htm';
-    }
-    $this->getCurrentServices($servSlug);
-    return [
-        'url' => $url,
-        '!#slideContainer' => $this->renderPartial($nextPartial),
-    ];
-}
+//     if ($service->children->isNotEmpty()) {
+//         $nextPartial = 'make-order/select-child-service.htm';
+//     } else {
+//         $nextPartial = 'make-order/select-place.htm';
+//     }
+//     $this->getCurrentServices($servSlug);
+//     return [
+//         'url' => $url,
+//         '!#slideContainer' => $this->renderPartial($nextPartial),
+//     ];
+// }
 
-function onSelectService()
-{
-    $category = $this->param('category');
-    $services = explode('/', $this->param('service'));
+// function onSelectService()
+// {
+//     $category = $this->param('category');
+//     $services = explode('/', $this->param('service'));
 
-    $services = array_filter($services, function ($item) {
-        return strlen($item);
-    });
+//     $services = array_filter($services, function ($item) {
+//         return strlen($item);
+//     });
 
-    $service = \Crazy\FreeLancer\Models\Service::where('id', post('service'))->first();
+//     $service = \Crazy\FreeLancer\Models\Service::where('id', post('service'))->first();
 
-    if (!$service) {
-        return [
-            '#slideContainer' => $this->renderPartial('make-order/select-place')
-        ];
-    }
+//     if (!$service) {
+//         return [
+//             '#slideContainer' => $this->renderPartial('make-order/select-place')
+//         ];
+//     }
     
-    $servSlug = implode('/', [ ...$services, $service->slug,]);
+//     $servSlug = implode('/', [ ...$services, $service->slug,]);
     
-    $url = $this->controller->pageUrl('make-order', [
-        'category' => $category, 
-        'service' => $servSlug
-    ]);
+//     $url = $this->controller->pageUrl('make-order', [
+//         'category' => $category, 
+//         'service' => $servSlug
+//     ]);
 
-    if ($service->children->isNotEmpty()) {
-        $nextPartial = 'make-order/select-child-service.htm';
-    } else {
-        $nextPartial = 'make-order/select-place.htm';
-    }
-    $this->getCurrentServices($servSlug);
-    return [
-        'url' => $url,
-        '#slideContainer' => $this->renderPartial($nextPartial),
-    ];
+//     if ($service->children->isNotEmpty()) {
+//         $nextPartial = 'make-order/select-child-service.htm';
+//     } else {
+//         $nextPartial = 'make-order/select-place.htm';
+//     }
+//     $this->getCurrentServices($servSlug);
+//     return [
+//         'url' => $url,
+//         '#slideContainer' => $this->renderPartial($nextPartial),
+//     ];
    
-}
+// }
 
-function onSelectPlace()
-{
-    return [
-        '#slideContainer' => $this->renderPartial('make-order/set-description')
-    ];
-}
+// function onSelectPlace()
+// {
+//     return [
+//         '#slideContainer' => $this->renderPartial('make-order/set-description')
+//     ];
+// }
 
-function onSetDescription()
-{
-    return [
-        '#slideContainer' => $this->renderPartial('make-order/set-price')
-    ];
-}
+// function onSetDescription()
+// {
+//     return [
+//         '#slideContainer' => $this->renderPartial('make-order/set-price')
+//     ];
+// }
 
-function onSetPrice()
-{
-    \Flash::success('Ваша заявка успешно принята');
-}
+// function onSetPrice()
+// {
+//     \Flash::success('Ваша заявка успешно принята');
+// }
 
-function onSearch()
-{
-    $this['searches'] = Service::
-        where('name', 'like', post('search').'%')
-        ->union(Service::searchWhere(post('search'), ['name', 'slug']))
-        ->limit(10)
-        ->get();
-}
+// function onSearch()
+// {
+//     $this['searches'] = Service::where('name', 'like', post('search').'%')
+//         ->orWhere('name', 'like', '%' . post('search') . '%')
+//         ->limit(10)
+//         ->get();
+// }
 ?>
 ==
 {##}
 <section class="relative px-1 sm:px-2 md:px-4 lg:px-0" 
-        x-data="{ activeTab: $persist('order'), 
-        drafts: $persist([
-        {
-            id: 1,
-            category: 2
-        }
-
-        ]) }">
-    {# 
-        {% partial "swiper/specs" %}
-    #}
+        x-data="{ activeTab: $persist('order')}">
+    
+        {# {% partial "swiper/specs" %} #}
+   
   
+
     <div class="grid grid-cols-1 lg:grid-cols-3 container px-2 md:px-4 2xl:px-20 gap-4 mt-2">
 
         <div class="lg:col-span-2 order-2 lg:order-1 h-full bg-white rounded-md">
 
-            <div x-show=" activeTab == 'order' " x-cloak class="p-4 h-full" id="slideContainer"
-                x-init="$.request('onGetSlideView')">
+            <div x-show=" activeTab == 'order'" x-cloak class="p-4 h-full" id="slideContainer">
+                
+                {% component "makeOrder" %}
+            
             </div>
 
-            <div x-show=" activeTab == 'spetsialist' " x-cloak class="p-4 h-full">
+            <div x-show=" activeTab == 'spetsialist'" x-cloak class="p-4 h-full">
                 <div>
                     <div class="md:flex">
                         <div class="flex items-center mt-2 mr-8">
@@ -439,7 +450,6 @@ function onSearch()
             </div>
 
             <div x-show=" activeTab == 'help' " x-cloak class="p-4 h-full">
-                help
             </div>
         </div>
 
@@ -451,8 +461,11 @@ function onSearch()
                                 hover:bg-opacity-50 my-1 rounded-md font-semibold cursor-pointer" 
                         :class="{'bg-opacity-30': activeTab != 'order' , 'hover:bg-opacity-100 bg-opacity-75': activeTab == 'order' }">
                         <div class="flex justify-between items-cetner">
-                            <span>Заказ</span>
-                            <span class="text-xs md:text-sm lg:text-md 2xl:text-base">Заполнен на 58 %</span>
+                            <span class="ml-2">Заказ</span>
+                            <div>
+                                <span class="hidden md:inline-block text-xs md:text-sm lg:text-md 2xl:text-base">Заполнен на</span>
+                                <span class="text-xs md:text-sm lg:text-md 2xl:text-base">58 %</span>
+                            </div>
                         </div>
                         <div class="absolute inset-0 opacity-30 bg-gray-900 w-7/12 h-full rounded-md"
                              :class="{'bg-gray-300': activeTab != 'order','bg-gray-900': activeTab == 'order' }"
