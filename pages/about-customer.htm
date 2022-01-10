@@ -1,9 +1,12 @@
 url = "/about-customer"
 layout = "default"
 title = "about-customer"
-==
-<?php
-?>
+
+[account]
+redirect = 0
+paramCode = "code"
+forceSecure = 0
+requirePassword = 0
 ==
 {##}
 <section class="bg-gray-100" x-data="{Tab: 1}">
@@ -32,48 +35,57 @@ title = "about-customer"
             <div class="md:flex">
                 <div class="p-5 md:p-6 lg:p-10 mt-4 mr-2 bg-white rounded-md lg:w-80">
                     <div class="relative mt-3 mx-auto w-28 h-28" >
-                        <img class="rounded-full w-28 h-28" src="{{'assets/images/userlistchatbig.png' | theme}}" alt="">
+                        <img class="rounded-full w-28 h-28" src="{{ user.avatar.thumb(auto, auto)  }}" alt="">
                         <div 
-                            class="absolute right-0 bottom-3 bg-white border border-gray-300 
+                            class="absolute right-0 bottom-3 bg-white border border-blue-500 
                                 text-blue-500 rounded-full text-center w-7 h-7 
                                 flex justify-center cursor-pointer justify-items-center" >
                                 <label class="m-auto w-full cursor-pointer" for="Avater">
                                     <input id="Avater" type="file" hidden>
-                                    <i class="icon-camera transition hover:scale-110"></i>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 m-auto w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
                                 </label>
                         </div>
                     </div>
                     <div class="text-center mt-4 font-medium">
-                        <span class="text-xs sm:text-sm md:text-md lg:text-lg">Акмаль Халиков Ботирович</span>
+                        <span class="text-xs sm:text-sm md:text-md lg:text-lg">{{ user.name }}</span>
                     </div>
                     <div class="grid grid-cols-2 text-center mt-4">
                         <div class="border-r-gray-500 border-r-2 border-dashed">
-                            <i class="icon-orangestar"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 text-red-400 m-auto w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                            </svg>
                             <p class="text-xs sm:text-sm md:text-md lg:text-lg">10 из 10</p>
                         </div>
                         <div>
-                            <i class="icon-comments text-xs sm:text-sm md:text-md lg:text-lg"></i>
-                            <p>20</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 text-red-400 m-auto w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                            </svg>
+                            <p>0</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="p-5 md:p-6 lg:p-10 mt-4 bg-white rounded-md w-full">
-                    <div class="flex justify-between items-center ">
+                    <div data-request="onTest" data-request-update="account/update: '#formAccountEditor'" class="flex justify-between items-center ">
                         <span class="text-xs sm:text-sm md:text-md lg:text-lg font-medium">Описание профиля:</span>
-                        <a class="rounded-md bg-blue-800 flex items-center text-center border border-white
+                        <a class="rounded-md text-white bg-blue-800 flex items-center text-center border border-white
                                 w-8 h-8 cursor-pointer  hover:border-blue-700 hover:bg-blue-700 transition-all duration-500" 
-                           href="#">
-                            <i class="icon-pencil m-auto"></i>
+                           href="javascript:;" type="submit">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 m-auto w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                            </svg>
                         </a>
                     </div>
-                    <div class="lg:flex flex-col flex-wrap md:max-h-64">
+                    <div id="formAccountEditor" class="lg:flex flex-col flex-wrap md:max-h-64">
                         <div class="mb-3" >
                             <div class="mb-1 text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium" >
                                 <span>Ф.И.О.</span>
                             </div>
                             <div class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
-                                <span>Акмаль Халиков Ботирович</span>
+                                <span>{{ user.name }}</span>
                             </div>
                         </div>
                         <div class="mb-3" >
@@ -81,7 +93,7 @@ title = "about-customer"
                                 <span>Дата рождения:</span>
                             </div>
                             <div class="mb-1 text-ms lg:text-md" >
-                                <span>14.03.1985</span>
+                                <span>{{ user.birthday }}</span>
                             </div>
                         </div>
                         <div class="mb-3" >
@@ -97,7 +109,7 @@ title = "about-customer"
                                 <span>Номер телефона:</span>
                             </div>
                             <div class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
-                                <span>+99894 923-03-14</span>
+                                <span>{{ user.username }}</span>
                             </div>
                         </div>
                         <div class="mb-3" >
@@ -105,7 +117,15 @@ title = "about-customer"
                                 <span>Электронная почта:</span>
                             </div>
                             <div class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
-                                <span>AkmalKhalikov@gmail.com</span>
+                                <span>{{ user.email }}</span>
+                            </div>
+                        </div>
+                        <div class="mb-3" >
+                            <div class="mb-1 text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium" >
+                                <span>Пол:</span>
+                            </div>
+                            <div class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
+                                <span>{{ user.gender == 'man' ? 'Мужской' : 'Женский' }}</span>
                             </div>
                         </div>
                     </div>
@@ -118,7 +138,9 @@ title = "about-customer"
                     <a  class="rounded-md bg-blue-800 text-center w-8 h-8 flex items-center border border-white cursor-pointer
                             hover:border-blue-700 hover:bg-blue-700 transition-all duration-500" 
                         href="#">
-                        <i class="icon-pencil m-auto"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 text-white m-auto w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                        </svg>
                     </a>
                 </div>
 
@@ -127,7 +149,7 @@ title = "about-customer"
                         <span class="text-xs sm:text-sm md:text-md lg:text-lg  font-medium text-gray-300">Образование:</span>
                     </div>
                     <div class="">
-                        <span class="text-xs sm:text-sm md:text-md lg:text-lg">Ташкентский государственный технический унивеситет</span>
+                        <span class="text-xs sm:text-sm md:text-md lg:text-lg">{{ user.education }}</span>
                     </div>
                 </div>
 
@@ -187,3 +209,4 @@ title = "about-customer"
         </div>
    </div>
 </section>
+
