@@ -1,6 +1,6 @@
 url = "/about-customer"
 layout = "default"
-title = "about-customer"
+title = "Анкета"
 
 [account]
 redirect = 0
@@ -34,9 +34,10 @@ requirePassword = 0
 
             <div class="md:flex">
                 <div class="p-5 md:p-6 lg:p-10 mt-4 mr-2 bg-white rounded-md lg:w-80">
+                    {% if user.avatar %}
                     <div class="relative mt-3 mx-auto w-28 h-28" >
                         <img class="rounded-full w-28 h-28" src="{{ user.avatar.thumb(auto, auto)  }}" alt="">
-                        <div 
+                        {# <div 
                             class="absolute right-0 bottom-3 bg-white border border-blue-500 
                                 text-blue-500 rounded-full text-center w-7 h-7 
                                 flex justify-center cursor-pointer justify-items-center" >
@@ -57,8 +58,34 @@ requirePassword = 0
                                         </g>
                                     </svg>
                                 </label>
-                        </div>
+                        </div> #}
                     </div>
+                    {% else %}
+                    <div class="relative mt-3 mx-auto w-28 h-28" >
+                        <img class="rounded-full w-28 h-28" src="{{'assets/temp/user.png'|theme}}" alt="">
+                        {# <div class="absolute right-0 bottom-3 bg-white border border-blue-500 
+                            text-blue-500 rounded-full text-center w-7 h-7 
+                            flex justify-center cursor-pointer justify-items-center" >
+                            <label class="m-auto w-full cursor-pointer" for="Avater">
+                                <input id="Avater" type="file" hidden>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="#1e40af"  class="m-auto w-4 h-4" viewBox="0 0 60 60">
+                                    <g>
+                                        <path d="M55.201,15.5h-8.524l-4-10H17.323l-4,10H12v-5H6v5H4.799C2.152,15.5,0,17.652,0,20.299v29.368
+                                        C0,52.332,2.168,54.5,4.833,54.5h50.334c2.665,0,4.833-2.168,4.833-4.833V20.299C60,17.652,57.848,15.5,55.201,15.5z M8,12.5h2v3H8
+                                        V12.5z M58,49.667c0,1.563-1.271,2.833-2.833,2.833H4.833C3.271,52.5,2,51.229,2,49.667V20.299C2,18.756,3.256,17.5,4.799,17.5H6h6
+                                        h2.677l4-10h22.646l4,10h9.878c1.543,0,2.799,1.256,2.799,2.799V49.667z" />
+                                        <path d="M30,14.5c-9.925,0-18,8.075-18,18s8.075,18,18,18s18-8.075,18-18S39.925,14.5,30,14.5z M30,48.5c-8.822,0-16-7.178-16-16
+                                        s7.178-16,16-16s16,7.178,16,16S38.822,48.5,30,48.5z" />
+                                        <path d="M30,20.5c-6.617,0-12,5.383-12,12s5.383,12,12,12s12-5.383,12-12S36.617,20.5,30,20.5z M30,42.5c-5.514,0-10-4.486-10-10
+                                        s4.486-10,10-10s10,4.486,10,10S35.514,42.5,30,42.5z" />
+                                        <path d="M52,19.5c-2.206,0-4,1.794-4,4s1.794,4,4,4s4-1.794,4-4S54.206,19.5,52,19.5z M52,25.5c-1.103,0-2-0.897-2-2s0.897-2,2-2
+                                        s2,0.897,2,2S53.103,25.5,52,25.5z" />
+                                    </g>
+                                </svg>
+                            </label>
+                        </div> #}
+                    </div>
+                    {% endif %}
                     <div class="text-center mt-4 font-medium">
                         <span class="text-xs sm:text-sm md:text-md lg:text-lg">{{ user.name }}</span>
                     </div>
@@ -111,8 +138,12 @@ requirePassword = 0
                             <div class="mb-1 text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium" >
                                 <span>Дата рождения:</span>
                             </div>
-                            <div class="mb-1 text-ms lg:text-md" >
-                                <span>{{ user.birthday }}</span>
+                            <div class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
+                                {% if user.birthday %}
+                                    <span>{{ user.birthday }}</span>
+                                {% else %}
+                                    <span>Не выбрано</span>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="mb-3" >
@@ -144,7 +175,12 @@ requirePassword = 0
                                 <span>Пол:</span>
                             </div>
                             <div class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
-                                <span>{{ user.gender == 'man' ? 'Мужской' : 'Женский' }}</span>
+                                {% if user.gender %}
+                                    <span>{{ user.gender == 'man' ? 'Мужской' : 'Женский' }}</span>
+                                {% else %}
+                                    <span>Не выбрано</span>
+                                {% endif %}
+                                
                             </div>
                         </div>
                     </div>
@@ -169,6 +205,11 @@ requirePassword = 0
                     </div>
                     <div class="">
                         <span class="text-xs sm:text-sm md:text-md lg:text-lg">{{ user.education }}</span>
+                        {% if user.education %}
+                            <span class="text-xs sm:text-sm md:text-md lg:text-lg">{{ user.education }}</span>
+                        {% else %}
+                            <span class="text-xs sm:text-sm md:text-md lg:text-lg">Не указано</span>
+                        {% endif %}
                     </div>
                 </div>
 
@@ -243,3 +284,132 @@ requirePassword = 0
    </div>
 </section>
 
+<section class="bg-gray-100" x-data="{Tab: 2}">
+   <div class="container px-2 md:px-4 2xl:px-20 py-2 md:py-4">
+        <div class="">
+            <div class="flex text-gray-400">
+                <a 
+                    class="text-xs sm:text-sm md:text-md lg:text-lg py-2 px-4 rounded-md mr-3 border"
+                    @click="Tab = 1" 
+                    :class="{ 'border-orange-500 bg-orange-500 text-white': Tab == 1, 'hover:border-orange-500 hover:text-orange-500 hover:bg-white': Tab != 1 }"
+                    href="#">
+
+                    Анкета
+                </a>
+                <a 
+                    class="text-xs sm:text-sm md:text-md lg:text-lg py-2 px-4 rounded-md border 
+                        hover:border-orange-500 hover:text-orange-500 hover:bg-white" 
+                    @click="Tab = 2" 
+                    :class="{ 'border-orange-500 bg-orange-500 text-white': Tab == 2, 'hover:border-orange-500 hover:text-orange-500 hover:bg-white': Tab != 2 }"
+                    href="#">
+
+                    Настройки
+                </a>
+            </div>
+
+            <div class="md:flex">
+                <div class="p-5 md:p-6 lg:p-10 mt-4 mr-2 bg-white rounded-md lg:w-80">
+                    фыв
+                </div>
+
+                <div class="p-5 md:p-6 lg:p-10 mt-4 bg-white rounded-md w-full">
+                    фыв
+                </div>
+            </div>
+
+            <div class="p-5 md:p-6 lg:p-10 mt-4 bg-white rounded-md">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs sm:text-sm md:text-md lg:text-lg  font-medium">О себе:</span>
+                    <a  class="rounded-md bg-blue-800 text-center w-8 h-8 flex items-center border border-white cursor-pointer
+                            hover:border-blue-700 hover:bg-blue-700 transition-all duration-500" 
+                        href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 text-white m-auto w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                        </svg>
+                    </a>
+                </div>
+
+                <div class=" flex flex-col md:flex-row py-4 text-center md:text-left  md:justify-between border-b ">
+                    <div class="">
+                        <span class="text-xs sm:text-sm md:text-md lg:text-lg  font-medium text-gray-400">Образование:</span>
+                    </div>
+                    <div class="">
+                        <span class="text-xs sm:text-sm md:text-md lg:text-lg">{{ user.education }}</span>
+                        {% if user.education %}
+                            <span class="text-xs sm:text-sm md:text-md lg:text-lg">{{ user.education }}</span>
+                        {% else %}
+                            <span class="text-xs sm:text-sm md:text-md lg:text-lg">Не указано</span>
+                        {% endif %}
+                    </div>
+                </div>
+
+
+                <div class="flex flex-col md:flex-row py-4 text-center md:text-left  md:justify-between border-b ">
+                    <div class="">
+                        <span class="text-xs sm:text-sm md:text-md lg:text-lg  font-medium text-gray-400">Род деятельности:</span>
+                    </div>
+                    <div class="">
+                        <span class="text-xs sm:text-sm md:text-md lg:text-lg">Предприниматель</span>
+                    </div>
+                </div>
+
+
+                <div class="flex flex-col md:flex-row py-4 text-center md:text-left  md:justify-between border-b ">
+                    <div class="">
+                        <span class="text-xs sm:text-sm md:text-md lg:text-lg  font-medium text-gray-400">Проверить ИНН:</span>
+                    </div>
+                    <div class="">
+                        {# <span class="text-xs sm:text-sm md:text-md lg:text-lg">3664069397</span>
+                        <div class="md:inline-block">
+                            <a class=" bg-blue-100 rounded-md px-3 py-1 text-xs sm:text-sm md:text-md lg:text-lg ml-4 text-blue-400 hover:bg-blue-400 hover:text-blue-100 transition-all duration-500" href="#">Пройти сертификацию</a>
+                        </div> #}
+                        <span class="text-xs sm:text-sm md:text-md lg:text-lg">Через</span> <a class="text-blue-500 decoration-500 hover:underline-offset-4 transition-all duration-500" href="#">Soliq.uz</a>
+                    </div>
+                </div>
+
+
+                <div class="flex flex-col md:flex-row py-4 text-center md:text-left  md:justify-between border-b">
+                    <div class="">
+                        <span class="text-xs sm:text-sm md:text-md lg:text-lg  font-medium text-gray-400">Загрузите ваш паспорт:</span>
+                    </div>
+                    <div class="flex flex-col md:flex-row text-center md:text-left justify-items-center items-center">
+                        <div class="rounded-md border border-blue-900 my-3 inline-block px-4 py-5 text-center">
+                            <div class="text-3xl ">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="#1e40af"  class="m-auto w-10 h-10 mb-3" viewBox="0 0 60 60">
+                                        <g>
+                                            <path d="M55.201,15.5h-8.524l-4-10H17.323l-4,10H12v-5H6v5H4.799C2.152,15.5,0,17.652,0,20.299v29.368
+                                            C0,52.332,2.168,54.5,4.833,54.5h50.334c2.665,0,4.833-2.168,4.833-4.833V20.299C60,17.652,57.848,15.5,55.201,15.5z M8,12.5h2v3H8
+                                            V12.5z M58,49.667c0,1.563-1.271,2.833-2.833,2.833H4.833C3.271,52.5,2,51.229,2,49.667V20.299C2,18.756,3.256,17.5,4.799,17.5H6h6
+                                            h2.677l4-10h22.646l4,10h9.878c1.543,0,2.799,1.256,2.799,2.799V49.667z" />
+                                            <path d="M30,14.5c-9.925,0-18,8.075-18,18s8.075,18,18,18s18-8.075,18-18S39.925,14.5,30,14.5z M30,48.5c-8.822,0-16-7.178-16-16
+                                            s7.178-16,16-16s16,7.178,16,16S38.822,48.5,30,48.5z" />
+                                            <path d="M30,20.5c-6.617,0-12,5.383-12,12s5.383,12,12,12s12-5.383,12-12S36.617,20.5,30,20.5z M30,42.5c-5.514,0-10-4.486-10-10
+                                            s4.486-10,10-10s10,4.486,10,10S35.514,42.5,30,42.5z" />
+                                            <path d="M52,19.5c-2.206,0-4,1.794-4,4s1.794,4,4,4s4-1.794,4-4S54.206,19.5,52,19.5z M52,25.5c-1.103,0-2-0.897-2-2s0.897-2,2-2
+                                            s2,0.897,2,2S53.103,25.5,52,25.5z" />
+                                        </g>
+                                    </svg>
+                            </div>
+                            <a 
+                                class="rounded-md px-3 py-1 
+                                    text-xs sm:text-sm md:text-md lg:text-lg 
+                                    bg-blue-900 text-blue-100 transition-all duration-500" 
+                                href="#">
+                                Добавить
+                            </a>
+                        </div>
+                        {# <span class="mx-auto">
+                            <a 
+                                class="bg-blue-100 rounded-md px-3 py-1 
+                                text-xs sm:text-sm md:text-md lg:text-lg 
+                                mx-4 text-blue-400 hover:bg-blue-400 hover:text-blue-100 transition-all duration-500" 
+                                href="#">
+                                    Пройти сертификацию
+                            </a>
+                        </span> #}
+                    </div>
+                </div>
+            </div>
+        </div>
+   </div>
+</section>
