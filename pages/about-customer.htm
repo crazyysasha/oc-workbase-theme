@@ -11,26 +11,28 @@ requirePassword = 0
 {##}
 <section class="bg-gray-100" x-data="{Tab: 1}">
    <div class="container px-2 md:px-4 2xl:px-20 py-2 md:py-4">
-        <div class="">
-            <div class="flex text-gray-400">
-                <a 
-                    class="text-xs sm:text-sm md:text-md lg:text-lg py-2 px-4 rounded-md mr-3 border"
-                    @click="Tab = 1" 
-                    :class="{ 'border-orange-500 bg-orange-500 text-white': Tab == 1, 'hover:border-orange-500 hover:text-orange-500 hover:bg-white': Tab != 1 }"
-                    href="#">
 
-                    Анкета
-                </a>
-                <a 
-                    class="text-xs sm:text-sm md:text-md lg:text-lg py-2 px-4 rounded-md border 
-                        hover:border-orange-500 hover:text-orange-500 hover:bg-white" 
-                    @click="Tab = 2" 
-                    :class="{ 'border-orange-500 bg-orange-500 text-white': Tab == 2, 'hover:border-orange-500 hover:text-orange-500 hover:bg-white': Tab != 2 }"
-                    href="#">
+        <div class="flex text-gray-400">
+            <a 
+                class="text-xs sm:text-sm md:text-md lg:text-lg py-2 px-4 rounded-md mr-3 border"
+                @click="Tab = 1" 
+                :class="{ 'border-orange-950 bg-orange-950 text-white': Tab == 1, 'hover:border-orange-950 hover:text-orange-950 hover:bg-white': Tab != 1 }"
+                href="#">
 
-                    Настройки
-                </a>
-            </div>
+                Анкета
+            </a>
+            <a 
+                class="text-xs sm:text-sm md:text-md lg:text-lg py-2 px-4 rounded-md border 
+                    hover:border-orange-950 hover:text-orange-950 hover:bg-white" 
+                @click="Tab = 2" 
+                :class="{ 'border-orange-950 bg-orange-950 text-white': Tab == 2, 'hover:border-orange-950 hover:text-orange-950 hover:bg-white': Tab != 2 }"
+                href="#">
+
+                Настройки
+            </a>
+        </div>
+
+        <div x-cloak x-show="Tab==1" class="">
 
             <div class="md:flex">
                 <div class="p-5 md:p-6 lg:p-10 mt-4 mr-2 bg-white rounded-md lg:w-80">
@@ -279,6 +281,13 @@ requirePassword = 0
                         </span> #}
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div x-cloak x-show="Tab==2">
+            <div class="p-5 mt-4 mr-2 bg-white rounded-md">
+                <h5 class="text-sm md:text-md lg:text-base 2xl:text-lg font-semibold">Изменить пароль</h5>
+                <h6 class="text-xs md:text-sm lg:text-md 2lx:text-base mt-4">Новый пароль</h6>
             </div>
         </div>
    </div>
