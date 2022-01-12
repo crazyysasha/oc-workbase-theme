@@ -125,18 +125,19 @@ title = "About"
                             <div class="text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium px-2">
                                 <span>Место Проживания:</span>
                             </div>
-                            <div x-data="{message: 'г.Ташкент'}" class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
-                                <div x-text="message"
+                            <div x-data="{region: 'г.Ташкент'}" class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
+                                <div x-text="region"
                                     x-show="!isEditable"
                                     class="rounded-md w-full px-2 py-1 border border-transparent">
                                 </div>
-                                <div x-data="{modal: false}" class="relative"  x-show="isEditable">
+                                <div x-data="{modal: false}" class="relative"  x-show="isEditable" @click.outside="modal = false">
                                    <div 
                                         class="flex justify-between items-center rounded-md w-9/12 px-2 py-1 border border-gray-300
                                         text-xs sm:text-sm md:text-md lg:text-lg"
-                                        @click="modal=!modal">
+                                        @click="modal=!modal"
+                                        >
 
-                                            <div x-text="message"></div>
+                                            <div x-text="region"></div>
 
                                             <span x-show="!modal">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -150,40 +151,74 @@ title = "About"
                                             </span>
                                    </div>
                                     <div x-show="modal" 
-                                        class="absolute top-10 w-full bg-gray-100 border border-gray-300 rounded-md p-3 ">
+                                        class="absolute top-10 bg-gray-100 border border-gray-300 rounded-md p-1 w-9/12">
                                         <ul>
-                                            <li x-data="{innerModal:false}">
+                                            <li x-data="{innerModal:false}" @click.outside="innerModal = false">
                                                 <div @click="innerModal=!innerModal" 
+                                                    
                                                     class="flex justify-between  transition-all duration-300 items-center 
-                                                        hover:bg-blue-950 hover:text-white rounded-md px-2 py-1">
+                                                        hover:bg-white hover:text-blue-950 rounded-md p-1 px-2">
                                                     <span class="text-xs md:text-sm lg:text-md cursor-pointer">
                                                         Tashkent City
                                                     </span>
                                                     <span x-show="!innerModal">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                                                         </svg>
                                                     </span>
                                                     <span x-show="innerModal">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
                                                         </svg>
                                                     </span>
                                                 </div>
                                                 <ul x-show="innerModal" class="px-3 text-xs md:text-sm lg:text-md"  >
-                                                    <li class="hover:text-blue-950 transition-all duration-300 cursor-pointer">
+                                                    <li @click="region ='Yunusobod' " class="hover:text-blue-950 transition-all duration-300 cursor-pointer">
                                                         Yunusobod
                                                     </li>
-                                                    <li class="hover:text-blue-950 transition-all duration-300 cursor-pointer">
-                                                        Mirobo
-                                                        d</li>
-                                                    <li class="hover:text-blue-950 transition-all duration-300 cursor-pointer">
+                                                    <li @click="region ='Mirobo' " class="hover:text-blue-950 transition-all duration-300 cursor-pointer">
+                                                        Mirobod
+                                                    </li>
+                                                    <li @click="region ='Chilonzor' " class="hover:text-blue-950 transition-all duration-300 cursor-pointer">
                                                         Chilonzor
                                                     </li>
-                                                    <li class="hover:text-blue-950 transition-all duration-300 cursor-pointer">
+                                                    <li @click="region ='Mirzo Ulug`bek' " class="hover:text-blue-950 transition-all duration-300 cursor-pointer">
                                                         Mirzo Ulug`bek
                                                     </li>
                                                 </ul>   
+                                            </li>
+                                            <li x-data="{innerModal:false}" @click.outside="innerModal = false">
+                                                <div @click="innerModal=!innerModal" 
+                                                class="flex justify-between  transition-all duration-300 items-center 
+                                                    hover:bg-white hover:text-blue-950 rounded-md p-1 px-2">
+                                                <span class="text-xs md:text-sm lg:text-md cursor-pointer">
+                                                    Tashkent Region
+                                                </span>
+                                                <span x-show="!innerModal">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                                    </svg>
+                                                </span>
+                                                <span x-show="innerModal">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                                                    </svg>
+                                                </span>
+                                            </div>
+                                            <ul x-show="innerModal" class="px-3 text-xs md:text-sm lg:text-md"  >
+                                                <li @click="region ='Olmaliq' " class="hover:text-blue-950 transition-all duration-300 cursor-pointer">
+                                                    Olmaliq
+                                                </li>
+                                                <li @click="region ='Ohangaron' " class="hover:text-blue-950 transition-all duration-300 cursor-pointer">
+                                                    Ohangaron
+                                                </li>
+                                                <li @click="region ='To`ytepa' " class="hover:text-blue-950 transition-all duration-300 cursor-pointer">
+                                                    To`ytepa
+                                                </li>
+                                                <li @click="region ='Yangi yo`l' " class="hover:text-blue-950 transition-all duration-300 cursor-pointer">
+                                                    Yangi yo`l
+                                                </li>
+                                            </ul>   
                                             </li>
                                         </ul>
                                     </div>
