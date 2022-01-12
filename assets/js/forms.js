@@ -7,18 +7,25 @@ const SearchService = {
         return {
             search: '',
             category: null,
+            windowHeight: window.innerHeight,
         };
     },
     methods: {
         async fetchCategory() {
 
             let res = await (await fetch(`/api/crazy/freelancer/v1.0.1/categories/${this.$props.categorySlug}`)).json();
-            
+
             this.category = res;
+        },
+        async fetchServices() {
+            let res = await (await fetch(`/api/crazy/freelancer/v1.0.1/services/`)).json();
         }
     },
     created() {
         this.fetchCategory();
+        this.$watch('search', (val) => {
+            
+        });
     },
     mounted() {
         console.log('mounted');
