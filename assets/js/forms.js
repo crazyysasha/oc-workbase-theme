@@ -8,6 +8,7 @@ const SearchService = {
             search: '',
             category: null,
             windowHeight: window.innerHeight,
+            serviceList: null,
         };
     },
     methods: {
@@ -16,10 +17,13 @@ const SearchService = {
             let res = await (await fetch(`/api/crazy/freelancer/v1.0.1/categories/${this.$props.categorySlug}`)).json();
 
             this.category = res;
+            this.fetchExmpleServices();
         },
-        async fetchServices() {
-            let res = await (await fetch(`/api/crazy/freelancer/v1.0.1/services/`)).json();
+        async fetchExmpleServices() {
+            let res = await (await fetch(`/api/crazy/freelancer/v1.0.1/services?category=${this.category.id}&root=1`)).json();
+            this.serviceList =  res.data;
         }
+        
     },
     created() {
         this.fetchCategory();
