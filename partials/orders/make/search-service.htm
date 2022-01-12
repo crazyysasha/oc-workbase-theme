@@ -41,7 +41,11 @@
             Например:
         </h5>
         <div>
-            <button v-for="service in serviceList">
+            <button v-for="service in serviceList" 
+                class="border border-blue-950 hover:shadow-md hover:border-blue-975
+                    transition-all duration-300 hover:text-blue-950 
+                    focus:outline-none focus:border-blue-975 
+                    rounded-xl px-3 py-1 text-md md:text-base">
                 {service.name}
             </button>
         </div>
