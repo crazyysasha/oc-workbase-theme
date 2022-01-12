@@ -1,11 +1,13 @@
 <form class="h-full flex flex-col relative">
 
-    <h5 class="text-md md:text-lg 2xl:text-xl">
-        Service name
+    <h5 :class="{'animate-pulse bg-gray-300 text-transparent': !category }" 
+        class="text-md md:text-lg 2xl:text-xl select-none"
+        :style="{width: !category ? Math.random() * 100 + 100 + 'px' : false}">
+        {category?.name ?? 'loading...'}
     </h5>
 
     <h4 class="text-xl md:text-2xl mt-2">
-        What do you need?
+        {category?.search_title}
     </h4>
 
     
