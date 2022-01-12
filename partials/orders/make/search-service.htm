@@ -1,15 +1,15 @@
 <form class="h-full flex flex-col relative">
 
     <h5 :class="{'animate-pulse bg-blue-950 text-transparent rounded-md opacity-5': !category }"
-        class="text-md md:text-lg 2xl:text-xl select-none"
-        v-bind:style="{width: !category ? Math.random() * 100 + 100 + 'px' : false}">
+        class="text-lg  2xl:text-xl select-none"
+        v-bind:style="[!category ?  {width:(Math.random() * 100 + 100 + 'px')} : {}]">
         {category?.name ?? 'loading...'}
     </h5>
 
-    <h4 class="text-xl md:text-2xl mt-2"
+    <h4 
         :class="{'animate-pulse bg-blue-950 text-transparent rounded-md opacity-5': !category }" 
-        class="text-md md:text-lg 2xl:text-xl select-none"
-        :style="{width: !category ? Math.random() * 100 + 200 + 'px' : false}">
+        class="text-xl md:text-2xl mt-2 select-none"
+        :style="[!category ? {width: (Math.random() * 100 + 400 + 'px')} : {}]">
         {category?.search_title ?? 'Услуга или специалист'}
     </h4>
 
