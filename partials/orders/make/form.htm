@@ -1,0 +1,26 @@
+<form data-request="{{request}}"
+    data-request-url="{{ requestUrl }}"
+    data-request-flash
+    data-request-success="{{requestSuccess ?? "history.pushState({}, 'Создание заказа', data.url)" }}"
+    class="h-full flex flex-col relative"
+    id="makeOrderForm">
+
+    {% if title %}
+        <h5 class="text-sm md:text-md 2xl:text-lg font-bold text-gray-500 mx-4 my-4">
+            {{title}}
+        </h5>
+    {% endif %}
+        
+    <h2 class="font-semibold text-sm sm:text-sm md:text-md lg:text-lg 2xl:text-xl md:font-medium mx-4">
+        {{ question ?? 'Что нужно сделать?' }}
+    </h2>
+
+    <div class="p-4">
+        {{ body | raw }}
+    </div>
+    <div class="sticky w-full bg-white bottom-0 shadow-3xl mt-auto" >
+        <div class="flex items-center p-4 mb-2">
+            {% placeholder footerButtons %}
+        </div>
+    </div>
+</form>

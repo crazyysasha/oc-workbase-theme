@@ -1,0 +1,63 @@
+{% partial "orders/make/form" 
+    request="onSetService" 
+    requestUrl='orders/make/search'|page
+    title = category.name
+    question = category.search_title
+    requestSuccess="history.pushState({}, 'Создание заказа', data.url)"
+    body %}
+        <div class="relative h-10" x-data="{
+                isShown: false,
+                search: '{{(order.services|first).name}}',
+                service: {{ (order.services|first) ? (order.services|first).id : 'null' }},
+            }">
+                
+            <ul :style="{maxHeight: `${window.innerHeight*.5}px`}"
+                class="absolute rounded-lg top-0 left-0 right-0 overflow-y-auto border border-gray-200 z-30 bg-white pt-10"
+                x-show="isShown" id="searchResultsContainer">
+            </ul>
+            <div class="absolute z-40 w-full">
+                <input type="hidden" name="service" x-model="service" x-ref="serviceField">
+
+                <input 
+                    type="text"
+                    class="rounded-lg border border-gray-200 p-2 px-4 w-full focus:outline-none bg-white"
+                    name="search"
+                    placeholder="Услуга или специалист..."
+                    autocomplete="off"
+                    data-request="onSearchService"
+                    data-request-data="category: {{category.id}}, parent: null"
+                    data-request-update="'orders/make/search/results': '#searchResultsContainer'"
+                    data-track-input="100"
+                    @focus="isShown = true"
+                    @keydown="isShown = true"
+                    @click.outside="isShown = false"
+                    @keydown.escape.window.prevent="isShown = false"
+                    x-model="search"
+                    x-ref="searchField">
+            </div>
+        </div>
+        <div class="mb-2 text-sm md:text-md lg:text-base 2xl:text-lg mt-5">Например:</div>
+        <div>
+            {% set categoryServices = category.services.toNested().take(4) %}
+            {% for index, service in categoryServices %}
+                <button type="button" 
+                        class="bg-gray-100 text-sm md:text-md lg:text-base 2xl:text-lg rounded-full py-2 px-3 mr-1 mb-2 focus:outline-none"
+                        @click="
+                            service = {{service.id}};
+                            search = '{{service.name}}';
+                        ">
+                    {{service.name}}
+                </button>
+            {% endfor %}
+        </div>
+
+        {% put footerButtons %}
+            
+            <button type="submit" 
+                class="sm:font-medium text-2xs sm:text-sm md:text-md lg:text-base 2xl:text-lg py-2 px-6 bg-blue-900 text-white rounded-lg focus:outline-none focus:bg-gray-200 focus:text-blue-900 ml-auto"
+                data-attach-loading>
+                <span>Продолжить</span>
+            </button>
+
+        {% endput %}
+{% endpartial %}
