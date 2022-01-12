@@ -150,12 +150,15 @@ title = "About"
                                             </span>
                                    </div>
                                     <div x-show="modal" 
-                                        class="absolute top-10 bg-gray-100 border border-gray-300 rounded-md p-3 ">
+                                        class="absolute top-10 w-full bg-gray-100 border border-gray-300 rounded-md p-3 ">
                                         <ul>
                                             <li x-data="{innerModal:false}">
                                                 <div @click="innerModal=!innerModal" 
-                                                    class="flex justify-between items-center hover:bg-blue-975 hover:text-white rounded-md px-2 py-1">
-                                                    <span>Tashkent City</span>
+                                                    class="flex justify-between  transition-all duration-300 items-center 
+                                                        hover:bg-blue-950 hover:text-white rounded-md px-2 py-1">
+                                                    <span class="text-xs md:text-sm lg:text-md cursor-pointer">
+                                                        Tashkent City
+                                                    </span>
                                                     <span x-show="!innerModal">
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -167,11 +170,19 @@ title = "About"
                                                         </svg>
                                                     </span>
                                                 </div>
-                                                <ul x-show="innerModal">
-                                                    <li>Yunusobod</li>
-                                                    <li>Mirobod</li>
-                                                    <li>Chilonzor</li>
-                                                    <li>Mirzo Ulug`bek</li>
+                                                <ul x-show="innerModal" class="px-3 text-xs md:text-sm lg:text-md"  >
+                                                    <li class="hover:text-blue-950 transition-all duration-300 cursor-pointer">
+                                                        Yunusobod
+                                                    </li>
+                                                    <li class="hover:text-blue-950 transition-all duration-300 cursor-pointer">
+                                                        Mirobo
+                                                        d</li>
+                                                    <li class="hover:text-blue-950 transition-all duration-300 cursor-pointer">
+                                                        Chilonzor
+                                                    </li>
+                                                    <li class="hover:text-blue-950 transition-all duration-300 cursor-pointer">
+                                                        Mirzo Ulug`bek
+                                                    </li>
                                                 </ul>   
                                             </li>
                                         </ul>
