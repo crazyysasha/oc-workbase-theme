@@ -1,28 +1,48 @@
 <form class="h-full flex flex-col relative">
 
-    <div>
-    <h5 :class="{'animate-pulse bg-gray-300 text-transparent': !category }" 
+    <h5 v-bind:class="{'animate-pulse bg-gray-300 text-transparent': !category }" 
         class="text-md md:text-lg 2xl:text-xl select-none"
-        :style="{width: !category ? Math.random() * 100 + 100 + 'px' : false}">
+        v-bind:style="{width: !category ? Math.random() * 100 + 100 + 'px' : false}">
         {category?.name ?? 'loading...'}
     </h5>
 
     <h4 class="text-xl md:text-2xl mt-2">
-        {category?.search_title}
+        {category?.search_title ?? 'Услуга или специалист'}
     </h4>
-    
-        <div>
-            <input 
-                type="text" 
-                name="" 
-                id=""
-                placeholder="Услуга или специалист"
-                class="focus:outline-none rounded-lg 
-                    border-2 border-blue-950 focus:border-blue-975 shadow-inner shadow-2xl
-                    text-md md:text-base px-3 py-2 w-full my-3">
-        </div>
-    </div>    
 
+    <div class="py-3 h-16 relative">
+        <transition name="searchResultsContainer"
+            enter-from-class="opacity-0 scale-y-1/2 translate-y-1/2"
+            enter-active-class="transition ease-in duration-300"
+            enter-to-class="opacity-100 scale-y-0 translate-y-0"
+            leave-from-class="opacity-100 scale-y-0 translate-y-0"
+            leave-active-class="transition ease-out duration-300"
+            leave-to-class="opacity-0 scale-y-1/2 translate-y-1/2">
+            <div v-if="search" class="absolute border border-blue-950 w-full rounded-xl bg-white overflow-y-hidden">
+                <ul class="shadow overflow-y-auto " :style="{maxHeight: windowHeight * .5 + 'px'}">
+                    <li class="h-10"></li>
+                    <li v-for="i in 10"
+                        class="p-2 px-4">{i}</li>
+                </ul>
+            </div>
+        </transition>
+        <input 
+            type="text"
+            v-model="search"
+            id=""
+            placeholder="Услуга или специалист"
+            class="focus:outline-none rounded-xl border border-blue-950 focus:border-blue-975 text-base px-3 py-2 w-full z-50 absolute shadow-lg">
+    </div>   
+    <div>
+        <h5>
+            Например:
+        </h5>
+        <div>
+            <button v-for="service in category?.services">
+                {service.name}
+            </button>
+        </div>
+    </div>
     <div class="sticky w-full bg-white bottom-4 shadow-3xl mt-auto">
         <div class="flex justify-end">
             <button type="submit" 
