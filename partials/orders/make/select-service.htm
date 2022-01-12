@@ -6,11 +6,26 @@
         service name {category}, {service}
     </h5>
 
-    <div>
-        <h2 class="font-semibold text-sm ms:md md:text-lg lg:text-3xl md:font-medium mt-3 mb-4">
-            select service ?
-        </h2>
-        
+    <h2 class="font-semibold text-sm ms:md md:text-lg lg:text-3xl md:font-medium mt-3 mb-4">
+        select service ?
+    </h2>
+    
+    <div v-for="i in 10">
+        <div class="my-1">
+            <input hidden type="radio" v-model="service" :value="i" :id="`rodiaField${i}`">
+            <label :for="`rodiaField${i}`">
+                <div class="flex items-center cursor-pointer">
+                    <div class="flex items-center justify-center w-6 h-6 rounded-full bg-gray-300 mr-2">
+                        <div :class="{'bg-blue-950 rounded-full w-4 h-4 m-auto': service == i}"></div>
+                    </div>
+                    <div>
+                        <span class="text-md md:text-base cursor-pointer">
+                            choose one of them {i}
+                        </span>
+                    </div>
+                </div>
+            </label>
+        </div>
     </div>
     
     <div class="sticky w-full bg-white bottom-4 shadow-3xl mt-auto" >

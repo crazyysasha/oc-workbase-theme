@@ -379,7 +379,7 @@ function getCurrentServices()
                     <ul class="p-4 flex flex-row lg:flex-col justify-around ">
                         <li @click="activeTab = 'order' " 
                             class="relative text-sm md:text-md lg:text-base 2xl:text-lg p-2 text-xs bg-blue-950 
-                                    hover:bg-opacity-50 my-1 hover:text-white transition-all duration-300 rounded-md font-semibold cursor-pointer" 
+                                    hover:bg-opacity-50 my-1 hover:text-white rounded-md font-semibold cursor-pointer" 
                             :class="{'bg-opacity-30': activeTab != 'order' , 
                                 'hover:bg-opacity-100 bg-opacity-75 text-white': activeTab == 'order' }">
                             <div class="flex justify-between items-cetner">
@@ -405,7 +405,7 @@ function getCurrentServices()
                         
                         <li @click="activeTab = 'spetsialist' " 
                             class=" text-sm md:text-md lg:text-base 2xl:text-lg p-2 text-xs bg-blue-950 bg-opacity-0 
-                                    hover:bg-opacity-50 my-1 hover:text-white transition-all duration-300 rounded-md font-semibold cursor-pointer" 
+                                    hover:bg-opacity-50 my-1 hover:text-white rounded-md font-semibold cursor-pointer" 
                             :class="{'hover:bg-opacity-100 bg-opacity-75 text-white transition-all duration-300': activeTab == 'spetsialist'}">
                                 <span class="hidden md:inline-block">Специалисты</span>
                                 <span class="md:hidden">
@@ -417,7 +417,7 @@ function getCurrentServices()
 
                         <li @click="activeTab = 'help' " 
                             class=" text-sm md:text-md lg:text-base 2xl:text-lg p-2 text-xs bg-blue-950 bg-opacity-0 
-                                    hover:bg-opacity-50 my-1 hover:text-white transition-all duration-300 rounded-md font-semibold cursor-pointer" 
+                                    hover:bg-opacity-50 my-1 hover:text-white rounded-md font-semibold cursor-pointer" 
                             :class="{'hover:bg-opacity-100 bg-opacity-75 text-white transition-all duration-300': activeTab == 'help'}">
                                 <span class="hidden md:inline-block">Поддержка</span>
                                 <span class="md:hidden">
