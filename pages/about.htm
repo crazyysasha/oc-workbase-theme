@@ -27,16 +27,16 @@ title = "About"
                 <a 
                     class="text-xs sm:text-sm md:text-md lg:text-lg py-2 px-4 rounded-md mr-3 border"
                     @click="Tab = 1" 
-                    :class="{ 'border-orange-500 bg-orange-500 text-white': Tab == 1, 'hover:border-orange-500 hover:text-orange-500 hover:bg-white': Tab != 1 }"
+                    :class="{ 'border-orange-950 bg-orange-950 text-white': Tab == 1, 'hover:border-orange-950 hover:text-orange-950 hover:bg-white': Tab != 1 }"
                     href="#">
 
                     Анкета
                 </a>
                 <a 
                     class="text-xs sm:text-sm md:text-md lg:text-lg py-2 px-4 rounded-md border 
-                        hover:border-orange-500 hover:text-orange-500 hover:bg-white" 
+                        hover:border-orange-950 hover:text-orange-950 hover:bg-white" 
                     @click="Tab = 2" 
-                    :class="{ 'border-orange-500 bg-orange-500 text-white': Tab == 2, 'hover:border-orange-500 hover:text-orange-500 hover:bg-white': Tab != 2 }"
+                    :class="{ 'border-orange-950 bg-orange-950 text-white': Tab == 2, 'hover:border-orange-950 hover:text-orange-950 hover:bg-white': Tab != 2 }"
                     href="#">
 
                     Настройки
@@ -49,7 +49,7 @@ title = "About"
                         <img class="rounded-full w-28 h-28" src="{{'assets/images/userlistchatbig.png' | theme}}" alt="">
                         <div 
                             class="absolute right-0 bottom-3 bg-white border border-gray-300 
-                                text-blue-500 rounded-full text-center w-7 h-7 
+                                text-blue-950 rounded-full text-center w-7 h-7 
                                 flex justify-center cursor-pointer justify-items-center" >
                                 <label class="m-auto w-full cursor-pointer" for="Avater">
                                     <input id="Avater" type="file" hidden>
@@ -72,65 +72,174 @@ title = "About"
                     </div>
                 </div>
 
-                <div class="p-5 md:p-6 lg:p-10 mt-4 bg-white rounded-md w-full">
+
+                <div x-data="{isEditable: false}" class="py-4 px-2 md:py-5 md:p-3 lg:py-8 lg:p-6 mt-4 bg-white rounded-md w-full">
                     <div class="flex justify-between items-center ">
-                        <span class="text-xs sm:text-sm md:text-md lg:text-lg font-medium">Описание профиля:</span>
-                        <a class="rounded-md bg-blue-800 flex items-center text-center border border-white
-                                w-8 h-8 cursor-pointer  hover:border-blue-700 hover:bg-blue-700 transition-all duration-500" 
+                        <span class="text-xs sm:text-sm md:text-md lg:text-lg font-medium px-2">Описание профиля:</span>
+                        <button @click="isEditable =! isEditable"
+                            class="rounded-md bg-blue-975 flex items-center text-center border border-white
+                                w-8 h-8 cursor-pointer  hover:border-blue-975 hover:bg-blue-975 
+                                transition-all duration-500 focus:outline-none" 
                            href="#">
                             <i class="icon-pencil m-auto"></i>
-                        </a>
+                        </button>
                     </div>
                     <div class="lg:flex flex-col flex-wrap md:max-h-64">
-                        <div class="mb-3" >
-                            <div class="mb-1 text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium" >
+                        <div class="w-full sm:w-96" >
+                            <div class="text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium px-2" >
                                 <span>Ф.И.О.</span>
                             </div>
-                            <div class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
-                                <span>Акмаль Халиков Ботирович</span>
+                            <div x-data="{message: 'Акмаль Халиков Ботирович'}" class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
+                                <div x-text="message"
+                                    x-show="!isEditable"
+                                    class="rounded-md w-full px-2 py-1 border border-transparent">
+                                </div>
+                                <input class="rounded-md focus:outline-none w-9/12 px-2 py-1 border border-gray-300
+                                        text-xs sm:text-sm md:text-md lg:text-lg"
+                                    x-show="isEditable"
+                                    type="text" 
+                                    name="" 
+                                    id="" 
+                                    x-model="message">
                             </div>
                         </div>
-                        <div class="mb-3" >
-                            <div class="mb-1 text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium" >
+                        <div class="w-full sm:w-96" >
+                            <div class="text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium px-2" >
                                 <span>Дата рождения:</span>
                             </div>
-                            <div class="mb-1 text-ms lg:text-md" >
-                                <span>14.03.1985</span>
+                            <div x-data="{message: '2022-01-18'}" class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
+                                <div x-text="message"
+                                    x-show="!isEditable"
+                                    class="rounded-md w-full px-2 py-1 border-2 border-transparent">
+                                </div>
+                                <input class="rounded-md focus:outline-none w-9/12 px-2 py-1 border border-gray-300
+                                        text-xs sm:text-sm md:text-md lg:text-lg"
+                                    x-show="isEditable"
+                                    type="date" 
+                                    name="" 
+                                    id="" 
+                                    x-model="message">
                             </div>
                         </div>
-                        <div class="mb-3" >
-                            <div class="mb-1 text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium" >
+                        <div class="w-full sm:w-96" >
+                            <div class="text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium px-2">
                                 <span>Место Проживания:</span>
                             </div>
-                            <div class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
-                                <span>г.Ташкент</span>
+                            <div x-data="{message: 'г.Ташкент'}" class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
+                                <div x-text="message"
+                                    x-show="!isEditable"
+                                    class="rounded-md w-full px-2 py-1 border border-transparent">
+                                </div>
+                                <div x-data="{modal: false}" class="relative"  x-show="isEditable">
+                                   <div 
+                                        class="flex justify-between items-center rounded-md w-9/12 px-2 py-1 border border-gray-300
+                                        text-xs sm:text-sm md:text-md lg:text-lg"
+                                        @click="modal=!modal">
+
+                                            <div x-text="message"></div>
+
+                                            <span x-show="!modal">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                                </svg>
+                                            </span>
+                                            <span x-show="modal">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                                                </svg>
+                                            </span>
+                                   </div>
+                                    <div x-show="modal" 
+                                        class="absolute top-10 w-full bg-gray-100 border border-gray-300 rounded-md p-3 ">
+                                        <ul>
+                                            <li x-data="{innerModal:false}">
+                                                <div @click="innerModal=!innerModal" 
+                                                    class="flex justify-between  transition-all duration-300 items-center 
+                                                        hover:bg-blue-950 hover:text-white rounded-md px-2 py-1">
+                                                    <span class="text-xs md:text-sm lg:text-md cursor-pointer">
+                                                        Tashkent City
+                                                    </span>
+                                                    <span x-show="!innerModal">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                                        </svg>
+                                                    </span>
+                                                    <span x-show="innerModal">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                                <ul x-show="innerModal" class="px-3 text-xs md:text-sm lg:text-md"  >
+                                                    <li class="hover:text-blue-950 transition-all duration-300 cursor-pointer">
+                                                        Yunusobod
+                                                    </li>
+                                                    <li class="hover:text-blue-950 transition-all duration-300 cursor-pointer">
+                                                        Mirobo
+                                                        d</li>
+                                                    <li class="hover:text-blue-950 transition-all duration-300 cursor-pointer">
+                                                        Chilonzor
+                                                    </li>
+                                                    <li class="hover:text-blue-950 transition-all duration-300 cursor-pointer">
+                                                        Mirzo Ulug`bek
+                                                    </li>
+                                                </ul>   
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="mb-3" >
-                            <div class="mb-1 text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium" >
+                        <div class="w-full sm:w-96" >
+                            <div class="text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium px-2" >
                                 <span>Номер телефона:</span>
                             </div>
                             <div class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
-                                <span>+99894 923-03-14</span>
+                                <div x-data="{message: '+99894 923-03-14'}" class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
+                                    <div x-text="message"
+                                        x-show="!isEditable"
+                                        class="rounded-md w-full px-2 py-1 border border-transparent">
+                                    </div>
+                                    <input class="rounded-md focus:outline-none w-9/12 px-2 py-1 border border-gray-300
+                                            text-xs sm:text-sm md:text-md lg:text-lg"
+                                        x-show="isEditable"
+                                        type="tel" 
+                                        name="" 
+                                        id="" 
+                                        x-model="message">
+                                </div>
                             </div>
                         </div>
-                        <div class="mb-3" >
-                            <div class="mb-1 text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium" >
+                        <div class="w-full sm:w-96" >
+                            <div class="text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium px-2" >
                                 <span>Электронная почта:</span>
                             </div>
                             <div class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
-                                <span>AkmalKhalikov@gmail.com</span>
+                                <div x-data="{message: 'AkmalKhalikov@gmail.com'}" class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
+                                <div x-text="message"
+                                    x-show="!isEditable"
+                                    class="rounded-md w-full px-2 py-1 border border-transparent">
+                                </div>
+                                <input class="rounded-md focus:outline-none w-9/12 px-2 py-1 border border-gray-300
+                                        text-xs sm:text-sm md:text-md lg:text-lg"
+                                    x-show="isEditable"
+                                    type="text" 
+                                    name="" 
+                                    id="" 
+                                    x-model="message">
+                            </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
+
             <div class="p-5 m-1 mt-4 bg-white rounded-md ">
                 <div class="flex justify-between">
                     <span class="text-lg font-medium">О себе</span>
-                    <a class="rounded-md bg-blue-800 flex items-center text-center border border-white
-                            w-8 h-8 cursor-pointer  hover:border-blue-700 hover:bg-blue-700 transition-all duration-500" 
+                    <a class="rounded-md bg-blue-975 flex items-center text-center border border-white
+                            w-8 h-8 cursor-pointer  hover:border-blue-975 hover:bg-blue-975 transition-all duration-500" 
                         href="#">
                         <i class="icon-pencil m-auto"></i>
                     </a>
@@ -158,7 +267,7 @@ title = "About"
                         </div>
                         <div class="mb-1" >
                             <span>Расскажите подробно о себе, чтобы клиенты узнали вас получше. </span>
-                            <a class="ml-4 text-blue-400 transition-all duration-500 hover:text-blue-800" href="#"> Добавить</a>
+                            <a class="ml-4 text-blue-950 transition-all duration-500 hover:text-blue-950" href="#"> Добавить</a>
                         </div>
                     </div>
                 </div>
@@ -168,8 +277,8 @@ title = "About"
             <div class="p-5 m-1 mt-4 bg-white rounded-md ">
                 <div class="flex justify-between">
                     <span class="text-sm md:text-md lg:text-lg 2xl:text-xl font-medium">Районы и адреса</span>
-                    <a class="rounded-md bg-blue-800 flex items-center text-center border border-white
-                            w-8 h-8 cursor-pointer  hover:border-blue-700 hover:bg-blue-700 transition-all duration-500" 
+                    <a class="rounded-md bg-blue-975 flex items-center text-center border border-white
+                            w-8 h-8 cursor-pointer  hover:border-blue-975 hover:bg-blue-975 transition-all duration-500" 
                            href="#">
                         <i class="icon-pencil m-auto"></i>
                     </a>
@@ -180,9 +289,9 @@ title = "About"
                             <span>Районы выезда к клиентам</span>
                         </div>
                         <div class="mb-1 flex flex-wrap justify-items-center items-center text-xs md:text-sm lg:text-md 2xl:text-lg" >
-                            <span class="inline-block w-2 h-2 rounded-full bg-orange-500 mr-1" ></span>
+                            <span class="inline-block w-2 h-2 rounded-full bg-orange-950 mr-1" ></span>
                             <span>Алмазарский район</span>
-                            <span class="inline-block w-2 h-2 rounded-full bg-blue-500 ml-3 mr-1" ></span>
+                            <span class="inline-block w-2 h-2 rounded-full bg-blue-975 ml-3 mr-1" ></span>
                             <span>Космонавтлар</span>
                             <span class="inline-block w-2 h-2 rounded-full bg-green-500 ml-3 mr-1" ></span>
                             <span>Бодомзор</span>
@@ -205,8 +314,8 @@ title = "About"
                 <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-4">
                     <h4 class="font-medium text-sm md:text-md lg:text-lg 2xl:text-xl">Специальности</h4>
                     <button @click="Modal = !Modal" 
-                            class="text-blue-500 text-left text-sm md:text-sm lg:text-md 2xl:text-lg mt-2 sm:mt-0
-                            transition-all duration-300 hover:text-blue-900 " 
+                            class="text-blue-950 text-left text-sm md:text-sm lg:text-md 2xl:text-lg mt-2 sm:mt-0
+                            transition-all duration-300 hover:text-blue-950 " 
                             href="#">Добавить новую специальность
                     </button>
                 </div>
@@ -224,7 +333,7 @@ title = "About"
                         <input @click="isActive = !isActive , repair = !repair" id="checkToggle" type="checkbox" hidden>
                         <label for="checkToggle" class="flex items-center">
                             <div class="relative w-10 rounded-full h-6 bg-gray-300 cursor-pointer mr-2"
-                                :class="{ 'bg-gray-300': !isActive , 'bg-blue-900' : isActive }">
+                                :class="{ 'bg-gray-300': !isActive , 'bg-blue-975' : isActive }">
                                 <div class="absolute  rounded-full h-4 w-4 bg-white"
                                     :class="{ 'left-1 top-1': !isActive , 'right-1 top-1' : isActive }">
                                 </div>
@@ -246,8 +355,8 @@ title = "About"
                                 <span>12 из 18</span>
                             </div>
                             <div class="flex sm:flex-1 md:flex justify-between">
-                                <div class="w-1.5 inline-block bg-blue-200 h-8 rounded-sm relative">
-                                    <div class="absolute bottom-0 w-full h-3/4 bg-blue-500"></div>
+                                <div class="w-1.5 inline-block bg-blue-975 h-8 rounded-sm relative">
+                                    <div class="absolute bottom-0 w-full h-3/4 bg-blue-975"></div>
                                 </div>
                                <div class="inline-block ml-3">
                                     <p class="text-gray-400 ">Цены указаны</p>
@@ -266,7 +375,7 @@ title = "About"
                                 <input  x-bind:disabled="!repair" @click="isActive = !isActive" id="checkToggleChild" type="checkbox" hidden>
                                 <label for="checkToggleChild" class="flex items-center">
                                     <div class="relative w-9 rounded-full h-5 bg-gray-300 cursor-pointer mr-2"
-                                        :class="{ 'bg-gray-300': !isActive , 'bg-blue-900' : isActive }">
+                                        :class="{ 'bg-gray-300': !isActive , 'bg-blue-975' : isActive }">
                                         <div class="absolute  rounded-full h-3 w-3 bg-white"
                                             :class="{ 'left-1 top-1': !isActive , 'right-1 top-1' : isActive }">
                                         </div>
@@ -291,8 +400,8 @@ title = "About"
                                 <span>4 из 20</span>
                             </div>
                             <div class="flex sm:flex-1 md:flex justify-between">
-                                <div class="w-1.5 inline-block bg-blue-200 h-8 rounded-sm relative">
-                                    <div class="absolute bottom-0 w-full h-1/4 bg-blue-500"></div>
+                                <div class="w-1.5 inline-block bg-blue-975 h-8 rounded-sm relative">
+                                    <div class="absolute bottom-0 w-full h-1/4 bg-blue-975"></div>
                                 </div>
                                <div class="inline-block ml-3">
                                     <p class="text-gray-400 ">Цены указаны</p>
@@ -311,7 +420,7 @@ title = "About"
                                 <input  x-bind:disabled="!repair" @click="isActive = !isActive" id="checkToggleChild_2" type="checkbox" hidden>
                                 <label for="checkToggleChild_2" class="flex items-center">
                                     <div class="relative w-9 rounded-full h-5 bg-gray-300 cursor-pointer mr-2"
-                                        :class="{ 'bg-gray-300': !isActive , 'bg-blue-900' : isActive }">
+                                        :class="{ 'bg-gray-300': !isActive , 'bg-blue-975' : isActive }">
                                         <div class="absolute  rounded-full h-3 w-3 bg-white"
                                             :class="{ 'left-1 top-1': !isActive , 'right-1 top-1' : isActive }">
                                         </div>
@@ -344,12 +453,12 @@ title = "About"
                         <div class="bg-white rounded-md text-center py-10">
                             <div class="text-7xl"><i class="icon-camera"></i></div>
                             <span class="text-gray-400 my-5 font-medium block">Нет фото</span>
-                            <a class="rounded-md text-sm md:text-md lg:text-base 2xl:text-lg bg-blue-100 text-blue-700 px-4 py-2 transition-all duration-300 hover:bg-blue-900 hover:text-white" href="#">
+                            <a class="rounded-md text-sm md:text-md lg:text-base 2xl:text-lg bg-blue-975 text-white px-4 py-2 transition-all duration-300 hover:bg-blue-950 hover:text-white" href="#">
                                 <span>Добавить</span>
                             </a>
                         </div>
                         <div class="my-5 text-center">
-                            <a class="border border-blue-700 text-blue-700 px-4 py-2 my-2 rounded-md bg-blue-100 transition-all duration-300 hover:bg-blue-700 hover:text-white text-sm md:text-md lg:text-base 2xl:text-lg" href="#">
+                            <a class="border border-blue-975 text-blue-950 px-4 py-2 my-2 rounded-md transition-all duration-300 hover:bg-blue-975 hover:text-white text-sm md:text-md lg:text-base 2xl:text-lg" href="#">
                                 <span>Пройти сертификацию</span>
                             </a>
                         </div>
@@ -360,12 +469,12 @@ title = "About"
                         <div class="bg-white rounded-md text-center py-10">
                             <div class="text-7xl"><i class="icon-camera"></i></div>
                             <span class="text-gray-400 my-5 font-medium block">Нет фото</span>
-                            <a class="rounded-md text-sm md:text-md lg:text-base 2xl:text-lg bg-blue-100 text-blue-700 px-4 py-2 transition-all duration-300 hover:bg-blue-900 hover:text-white" href="#">
+                            <a class="rounded-md text-sm md:text-md lg:text-base 2xl:text-lg bg-blue-975 text-white px-4 py-2 transition-all duration-300 hover:bg-blue-950 hover:text-white" href="#">
                                 <span>Добавить</span>
                             </a>
                         </div>
                         <div class="my-5 text-center">
-                            <a class="border border-blue-700 text-blue-700 px-4 py-2 my-2 rounded-md bg-blue-100 transition-all duration-300 hover:bg-blue-700 hover:text-white text-sm md:text-md lg:text-base 2xl:text-lg" href="#">
+                            <a class="border border-blue-975 text-blue-950 px-4 py-2 my-2 rounded-md transition-all duration-300 hover:bg-blue-975 hover:text-white text-sm md:text-md lg:text-base 2xl:text-lg" href="#">
                                 <span>Пройти сертификацию</span>
                             </a>
                         </div>
@@ -376,12 +485,12 @@ title = "About"
                         <div class="bg-white rounded-md text-center py-10">
                             <div class="text-7xl"><i class="icon-camera"></i></div>
                             <span class="text-gray-400 my-5 font-medium block">Нет фото</span>
-                            <a class="rounded-md text-sm md:text-md lg:text-base 2xl:text-lg bg-blue-100 text-blue-700 px-4 py-2 transition-all duration-300 hover:bg-blue-900 hover:text-white" href="#">
+                            <a class="rounded-md text-sm md:text-md lg:text-base 2xl:text-lg bg-blue-975 text-white px-4 py-2 transition-all duration-300 hover:bg-blue-950 hover:text-white" href="#">
                                 <span>Добавить</span>
                             </a>
                         </div>
                         <div class="my-5 text-center">
-                            <a class="border border-blue-700 text-blue-700 px-4 py-2 my-2 rounded-md bg-blue-100 transition-all duration-300 hover:bg-blue-700 hover:text-white text-sm md:text-md lg:text-base 2xl:text-lg" href="#">
+                            <a class="border border-blue-975 text-blue-950 px-4 py-2 my-2 rounded-md transition-all duration-300 hover:bg-blue-975 hover:text-white text-sm md:text-md lg:text-base 2xl:text-lg" href="#">
                                 <span>Пройти сертификацию</span>
                             </a>
                         </div>
