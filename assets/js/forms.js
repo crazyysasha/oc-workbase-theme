@@ -4,40 +4,29 @@ const SearchService = {
     template: '#searchServiceComponent',
 };
 
-console.log('asd');
 const SelectService = {
     delimiters: ['{', '}'],
     props: ['category', 'service'],
-    template: `asd`,
+    template: `#selectServiceComponent`,
 };
 const routes = [
     {
-        path: '/new/:category/:service',
-        component: SelectService,
+        path: '/vue/:category',
+        component: SearchService,
         props: true,
     },
     {
-        path: '/new/:category',
-        component: SearchService,
+        path: '/vue/:category/:service',
+        component: SelectService,
         props: true,
     },
 ];
 const router = VueRouter.createRouter({
   history: VueRouter.createWebHistory(),
-  routes, // short for `routes: routes`
+  routes,
 })
 const Form = {
   delimiters: ['{', '}'],
-  data() {
-    return {
-      counter: 0
-    }
-  },
-  mounted() {
-    setInterval(() => {
-      this.counter++
-    }, 1000)
-  }
 }
 
 const form = Vue.createApp(Form);

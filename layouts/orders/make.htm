@@ -477,6 +477,14 @@ function getCurrentServices()
             {% endput %}
         </div>
     </section>
+    
+    <script type="text/template" id="searchServiceComponent">
+        {% partial 'orders/make/search-service' %}
+    </script>
+    
+    <script type="text/template" id="selectServiceComponent">
+        {% partial 'orders/make/select-service' %}
+    </script>
 
     <script src="https://unpkg.com/vue@next"></script>
 
