@@ -46,7 +46,14 @@ const SelectService = {
     props: ['categorySlug', 'service'],
     template: `#selectServiceComponent`,
 };
-
+const aboutPage = {
+    delimiters: ['{','}'],
+    data() {
+        return {
+            isEditable: false,
+        };
+    },
+};
 
 const routes = [
     {
