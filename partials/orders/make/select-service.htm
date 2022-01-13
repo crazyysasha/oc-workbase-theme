@@ -16,7 +16,18 @@
             <label :for="`rodiaField${i}`">
                 <div class="flex items-center cursor-pointer">
                     <div class="flex items-center justify-center w-6 h-6 rounded-full bg-gray-300 mr-2">
-                        <div :class="{'bg-blue-950 rounded-full w-4 h-4 m-auto': service == i}"></div>
+                        <transition name="fade"
+                            enter-from-class="opacity-0 scale-y-1/2 translate-y-1/2"
+                            enter-active-class="transition ease-in duration-300"
+                            enter-to-class="opacity-100 scale-y-0 translate-y-0"
+                            leave-from-class="opacity-100 scale-y-0 translate-y-0"
+                            leave-active-class="transition ease-out duration-300"
+                            leave-to-class="opacity-0 scale-y-1/2 translate-y-1/2">
+                            <div
+                                v-show="service == i" 
+                                class="bg-blue-950 rounded-full w-4 h-4 m-auto">
+                            </div>
+                          </transition>
                     </div>
                     <div>
                         <span class="text-md md:text-base cursor-pointer">
