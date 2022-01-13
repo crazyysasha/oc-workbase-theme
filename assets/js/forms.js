@@ -56,6 +56,11 @@ const SearchService = {
 
 const SelectService = {
     delimiters: ['{', '}'],
+    data() {
+        return {
+            service: null,
+        };
+    },
     props: ['categorySlug', 'service'],
     template: `#selectServiceComponent`,
 };
