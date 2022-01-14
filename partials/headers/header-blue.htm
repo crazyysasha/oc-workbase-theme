@@ -25,55 +25,110 @@
                         {% if not user %}
                             
                         {% else %}
-                            <ul x-data="{isActive: undefined }" class="list-reset lg:flex justify-start flex-1 items-center h-full">
-                                
-                                <li class="mx-1 h-full">
+                            <ul x-data="{isActive: undefined }" class="list-reset lg:flex justify-start flex-1 items-center h-full">  
+                                <li class="px-1 h-full">
                                     <a  x-init="console.log(isActive)"
                                         href="{{ 'orders' | page }}"
-                                        class="flex items-center justify-center flex-col px-4  h-full text-white hover:bg-blue-950 w-28 transition-all duration-300"
-                                        :class="{ 'bg-blue-950': '{{this.page.id}}' === 'orders' }">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                                        class="flex items-center justify-center flex-col px-4  h-full text-white hover:bg-blue-800 w-28 transition-all duration-300"
+                                        :class="{ 'bg-blue-800': '{{this.page.id}}' === 'orders' }">
+                                        <svg fill="#fff" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">
+                                            <g>
+                                                <path d="M10,25.465h13c0.553,0,1-0.448,1-1s-0.447-1-1-1H10c-0.553,0-1,0.448-1,1S9.447,25.465,10,25.465z" />
+                                                <path d="M36,29.465H10c-0.553,0-1,0.448-1,1s0.447,1,1,1h26c0.553,0,1-0.448,1-1S36.553,29.465,36,29.465z" />
+                                                <path d="M36,35.465H10c-0.553,0-1,0.448-1,1s0.447,1,1,1h26c0.553,0,1-0.448,1-1S36.553,35.465,36,35.465z" />
+                                                <path d="M54.072,2.535L19.93,2.465c-3.27,0-5.93,2.66-5.93,5.93v5.124l-8.07,0.017c-3.27,0-5.93,2.66-5.93,5.93v21.141
+                                                c0,3.27,2.66,5.929,5.93,5.929H12v10c0,0.413,0.254,0.784,0.64,0.933c0.117,0.045,0.239,0.067,0.36,0.067
+                                                c0.276,0,0.547-0.115,0.74-0.327l9.704-10.675l16.626-0.068c3.27,0,5.93-2.66,5.93-5.929v-0.113l5.26,5.786
+                                                c0.193,0.212,0.464,0.327,0.74,0.327c0.121,0,0.243-0.022,0.36-0.067c0.386-0.149,0.64-0.52,0.64-0.933v-10h1.07
+                                                c3.27,0,5.93-2.66,5.93-5.929V8.465C60,5.196,57.341,2.536,54.072,2.535z M44,40.536c0,2.167-1.763,3.929-3.934,3.929l-17.07,0.07
+                                                c-0.28,0.001-0.548,0.12-0.736,0.327L14,53.949v-8.414c0-0.552-0.447-1-1-1H5.93c-2.167,0-3.93-1.763-3.93-3.929V19.465
+                                                c0-2.167,1.763-3.93,3.932-3.93l9.068-0.019c0,0,0,0,0,0c0.001,0,0.001,0,0.002,0l25.068-0.052c2.167,0,3.93,1.763,3.93,3.93
+                                                v18.441V40.536z M58,29.606c0,2.167-1.763,3.929-3.93,3.929H52c-0.553,0-1,0.448-1,1v8.414l-5-5.5V19.395
+                                                c0-3.27-2.66-5.93-5.932-5.93L16,13.514v-5.12c0-2.167,1.763-3.93,3.928-3.93l34.141,0.07c0.001,0,0.001,0,0.002,0
+                                                c2.167,0,3.93,1.763,3.93,3.93V29.606z" />
+                                            </g>
                                         </svg>
                                         <span class="text-md font-medium">Заказы</span>
                                     </a>
                                 </li>
-                                <li class="mx-1 h-full">
+                                <li class="px-1 h-full">
                                     <a href="{{ 'balance' | page }}"
-                                        class="flex items-center justify-center flex-col px-4  h-full  text-white hover:bg-blue-950 w-28 transition-all duration-300"
-                                        :class="{ 'bg-blue-950': '{{this.page.id}}' === 'balance' }">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                                        class="flex items-center justify-center flex-col px-4  h-full  text-white hover:bg-blue-800 w-28 transition-all duration-300"
+                                        :class="{ 'bg-blue-800': '{{this.page.id}}' === 'balance' }">
+                                        <svg fill="#fff" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                            <g>
+                                                <path d="M58.2539406,13.033968h-4.336998L48.488842,2.1779683c-0.1184998-0.2361001-0.3254013-0.4158001-0.5750008-0.4983001
+                                                c-0.2515831-0.0855-0.522583-0.0651-0.7595825,0.0534L37.3651428,6.627768l-7.8645-5.4523001
+                                                c-0.4167004-0.2865-0.9839001-0.2156-1.3171005,0.1652L18.0172577,13.033968H5.7460427
+                                                c-3.0924001,0-5.5992999,2.507-5.5992999,5.5993996v38.7673035c0,3.0923996,2.5068998,5.5993004,5.5992999,5.5993004h52.5078964
+                                                c3.0923996,0,5.5993156-2.5069008,5.5993156-5.5993004V18.6333675
+                                                C63.8532562,15.5409679,61.3463402,13.033968,58.2539406,13.033968z M51.692543,13.033968H29.0019417l18.152317-9.0764999
+                                                L51.692543,13.033968z M29.1004429,3.3183682l6.2359982,4.3239002L24.553257,13.033968h-3.8993149L29.1004429,3.3183682z
+                                                M58.2539406,61.0106697H5.7460427c-1.9905002,0-3.6099-1.6194-3.6099-3.6100006V18.6333675
+                                                c0-1.9905987,1.6193998-3.6099997,3.6099-3.6099997h52.5078964c1.9905014,0,3.6099014,1.619401,3.6099014,3.6099997v7.1905003
+                                                H47.9002571c-5.4561157,0-9.8953171,4.4469013-9.8953171,9.9137001v1.7611008c0,5.4658012,4.4392014,9.9118004,9.8953171,9.9118004
+                                                H61.863842v9.9902C61.863842,59.3912697,60.244442,61.0106697,58.2539406,61.0106697z M61.863842,27.8131676v17.6078987H47.9002571
+                                                c-4.3595161,0-7.9059143-3.5541992-7.9059143-7.9223976v-1.7611008c0-4.3691998,3.5463982-7.9244003,7.9059143-7.9244003H61.863842
+                                                z" />
+                                                <path d="M43.936142,36.3232689c0,2.1942978,1.7844009,3.9786987,3.9786987,3.9786987
+                                                c2.1943016,0,3.9787025-1.7844009,3.9787025-3.9786987c0-2.1943016-1.7844009-3.9787025-3.9787025-3.9787025
+                                                C45.7205429,32.3445663,43.936142,34.1289673,43.936142,36.3232689z M47.9148407,34.3339691
+                                                c1.0965996,0,1.9892998,0.8927002,1.9892998,1.9892998c0,1.0966988-0.8927002,1.989399-1.9892998,1.989399
+                                                c-1.0966988,0-1.989399-0.8927002-1.989399-1.989399C45.9254417,35.2266693,46.8181419,34.3339691,47.9148407,34.3339691z" />
+                                            </g>
                                         </svg>
                                         <span class="text-md font-medium">Кошелек</span>
                                     </a>
                                 </li>
-                                <li class="mx-1 h-full">
+                                <li class="px-1 h-full">
                                     <a href="{{ 'about-customer' | page }}"
-                                        class="flex items-center justify-center flex-col px-4  h-full  text-white hover:bg-blue-950 w-28 transition-all duration-300"
-                                        :class="{ 'bg-blue-950': '{{this.page.id}}' === 'about-customer' }">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                        class="flex items-center justify-center flex-col px-4  h-full  text-white hover:bg-blue-800 w-28 transition-all duration-300"
+                                        :class="{ 'bg-blue-800': '{{this.page.id}}' === 'about-customer' }">
+                                        <svg fill="#fff" class="w-7 h-7" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M228.47461,213.98975a116.52651,116.52651,0,0,0-74.73389-55.06446,68,68,0,1,0-51.48144,0,116.5263,116.5263,0,0,0-74.73242,55.062,4.00024,4.00024,0,1,0,6.9248,4.00684,108.03687,108.03687,0,0,1,187.09814.00147,4,4,0,0,0,6.92481-4.00586ZM68,96a60,60,0,1,1,60,60A60.06812,60.06812,0,0,1,68,96Z" />
                                         </svg>
                                         <span class="text-md font-medium">Анкета</span>
                                     </a>
                                 </li>
-                                <li class="mx-1 h-full">
+                                <li class="px-1 h-full">
                                     <a href="{{ 'help' | page }}"
-                                        class="flex items-center justify-center flex-col px-4  h-full  text-white hover:bg-blue-950 w-28 transition-all duration-300"
-                                        :class="{ 'bg-blue-950': '{{this.page.id}}' === 'help' }">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        class="flex items-center justify-center flex-col px-4  h-full  text-white hover:bg-blue-800 w-28 transition-all duration-300"
+                                        :class="{ 'bg-blue-800': '{{this.page.id}}' === 'help' }">
+                                        <svg fill="#fff" class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <g>
+                                                <path d="M256,0C114.841,0,0,114.841,0,256s114.841,256,256,256s256-114.841,256-256S397.159,0,256,0z M256,492.308
+                                                    c-130.298,0-236.308-106.01-236.308-236.308S125.702,19.692,256,19.692S492.308,125.702,492.308,256S386.298,492.308,256,492.308z
+                                                    " />
+                                            </g>
+                                            <g>
+                                                <path d="M254.981,206.769c-5.438,0-9.846,4.41-9.846,9.846v187.077c0,5.438,4.409,9.846,9.846,9.846
+                                                    c5.438,0,9.846-4.409,9.846-9.846V216.615C264.827,211.179,260.418,206.769,254.981,206.769z" />
+                                            </g>
+                                            <g>
+                                                <circle cx="256" cy="118.154" r="19.692" />
+                                            </g>
                                         </svg>
                                         <span class="text-md font-medium">Поддержка</span>
                                     </a>
                                 </li>
-                                <li class="mx-1 h-full">
+                                <li class="px-1 h-full">
                                     <a href="{{ 'brands' | page }}"
-                                        class="flex items-center justify-center flex-col px-4  h-full  text-white hover:bg-blue-950 w-28 transition-all duration-300"
-                                        :class="{ 'bg-blue-950': '{{this.page.id}}' === 'brands' }">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+                                        class="flex items-center justify-center flex-col px-4  h-full  text-white hover:bg-blue-800 w-28 transition-all duration-300"
+                                        :class="{ 'bg-blue-800': '{{this.page.id}}' === 'brands' }">
+                                        <svg fill="#fff" class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384.1 384.1">
+                                            <g>
+                                                <path d="M344.05,80.1h-72c17.2-18.8,16.8-48-1.6-66c-18.8-18.8-49.2-18.8-67.6,0c-6.8,6.8-13.6,17.2-18.4,29.2
+                                                        c-4.8-12-11.6-22.4-18.4-29.2c-8.8-9.2-21.2-14-34-14s-24.8,4.8-34,14s-14,21.2-14,34c0,12,4.4,23.2,12.4,32h-56.4
+                                                        c-22,0-40,18-40,40v32c0,10.4,6.8,19.2,16,22.8c0,0.4,0,0.8,0,1.2v168c0,22.8,23.2,40,44,40h268c22,0,40-18,40-40V174.9
+                                                        c9.6-3.6,16-12.4,16-22.8v-32C384.05,98.1,366.05,80.1,344.05,80.1z M214.05,25.3c12.4-12.4,32.8-12.4,45.2,0
+                                                        c12.4,12.4,12.4,32.8,0,45.2c-3.2,3.2-7.2,6-10.8,8.4c-0.8,0.4-1.2,0.8-2,1.6h-54.4c0.8-1.2,1.2-2.8,1.2-4
+                                                        C192.85,59.3,204.05,35.3,214.05,25.3z M109.65,24.9c6-6,14-9.2,22.4-9.2c8.4,0,16.4,3.2,22.4,9.2c10,10,21.2,34,20.8,50.4
+                                                        c0,1.6,0.4,2.8,1.2,4h-54c-0.4,0-1.2-0.4-2.4-1.2c-4-2-7.6-4.8-10.4-8C97.25,57.7,97.25,37.3,109.65,24.9z M176.05,368.1h-116
+                                                        c-12.8,0-28-10.8-28-24v-168h144V368.1z M368.05,152.1c0,4.4-3.2,7.2-6.4,8c0,0-0.4,0-0.4,0.4c-0.4,0-0.8,0-1.2,0
+                                                        c-4.4,0-8,3.6-8,8v176c0,13.2-10.8,24-24,24h-136V176.1h80c4.4,0,8-3.6,8-8c0-4.4-3.6-8-8-8h-80v-36c0-4.4-3.6-8-8-8
+                                                        c-4.4,0-8,3.6-8,8v36h-152c-4.4,0-8-3.6-8-8v-32c0-13.2,10.8-24,24-24h304c13.2,0,24,10.8,24,24V152.1z" />
+                                                <path d="M320.05,160.1h-12c-4.4,0-8,3.6-8,8c0,4.4,3.6,8,8,8h12c4.4,0,8-3.6,8-8C328.05,163.7,324.45,160.1,320.05,160.1z" />
+                                            </g>
                                         </svg>
                                         <span class="text-md font-medium">Бонусы</span>
                                     </a>
@@ -176,10 +231,10 @@
                                             x-cloak
                                             class="bg-blue-975 text-white w-full absolute z-10 p-1 rounded-xl top-21">
                                             <div class="flex flex-col text-black text-center text-white">
-                                                <a @click="Modal = !Modal , $store.UserStatus.UserType = 'Я исполнитель' " x-show="$store.UserStatus.UserType != 'Я исполнитель' " class="hover:bg-white hover:text-blue-975 rounded-lg px-2 py-1"  href="#">
+                                                <a @click="Modal = !Modal , $store.UserStatus.UserType = 'Я исполнитель'; $dispatch('change-user-type', 'executor') " x-show="$store.UserStatus.UserType != 'Я исполнитель' " class="hover:bg-white hover:text-blue-975 rounded-lg px-2 py-1"  href="javascript:;">
                                                     <span>Я исполнитель</span>
                                                 </a>
-                                                <a @click="Modal = !Modal , $store.UserStatus.UserType = 'Я заказчик' " x-show="$store.UserStatus.UserType != 'Я заказчик' " class="my-1 hover:bg-white hover:text-blue-975 rounded-lg px-2 py-1"  href="#">
+                                                <a @click="Modal = !Modal , $store.UserStatus.UserType = 'Я заказчик'; $dispatch('change-user-type', 'customer') " x-show="$store.UserStatus.UserType != 'Я заказчик' " class="my-1 hover:bg-white hover:text-blue-975 rounded-lg px-2 py-1"  href="javascript:;">
                                                     <span>Я заказчик</span>
                                                 </a>
                                                 <a class="hover:bg-white hover:text-blue-975 rounded-lg px-2 py-1"  href="{{ 'home' | page }}">
@@ -423,3 +478,4 @@
         {% endput %}
     </nav>
 </header>
+

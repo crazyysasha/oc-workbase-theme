@@ -1,0 +1,18 @@
+<p>
+    Пожалуйста, проверьте свою электронную почту для получения кода активации.
+</p>
+
+<form
+    data-request="{{ __SELF__ }}::onResetPassword"
+    data-request-update="'{{ __SELF__ }}::complete': '#partialUserResetForm'"
+    class="py-5">
+    <div>
+        <input name="code" type="text" class="rounded-sm border font-medium text-sm mb-3  md:text-md py-2 px-4 block focus:outline-none" id="resetCode" placeholder="Введите код активации" value="{{ __SELF__.code }}">
+    </div>
+
+    <div>
+        <input name="password" type="password" class="rounded-sm border font-medium text-sm mb-3  md:text-md py-2 px-4 block focus:outline-none" id="resetPassword" placeholder="Введите новый пароль">
+    </div>
+
+    <button type="submit" class="bg-blue-975 transition-all duration-200 hover:bg-blue-950 font-medium py-2 px-5 rounded-full text-white text-xs  sm:text-sm md:text-md lg:text-lg">Сменить пароль</button>
+</form>
