@@ -93,46 +93,100 @@ title = "About"
                             <div class="text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium px-2">
                                 <span>Место Проживания:</span>
                             </div>
-                            <div x-data="{message: 'г.Ташкент'}" class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg">
-                                <div x-text="message" x-show="!isEditable" class="rounded-md w-full px-2 py-1 border border-transparent">
+                            <div x-data="{region: 'г.Ташкент'}" class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
+                                <div x-text="region"
+                                    x-show="!isEditable"
+                                    class="rounded-md w-full px-2 py-1 border border-transparent">
                                 </div>
-                                <div x-data="{modal: false}" class="relative" x-show="isEditable">
-                                    <div class="flex justify-between items-center rounded-md w-9/12 px-2 py-1 border border-gray-300
-                                        text-xs sm:text-sm md:text-md lg:text-lg" @click="modal=!modal">
-                                        <div x-text="message"></div>
-                                        <span x-show="!modal">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                            </svg>
-                                        </span>
-                                        <span x-show="modal">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                    <div x-show="modal" class="absolute top-10 bg-gray-100 border border-gray-300 rounded-md p-3 ">
+                                <div x-data="{modal: false}" class="relative"  x-show="isEditable" @click.outside="modal = false">
+                                   <div 
+                                        class="flex justify-between items-center rounded-md w-9/12 px-2 py-1 border border-gray-300
+                                        text-xs sm:text-sm md:text-md lg:text-lg"
+                                        @click="modal=!modal"
+                                        >
+
+                                            <div x-text="region"></div>
+
+                                            <span x-show="!modal">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                                </svg>
+                                            </span>
+                                            <span x-show="modal">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                                                </svg>
+                                            </span>
+                                   </div>
+                                    <div x-show="modal" 
+                                        class="absolute top-10 bg-gray-100 border border-gray-300 rounded-md p-1 w-9/12">
                                         <ul>
-                                            <li x-data="{innerModal:false}">
-                                                <div @click="innerModal=!innerModal" class="flex justify-between items-center hover:bg-blue-975 hover:text-white rounded-md px-2 py-1">
-                                                    <span>Tashkent City</span>
+                                            <li x-data="{innerModal:false}" @click.outside="innerModal = false">
+                                                <div @click="innerModal=!innerModal" 
+                                                    
+                                                    class="flex justify-between  transition-all duration-300 items-center 
+                                                        hover:bg-white hover:text-blue-950 rounded-md p-1 px-2">
+                                                    <span class="text-xs md:text-sm lg:text-md cursor-pointer">
+                                                        Tashkent City
+                                                    </span>
                                                     <span x-show="!innerModal">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                                                         </svg>
                                                     </span>
                                                     <span x-show="innerModal">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
                                                         </svg>
                                                     </span>
                                                 </div>
-                                                <ul x-show="innerModal">
-                                                    <li>Yunusobod</li>
-                                                    <li>Mirobod</li>
-                                                    <li>Chilonzor</li>
-                                                    <li>Mirzo Ulug`bek</li>
-                                                </ul>
+                                                <ul x-show="innerModal" class="px-3 text-xs md:text-sm lg:text-md"  >
+                                                    <li @click="region ='Yunusobod' " class="hover:text-blue-950 transition-all duration-300 cursor-pointer">
+                                                        Yunusobod
+                                                    </li>
+                                                    <li @click="region ='Mirobo' " class="hover:text-blue-950 transition-all duration-300 cursor-pointer">
+                                                        Mirobod
+                                                    </li>
+                                                    <li @click="region ='Chilonzor' " class="hover:text-blue-950 transition-all duration-300 cursor-pointer">
+                                                        Chilonzor
+                                                    </li>
+                                                    <li @click="region ='Mirzo Ulug`bek' " class="hover:text-blue-950 transition-all duration-300 cursor-pointer">
+                                                        Mirzo Ulug`bek
+                                                    </li>
+                                                </ul>   
+                                            </li>
+                                            <li x-data="{innerModal:false}" @click.outside="innerModal = false">
+                                                <div @click="innerModal=!innerModal" 
+                                                class="flex justify-between  transition-all duration-300 items-center 
+                                                    hover:bg-white hover:text-blue-950 rounded-md p-1 px-2">
+                                                <span class="text-xs md:text-sm lg:text-md cursor-pointer">
+                                                    Tashkent Region
+                                                </span>
+                                                <span x-show="!innerModal">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                                    </svg>
+                                                </span>
+                                                <span x-show="innerModal">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                                                    </svg>
+                                                </span>
+                                            </div>
+                                            <ul x-show="innerModal" class="px-3 text-xs md:text-sm lg:text-md"  >
+                                                <li @click="region ='Olmaliq' " class="hover:text-blue-950 transition-all duration-300 cursor-pointer">
+                                                    Olmaliq
+                                                </li>
+                                                <li @click="region ='Ohangaron' " class="hover:text-blue-950 transition-all duration-300 cursor-pointer">
+                                                    Ohangaron
+                                                </li>
+                                                <li @click="region ='To`ytepa' " class="hover:text-blue-950 transition-all duration-300 cursor-pointer">
+                                                    To`ytepa
+                                                </li>
+                                                <li @click="region ='Yangi yo`l' " class="hover:text-blue-950 transition-all duration-300 cursor-pointer">
+                                                    Yangi yo`l
+                                                </li>
+                                            </ul>   
                                             </li>
                                         </ul>
                                     </div>
@@ -171,40 +225,107 @@ title = "About"
             <div class="p-5 m-1 mt-4 bg-white rounded-md ">
                 <div class="flex justify-between">
                     <span class="text-lg font-medium">О себе</span>
-                    <a class="rounded-md bg-blue-975 flex items-center text-center border border-white
-                            w-8 h-8 cursor-pointer  hover:border-blue-975 hover:bg-blue-975 transition-all duration-500" href="#">
-                        <i class="icon-pencil m-auto"></i>
-                    </a>
                 </div>
                 <div class="">
-                    <div class="my-4">
-                        <div class="mb-1 text-gray-400 md:text-lg font-medium">
+                    <div class="my-4" x-data="{isEditable: false , isMore: false , message: 'Ташкентский государственный технический унивеситет, работал в компании Электромонтаж Сервис с 2010 по 2019 год, на данный момент работаю со своей командой командой.' }">
+                        <div class="flex justify-between mb-1 text-gray-400 text-md md:text-lg font-medium" >
                             <span>Образование и опыт работы</span>
+                            <button class="rounded-md bg-blue-975 flex items-center text-center border border-white
+                                        w-8 h-8 cursor-pointer  hover:border-blue-975 hover:bg-blue-975 transition-all duration-500
+                                        focus:outline-none" 
+                                    href="#"
+                                    @click="isEditable=!isEditable">
+                                        <i class="icon-pencil m-auto"></i>
+                            </button>
                         </div>
-                        <div class="mb-1">
-                            <span>Ташкентский государственный технический унивеситет, работал в компании "Электромонтаж Сервис" с 2010 по 2019 год, на данный момент работаю со своей командой командой.</span>
+                        <div :class="{'h-20': !isMore , 'h-auto': isMore}">
+                            <div class="w-full h-full border border-white px-2 py-1 overflow-hidden" x-show="!isEditable">
+                                <span  x-text="message" ></span>
+                            </div>
+                            <textarea 
+                                x-show="isEditable" 
+                                class="w-full focus:outline-none focus:border-blue-950 
+                                    border border-gray-300 px-2 py-1 rounded-md m-0" 
+                                name=""
+                                x-model="message" 
+                                id=""></textarea>
                         </div>
+                        <button 
+                            x-show="message.length > 350" 
+                            @click="isMore=!isMore"
+                            class="focus:outline-none text-md text-blue-950 px-2 hover:text-blue-975 z-50">
+                            <span x-show='!isMore'>Подробно</span>
+                            <span x-show='isMore'>Show less</span>
+                        </button>
                     </div>
-                    <div class="mb-4">
-                        <div class="mb-1 text-gray-400 md:text-lg font-medium">
+
+                    <div class="my-4" x-data="{isEditable: false , isMore: false , message: 'Техник-электрик, большой опыт в решении ваших электромонтажных задач. Выбрав меня вы облегчите себе текущий или наступаюшую стадию электрофикации. Обещаю,результатом останетесь довольны! Работу сделаю быстро и качественно.' }">
+                        <div class="flex justify-between mb-1 text-gray-400 text-md md:text-lg font-medium" >
                             <span>Кратко</span>
+                            <button class="rounded-md bg-blue-975 flex items-center text-center border border-white
+                                        w-8 h-8 cursor-pointer  hover:border-blue-975 hover:bg-blue-975 transition-all duration-500
+                                        focus:outline-none" 
+                                    href="#"
+                                    @click="isEditable=!isEditable">
+                                        <i class="icon-pencil m-auto"></i>
+                            </button>
                         </div>
-                        <div class="mb-1">
-                            <span>Техник-электрик, большой опыт в решении ваших электромонтажных задач. Выбрав меня вы облегчите себе текущий или наступаюшую стадию электрофикации. Обещаю,результатом останетесь довольны! Работу сделаю быстро и качественно.</span>
+                        <div :class="{'h-20': !isMore , 'h-auto': isMore}">
+                            <div class="w-full h-full border border-white px-2 py-1 overflow-hidden" x-show="!isEditable">
+                                <span  x-text="message" ></span>
+                            </div>
+                            <textarea 
+                                x-show="isEditable" 
+                                class="w-full focus:outline-none focus:border-blue-950 
+                                    border border-gray-300 px-2 py-1 rounded-md m-0" 
+                                name=""
+                                x-model="message" 
+                                id=""></textarea>
                         </div>
+                        <button 
+                            x-show="message.length > 350" 
+                            @click="isMore=!isMore"
+                            class="focus:outline-none text-md text-blue-950 px-2 hover:text-blue-975 z-50">
+                            <span x-show='!isMore'>Подробно</span>
+                            <span x-show='isMore'>Show less</span>
+                        </button>
                     </div>
-                    <div class="mb-4">
-                        <div class="mb-1 text-gray-400 md:text-lg font-medium">
+
+                    <div class="my-4" x-data="{isEditable: false , message: 'Расскажите подробно о себе, чтобы клиенты узнали вас получше.' }">
+                        <div class="flex justify-between mb-1 text-gray-400 text-md md:text-lg font-medium" >
                             <span>Подробно</span>
+                            <button class="rounded-md bg-blue-975 flex items-center text-center border border-white
+                                        w-8 h-8 cursor-pointer  hover:border-blue-975 hover:bg-blue-975 transition-all duration-500
+                                        focus:outline-none" 
+                                    href="#"
+                                    @click="isEditable=!isEditable">
+                                        <i class="icon-pencil m-auto"></i>
+                            </button>
                         </div>
-                        <div class="mb-1">
-                            <span>Расскажите подробно о себе, чтобы клиенты узнали вас получше. </span>
-                            <a class="ml-4 text-blue-950 transition-all duration-500 hover:text-blue-950" href="#"> Добавить</a>
+                        <div class="h-20">
+                            <div class="w-full h-full border border-white px-2 py-1 overflow-hidden" x-show="!isEditable">
+                                <span  x-text="message" ></span>
+                                <button 
+                                    class="focus:outline-none text-md text-blue-950 px-2 hover:text-blue-975 z-50">
+                                    <span>Добавить</span>
+                                </button>
+                            </div>
+                            <textarea 
+                                x-show="isEditable" 
+                                class="w-full focus:outline-none focus:border-blue-950 
+                                    border border-gray-300 px-2 py-1 rounded-md m-0" 
+                                name=""
+                                x-model="message" 
+                                id=""></textarea>
                         </div>
+                        
                     </div>
+
                 </div>
             </div>
-            <div class="p-5 m-1 mt-4 bg-white rounded-md ">
+            
+
+            <div class="p-5 m-1 mt-4 bg-white rounded-md " x-data="{isEditable:true}">
                 <div class="flex justify-between">
                     <span class="text-sm md:text-md lg:text-lg 2xl:text-xl font-medium">Районы и адреса</span>
                     <a class="rounded-md bg-blue-975 flex items-center text-center border border-white

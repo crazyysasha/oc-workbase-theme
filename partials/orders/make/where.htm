@@ -1,0 +1,129 @@
+<form data-request="onSetPlace"
+      data-request-url="{{ 'orders/make/where' | page }}"
+      data-request-flash
+      data-request-success="history.pushState({}, 'Создание заказа', data.url)"
+      class="h-full flex flex-col relative"
+      id="makeOrderForm">
+     <div class="px-4">
+        <h5 class="text-sm md:text-md 2xl:text-lg font-bold text-gray-500 mt-4 mb-4">
+            {{ (services|last).name }}
+        </h5>
+        <h5 class="text-sm font-bold text-gray-500">
+            Где должна проводится услуга ?
+        </h5>
+
+        <div>
+            <ul>
+                <li class="my-2">
+                    <div class="flex items-center" x-data="{ isChecked: false }">
+                        <input @click="isChecked = !isChecked" type="checkbox" name="is_online" hidden id="checkbox_1" />
+                        <label class="flex items-center cursor-pointer select-none" for="checkbox_1">
+                            
+                            <div class="w-6 h-6 rounded-md flex items-center"
+                                x-transition.opacity.scale
+                                x-bind:class="{ 'border border-blue-600 bg-blue-700' : isChecked, 'border border-gray-300 bg-gray-300' : !isChecked}">
+                                <svg 
+                                    x-transition.opacity.scale
+                                    x-transition:enter.duration.500ms
+                                    x-transition:leave.duration.300ms 
+                                    x-show="isChecked" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white mx-auto" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                    
+                            <span 
+                                class="px-2 text-xs sm:text-sm md:text-md lg:text-base"
+                                x-bind:class="{ 'text-gray-900' : isChecked, 'text-gray-400' : !isChecked}">
+                                Дистанционно
+                            </span>
+                    
+                        </label>
+                    </div>
+                </li>
+                <li class="my-2">
+                    <div class="flex items-center" x-data="{ isChecked: false }">
+                        <input @click="isChecked = !isChecked" type="checkbox" name="at_executor" hidden id="checkbox_2" />
+                        <label class="flex items-center cursor-pointer select-none" for="checkbox_2">
+                    
+                            <div class="w-6 h-6 rounded-md flex items-center"
+                                x-transition.opacity.scale
+                                x-bind:class="{ 'border border-blue-600 bg-blue-700' : isChecked, 'border border-gray-300 bg-gray-300' : !isChecked}">
+                                <svg 
+                                    x-transition.opacity.scale
+                                    x-transition:enter.duration.500ms
+                                    x-transition:leave.duration.300ms 
+                                    x-show="isChecked" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white mx-auto" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                    
+                            <span 
+                                class="px-2 text-xs sm:text-sm md:text-md lg:text-base"
+                                x-bind:class="{ 'text-gray-900' : isChecked, 'text-gray-400' : !isChecked}">
+                                У исполнителя
+                            </span>
+                    
+                        </label>
+                    </div>
+                </li>
+                <li class="my-2">
+                    <div class="flex items-center" x-data="{ isChecked: false }">
+                        <input @click="isChecked = !isChecked" type="checkbox" name="at_customer" hidden id="checkbox_3" />
+                        <label class="flex items-center cursor-pointer select-none" for="checkbox_3">
+                    
+                            <div class="w-6 h-6 rounded-md flex items-center"
+                                x-transition.opacity.scale
+                                x-bind:class="{ 'border border-blue-600 bg-blue-700' : isChecked, 'border border-gray-300 bg-gray-300' : !isChecked}">
+                                <svg 
+                                    x-transition.opacity.scale
+                                    x-transition:enter.duration.500ms
+                                    x-transition:leave.duration.300ms 
+                                    x-show="isChecked" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white mx-auto" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                    
+                            <span 
+                                class="px-2 text-xs sm:text-sm md:text-md lg:text-base"
+                                x-bind:class="{ 'text-gray-900' : isChecked, 'text-gray-400' : !isChecked}">
+                                У меня
+                            </span>
+                    
+                        </label>
+                    </div>
+                </li>
+            </ul>
+            
+
+        </div>
+        <div class="relative h-10">
+                
+             <ul x-data="{service: null}">
+                <li class="my-2" x-id="['radioField']">
+                    <input hidden :id="$id('radioField')" type="radio" x-model="service" value="{{child.id}}" name="service">
+                    <label class="flex items-center cursor-pointer select-none" :for="$id('radioField')">
+                        <div class="mr-3  cursor-pointer rounded-full w-4 sm:w-5 md:w-6  h-4 sm:h-5 md:h-6 flex items-center justify-center"
+                            x-bind:class="{ 
+                                'border border-blue-600 bg-blue-700' : service == {{child.id}}, 
+                                'border border-gray-300 bg-gray-300' : service != {{child.id}},
+                            }">
+                            <div x-show="service == {{child.id}}" x-transition.opacity.scale
+                                class=" w-2.5 h-2.5 bg-white rounded-full">
+                            </div>
+                        </div>
+                        <span>{{ child.name }}</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="sticky w-full bg-white bottom-0 shadow-3xl mt-auto" >
+        <div class="flex items-center p-4 mb-2">
+            <button type="submit" 
+                class="sm:font-medium text-2xs sm:text-sm md:text-md lg:text-base 2xl:text-lg py-2 px-6 bg-blue-900 text-white rounded-lg focus:outline-none focus:bg-gray-200 focus:text-blue-900 ml-auto"
+                data-attach-loading>
+                <span>Продолжить</span>
+            </button>
+        </div>
+    </div>
+</form>

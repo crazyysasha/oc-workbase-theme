@@ -1,0 +1,20 @@
+title = "Новая страница"
+layout = "orders/make"
+url = "/new/:category/:slug?*"
+==
+<div id="form">
+    <router-view></router-view>
+</div>
+
+<script type="text/template" id="searchServiceComponent">
+    <div>
+        { category }
+        <router-link :to="`/new/${category}/ielts`">Go to select</router-link>
+    </div>
+</script>
+<script type="text/template" id="selectServiceComponent">
+    <div>
+        { category }, {service}
+        <router-link :to="`/new/${category}`">Go back</router-link>
+    </div>
+</script>

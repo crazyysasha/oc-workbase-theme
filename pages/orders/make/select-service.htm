@@ -1,0 +1,56 @@
+url = "/:category/:service?*"
+layout = "orders/make"
+title = "Выбор услуги"
+==
+<?php
+function onStart()
+{
+    if (!count($this['services'])) {
+        return $this->run(404);
+    }
+    $service = $this['service'] = $this['services']->last();
+    
+    if (!$service->children()->get()->count()) {
+        return Redirect::to($this->pageUrl('orders/make/where', [
+            'category' => $this->param('category'),
+            'service' => $this->param('service'), 
+        ]));
+    }
+}
+
+function onSetService()
+{
+    $service = \Crazy\FreeLancer\Models\Service::find(post('service'));
+
+    if (!$service) {
+
+    }
+
+    $order = $this['order'];
+
+
+    $order->services()->detach($this['services']->last()->children()->get()->modelKeys());
+
+    $order->services()->attach($service);
+    
+    if ($service->children->count()) {
+
+    } else {
+        $nextPage = 'orders/make/where';
+    }
+
+
+    return [
+        'url' => $this->pageUrl($nextPage, [
+            'category' => $this['category']->slug,
+            'service' => $order->services->implode('slug', '/'),
+        ]),
+        '!#makeOrderForm' => $this->renderPartial($nextPage, [
+            'category' => $this['category'],
+            'service' => $service,
+        ]),
+    ];
+}
+?>
+==
+{% partial 'orders/make/select-service'  %}

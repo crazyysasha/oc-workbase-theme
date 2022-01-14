@@ -1,5 +1,14 @@
-title = "Где ???"
-layout = "orders/make"
 url = "/:category/:service?*/where"
+layout = "orders/make"
+title = "Где ???"
 ==
-where ?
+<?php
+function onSetPlace()
+{
+    $this['order']->is_online = post('is_online');
+    $this['order']->at_executor = post('at_executor');
+    $this['order']->at_customer = post('at_customer');
+}
+?>
+==
+{% partial 'orders/make/where' %}

@@ -1,6 +1,7 @@
 [viewBag]
 ==
 <?php
+/*
 function onStart()
 {
     $category = $this->getCurrentCategory();
@@ -40,7 +41,7 @@ function getCurrentDraftOrder()
 function getCurrentServices()
 {
     
-}
+} */
 ?>
 ==
 {##}
@@ -377,10 +378,10 @@ function getCurrentServices()
                 <div class="bg-white rounded-md">
                     <ul class="p-4 flex flex-row lg:flex-col justify-around ">
                         <li @click="activeTab = 'order' " 
-                            class="relative text-sm md:text-md lg:text-base 2xl:text-lg p-2 text-xs bg-gray-300 
-                                    hover:bg-opacity-50 my-1 rounded-md font-semibold cursor-pointer" 
+                            class="relative text-sm md:text-md lg:text-base 2xl:text-lg p-2 text-xs bg-blue-950 
+                                    hover:bg-opacity-50 my-1 hover:text-white rounded-md font-semibold cursor-pointer" 
                             :class="{'bg-opacity-30': activeTab != 'order' , 
-                                'hover:bg-opacity-100 bg-opacity-75': activeTab == 'order' }">
+                                'hover:bg-opacity-100 bg-opacity-75 text-white': activeTab == 'order' }">
                             <div class="flex justify-between items-cetner">
                                 <div class="flex items-center">
                                     <span class="hidden md:inline-block ml-2">Заказ</span>
@@ -398,14 +399,14 @@ function getCurrentServices()
                                 </div>
                             </div>
                             <div class="absolute inset-0 opacity-30 bg-gray-900 w-7/12 h-full rounded-md"
-                                 :class="{'bg-gray-300': activeTab != 'order','bg-gray-900': activeTab == 'order' }"
+                                 :class="{'bg-blue-950': activeTab != 'order','bg-blue-975': activeTab == 'order' }"
                             ></div>
                         </li>               
                         
                         <li @click="activeTab = 'spetsialist' " 
-                            class=" text-sm md:text-md lg:text-base 2xl:text-lg p-2 text-xs bg-gray-300 bg-opacity-0 
-                                    hover:bg-opacity-50 my-1 rounded-md font-semibold cursor-pointer" 
-                            :class="{'hover:bg-opacity-100 bg-opacity-75': activeTab == 'spetsialist'}">
+                            class=" text-sm md:text-md lg:text-base 2xl:text-lg p-2 text-xs bg-blue-950 bg-opacity-0 
+                                    hover:bg-opacity-50 my-1 hover:text-white rounded-md font-semibold cursor-pointer" 
+                            :class="{'hover:bg-opacity-100 bg-opacity-75 text-white transition-all duration-300': activeTab == 'spetsialist'}">
                                 <span class="hidden md:inline-block">Специалисты</span>
                                 <span class="md:hidden">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -415,9 +416,9 @@ function getCurrentServices()
                         </li>
 
                         <li @click="activeTab = 'help' " 
-                            class=" text-sm md:text-md lg:text-base 2xl:text-lg p-2 text-xs bg-gray-300 bg-opacity-0 
-                                    hover:bg-opacity-50 my-1 rounded-md font-semibold cursor-pointer" 
-                            :class="{'hover:bg-opacity-100 bg-opacity-75': activeTab == 'help'}">
+                            class=" text-sm md:text-md lg:text-base 2xl:text-lg p-2 text-xs bg-blue-950 bg-opacity-0 
+                                    hover:bg-opacity-50 my-1 hover:text-white rounded-md font-semibold cursor-pointer" 
+                            :class="{'hover:bg-opacity-100 bg-opacity-75 text-white transition-all duration-300': activeTab == 'help'}">
                                 <span class="hidden md:inline-block">Поддержка</span>
                                 <span class="md:hidden">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -477,6 +478,21 @@ function getCurrentServices()
             {% endput %}
         </div>
     </section>
+    
+    <script type="text/template" id="searchServiceComponent">
+        {% partial 'orders/make/search-service' %}
+    </script>
+
+    <script type="text/template" id="selectServiceComponent">
+        {% partial 'orders/make/select-service' %}
+    </script>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script src="https://unpkg.com/vue-router@4"></script>
+    <script src="https://unpkg.com/vuex@4.0.0"></script>
+
+    <script src="{{ 'assets/js/forms.js' | theme }}"></script>
 
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 

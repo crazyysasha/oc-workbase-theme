@@ -2,6 +2,47 @@ url = "/:category"
 layout = "orders/make"
 title = "Поиск"
 ==
-<form x-request:handler="">
+<?php
+public function onSetService()
+{
+    $service = \Crazy\FreeLancer\Models\Service::find(post('service'));
+
+    if (!$service) {
+        Flash::error('Введенная услуга не найдена');
+        return ;
+    }
     
-</form>
+    $this['service'] = $service;
+
+    $this['order']->services()->detach($this['category']->services->where('nest_depth', null));
+
+    $this['order']->services()->sync(post('service'));
+
+    if ($service->children->count()) {
+        $nextPage = 'orders/make/select-service';
+    } else {
+        $nextPage = 'orders/make/where';
+    }
+
+    return [
+        'url' => $this->pageUrl($nextPage, [
+            'category' => $this['category']->slug,
+            'service' => $service->slug,
+        ]),
+        '!#makeOrderForm' => $this->renderPartial($nextPage, [
+            'category' => $this['category'],
+            'service' => $service,    
+        ]),
+    ];
+}
+
+public function onSearchService()
+{
+    $this['services'] = \Crazy\FreeLancer\Models\Service::listFrontEnd(array_merge(Input::all(), [
+        'page' => 1,
+        'perPage' => 20,
+    ]));
+}
+?>
+==
+{% partial "orders/make/search" %}
