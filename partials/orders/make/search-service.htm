@@ -36,8 +36,9 @@
                 </ul>
             </div>
         </transition>
-        <input 
+        <input
             type="text"
+            @input="searchServicesFetch"
             v-model="search"
             id=""
             @focus="open = true"
