@@ -4,18 +4,12 @@ export default {
     delimiters: ['{', '}'],
     template: '<router-view></router-view>',
     async created() {
-        this.$store.commit('setDraftedOrders', getDataFromLocalStorage('draftedOrders', {}));
+        this.$store.dispatch('init');
     },
     mounted() { },
     computed: {
-        draftedOrders() {
-            return this.$store.getters.draftedOrders;
-        }
+
     },
     watch: {
-        draftedOrders(value) {
-            console.log(value);
-            setDataToLocalStorage('draftedOrders', value);
-        },
     }
 };

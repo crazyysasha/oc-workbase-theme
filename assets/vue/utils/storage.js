@@ -3,5 +3,5 @@ export const getDataFromLocalStorage = (key, defaultParams) => {
 }
 
 export const setDataToLocalStorage = (key, data) => {
-    localStorage.setItem(key, JSON.stringify(data));
+    localStorage.setItem(key, JSON.stringify({...data}));
 }

@@ -1,11 +1,12 @@
 import orders from "../api/orders.js";
+import { getDataFromLocalStorage } from "../utils/storage.js";
 
 export default {
     createDraftedOrder: async ({ commit }, { category, services }) => {
         try {
-            commit('setDraftedOrder', await orders.create({ category, services }));
+            commit('draftedOrder', await orders.create({ category, services }));
         } catch (error) {
-
+            throw new Error(error);
         }
     },
     checkDraftedOrder: ({ dispatch, state }, { category, services }) => {
@@ -15,7 +16,10 @@ export default {
         }
 
     },
-
+    init: ({dispatch, state, commit}) => {
+        let data = {draftedOrders: getDataFromLocalStorage('draftedOrders', {})};
+        commit('initState', data);
+    },
     getCategoriesInLocalStorage: ({ commit }) => {
     },
 };

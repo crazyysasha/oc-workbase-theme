@@ -39,7 +39,7 @@ export default {
             this.$router.push(`/vue/${this.category.slug}/${this.service.slug}`);
         }
     },
-    async created() {
+    async beforeCreate() {
         try {
             this.$store.dispatch('checkDraftedOrder', {
                 category: this.$route.params.categorySlug
