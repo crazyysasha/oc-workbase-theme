@@ -7,54 +7,40 @@ title = "About"
 ==
 {##}
 <style>
-    /* CHECKBOX TOGGLE SWITCH */
-    /* @apply rules for documentation, these do not work as inline style */
     .toggle-checkbox:checked {
-      @apply: right-0 border-green-400;
-      right: 0;
-      border-color: #68d391;
-      
+        @apply: right-0 border-green-400;
+        right: 0;
+        border-color: #68d391;
     }
+
     .toggle-checkbox:checked + .toggle-label {
-      @apply: bg-green-400;
-      background-color: #68d391;
+        @apply: bg-green-400;
+        background-color: #68d391;
     }
-  </style>
+</style>
 <section class="bg-gray-100" x-data="{Tab: 1 ,  Modal: false}">
-   <div class="container px-2 md:px-4 2xl:px-20 py-4">
+    <div class="container px-2 md:px-4 2xl:px-20 py-4">
         <div class="">
             <div class="flex text-gray-400">
-                <a 
-                    class="text-xs sm:text-sm md:text-md lg:text-lg py-2 px-4 rounded-md mr-3 border"
-                    @click="Tab = 1" 
-                    :class="{ 'border-orange-950 bg-orange-950 text-white': Tab == 1, 'hover:border-orange-950 hover:text-orange-950 hover:bg-white': Tab != 1 }"
-                    href="#">
-
+                <a class="text-xs sm:text-sm md:text-md lg:text-lg py-2 px-4 rounded-md mr-3 border" @click="Tab = 1" :class="{ 'border-orange-950 bg-orange-950 text-white': Tab == 1, 'hover:border-orange-950 hover:text-orange-950 hover:bg-white': Tab != 1 }" href="#">
                     Анкета
                 </a>
-                <a 
-                    class="text-xs sm:text-sm md:text-md lg:text-lg py-2 px-4 rounded-md border 
-                        hover:border-orange-950 hover:text-orange-950 hover:bg-white" 
-                    @click="Tab = 2" 
-                    :class="{ 'border-orange-950 bg-orange-950 text-white': Tab == 2, 'hover:border-orange-950 hover:text-orange-950 hover:bg-white': Tab != 2 }"
-                    href="#">
-
+                <a class="text-xs sm:text-sm md:text-md lg:text-lg py-2 px-4 rounded-md border 
+                        hover:border-orange-950 hover:text-orange-950 hover:bg-white" @click="Tab = 2" :class="{ 'border-orange-950 bg-orange-950 text-white': Tab == 2, 'hover:border-orange-950 hover:text-orange-950 hover:bg-white': Tab != 2 }" href="#">
                     Настройки
                 </a>
             </div>
-
             <div class="md:flex">
                 <div class="p-5 md:p-6 lg:p-10 mt-4 mr-2 bg-white rounded-md lg:w-80">
-                    <div class="relative mt-3 mx-auto w-28 h-28" >
+                    <div class="relative mt-3 mx-auto w-28 h-28">
                         <img class="rounded-full w-28 h-28" src="{{'assets/images/userlistchatbig.png' | theme}}" alt="">
-                        <div 
-                            class="absolute right-0 bottom-3 bg-white border border-gray-300 
+                        <div class="absolute right-0 bottom-3 bg-white border border-gray-300 
                                 text-blue-950 rounded-full text-center w-7 h-7 
-                                flex justify-center cursor-pointer justify-items-center" >
-                                <label class="m-auto w-full cursor-pointer" for="Avater">
-                                    <input id="Avater" type="file" hidden>
-                                    <i class="icon-camera transition hover:scale-110"></i>
-                                </label>
+                                flex justify-center cursor-pointer justify-items-center">
+                            <label class="m-auto w-full cursor-pointer" for="Avater">
+                                <input id="Avater" type="file" hidden>
+                                <i class="icon-camera transition hover:scale-110"></i>
+                            </label>
                         </div>
                     </div>
                     <div class="text-center mt-4 font-medium">
@@ -71,57 +57,39 @@ title = "About"
                         </div>
                     </div>
                 </div>
-
-
                 <div x-data="{isEditable: false}" class="py-4 px-2 md:py-5 md:p-3 lg:py-8 lg:p-6 mt-4 bg-white rounded-md w-full">
                     <div class="flex justify-between items-center ">
                         <span class="text-xs sm:text-sm md:text-md lg:text-lg font-medium px-2">Описание профиля:</span>
-                        <button @click="isEditable =! isEditable"
-                            class="rounded-md bg-blue-975 flex items-center text-center border border-white
+                        <button @click="isEditable =! isEditable" class="rounded-md bg-blue-975 flex items-center text-center border border-white
                                 w-8 h-8 cursor-pointer  hover:border-blue-975 hover:bg-blue-975 
-                                transition-all duration-500 focus:outline-none" 
-                           href="#">
+                                transition-all duration-500 focus:outline-none" href="#">
                             <i class="icon-pencil m-auto"></i>
                         </button>
                     </div>
                     <div class="lg:flex flex-col flex-wrap md:max-h-64">
-                        <div class="w-full sm:w-96" >
-                            <div class="text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium px-2" >
+                        <div class="w-full sm:w-96">
+                            <div class="text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium px-2">
                                 <span>Ф.И.О.</span>
                             </div>
-                            <div x-data="{message: 'Акмаль Халиков Ботирович'}" class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
-                                <div x-text="message"
-                                    x-show="!isEditable"
-                                    class="rounded-md w-full px-2 py-1 border border-transparent">
+                            <div x-data="{message: 'Акмаль Халиков Ботирович'}" class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg">
+                                <div x-text="message" x-show="!isEditable" class="rounded-md w-full px-2 py-1 border border-transparent">
                                 </div>
                                 <input class="rounded-md focus:outline-none w-9/12 px-2 py-1 border border-gray-300
-                                        text-xs sm:text-sm md:text-md lg:text-lg"
-                                    x-show="isEditable"
-                                    type="text" 
-                                    name="" 
-                                    id="" 
-                                    x-model="message">
+                                        text-xs sm:text-sm md:text-md lg:text-lg" x-show="isEditable" type="text" name="" id="" x-model="message">
                             </div>
                         </div>
-                        <div class="w-full sm:w-96" >
-                            <div class="text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium px-2" >
+                        <div class="w-full sm:w-96">
+                            <div class="text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium px-2">
                                 <span>Дата рождения:</span>
                             </div>
-                            <div x-data="{message: '2022-01-18'}" class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
-                                <div x-text="message"
-                                    x-show="!isEditable"
-                                    class="rounded-md w-full px-2 py-1 border-2 border-transparent">
+                            <div x-data="{message: '2022-01-18'}" class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg">
+                                <div x-text="message" x-show="!isEditable" class="rounded-md w-full px-2 py-1 border-2 border-transparent">
                                 </div>
                                 <input class="rounded-md focus:outline-none w-9/12 px-2 py-1 border border-gray-300
-                                        text-xs sm:text-sm md:text-md lg:text-lg"
-                                    x-show="isEditable"
-                                    type="date" 
-                                    name="" 
-                                    id="" 
-                                    x-model="message">
+                                        text-xs sm:text-sm md:text-md lg:text-lg" x-show="isEditable" type="date" name="" id="" x-model="message">
                             </div>
                         </div>
-                        <div class="w-full sm:w-96" >
+                        <div class="w-full sm:w-96">
                             <div class="text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium px-2">
                                 <span>Место Проживания:</span>
                             </div>
@@ -225,51 +193,35 @@ title = "About"
                                 </div>
                             </div>
                         </div>
-                        <div class="w-full sm:w-96" >
-                            <div class="text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium px-2" >
+                        <div class="w-full sm:w-96">
+                            <div class="text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium px-2">
                                 <span>Номер телефона:</span>
                             </div>
-                            <div class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
-                                <div x-data="{message: '+99894 923-03-14'}" class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
-                                    <div x-text="message"
-                                        x-show="!isEditable"
-                                        class="rounded-md w-full px-2 py-1 border border-transparent">
+                            <div class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg">
+                                <div x-data="{message: '+99894 923-03-14'}" class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg">
+                                    <div x-text="message" x-show="!isEditable" class="rounded-md w-full px-2 py-1 border border-transparent">
                                     </div>
                                     <input class="rounded-md focus:outline-none w-9/12 px-2 py-1 border border-gray-300
-                                            text-xs sm:text-sm md:text-md lg:text-lg"
-                                        x-show="isEditable"
-                                        type="tel" 
-                                        name="" 
-                                        id="" 
-                                        x-model="message">
+                                            text-xs sm:text-sm md:text-md lg:text-lg" x-show="isEditable" type="tel" name="" id="" x-model="message">
                                 </div>
                             </div>
                         </div>
-                        <div class="w-full sm:w-96" >
-                            <div class="text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium px-2" >
+                        <div class="w-full sm:w-96">
+                            <div class="text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium px-2">
                                 <span>Электронная почта:</span>
                             </div>
-                            <div class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
-                                <div x-data="{message: 'AkmalKhalikov@gmail.com'}" class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
-                                <div x-text="message"
-                                    x-show="!isEditable"
-                                    class="rounded-md w-full px-2 py-1 border border-transparent">
+                            <div class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg">
+                                <div x-data="{message: 'AkmalKhalikov@gmail.com'}" class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg">
+                                    <div x-text="message" x-show="!isEditable" class="rounded-md w-full px-2 py-1 border border-transparent">
+                                    </div>
+                                    <input class="rounded-md focus:outline-none w-9/12 px-2 py-1 border border-gray-300
+                                        text-xs sm:text-sm md:text-md lg:text-lg" x-show="isEditable" type="text" name="" id="" x-model="message">
                                 </div>
-                                <input class="rounded-md focus:outline-none w-9/12 px-2 py-1 border border-gray-300
-                                        text-xs sm:text-sm md:text-md lg:text-lg"
-                                    x-show="isEditable"
-                                    type="text" 
-                                    name="" 
-                                    id="" 
-                                    x-model="message">
-                            </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
             <div class="p-5 m-1 mt-4 bg-white rounded-md ">
                 <div class="flex justify-between">
                     <span class="text-lg font-medium">О себе</span>
@@ -370,63 +322,53 @@ title = "About"
                     </div>
 
                 </div>
-
             </div>
             
 
             <div class="p-5 m-1 mt-4 bg-white rounded-md " x-data="{isEditable:true}">
                 <div class="flex justify-between">
                     <span class="text-sm md:text-md lg:text-lg 2xl:text-xl font-medium">Районы и адреса</span>
-                    <button class="rounded-md bg-blue-975 flex items-center text-center border border-white
-                                    w-8 h-8 cursor-pointer  hover:border-blue-975 hover:bg-blue-975 transition-all duration-500
-                                    focus:outline-none" 
-                            href="#"
-                            @click="isEditable=!isEditable">
-                            <i class="icon-pencil m-auto"></i>
-                    </button>
+                    <a class="rounded-md bg-blue-975 flex items-center text-center border border-white
+                            w-8 h-8 cursor-pointer  hover:border-blue-975 hover:bg-blue-975 transition-all duration-500" href="#">
+                        <i class="icon-pencil m-auto"></i>
+                    </a>
                 </div>
                 <div class="">
-                    <div class="my-4" >
-                        <div class="mb-1 text-gray-400 text-sm md:text-md lg:text-lg 2xl:text-xl font-medium" >
+                    <div class="my-4">
+                        <div class="mb-1 text-gray-400 text-sm md:text-md lg:text-lg 2xl:text-xl font-medium">
                             <span>Районы выезда к клиентам</span>
                         </div>
-                        <div class="mb-1 flex flex-wrap justify-items-center items-center text-xs md:text-sm lg:text-md 2xl:text-lg" >
-                            <span class="inline-block w-2 h-2 rounded-full bg-orange-950 mr-1" ></span>
+                        <div class="mb-1 flex flex-wrap justify-items-center items-center text-xs md:text-sm lg:text-md 2xl:text-lg">
+                            <span class="inline-block w-2 h-2 rounded-full bg-orange-950 mr-1"></span>
                             <span>Алмазарский район</span>
-                            <span class="inline-block w-2 h-2 rounded-full bg-blue-975 ml-3 mr-1" ></span>
+                            <span class="inline-block w-2 h-2 rounded-full bg-blue-975 ml-3 mr-1"></span>
                             <span>Космонавтлар</span>
-                            <span class="inline-block w-2 h-2 rounded-full bg-green-500 ml-3 mr-1" ></span>
+                            <span class="inline-block w-2 h-2 rounded-full bg-green-500 ml-3 mr-1"></span>
                             <span>Бодомзор</span>
                         </div>
                     </div>
-                    <div class="mb-4" >
-                        <div class="mb-1 text-gray-400 md:text-lg font-medium text-sm md:text-md lg:text-lg 2xl:text-xl" >
+                    <div class="mb-4">
+                        <div class="mb-1 text-gray-400 md:text-lg font-medium text-sm md:text-md lg:text-lg 2xl:text-xl">
                             <span>Город/Регион</span>
                         </div>
-                        <div class="mb-1 text-xs md:text-sm lg:text-md 2xl:text-lg" >
+                        <div class="mb-1 text-xs md:text-sm lg:text-md 2xl:text-lg">
                             <span>г. Ташкент, Ташкентская область</span>
                         </div>
                     </div>
                 </div>
-
             </div>
-
             <div class="p-5 m-1 mt-4 bg-white rounded-md " x-data="{repair: false}">
-                
                 <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-4">
                     <h4 class="font-medium text-sm md:text-md lg:text-lg 2xl:text-xl">Специальности</h4>
-                    <button @click="Modal = !Modal" 
-                            class="text-blue-950 text-left text-sm md:text-sm lg:text-md 2xl:text-lg mt-2 sm:mt-0
-                            transition-all duration-300 hover:text-blue-950 " 
-                            href="#">Добавить новую специальность
+                    <button @click="Modal = !Modal" class="text-blue-950 text-left text-sm md:text-sm lg:text-md 2xl:text-lg mt-2 sm:mt-0
+                            transition-all duration-300 hover:text-blue-950 " href="#">Добавить новую специальность
                     </button>
                 </div>
-
                 <div class="flex flex-col sm:flex-row justify-between sm:items-center">
                     <div class="flex justify-items-center items-center">
                         <span class="rounded-full bg-gray-200 w-6 h-6 flex justify-items-center items-center">
                             <i class="icon-settings m-auto"></i>
-                        </span> 
+                        </span>
                         <h4 class="inline-block ml-2  md:text-lg font-medium text-sm md:text-md lg:text-base 2xl:text-lg">
                             Мастера по ремонту
                         </h4>
@@ -434,17 +376,14 @@ title = "About"
                     <div class="mt-2 ms:mt-0" x-data="{isActive: false}">
                         <input @click="isActive = !isActive , repair = !repair" id="checkToggle" type="checkbox" hidden>
                         <label for="checkToggle" class="flex items-center">
-                            <div class="relative w-10 rounded-full h-6 bg-gray-300 cursor-pointer mr-2"
-                                :class="{ 'bg-gray-300': !isActive , 'bg-blue-975' : isActive }">
-                                <div class="absolute  rounded-full h-4 w-4 bg-white"
-                                    :class="{ 'left-1 top-1': !isActive , 'right-1 top-1' : isActive }">
+                            <div class="relative w-10 rounded-full h-6 bg-gray-300 cursor-pointer mr-2" :class="{ 'bg-gray-300': !isActive , 'bg-blue-975' : isActive }">
+                                <div class="absolute  rounded-full h-4 w-4 bg-white" :class="{ 'left-1 top-1': !isActive , 'right-1 top-1' : isActive }">
                                 </div>
                             </div>
                             <span class="text-sm md:text-md lg:text-base 2xl:text-lg cursor-pointer">Статус</span>
                         </label>
-                    </div>            
+                    </div>
                 </div>
-
                 <div class="md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
                     <div class="border border-gray-300 rounded-md p-5 mt-2">
                         <div class="flex justify-between text-orange-600">
@@ -460,37 +399,31 @@ title = "About"
                                 <div class="w-1.5 inline-block bg-blue-975 h-8 rounded-sm relative">
                                     <div class="absolute bottom-0 w-full h-3/4 bg-blue-975"></div>
                                 </div>
-                               <div class="inline-block ml-3">
+                                <div class="inline-block ml-3">
                                     <p class="text-gray-400 ">Цены указаны</p>
                                     <span>В 10 услугах</span>
-                               </div>
+                                </div>
                             </div>
                         </div>
                         <div class="flex justify-between flex-wrap mt-4">
                             <div class="mb-2 sm:mb-0">
                                 <span class="text-center">
                                     <i class="icon-pencil"></i>
-                                </span> 
+                                </span>
                                 <h4 class="text-sm md:text-md lg:text-base 2xl:text-lg">Редактировать</h4>
                             </div>
                             <div x-data="{isActive: false}">
-                                <input  x-bind:disabled="!repair" @click="isActive = !isActive" id="checkToggleChild" type="checkbox" hidden>
+                                <input x-bind:disabled="!repair" @click="isActive = !isActive" id="checkToggleChild" type="checkbox" hidden>
                                 <label for="checkToggleChild" class="flex items-center">
-                                    <div class="relative w-9 rounded-full h-5 bg-gray-300 cursor-pointer mr-2"
-                                        :class="{ 'bg-gray-300': !isActive , 'bg-blue-975' : isActive }">
-                                        <div class="absolute  rounded-full h-3 w-3 bg-white"
-                                            :class="{ 'left-1 top-1': !isActive , 'right-1 top-1' : isActive }">
+                                    <div class="relative w-9 rounded-full h-5 bg-gray-300 cursor-pointer mr-2" :class="{ 'bg-gray-300': !isActive , 'bg-blue-975' : isActive }">
+                                        <div class="absolute  rounded-full h-3 w-3 bg-white" :class="{ 'left-1 top-1': !isActive , 'right-1 top-1' : isActive }">
                                         </div>
                                     </div>
                                     <span class="text-sm md:text-md lg:text-base 2xl:text-lg cursor-pointer">Статус</span>
                                 </label>
                             </div>
-                            
-                            
                         </div>
-        
                     </div>
-
                     <div class="border border-gray-300 rounded-md p-5 mt-2">
                         <div class="flex justify-between text-orange-600">
                             <span class="text-sm md:text-md lg:text-base 2xl:text-lg">Ремонт под ключ</span>
@@ -505,38 +438,32 @@ title = "About"
                                 <div class="w-1.5 inline-block bg-blue-975 h-8 rounded-sm relative">
                                     <div class="absolute bottom-0 w-full h-1/4 bg-blue-975"></div>
                                 </div>
-                               <div class="inline-block ml-3">
+                                <div class="inline-block ml-3">
                                     <p class="text-gray-400 ">Цены указаны</p>
                                     <span>В 1 услугах</span>
-                               </div>
+                                </div>
                             </div>
                         </div>
                         <div class="flex justify-between flex-wrap mt-4">
                             <div class="mb-2 sm:mb-0">
                                 <span class="text-center">
                                     <i class="icon-pencil"></i>
-                                </span> 
+                                </span>
                                 <h4 class="text-sm md:text-md lg:text-base 2xl:text-lg">Редактировать</h4>
                             </div>
                             <div x-data="{isActive: false}">
-                                <input  x-bind:disabled="!repair" @click="isActive = !isActive" id="checkToggleChild_2" type="checkbox" hidden>
+                                <input x-bind:disabled="!repair" @click="isActive = !isActive" id="checkToggleChild_2" type="checkbox" hidden>
                                 <label for="checkToggleChild_2" class="flex items-center">
-                                    <div class="relative w-9 rounded-full h-5 bg-gray-300 cursor-pointer mr-2"
-                                        :class="{ 'bg-gray-300': !isActive , 'bg-blue-975' : isActive }">
-                                        <div class="absolute  rounded-full h-3 w-3 bg-white"
-                                            :class="{ 'left-1 top-1': !isActive , 'right-1 top-1' : isActive }">
+                                    <div class="relative w-9 rounded-full h-5 bg-gray-300 cursor-pointer mr-2" :class="{ 'bg-gray-300': !isActive , 'bg-blue-975' : isActive }">
+                                        <div class="absolute  rounded-full h-3 w-3 bg-white" :class="{ 'left-1 top-1': !isActive , 'right-1 top-1' : isActive }">
                                         </div>
                                     </div>
                                     <span class="text-sm md:text-md lg:text-base 2xl:text-lg cursor-pointer">Статус</span>
                                 </label>
                             </div>
-                            
-                            
                         </div>
-        
                     </div>
-
-                    <div class="border border-gray-300 rounded-md p-5 mt-2 text-center cursor-pointer" >
+                    <div class="border border-gray-300 rounded-md p-5 mt-2 text-center cursor-pointer">
                         <div class="flex justify-center items-center text-center bg-gray-300 mx-auto w-10 h-10 text-white rounded-full">
                             <span class="font-black text-3xl text-center">+</span>
                         </div>
@@ -546,11 +473,9 @@ title = "About"
                     </div>
                 </div>
             </div>
-
             <div class="mt-4 ">
-                <div class="md:grid md:grid-cols-3 lg:grid-cols-4 2xl-grid-cols-5" >
-
-                    <div x-data="imageViewer()" class="">
+                <div class="md:grid md:grid-cols-3 lg:grid-cols-4 2xl-grid-cols-5">
+                    <div class="mx-2">
                         <h3 class="text-md md:text-base lg:text-lg 2xl:text-xl font-medium my-4">Фото работ</h3>
                         <div class="bg-white flex flex-col justify-center rounded-md text-center py-5">
                           <!-- Show the image -->
@@ -587,11 +512,7 @@ title = "About"
                         </div>
                         
                     </div>
-
-
-
-
-                    <div x-data="imageViewer()" class=" mx-4">
+                    <div class="mx-2">
                         <h3 class="text-md md:text-base lg:text-lg 2xl:text-xl font-medium my-4">Фото дипломов</h3>
                         <div class="bg-white flex flex-col justify-center rounded-md text-center py-5">
                           <!-- Show the image -->
@@ -628,9 +549,7 @@ title = "About"
                         </div>
                         
                     </div>
-
-
-                    <div x-data="imageViewer()" class="">
+                    <div class="mx-2">
                         <h3 class="text-md md:text-base lg:text-lg 2xl:text-xl font-medium my-4">Загрузите паспорт</h3>
                         <div class="bg-white flex flex-col justify-center rounded-md text-center py-5">
                           <!-- Show the image -->
@@ -671,101 +590,65 @@ title = "About"
                 </div>
             </div>
         </div>
-   </div>
-
-
-   <div x-cloak x-show="Modal" class="container px-2 md:px-4 2xl:px-20 py-2 md:py-4 fixed top-0 mt-24 w-full h-full border border-gray-300 rounded-md bg-white z-10 inset-x-0" >
-    <div class="flex justify-between py-3 border-b border-gray-300 px-4">
-        <span>Специальности</span>
-        <button class="" @click="Modal = !Modal" ><span>×</span></button>
     </div>
-
-    <div class="p-4" x-data="{ open: false,isOpen: false }">
-        <div class="px-4 py-2 border boreder-gray-300 cursor-pointer rounded-md" >
-
-            <div class="flex justify-items-center items-center">
-                <img class="h-5" src="{{'assets/images/repair.svg' | theme}}" alt="">
-                <span class="text-lg ml-2" x-on:click="open = ! open">Мастера по ремонту</span>
-            </div>
-
-            <div x-show="open" class=" mt-5 py-2 px-4 border border-gray-300 rounded-md">
-                <div>
-                   <div>
-                        <input x-on:click="isOpen = ! isOpen" type="checkbox" id="biolgy" name="biolgy">
-                        <label for="biolgy">Благоустройство территории  79</label>
-                   </div>
+    <div x-cloak x-show="Modal" class="container px-2 md:px-4 2xl:px-20 py-2 md:py-4 fixed top-0 mt-24 w-full h-full border border-gray-300 rounded-md bg-white z-10 inset-x-0">
+        <div class="flex justify-between py-3 border-b border-gray-300 px-4">
+            <span>Специальности</span>
+            <button class="" @click="Modal = !Modal"><span>×</span></button>
+        </div>
+        <div class="p-4" x-data="{ open: false,isOpen: false }">
+            <div class="px-4 py-2 border boreder-gray-300 cursor-pointer rounded-md">
+                <div class="flex justify-items-center items-center">
+                    <img class="h-5" src="{{'assets/images/repair.svg' | theme}}" alt="">
+                    <span class="text-lg ml-2" x-on:click="open = ! open">Мастера по ремонту</span>
                 </div>
-
-                <div x-show="isOpen" class="rounded-md mt-5 py-2 px-4 border border-gray-300">
-
-                    <div class="flex justify-between py-3 items-center h-12" x-data="{isChacked: false}" >
+                <div x-show="open" class=" mt-5 py-2 px-4 border border-gray-300 rounded-md">
+                    <div>
                         <div>
-                            <input x-model="isChacked" type="checkbox" id="дорог" name="дорог">
-                            <label for="дорог">Асфальтирование дорог</label>
-                        </div>
-                        <div x-show="isChacked">
-                            <input class="border border-gray-300 rounded-md focus:outline-none px-4 h-9" placeholder="Цена, сум" type="number">
+                            <input x-on:click="isOpen = ! isOpen" type="checkbox" id="biolgy" name="biolgy">
+                            <label for="biolgy">Благоустройство территории 79</label>
                         </div>
                     </div>
-                   
-                   <div class="flex justify-between py-3 items-center h-12" x-data="{isChacked: false}" >
-                        <div>
-                            <input x-model="isChacked" type="checkbox" id="дорог" name="дорог">
-                            <label for="дорог">Асфальтирование дорог</label>
+                    <div x-show="isOpen" class="rounded-md mt-5 py-2 px-4 border border-gray-300">
+                        <div class="flex justify-between py-3 items-center h-12" x-data="{isChacked: false}">
+                            <div>
+                                <input x-model="isChacked" type="checkbox" id="дорог" name="дорог">
+                                <label for="дорог">Асфальтирование дорог</label>
+                            </div>
+                            <div x-show="isChacked">
+                                <input class="border border-gray-300 rounded-md focus:outline-none px-4 h-9" placeholder="Цена, сум" type="number">
+                            </div>
                         </div>
-                        <div x-show="isChacked">
-                            <input class="border border-gray-300 rounded-md focus:outline-none px-4 h-9" placeholder="Цена, сум" type="number">
+                        <div class="flex justify-between py-3 items-center h-12" x-data="{isChacked: false}">
+                            <div>
+                                <input x-model="isChacked" type="checkbox" id="дорог" name="дорог">
+                                <label for="дорог">Асфальтирование дорог</label>
+                            </div>
+                            <div x-show="isChacked">
+                                <input class="border border-gray-300 rounded-md focus:outline-none px-4 h-9" placeholder="Цена, сум" type="number">
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="flex justify-between py-3 items-center h-12" x-data="{isChacked: false}" >
-                        <div>
-                            <input x-model="isChacked" type="checkbox" id="дорог" name="дорог">
-                            <label for="дорог">Асфальтирование дорог</label>
+                        <div class="flex justify-between py-3 items-center h-12" x-data="{isChacked: false}">
+                            <div>
+                                <input x-model="isChacked" type="checkbox" id="дорог" name="дорог">
+                                <label for="дорог">Асфальтирование дорог</label>
+                            </div>
+                            <div x-show="isChacked">
+                                <input class="border border-gray-300 rounded-md focus:outline-none px-4 h-9" placeholder="Цена, сум" type="number">
+                            </div>
                         </div>
-                        <div x-show="isChacked">
-                            <input class="border border-gray-300 rounded-md focus:outline-none px-4 h-9" placeholder="Цена, сум" type="number">
-                        </div>
-                    </div>
-
-                    <div class="flex justify-between py-3 items-center h-12" x-data="{isChacked: false}" >
-                        <div>
-                            <input x-model="isChacked" type="checkbox" id="дорог" name="дорог">
-                            <label for="дорог">Асфальтирование дорог</label>
-                        </div>
-                        <div x-show="isChacked">
-                            <input class="border border-gray-300 rounded-md focus:outline-none px-4 h-9" placeholder="Цена, сум" type="number">
+                        <div class="flex justify-between py-3 items-center h-12" x-data="{isChacked: false}">
+                            <div>
+                                <input x-model="isChacked" type="checkbox" id="дорог" name="дорог">
+                                <label for="дорог">Асфальтирование дорог</label>
+                            </div>
+                            <div x-show="isChacked">
+                                <input class="border border-gray-300 rounded-md focus:outline-none px-4 h-9" placeholder="Цена, сум" type="number">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
         </div>
     </div>
-
-</div>
 </section>
-
-
-<script>
-    function imageViewer() {
-  return {
-    imageUrl: '',
-
-    fileChosen(event) {
-      this.fileToDataUrl(event, src => this.imageUrl = src)
-    },
-
-    fileToDataUrl(event, callback) {
-      if (! event.target.files.length) return
-
-      let file = event.target.files[0],
-          reader = new FileReader()
-
-      reader.readAsDataURL(file)
-      reader.onload = e => callback(e.target.result)
-    },
-  }
-}
-</script>
-
