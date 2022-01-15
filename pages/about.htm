@@ -377,11 +377,13 @@ title = "About"
             <div class="p-5 m-1 mt-4 bg-white rounded-md " x-data="{isEditable:true}">
                 <div class="flex justify-between">
                     <span class="text-sm md:text-md lg:text-lg 2xl:text-xl font-medium">Районы и адреса</span>
-                    <a class="rounded-md bg-blue-975 flex items-center text-center border border-white
-                            w-8 h-8 cursor-pointer  hover:border-blue-975 hover:bg-blue-975 transition-all duration-500" 
-                           href="#">
-                        <i class="icon-pencil m-auto"></i>
-                    </a>
+                    <button class="rounded-md bg-blue-975 flex items-center text-center border border-white
+                                    w-8 h-8 cursor-pointer  hover:border-blue-975 hover:bg-blue-975 transition-all duration-500
+                                    focus:outline-none" 
+                            href="#"
+                            @click="isEditable=!isEditable">
+                            <i class="icon-pencil m-auto"></i>
+                    </button>
                 </div>
                 <div class="">
                     <div class="my-4" >
@@ -548,53 +550,124 @@ title = "About"
             <div class="mt-4 ">
                 <div class="md:grid md:grid-cols-3 lg:grid-cols-4 2xl-grid-cols-5" >
 
-                    <div class="mx-2">
+                    <div x-data="imageViewer()" class="">
                         <h3 class="text-md md:text-base lg:text-lg 2xl:text-xl font-medium my-4">Фото работ</h3>
-                        <div class="bg-white rounded-md text-center py-10">
-                            <div class="text-7xl"><i class="icon-camera"></i></div>
-                            <span class="text-gray-400 my-5 font-medium block">Нет фото</span>
-                            <a class="rounded-md text-sm md:text-md lg:text-base 2xl:text-lg bg-blue-975 text-white px-4 py-2 transition-all duration-300 hover:bg-blue-950 hover:text-white" href="#">
-                                <span>Добавить</span>
-                            </a>
+                        <div class="bg-white flex flex-col justify-center rounded-md text-center py-5">
+                          <!-- Show the image -->
+                          <div class="h-28">
+                            <template x-if="imageUrl">
+                                <img :src="imageUrl" 
+                                     class="object-cover rounded border mx-auto" 
+                                     style="width: 100px; height: 100px;"
+                                >
+                              </template>
+                              
+                              <!-- Show the gray box when image is not available -->
+                              <template x-if="!imageUrl">
+                                <span class="text-gray-400 my-5 font-medium block">Нет фото</span>
+                              </template>
+                          </div>
+                          
+                          <!-- Image file selector -->
+                            <input hidden class="mt-2" type="file" id="IdDocument" accept="image/*" @change="fileChosen">  
+                            <label for="IdDocument">
+                                <span class="rounded-md text-sm md:text-md lg:text-base 2xl:text-lg 
+                                            bg-blue-975 text-white px-4 py-2 transition-all duration-300 
+                                            hover:bg-blue-950 hover:text-white cursor-pointer" 
+                                        href="#">
+                                        Добавить
+                                </span>
+                            </label>    
                         </div>
+
                         <div class="my-5 text-center">
                             <a class="border border-blue-975 text-blue-950 px-4 py-2 my-2 rounded-md transition-all duration-300 hover:bg-blue-975 hover:text-white text-sm md:text-md lg:text-base 2xl:text-lg" href="#">
                                 <span>Пройти сертификацию</span>
                             </a>
                         </div>
+                        
                     </div>
 
-                    <div class="mx-2">
+
+
+
+                    <div x-data="imageViewer()" class=" mx-4">
                         <h3 class="text-md md:text-base lg:text-lg 2xl:text-xl font-medium my-4">Фото дипломов</h3>
-                        <div class="bg-white rounded-md text-center py-10">
-                            <div class="text-7xl"><i class="icon-camera"></i></div>
-                            <span class="text-gray-400 my-5 font-medium block">Нет фото</span>
-                            <a class="rounded-md text-sm md:text-md lg:text-base 2xl:text-lg bg-blue-975 text-white px-4 py-2 transition-all duration-300 hover:bg-blue-950 hover:text-white" href="#">
-                                <span>Добавить</span>
-                            </a>
+                        <div class="bg-white flex flex-col justify-center rounded-md text-center py-5">
+                          <!-- Show the image -->
+                          <div class="h-28">
+                            <template x-if="imageUrl">
+                                <img :src="imageUrl" 
+                                     class="object-cover rounded border mx-auto" 
+                                     style="width: 100px; height: 100px;"
+                                >
+                              </template>
+                              
+                              <!-- Show the gray box when image is not available -->
+                              <template x-if="!imageUrl">
+                                <span class="text-gray-400 my-5 font-medium block">Нет фото</span>
+                              </template>
+                          </div>
+                          
+                          <!-- Image file selector -->
+                            <input hidden class="mt-2" type="file" id="IdDocument" accept="image/*" @change="fileChosen">  
+                            <label for="IdDocument">
+                                <span class="rounded-md text-sm md:text-md lg:text-base 2xl:text-lg 
+                                            bg-blue-975 text-white px-4 py-2 transition-all duration-300 
+                                            hover:bg-blue-950 hover:text-white cursor-pointer" 
+                                        href="#">
+                                        Добавить
+                                </span>
+                            </label>    
                         </div>
+
                         <div class="my-5 text-center">
                             <a class="border border-blue-975 text-blue-950 px-4 py-2 my-2 rounded-md transition-all duration-300 hover:bg-blue-975 hover:text-white text-sm md:text-md lg:text-base 2xl:text-lg" href="#">
                                 <span>Пройти сертификацию</span>
                             </a>
                         </div>
+                        
                     </div>
 
-                    <div class="mx-2">
+
+                    <div x-data="imageViewer()" class="">
                         <h3 class="text-md md:text-base lg:text-lg 2xl:text-xl font-medium my-4">Загрузите паспорт</h3>
-                        <div class="bg-white rounded-md text-center py-10">
-                            <div class="text-7xl"><i class="icon-camera"></i></div>
-                            <span class="text-gray-400 my-5 font-medium block">Нет фото</span>
-                            <a class="rounded-md text-sm md:text-md lg:text-base 2xl:text-lg bg-blue-975 text-white px-4 py-2 transition-all duration-300 hover:bg-blue-950 hover:text-white" href="#">
-                                <span>Добавить</span>
-                            </a>
+                        <div class="bg-white flex flex-col justify-center rounded-md text-center py-5">
+                          <!-- Show the image -->
+                          <div class="h-28">
+                            <template x-if="imageUrl">
+                                <img :src="imageUrl" 
+                                     class="object-cover rounded border mx-auto" 
+                                     style="width: 100px; height: 100px;"
+                                >
+                              </template>
+                              
+                              <!-- Show the gray box when image is not available -->
+                              <template x-if="!imageUrl">
+                                <span class="text-gray-400 my-5 font-medium block">Нет фото</span>
+                              </template>
+                          </div>
+                          
+                          <!-- Image file selector -->
+                            <input hidden class="mt-2" type="file" id="IdDocument" accept="image/*" @change="fileChosen">  
+                            <label for="IdDocument">
+                                <span class="rounded-md text-sm md:text-md lg:text-base 2xl:text-lg 
+                                            bg-blue-975 text-white px-4 py-2 transition-all duration-300 
+                                            hover:bg-blue-950 hover:text-white cursor-pointer" 
+                                        href="#">
+                                        Добавить
+                                </span>
+                            </label>    
                         </div>
+
                         <div class="my-5 text-center">
                             <a class="border border-blue-975 text-blue-950 px-4 py-2 my-2 rounded-md transition-all duration-300 hover:bg-blue-975 hover:text-white text-sm md:text-md lg:text-base 2xl:text-lg" href="#">
                                 <span>Пройти сертификацию</span>
                             </a>
                         </div>
+
                     </div>
+
                 </div>
             </div>
         </div>
@@ -672,4 +745,27 @@ title = "About"
 
 </div>
 </section>
+
+
+<script>
+    function imageViewer() {
+  return {
+    imageUrl: '',
+
+    fileChosen(event) {
+      this.fileToDataUrl(event, src => this.imageUrl = src)
+    },
+
+    fileToDataUrl(event, callback) {
+      if (! event.target.files.length) return
+
+      let file = event.target.files[0],
+          reader = new FileReader()
+
+      reader.readAsDataURL(file)
+      reader.onload = e => callback(e.target.result)
+    },
+  }
+}
+</script>
 
