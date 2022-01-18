@@ -280,6 +280,7 @@ module.exports = {
         },
         fontFamily: {
             sans: [
+                'aeroport',
                 'montserrat',
                 'ui-sans-serif',
                 'system-ui',
