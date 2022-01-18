@@ -1,8 +1,0 @@
-{% for service in services %}
-    <li class="p-2 px-4 hover:bg-gray-200 cursor-pointer" @click="
-            service = {{service.id}};
-            search = '{{service.name}}';
-        "> {{ service.name }} </li>
-{% else %}
-    <li class="p-2 px-4"> По вашему запросу ничего не найдено: "{{ post('search') }}"</li>
-{% endfor %}

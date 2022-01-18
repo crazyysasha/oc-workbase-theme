@@ -3,15 +3,17 @@ import router from "./router/index.js";
 
 import App from "./app.js";
 import { setDataToLocalStorage } from "./utils/storage.js";
+import services from "./api/services.js";
 
+
+/* TODO: я хз, временно работает, но нужно написать по человечи */
 store.subscribe((mutation, state) => {
-    for (const key in state) {
-        if (Object.hasOwnProperty.call(state, key)) {
-            const element = state[key];
-            setDataToLocalStorage(key, element);
-        }
-    }
+
+    setDataToLocalStorage('draftedOrders', state.draftedOrders || {});
 });
+
+console.log('asd');
+
 
 Vue.createApp(App)
     .use(store)

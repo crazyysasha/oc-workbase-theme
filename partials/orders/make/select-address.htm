@@ -1,0 +1,31 @@
+<form @submit.prevent>
+    <h5 class="text-sm font-bold text-gray-500">
+        {order.services[order.services.length - 1].name}
+    </h5>
+
+    <h2 class="font-semibold text-sm ms:md md:text-lg lg:text-3xl md:font-medium mt-3 mb-4">
+        Введите адрес 
+    </h2>
+
+    <div>
+        <input type="text" v-model="address">
+    </div>
+
+    <div class="sticky w-full bg-white bottom-4 shadow-3xl mt-auto">
+        <div class="flex justify-between items-center h-10 ms:h-14 md:h-16 lg:h-20">
+            <button @click="$router.go(-1)" class="shadow-3xl  sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-base 2xl:text-lg
+                    py-2 px-6 bg-gray-200 rounded-lg text-blue-900
+                    focus:outline-none focus:bg-blue-900 focus:text-white">
+                <span><i class=""></i></span>
+                <span>Назад</span>
+            </button>
+            <button @click="submit" class=" sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-base 2xl:text-lg
+                    py-2 px-6 bg-blue-900 text-white rounded-lg
+                    focus:outline-none focus:bg-gray-200 focus:text-blue-900 ">
+                <span><i class=""></i></span>
+                <span>Продолжить</span>
+            </button>
+        </div>
+    </div>
+
+</form>

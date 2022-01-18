@@ -1,6 +1,9 @@
+import categoriesApi from "../../api/categories.js";
+import servicesApi from "../../api/services.js";
+
 export default {
     delimiters: ['{', '}'],
-    props: ['categorySlug'],
+    props: ['categorySlug', 'formData', 'order'],
     template: '#searchServiceComponent',
     data() {
         return {
@@ -11,49 +14,52 @@ export default {
             serviceList: null,
             results: null,
             open: false,
+            loading: false,
         };
     },
+    async created() {
+        this.category = await categoriesApi.getByIdOrSlug(this.categorySlug);
+        this.serviceList = await servicesApi.get({ category: this.category.id, });
+    },
     methods: {
-        async fetchExmpleServices() {
-            let res = await (await fetch(`/api/crazy/freelancer/v1.0.1/services?category=${this.category.id}&root=1`)).json();
-            this.serviceList = res.data;
-        },
-        // debouncedSearch: debounce(async (params) => {
-        //     let res = await (await fetch(`/api/crazy/freelancer/v1.0.1/services?category=${params.category}&search=${this.search}`)).json();
-        //     this.results = res.data;
-        // }, 500),
-        async searchServicesFetch() {
-            // this.debouncedSearch();
-            let res = await (await fetch(`/api/crazy/freelancer/v1.0.1/services?category=${this.category.id}&search=${this.search}`)).json();
-            this.results = res.data;
+        debouncedSearch: _.debounce(async function (data) {
+            this.results = (await servicesApi.get(data));
+        }, 500),
+        searchHandler(e) {
+
+            this.debouncedSearch({
+                // category: this.category.id,
+                search: e.target.value,
+            });
         },
         setService(service) {
-            this.service = service;
             this.search = service.name;
+            this.service = service;
         },
-        submit() {
+        async submit() {
             if (this.service == null) {
                 alert('Выберите услугу');
                 return;
             }
+            this.loading = true;
+            await this.$store.dispatch('updateDraftedOrder', {
+                id: this.$props.order.id,
+                data: {
+                    services: [this.service.slug],
+                },
+            });
+            
+            this.loading = false;
+
             this.$router.push(`/vue/${this.category.slug}/${this.service.slug}`);
         }
     },
-    async beforeCreate() {
-        try {
-            this.$store.dispatch('checkDraftedOrder', {
-                category: this.$route.params.categorySlug
-            });
-
-        } catch (error) {
+    mounted() {
+        if (this.$props.order.services[0]) {
+            console.log(this.$props.order.services[0]);
+            this.setService(this.$props.order.services[0]);
 
         }
 
-    },
-    mounted() {
-        this.search = this.$store
-            .getters.categoryByIdOrSlug[this.$props.categorySlug]
-            ?.services?.get
-            ?.name;
     },
 };
