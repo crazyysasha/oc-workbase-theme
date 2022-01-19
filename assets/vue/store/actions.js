@@ -11,7 +11,7 @@ export default {
     },
     updateDraftedOrder: async ({commit}, {id, data}) => {
         try {
-            commit('draftedOrder', await orders.update(id, data));
+            return commit('draftedOrder', await orders.update(id, data));
         } catch (error) {
             throw new Error(error);
         }

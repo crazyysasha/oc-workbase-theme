@@ -4,6 +4,7 @@ export default {
     },
     draftedOrder: (state, payload) => {
         state.draftedOrders[payload.category.slug] = payload;
+        return payload;
     },
     initState: function(state, payload) {
         for (const key in payload) {
