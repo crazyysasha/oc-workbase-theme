@@ -7,6 +7,9 @@ export default {
         return {
             parentService: null,
             price: '',
+            isChecked: false,
+            paymentTpye: 'Per day',
+            isActive: false,
 
         }
     },
