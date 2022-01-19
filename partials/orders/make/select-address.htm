@@ -1,4 +1,4 @@
-<form @submit.prevent class="h-full">
+<form @submit.prevent class="h-full flex flex-col">
     <h5 class="text-sm font-bold text-gray-500">
         {order.services[order.services.length - 1].name}
     </h5>
@@ -8,7 +8,9 @@
     </h2>
 
     <div>
-        <input type="text" v-model="address">
+        <input type="text" v-model="address" 
+            class="border border-blue-950 focus:border-blue-975 focus:outline-none
+                rounded-md px-3 py-1 w-full">
     </div>
 
     <div class="sticky w-full bg-white bottom-0 py-4 mt-auto">
