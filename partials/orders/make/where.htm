@@ -1,4 +1,4 @@
-<form @submit.prevent="submit">
+<form @submit.prevent="submit" class="h-full flex flex-col">
      <div class="px-4">
         <h5 class="text-sm md:text-md 2xl:text-lg font-bold text-gray-500 mt-4 mb-4">
             { parentService?.name }
@@ -89,7 +89,7 @@
 
         </div>
     </div>
-    <div class="sticky w-full bg-white bottom-0 shadow-3xl mt-auto" >
+    <div class="sticky w-full bg-white bottom-0 py-4 mt-auto" >
         <div class="flex items-center p-4 mb-2">
             <button type="submit" 
                 class="sm:font-medium text-2xs sm:text-sm md:text-md lg:text-base 2xl:text-lg py-2 px-6 bg-blue-900 text-white rounded-lg focus:outline-none focus:bg-gray-200 focus:text-blue-900 ml-auto"

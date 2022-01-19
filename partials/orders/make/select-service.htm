@@ -1,57 +1,59 @@
-<h5 class="text-sm font-bold text-gray-500">
-    {order.services[order.services.length - 1].name}
-</h5>
-
-<h2 class="font-semibold text-sm ms:md md:text-lg lg:text-3xl md:font-medium mt-3 mb-4">
-    {order.category.search_title ?? 'Выбурите услугу'}
-</h2>
-
-<div v-for="(service, i) in parentService?.children">
-    <div class="my-1">
-        <input hidden type="radio" v-model="model" :value="service.slug" :id="`rodiaField${i}`">
-        <label :for="`rodiaField${i}`">
-            <div class="flex items-center cursor-pointer">
-                <div class="flex items-center justify-center w-6 h-6 rounded-full bg-gray-300 mr-2">
-                    <transition name="fade"
-                        enter-from-class="opacity-0 scale-y-1/2 translate-y-1/2"
-                        enter-active-class="transition ease-in duration-300"
-                        enter-to-class="opacity-100 scale-y-0 translate-y-0"
-                        leave-from-class="opacity-100 scale-y-0 translate-y-0"
-                        leave-active-class="transition ease-out duration-300"
-                        leave-to-class="opacity-0 scale-y-1/2 translate-y-1/2">
-                        <div
-                            v-show="model == service.slug" 
-                            class="bg-blue-950 rounded-full w-4 h-4 m-auto">
-                        </div>
-                        </transition>
+<div class="h-full flex flex-col">
+    <h5 class="text-sm font-bold text-gray-500">
+        {order.services[order.services.length - 1].name}
+    </h5>
+    
+    <h2 class="font-semibold text-sm ms:md md:text-lg lg:text-3xl md:font-medium mt-3 mb-4">
+        {order.category.search_title ?? 'Выбурите услугу'}
+    </h2>
+    
+    <div v-for="(service, i) in parentService?.children">
+        <div class="my-1">
+            <input hidden type="radio" v-model="model" :value="service.slug" :id="`rodiaField${i}`">
+            <label :for="`rodiaField${i}`">
+                <div class="flex items-center cursor-pointer">
+                    <div class="flex items-center justify-center w-6 h-6 rounded-full bg-gray-300 mr-2">
+                        <transition name="fade"
+                            enter-from-class="opacity-0 scale-y-1/2 translate-y-1/2"
+                            enter-active-class="transition ease-in duration-300"
+                            enter-to-class="opacity-100 scale-y-0 translate-y-0"
+                            leave-from-class="opacity-100 scale-y-0 translate-y-0"
+                            leave-active-class="transition ease-out duration-300"
+                            leave-to-class="opacity-0 scale-y-1/2 translate-y-1/2">
+                            <div
+                                v-show="model == service.slug" 
+                                class="bg-blue-950 rounded-full w-4 h-4 m-auto">
+                            </div>
+                            </transition>
+                    </div>
+                    <div>
+                        <span class="text-md md:text-base cursor-pointer">
+                            {service.name}
+                        </span>
+                    </div>
                 </div>
-                <div>
-                    <span class="text-md md:text-base cursor-pointer">
-                        {service.name}
-                    </span>
-                </div>
-            </div>
-        </label>
+            </label>
+        </div>
     </div>
-</div>
-
-<div class="sticky w-full bg-white bottom-4 shadow-3xl mt-auto" >
-    <div class="flex justify-between items-center h-10 ms:h-14 md:h-16 lg:h-20">
-        <button
-            @click="$router.go(-1)"
-            class="shadow-3xl  sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-base 2xl:text-lg
-                py-2 px-6 bg-gray-200 rounded-lg text-blue-900
-                focus:outline-none focus:bg-blue-900 focus:text-white">
-            <span><i class=""></i></span>
-            <span>Назад</span>
-        </button>
-        <button
-            @click="submit" 
-            class=" sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-base 2xl:text-lg
-                py-2 px-6 bg-blue-900 text-white rounded-lg
-                focus:outline-none focus:bg-gray-200 focus:text-blue-900 ">
-            <span><i class=""></i></span>
-            <span>Продолжить</span>
-        </button>
+    
+    <div class="sticky w-full bg-white bottom-0 py-4 mt-auto" >
+        <div class="flex justify-between items-center h-10 ms:h-14 md:h-16 lg:h-20">
+            <button
+                @click="$router.go(-1)"
+                class="shadow-3xl  sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-base 2xl:text-lg
+                    py-2 px-6 bg-gray-200 rounded-lg text-blue-900
+                    focus:outline-none focus:bg-blue-900 focus:text-white">
+                <span><i class=""></i></span>
+                <span>Назад</span>
+            </button>
+            <button
+                @click="submit" 
+                class=" sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-base 2xl:text-lg
+                    py-2 px-6 bg-blue-900 text-white rounded-lg
+                    focus:outline-none focus:bg-gray-200 focus:text-blue-900 ">
+                <span><i class=""></i></span>
+                <span>Продолжить</span>
+            </button>
+        </div>
     </div>
 </div>
