@@ -15,13 +15,12 @@ export default {
     },
     methods: {
         async submit() {
-            if (this.isOnline == false && this.atCustomer == false && this.atCustomer) {
+            if (this.address != null && this.address.length == 0) {
                 alert('Выберите хоть что то');
                 return;
             }
+
             this.loading = true;
-
-
 
             await this.$store.dispatch('updateDraftedOrder', {
                 id: this.$props.order.id,
@@ -30,16 +29,15 @@ export default {
                 },
             });
 
+            let order = this.$store.getters.draftedOrderByCategory(this.categorySlug);
+
             let nextPage;
 
-            if (this.order.at_executor) {
+            if (order.at_executor) {
                 nextPage = 'SelectRegion';
             } else {
                 nextPage = 'WhenSelect';
             }
-
-
-
 
             this.loading = false;
 

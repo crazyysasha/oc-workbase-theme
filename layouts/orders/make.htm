@@ -479,29 +479,44 @@ function getCurrentServices()
         </div>
     </section>
     
+    <script type="text/template" id="exposeOrderComponent">
+        {% partial 'orders/make/expose-order' %}
+    </script>
+
+    <script type="text/template" id="priceSelectComponent">
+        {% partial 'orders/make/price-select' %}
+    </script>
+    
     <script type="text/template" id="searchServiceComponent">
         {% partial 'orders/make/search-service' %}
     </script>
 
+    <script type="text/template" id="selectAddressComponent">
+        {% partial 'orders/make/select-address' %}
+    </script>
+
+    <script type="text/template" id="selectRegionComponent">
+        {% partial 'orders/make/select-region' %}
+    </script>
+    
     <script type="text/template" id="selectServiceComponent">
         {% partial 'orders/make/select-service' %}
+    </script>
+    
+    <script type="text/template" id="whenSelectComponent">
+        {% partial 'orders/make/when' %}
     </script>
     
     <script type="text/template" id="whereSelectComponent">
         {% partial 'orders/make/where' %}
     </script>
 
-    <script type="text/template" id="whenSelectComponent">
-        {% partial 'orders/make/when' %}
-    </script>
 
-    <script type="text/template" id="selectAddressComponent">
-        {% partial 'orders/make/select-address' %}
-    </script>
     
     <script type="text/template" id="makeOrderFormComponent">
         {% partial 'orders/make/form' %}
     </script>
+    
 
     <script src="https://unpkg.com/vue@next"></script>
 

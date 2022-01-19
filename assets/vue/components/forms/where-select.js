@@ -17,7 +17,7 @@ export default {
     },
     methods: {
         async submit() {
-            if (this.isOnline == false && this.atCustomer == false && this.atCustomer) {
+            if (this.isOnline == false && this.atCustomer == false && this.atExecutor == false) {
                 alert('Выберите хоть что то');
                 return;
             }
@@ -32,11 +32,12 @@ export default {
                 },
             });
 
+            let order = this.$store.getters.draftedOrderByCategory(this.categorySlug);
+
             let nextPage;
-            
-            if (this.order.at_customer) {
+            if (order.at_customer || order.at_customer == 1) {
                 nextPage = 'SelectAddress';
-            } else if (this.order.at_executor) {
+            } else if (order.at_executor || order.at_executor == 1) {
                 nextPage = 'SelectRegion';
             } else {
                 nextPage = 'WhenSelect';

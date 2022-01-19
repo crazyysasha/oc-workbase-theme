@@ -6,8 +6,8 @@ export default {
     data() {
         return {
             parentService: null,
-            whenFrom: null,
-            whenTo: null,
+            started_at: '',
+            ended_at: '',
 
         }
     },
@@ -17,43 +17,27 @@ export default {
     },
     methods: {
         async submit() {
-            if (this.isOnline == false && this.atCustomer == false && this.atCustomer) {
-                alert('Выберите хоть что то');
-                return;
-            }
+           
             this.loading = true;
-
-            let slugs = Array.from(this.$props.servicesSlugs);
-
-            slugs.push(this.model);
 
             await this.$store.dispatch('updateDraftedOrder', {
                 id: this.$props.order.id,
                 data: {
-                    is_online: this.isOnline,
-                    at_executor: this.atExecutor,
-                    at_customer: this.atCustomer,
+                    started_at: this.started_at,
+                    ended_at: this.ended_at,
                 },
             });
 
             let nextPage;
-
-            if (this.order.at_customer) {
-                nextPage = 'SelectAddress';
-            } else {
-                nextPage = 'WhenSelect';
-            }
-
-
-
-
+            nextPage = 'Price';
+            
             this.loading = false;
 
             this.$router.push({
                 name: nextPage,
                 params: {
                     categorySlug: this.$props.categorySlug,
-                    servicesSlugs: slugs,
+                    servicesSlugs: this.servicesSlugs,
                 }
             });
         }
