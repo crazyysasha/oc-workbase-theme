@@ -1,0 +1,52 @@
+<form action="" class="flex flex-col h-full">
+    <div>
+        <h5 class="text-sm font-bold text-gray-500">
+            {order.services[order.services.length - 1].name}
+        </h5>
+
+        <h2 class="font-semibold text-sm ms:md md:text-lg lg:text-3xl md:font-medium mt-3 mb-4">
+            Заказ почти создан
+        </h2>
+    </div>
+    <div class="mx-5">
+        <div class="grid grid-cols-2 gap-4">
+            <input
+                class="w-full rounded-md border border-blue-950 text-xs  md:text-md p-2 block focus:outline-none my-5 bg-white"
+                placeholder="Имя" type="text">
+            <input
+                class="w-full rounded-md border border-blue-950 text-xs  md:text-md p-2 block focus:outline-none my-5 bg-white"
+                placeholder="Фамилия" type="text">
+        </div>
+
+        <input
+            class="w-full rounded-md border border-blue-950 text-xs  md:text-md p-2 block focus:outline-none bg-white"
+            placeholder="Телефон" pattern="[0-9]{3}-[0-9]{2}-[0-9]{2}-[0-9]{2}" type="tel">
+        
+        <div class="grid grid-cols-2 gap-4">
+            <input
+                class="w-full rounded-md border border-blue-950 text-xs  md:text-md p-2 block focus:outline-none my-5 bg-white"
+                placeholder="Пароль" autocomplet="new-password" type="password">
+            <input
+                class="w-full rounded-md border border-blue-950 text-xs  md:text-md p-2 block focus:outline-none my-5 bg-white"
+                placeholder="Повторите пароль" autocomplet="new-password" type="password">       
+        </div>    
+    </div>
+
+    <div class="sticky w-full bg-white bottom-0 pt-2 pb-4 mt-auto">
+        <div class="flex justify-between items-center">
+            <button @click="$router.go(-1)" class="shadow-3xl  sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-base 2xl:text-lg
+                    py-2 px-6 bg-gray-200 rounded-lg text-blue-900
+                    focus:outline-none focus:bg-blue-900 focus:text-white">
+                <span><i class=""></i></span>
+                <span>Назад</span>
+            </button>
+
+            <button type="submit" class="sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-base 2xl:text-lg
+                    py-2 px-6 bg-blue-900 text-white rounded-lg
+                    focus:outline-none focus:bg-gray-200 focus:text-blue-900 ">
+                <span><i class=""></i></span>
+                <span>Продолжить</span>
+            </button>
+        </div>
+    </div>
+</form>

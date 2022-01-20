@@ -9,10 +9,17 @@ export default {
             throw new Error(error);
         }
     },
-    checkDraftedOrder: ({ dispatch, state }, { category, services }) => {
+    updateDraftedOrder: async ({commit}, {id, data}) => {
+        try {
+            return commit('draftedOrder', await orders.update(id, data));
+        } catch (error) {
+            throw new Error(error);
+        }
+    },
+    checkDraftedOrder: async ({ dispatch, state }, { category, services }) => {
         
         if (!(category in state.draftedOrders)) {
-            return dispatch('createDraftedOrder', { category, services });
+            return await dispatch('createDraftedOrder', { category, services });
         }
 
     },

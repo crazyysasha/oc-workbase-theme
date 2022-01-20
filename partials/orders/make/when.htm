@@ -1,0 +1,33 @@
+<form @submit.prevent="submit" class="flex flex-col h-full">
+    <h5 class="text-sm font-bold text-gray-500">
+        {order.services[order.services.length - 1].name}
+    </h5>
+
+    <h2 class="font-semibold text-sm ms:md md:text-lg lg:text-3xl md:font-medium mt-3 mb-4">
+        Укажите время
+    </h2>
+    <label class="px-2 py-1" for="start"> начать в </label>
+    <input id="start" class=" ml-2 border border-blue-950 rounded-md px-2 py-1 focus:outline-none"  type="datetime-local" v-model="started_at">
+
+    <label class="px-2 py-1" for="end">закончить в </label>
+    <input id="end" type="datetime-local" class=" ml-2 border border-blue-950 rounded-md px-2 py-1 focus:outline-none" v-model="ended_at">      
+
+    <div class="sticky w-full bg-white bottom-4 pb-4 pt-2 mt-auto">
+        <div class="flex justify-between items-center">
+            <button @click="$router.go(-1)" class="shadow-3xl  sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-base 2xl:text-lg
+                    py-2 px-6 bg-gray-200 rounded-lg text-blue-900
+                    focus:outline-none focus:bg-blue-900 focus:text-white">
+                <span><i class=""></i></span>
+                <span>Назад</span>
+            </button>
+
+            <button type="submit" class="sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-base 2xl:text-lg
+                    py-2 px-6 bg-blue-900 text-white rounded-lg
+                    focus:outline-none focus:bg-gray-200 focus:text-blue-900 ">
+                <span><i class=""></i></span>
+                <span>Продолжить</span>
+            </button>
+        </div>
+    </div>
+
+</form>

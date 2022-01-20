@@ -1,0 +1,82 @@
+<form @submit.prevent="submit" class="flex flex-col h-full">
+    <h5 class="text-sm font-bold text-gray-500">
+        {order.services[order.services.length - 1].name}
+    </h5>
+
+    <h2 class="font-semibold text-sm ms:md md:text-lg lg:text-3xl md:font-medium mt-3 mb-4">
+        Укажите те районы куда можете приехать
+    </h2>
+
+    <div v-for="location in locations">
+
+        <div class="py-1">
+            <input type="checkbox" hidden :id="`locationField${location.id}`" :value="location.id" v-model="selected">
+            <label :for="`locationField${location.id}`" class="flex items-center">
+                <div class="flex items-center justify-center w-6 h-6 rounded-md bg-gray-300 mr-2">
+                    <transition name="fade"
+                        enter-from-class="opacity-0 scale-y-1/2 translate-y-1/2"
+                        enter-active-class="transition ease-in duration-300"
+                        enter-to-class="opacity-100 scale-y-0 translate-y-0"
+                        leave-from-class="opacity-100 scale-y-0 translate-y-0"
+                        leave-active-class="transition ease-out duration-300"
+                        leave-to-class="opacity-0 scale-y-1/2 translate-y-1/2">
+                        <div
+                            v-show="selected.includes(location.id)" 
+                            class="bg-blue-950 rounded-md w-6 h-6 m-auto ">
+                           <div class="w-full h-full flex justify-center items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                           </div>
+                        </div>
+                        </transition>
+                </div>
+                <div class="cursor-pointer"> { location.name } </div>
+            </label>
+        </div>
+        <div v-if="location.children.length" v-for="location in location.children" class="ml-5 py-1">
+            <input type="checkbox" hidden :id="`locationField${location.id}`" :value="location.id" v-model="selected">
+            <label :for="`locationField${location.id}`" class="flex items-center">
+                <div class="flex items-center justify-center w-6 h-6 rounded-md bg-gray-300 mr-2">
+                    <transition name="fade"
+                        enter-from-class="opacity-0 scale-y-1/2 translate-y-1/2"
+                        enter-active-class="transition ease-in duration-300"
+                        enter-to-class="opacity-100 scale-y-0 translate-y-0"
+                        leave-from-class="opacity-100 scale-y-0 translate-y-0"
+                        leave-active-class="transition ease-out duration-300"
+                        leave-to-class="opacity-0 scale-y-1/2 translate-y-1/2">
+                        <div
+                            v-show="selected.includes(location.id)" 
+                            class="bg-blue-950 rounded-md w-6 h-6 m-auto ">
+                           <div class="w-full h-full flex justify-center items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                           </div>
+                        </div>
+                        </transition>
+                </div>
+                <div class="cursor-pointer"> { location.name } </div>
+            </label>
+        </div>
+    </div>
+
+    <div class="sticky w-full bg-white bottom-0 pb-4 pt-2 mt-auto">
+        <div class="flex justify-between items-center">
+            <button @click="$router.go(-1)" class="shadow-3xl  sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-base 2xl:text-lg
+                    py-2 px-6 bg-gray-200 rounded-lg text-blue-900
+                    focus:outline-none focus:bg-blue-900 focus:text-white">
+                <span><i class=""></i></span>
+                <span>Назад</span>
+            </button>
+
+            <button type="submit" class="sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-base 2xl:text-lg
+                    py-2 px-6 bg-blue-900 text-white rounded-lg
+                    focus:outline-none focus:bg-gray-200 focus:text-blue-900 ">
+                <span><i class=""></i></span>
+                <span>Продолжить</span>
+            </button>
+        </div>
+    </div>
+
+</form>

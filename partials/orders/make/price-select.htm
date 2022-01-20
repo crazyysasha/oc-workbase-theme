@@ -1,0 +1,90 @@
+
+<form @submit.prevent="submit" class="h-full flex flex-col">
+    <h5 class="text-sm font-bold text-gray-500">
+        {order.services[order.services.length - 1].name}
+    </h5>
+
+    <h2 class="font-semibold text-sm ms:md md:text-lg lg:text-3xl md:font-medium mt-3 mb-4">
+        Укажите цену
+    </h2>
+
+    <div class="flex justify-start">
+        
+        <div v-show="!isChecked">
+            <div class="flex items-center rounded-md border border-blue-950 px-1">
+                <label class="" for=""> Цена: </label>
+                <input type="number" v-model="price"  id="" class="focus:outline-none rounded-md px-2 py-1">
+            </div>
+        </div>
+
+        <div v-show="isChecked">
+           <div class="flex items-center mr-2 border border-blue-950 rounded-md px-1">
+                <label class="" for=""> От </label>
+                <input type="number" v-model="price"  id="" class="focus:outline-none px-2 py-1">
+           </div>
+        </div>
+        <div v-show="isChecked">
+           <div class="flex items-center border border-blue-950 rounded-md px-1">
+                <label class="" for=""> До </label>
+                <input type="number" v-model="price"  id="" class="focus:outline-none px-2 py-1">
+           </div>
+        </div>
+    </div>
+    <div class="flex justify-start items-center mt-4" >
+        <div class="relative mr-4" >
+            <div class="flex justify-between items-center border border-blue-950 cursor-pointer px-3 py-1 rounded-md w-48 h-8" 
+                @click="isActive=!isActive" >
+                <span v-text="paymentTpye"></span>
+                <span v-show="!isActive">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </span>
+                <span v-show="isActive">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                    </svg>
+                </span>
+            </div>
+            <div v-show="isActive" class="absolute top-9 border border-blue-950 rounded-md w-full px-1" @click.away="isActive = false">
+                <div @click="paymentTpye='per day' " class="hover:bg-blue-950 cursor-pointer px-2 py-1 my-1 rounded-md ">
+                    <span>per day</span>
+                </div>
+                <div @click="paymentTpye='per hour' " class="hover:bg-blue-950 cursor-pointer px-2 py-1 my-1 rounded-md ">
+                    <span> per hour</span>
+                </div>
+            </div>
+            
+        </div>
+
+        <div>
+            <input type="checkbox" id="checkbox" v-model="isChecked" hidden>
+            <label  for="checkbox" class="flex items-center">
+                <div class="relative w-10 rounded-full h-6 cursor-pointer mr-2" :class="{ 'bg-blue-300': !isChecked , 'bg-blue-975' : isChecked }">
+                    <div class="absolute  rounded-full h-4 w-4 bg-white" :class="{ 'left-1 top-1': !isChecked , 'right-1 top-1' : isChecked }">
+                    </div>
+                </div>
+                <span class="text-sm md:text-md lg:text-base 2xl:text-lg cursor-pointer">Статус</span>
+            </label>
+        </div>
+    </div>
+
+    <div class="sticky w-full bg-white bottom-0 pt-2 pb-4 mt-auto">
+        <div class="flex justify-between items-center">
+            <button @click="$router.go(-1)" class="shadow-3xl  sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-base 2xl:text-lg
+                    py-2 px-6 bg-gray-200 rounded-lg text-blue-900
+                    focus:outline-none focus:bg-blue-900 focus:text-white">
+                <span><i class=""></i></span>
+                <span>Назад</span>
+            </button>
+
+            <button type="submit" class="sm:font-medium  text-2xs sm:text-sm md:text-md lg:text-base 2xl:text-lg
+                    py-2 px-6 bg-blue-900 text-white rounded-lg
+                    focus:outline-none focus:bg-gray-200 focus:text-blue-900 ">
+                <span><i class=""></i></span>
+                <span>Продолжить</span>
+            </button>
+        </div>
+    </div>
+
+</form>
