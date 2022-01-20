@@ -10,6 +10,7 @@ export default {
             parentService: null,
             locations: null,
             selected: [],
+            isActive: false
         }
     },
     props: ['servicesSlugs', 'categorySlug', 'order'],
