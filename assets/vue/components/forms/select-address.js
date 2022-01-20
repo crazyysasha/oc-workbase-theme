@@ -7,6 +7,8 @@ export default {
         return {
             parentService: null,
             address: '',
+            lat: '',
+            lon: '',
         }
     },
     props: ['servicesSlugs', 'categorySlug', 'order'],

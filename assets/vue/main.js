@@ -6,6 +6,7 @@ import { setDataToLocalStorage } from "./utils/storage.js";
 import services from "./api/services.js";
 
 
+
 /* TODO: я хз, временно работает, но нужно написать по человечи */
 store.subscribe((mutation, state) => {
 

@@ -1,4 +1,4 @@
-<form action="" class="flex flex-col h-full">
+<form @submit.prevent="submit" class="flex flex-col h-full">
     <div>
         <h5 class="text-sm font-bold text-gray-500">
             {order.services[order.services.length - 1].name}
@@ -20,7 +20,7 @@
 
         <input
             class="w-full rounded-md border border-blue-950 text-xs  md:text-md p-2 block focus:outline-none bg-white"
-            placeholder="Телефон" pattern="[0-9]{3}-[0-9]{2}-[0-9]{2}-[0-9]{2}" type="tel">
+            placeholder="Телефон" type="tel">
         
         <div class="grid grid-cols-2 gap-4">
             <input

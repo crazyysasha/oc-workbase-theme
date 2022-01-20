@@ -20,13 +20,13 @@
         <div v-show="isChecked">
            <div class="flex items-center mr-2 border border-blue-950 rounded-md px-1">
                 <label class="" for=""> От </label>
-                <input type="number" v-model="price"  id="" class="focus:outline-none px-2 py-1">
+                <input type="number" v-model="priceFrom"  id="" class="focus:outline-none px-2 py-1">
            </div>
         </div>
         <div v-show="isChecked">
            <div class="flex items-center border border-blue-950 rounded-md px-1">
                 <label class="" for=""> До </label>
-                <input type="number" v-model="price"  id="" class="focus:outline-none px-2 py-1">
+                <input type="number" v-model="priceUpTo"  id="" class="focus:outline-none px-2 py-1">
            </div>
         </div>
     </div>
@@ -34,7 +34,7 @@
         <div class="relative mr-4" >
             <div class="flex justify-between items-center border border-blue-950 cursor-pointer px-3 py-1 rounded-md w-48 h-8" 
                 @click="isActive=!isActive" >
-                <span v-text="paymentTpye"></span>
+                <span v-text="units[unit]"></span>
                 <span v-show="!isActive">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -47,11 +47,9 @@
                 </span>
             </div>
             <div v-show="isActive" class="absolute top-9 border border-blue-950 rounded-md w-full px-1" @click.away="isActive = false">
-                <div @click="paymentTpye='per day' " class="hover:bg-blue-950 cursor-pointer px-2 py-1 my-1 rounded-md ">
-                    <span>per day</span>
-                </div>
-                <div @click="paymentTpye='per hour' " class="hover:bg-blue-950 cursor-pointer px-2 py-1 my-1 rounded-md ">
-                    <span> per hour</span>
+                
+                <div v-for="(u, k) in units" @click="unit = k" class="hover:bg-blue-950 cursor-pointer px-2 py-1 my-1 rounded-md ">
+                    <span>{u}</span>
                 </div>
             </div>
             
@@ -64,7 +62,7 @@
                     <div class="absolute  rounded-full h-4 w-4 bg-white" :class="{ 'left-1 top-1': !isChecked , 'right-1 top-1' : isChecked }">
                     </div>
                 </div>
-                <span class="text-sm md:text-md lg:text-base 2xl:text-lg cursor-pointer">Статус</span>
+                <span class="text-sm md:text-md lg:text-base 2xl:text-lg cursor-pointer">Указать диапазон</span>
             </label>
         </div>
     </div>

@@ -7,8 +7,11 @@ export default {
         return {
             parentService: null,
             price: '',
+            priceFrom: '',
+            priceUpTo: '',
             isChecked: false,
-            paymentTpye: 'Per day',
+            units: { 1: 'За час', 24: 'За сутки' },
+            unit: 1,
             isActive: false,
 
         }
@@ -26,6 +29,9 @@ export default {
                 id: this.$props.order.id,
                 data: {
                     price: this.price,
+                    price_from: this.priceFrom,
+                    price_up_to: this.priceUpTo,
+                    unit: this.unit,
                 },
             });
 
