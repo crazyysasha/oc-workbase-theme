@@ -27,6 +27,8 @@ requirePassword = 0
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://unpkg.com/filepond/dist/filepond.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css" rel="stylesheet">
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
@@ -161,7 +163,52 @@ requirePassword = 0
         '@framework.extras',
         ]|theme }}">
         </script>
+    <script src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.min.js"></script>
+
+    <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.min.js"></script>
+
+    <script src="https://unpkg.com/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.min.js"></script>
+
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js"></script>
+
+    <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
+
+    {% put scripts %}
+        <script>
+            FilePond.registerPlugin(
+
+                FilePondPluginFileEncode,
+
+                FilePondPluginFileValidateSize,
+
+                FilePondPluginImageExifOrientation,
+
+                FilePondPluginImagePreview
+
+            );
+
+
+            FilePond.create(
+                document.querySelector("input[name='filepond']"),
+                {
+                    labelIdle: `Перетащите изображение или нажмите <span class="text-blue-500">Загрузить</span>`,
+                    imagePreviewHeight: 100,
+                    name: 'avatar',
+                    imageCropAspectRatio: '1:1',
+                    imageResizeTargetWidth: 100,
+                    imageResizeTargetHeight: 100,
+                    stylePanelLayout: 'compact circle',
+                    styleLoadIndicatorPosition: 'center bottom',
+                    styleButtonRemoveItemPosition: 'center bottom'
+                }
+            );
+            
+        </script>
+    {% endput %}
+
+
     {% scripts %}
+
 </body>
 
 </html>

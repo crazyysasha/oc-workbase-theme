@@ -1,40 +1,44 @@
 <div class="md:flex">
     <div class="p-5 md:p-6 lg:p-10 mt-4 mr-2 bg-white rounded-md lg:w-80">
         {% if user.avatar %}
-        <div class="relative mt-3 mx-auto w-28 h-28" >
-            <img class="rounded-full w-28 h-28" src="{{ user.avatar.thumb(auto, auto)  }}" alt="">
-            <div 
-                class="absolute right-0 bottom-3 bg-white border border-blue-500 
-                    text-blue-500 rounded-full text-center w-7 h-7 
-                    flex justify-center cursor-pointer justify-items-center" >
-                    <label class="m-auto w-full cursor-pointer" for="Avater">
-                        <input id="Avater" type="file" hidden>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="#1e40af"  class="m-auto w-4 h-4" viewBox="0 0 60 60">
-                            <g>
-                                <path d="M55.201,15.5h-8.524l-4-10H17.323l-4,10H12v-5H6v5H4.799C2.152,15.5,0,17.652,0,20.299v29.368
+        <div class="relative mt-3 mx-auto w-28 h-28">
+            <img id="blah" class="rounded-full w-28 h-28" src="{{ user.avatar.thumb(auto, auto)  }}" alt="">
+            <form data-request="onAvatarUpdate" data-request-files data-request-flash class="absolute right-0 bottom-3 bg-white border border-blue-500 
+                        text-blue-500 rounded-full text-center w-7 h-7 
+                        flex justify-center cursor-pointer justify-items-center">
+                <label class="m-auto w-full cursor-pointer" for="avatar">
+                    <input type="file" name="avatar" id="avatar" onchange="readURL(this);" hidden>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#1e40af" class="m-auto w-4 h-4" viewBox="0 0 60 60">
+                        <g>
+                            <path d="M55.201,15.5h-8.524l-4-10H17.323l-4,10H12v-5H6v5H4.799C2.152,15.5,0,17.652,0,20.299v29.368
                                 C0,52.332,2.168,54.5,4.833,54.5h50.334c2.665,0,4.833-2.168,4.833-4.833V20.299C60,17.652,57.848,15.5,55.201,15.5z M8,12.5h2v3H8
                                 V12.5z M58,49.667c0,1.563-1.271,2.833-2.833,2.833H4.833C3.271,52.5,2,51.229,2,49.667V20.299C2,18.756,3.256,17.5,4.799,17.5H6h6
                                 h2.677l4-10h22.646l4,10h9.878c1.543,0,2.799,1.256,2.799,2.799V49.667z" />
-                                <path d="M30,14.5c-9.925,0-18,8.075-18,18s8.075,18,18,18s18-8.075,18-18S39.925,14.5,30,14.5z M30,48.5c-8.822,0-16-7.178-16-16
+                            <path d="M30,14.5c-9.925,0-18,8.075-18,18s8.075,18,18,18s18-8.075,18-18S39.925,14.5,30,14.5z M30,48.5c-8.822,0-16-7.178-16-16
                                 s7.178-16,16-16s16,7.178,16,16S38.822,48.5,30,48.5z" />
-                                <path d="M30,20.5c-6.617,0-12,5.383-12,12s5.383,12,12,12s12-5.383,12-12S36.617,20.5,30,20.5z M30,42.5c-5.514,0-10-4.486-10-10
+                            <path d="M30,20.5c-6.617,0-12,5.383-12,12s5.383,12,12,12s12-5.383,12-12S36.617,20.5,30,20.5z M30,42.5c-5.514,0-10-4.486-10-10
                                 s4.486-10,10-10s10,4.486,10,10S35.514,42.5,30,42.5z" />
-                                <path d="M52,19.5c-2.206,0-4,1.794-4,4s1.794,4,4,4s4-1.794,4-4S54.206,19.5,52,19.5z M52,25.5c-1.103,0-2-0.897-2-2s0.897-2,2-2
+                            <path d="M52,19.5c-2.206,0-4,1.794-4,4s1.794,4,4,4s4-1.794,4-4S54.206,19.5,52,19.5z M52,25.5c-1.103,0-2-0.897-2-2s0.897-2,2-2
                                 s2,0.897,2,2S53.103,25.5,52,25.5z" />
-                            </g>
-                        </svg>
-                    </label>
-            </div>
+                        </g>
+                    </svg>
+                </label>
+            </form>
         </div>
+        <!-- <form data-request="onAvatarUpdate" data-request-files data-request-flash>
+            <input type="file" class="filepond" name="filepond" id="file" accept="image/png, image/jpeg, image/gif" />
+            <button type="submit">Загрузить </button>
+        </form> -->
+        
         {% else %}
-        <div class="relative mt-3 mx-auto w-28 h-28" >
+        <div class="relative mt-3 mx-auto w-28 h-28">
             <img class="rounded-full w-28 h-28" src="{{'assets/temp/user.png'|theme}}" alt="">
             <div class="absolute right-0 bottom-3 bg-white border border-blue-500 
                 text-blue-500 rounded-full text-center w-7 h-7 
-                flex justify-center cursor-pointer justify-items-center" >
+                flex justify-center cursor-pointer justify-items-center">
                 <label class="m-auto w-full cursor-pointer" for="Avater">
                     <input id="Avater" type="file" hidden>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="#1e40af"  class="m-auto w-4 h-4" viewBox="0 0 60 60">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#1e40af" class="m-auto w-4 h-4" viewBox="0 0 60 60">
                         <g>
                             <path d="M55.201,15.5h-8.524l-4-10H17.323l-4,10H12v-5H6v5H4.799C2.152,15.5,0,17.652,0,20.299v29.368
                             C0,52.332,2.168,54.5,4.833,54.5h50.334c2.665,0,4.833-2.168,4.833-4.833V20.299C60,17.652,57.848,15.5,55.201,15.5z M8,12.5h2v3H8
@@ -68,7 +72,7 @@
                 </svg>
                 <p class="text-xs sm:text-sm md:text-md lg:text-lg">4.5 из 5</p>
             </div>
-            <div class="pl-2"> 
+            <div class="pl-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="m-auto" height="15.88px" fill="#FFA500" viewBox="0 0 25 19.91">
                     <g>
                         <path class="fil0" d="M23.92 19c-0.72,-0.28 -1.35,-0.77 -1.8,-1.4 1.77,-1.2 2.88,-2.91 2.88,-4.82 0,-2.08 -1.33,-3.94 -3.4,-5.14 -0.22,5.05 -5.58,8.65 -11.61,8.65 -0.51,0 -1.01,-0.02 -1.51,-0.07 1.57,1.87 4.39,3.11 7.6,3.11 1.17,0 2.29,-0.16 3.31,-0.47 0.92,0.86 2.23,1.28 3.55,1.01 0.35,-0.08 0.69,-0.19 1,-0.35 0.1,-0.05 0.16,-0.15 0.15,-0.27 0,-0.11 -0.07,-0.2 -0.17,-0.25z" />
@@ -79,76 +83,23 @@
             </div>
         </div>
     </div>
-
-    <div class="p-5 md:p-6 lg:p-10 mt-4 bg-white rounded-md w-full">
-        <div data-request="onTest" data-request-update="account/update: '#formAccountEditor'" class="flex mb-5 justify-between items-center ">
-            <span class="text-xs sm:text-sm md:text-md lg:text-lg font-medium">Описание профиля:</span>
-            <a class="rounded-md text-white bg-blue-950 flex items-center text-center border border-white
-                    w-8 h-8 cursor-pointer  hover:border-blue-700 hover:bg-blue-700 transition-all duration-500" 
-            href="javascript:;" type="submit">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 m-auto w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                </svg>
-            </a>
-        </div>
-        <div id="formAccountEditor" class="lg:flex flex-col flex-wrap md:max-h-64">
-            <div class="mb-3" >
-                <div class="mb-1 text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium" >
-                    <span>Ф.И.О.</span>
-                </div>
-                <div class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
-                    <span>{{ user.name }}</span>
-                </div>
-            </div>
-            <div class="mb-3" >
-                <div class="mb-1 text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium" >
-                    <span>Дата рождения:</span>
-                </div>
-                <div class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
-                    {% if user.birthday %}
-                        <span>{{ user.birthday }}</span>
-                    {% else %}
-                        <span>Не выбрано</span>
-                    {% endif %}
-                </div>
-            </div>
-            <div class="mb-3" >
-                <div class="mb-1 text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium" >
-                    <span>Место Проживания:</span>
-                </div>
-                <div class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
-                    <span>г.Ташкент</span>
-                </div>
-            </div>
-            <div class="mb-3" >
-                <div class="mb-1 text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium" >
-                    <span>Номер телефона:</span>
-                </div>
-                <div class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
-                    <span>{{ user.username }}</span>
-                </div>
-            </div>
-            <div class="mb-3" >
-                <div class="mb-1 text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium" >
-                    <span>Электронная почта:</span>
-                </div>
-                <div class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
-                    <span>{{ user.email }}</span>
-                </div>
-            </div>
-            <div class="mb-3" >
-                <div class="mb-1 text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium" >
-                    <span>Пол:</span>
-                </div>
-                <div class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
-                    {% if user.gender %}
-                        <span>{{ user.gender == 'man' ? 'Мужской' : 'Женский' }}</span>
-                    {% else %}
-                        <span>Не выбрано</span>
-                    {% endif %}
-                    
-                </div>
-            </div>
-        </div>
+    <div class="w-full" id="formAccountEditor">
+        {% partial 'questionnaire/description' %}
     </div>
 </div>
+{% put scripts %}
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+{% endput %}

@@ -1,33 +1,78 @@
-{{ form_ajax('onUpdate') }}
-
-    <div class="form-group">
-        <label for="accountName">Full Name</label>
-        <input name="name" type="text" class="form-control" id="accountName" value="{{ user.name }}">
-    </div>
-
-    <div class="form-group">
-        <label for="accountEmail">Email</label>
-        <input name="email" type="email" class="form-control" id="accountEmail" value="{{ user.email }}">
-    </div>
-
-    <div class="form-group">
-        <label for="accountPassword">New Password</label>
-        <input name="password" type="password" class="form-control" id="accountPassword">
-    </div>
-
-    <div class="form-group">
-        <label for="accountPasswordConfirm">Confirm New Password</label>
-        <input name="password_confirmation" type="password" class="form-control" id="accountPasswordConfirm">
-    </div>
-
-    {% if updateRequiresPassword %}
-        <p>To change these details, please confirm your current password.</p>
-        <div class="form-group">
-            <label for="accountPasswordCurrent">Current Password <small class="text-danger">* required</small></label>
-            <input name="password_current" type="password" class="form-control" id="accountPasswordCurrent">
+==
+<?php
+function onStart()
+{
+    $this['user'] = Auth::getUser();
+}
+==
+{{ form_ajax('onUpdate', {'update': {'questionnaire/description': '#formAccountEditor'}}) }}
+    <div  data-request-flash class="p-5 md:p-6 lg:p-10 mt-4 bg-white rounded-md w-full">
+        <div class="flex mb-5 justify-between items-center ">
+            <span class="text-xs sm:text-sm md:text-md lg:text-lg font-medium">Редактирование профиля:</span>
+            <button type="submit"  class="rounded-md text-white bg-blue-950 flex items-center text-center border border-white
+                    w-8 h-8 cursor-pointer  hover:border-blue-700 hover:bg-blue-700 transition-all duration-500" 
+            type="submit">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 m-auto w-5" fill="#fff" viewBox="0 0 480.358 480.358">
+                <g>
+                    <path d="M387.702,43.753L181.316,253.467l-90.84-88.044L0,258.771l183.479,177.834l296.879-301.667L387.702,43.753z
+                     M182.98,394.343L42.421,258.108l48.719-50.265l90.676,87.886L388.042,86.178l49.892,49.1L182.98,394.343z" />
+                </g>
+            </svg>
+        </button>
         </div>
-    {% endif %}
-
-    <button type="submit" class="btn btn-default">Save</button>
+        <div class="lg:flex flex-col flex-wrap md:max-h-64">
+            <div class="mb-3" >
+                <div class="text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium" >
+                    <span>Ф.И.О.</span>
+                </div>
+                <!-- <div class="text-xs sm:text-sm md:text-md lg:text-lg" >
+                    <input class="rounded-md focus:outline-none w-full px-2 border border-gray-300" name="name" type="text" id="accountName" value="{{ user.name }}">
+                </div> -->
+                <div class="text-xs sm:text-sm md:text-md lg:text-lg" >
+                    <input class="rounded-md focus:outline-none px-2 py-1 border border-gray-300" name="name" type="text" id="accountName" value="{{ user.name }}">
+                </div>
+            </div>
+            <div class="mb-3" >
+                <div class="text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium" >
+                    <span>Дата рождения:</span>
+                </div>
+                <div class="text-xs sm:text-sm md:text-md lg:text-lg" >
+                    <input class="rounded-md focus:outline-none px-2 py-1 border border-gray-300" type="date" name="birthday" id="accountBirthday" value="{{ user.birthday|date('d.m.Y') }}">
+                </div>
+            </div>
+            <div class="mb-3" >
+                <div class="text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium" >
+                    <span>Место Проживания:</span>
+                </div>
+                <div class="text-xs sm:text-sm md:text-md lg:text-lg" >
+                    <span>г.Ташкент</span>
+                </div>
+            </div>
+            <div class="mb-3" >
+                <div class="text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium" >
+                    <span>Номер телефона:</span>
+                </div>
+                <div class="text-xs sm:text-sm md:text-md lg:text-lg" >
+                    <input class="rounded-md focus:outline-none px-2 py-1 border border-gray-300" name="username" type="text" id="accountUserName" value="{{ user.username }}">
+                </div>
+            </div>
+            <div class="mb-3" >
+                <div class="text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium" >
+                    <span>Электронная почта:</span>
+                </div>
+                <div class="text-xs sm:text-sm md:text-md lg:text-lg" >
+                    <input class="rounded-md focus:outline-none px-2 py-1 border border-gray-300" name="email" type="email" id="accountEmail" value="{{ user.email }}">
+                </div>
+            </div>
+            <div class="mb-3" >
+                <div class="text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium" >
+                    <span>Пол:</span>
+                </div>
+                <div class="text-xs sm:text-sm md:text-md lg:text-lg" >
+                    <input class="rounded-md focus:outline-none px-2 py-1 border border-gray-300" name="gender" type="text" id="accountGender" value="{{ user.gender }}">
+                </div>
+            </div>
+        </div>
+    </div>
 
 {{ form_close() }}

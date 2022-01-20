@@ -1,0 +1,71 @@
+<div  class="p-5 md:p-6 lg:p-10 mt-4 bg-white rounded-md w-full">
+    <div class="flex mb-5 justify-between items-center ">
+        <span class="text-xs sm:text-sm md:text-md lg:text-lg font-medium">Описание профиля:</span>
+        <a data-request="onAjax" data-request-update="account/update: '#formAccountEditor'" class="rounded-md text-white bg-blue-950 flex items-center text-center border border-white
+                w-8 h-8 cursor-pointer  hover:border-blue-700 hover:bg-blue-700 transition-all duration-500" 
+        href="javascript:;" type="submit">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 m-auto w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+            </svg>
+        </a>
+    </div>
+    <div  class="lg:flex flex-col flex-wrap md:max-h-64">
+        <div class="mb-3" >
+            <div class="mb-1 text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium" >
+                <span>Ф.И.О.</span>
+            </div>
+            <div class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
+                <span>{{ user.name }}</span>
+            </div>
+        </div>
+        <div class="mb-3" >
+            <div class="mb-1 text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium" >
+                <span>Дата рождения:</span>
+            </div>
+            <div class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
+                {% if user.birthday %}
+                    <span>{{ user.birthday|date('d.m.Y') }}</span>
+                {% else %}
+                    <span>Не выбрано</span>
+                {% endif %}
+            </div>
+        </div>
+        <div class="mb-3" >
+            <div class="mb-1 text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium" >
+                <span>Место Проживания:</span>
+            </div>
+            <div class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
+                <span>г.Ташкент</span>
+            </div>
+        </div>
+        <div class="mb-3" >
+            <div class="mb-1 text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium" >
+                <span>Номер телефона:</span>
+            </div>
+            <div class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
+                <span>{{ user.username }}</span>
+            </div>
+        </div>
+        <div class="mb-3" >
+            <div class="mb-1 text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium" >
+                <span>Электронная почта:</span>
+            </div>
+            <div class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
+                <span>{{ user.email }}</span>
+            </div>
+        </div>
+        <div class="mb-3" >
+            <div class="mb-1 text-gray-400 text-xs sm:text-sm md:text-md lg:text-lg font-medium" >
+                <span>Пол:</span>
+            </div>
+            <div class="mb-1 text-xs sm:text-sm md:text-md lg:text-lg" >
+                {% if user.gender %}
+                    <span>{{ user.gender == 'man' ? 'Мужской' : 'Женский' }}</span>
+                {% else %}
+                    <span>Не выбрано</span>
+                {% endif %}
+                
+            </div>
+        </div>
+    </div>
+</div>

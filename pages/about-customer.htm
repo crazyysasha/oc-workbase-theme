@@ -3,7 +3,6 @@ layout = "default"
 title = "Анкета"
 
 [account]
-redirect = 0
 paramCode = "code"
 forceSecure = 0
 requirePassword = 0
@@ -12,6 +11,24 @@ requirePassword = 0
 paramCode = "code"
 ==
 <?php
+function onAvatarUpdate()
+{
+
+    $validator = Validator::make(
+        $form = Input::all(), [
+            'avatar' => 'nullable|image|max:4000',
+        ]
+    );
+
+    if ($validator->fails()) {
+        throw new ValidationException($validator);
+    };
+      
+    $user = Auth::getUser();
+    $user->avatar = Input::file('avatar');   
+    $user->save();
+    return ['#avatar' => '<img src="'.$user->getAvatarThumb($size = 120,['mode' => 'crop']).'" alt="'.$user->name.'" height="120" width="120" class="img-circle">'];       
+}
 function onChangeUserType()
 {
     $user = Auth::getUser();
