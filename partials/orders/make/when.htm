@@ -6,15 +6,11 @@
     <h2 class="font-semibold text-sm ms:md md:text-lg lg:text-3xl md:font-medium mt-3 mb-4">
         Укажите время
     </h2>
+    <label class="px-2 py-1" for="start"> начать в </label>
+    <input id="start" class=" ml-2 border border-blue-950 rounded-md px-2 py-1 focus:outline-none"  type="datetime-local" v-model="started_at">
 
-    <label for="">
-        начать в 
-        <input type="datetime-local" v-model="started_at">
-    </label>
-    <label for="">
-        закончить в 
-        <input type="datetime-local" v-model="ended_at">
-    </label>
+    <label class="px-2 py-1" for="end">закончить в </label>
+    <input id="end" type="datetime-local" class=" ml-2 border border-blue-950 rounded-md px-2 py-1 focus:outline-none" v-model="ended_at">      
 
     <div class="sticky w-full bg-white bottom-4 pb-4 pt-2 mt-auto">
         <div class="flex justify-between items-center">
