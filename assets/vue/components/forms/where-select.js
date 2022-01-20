@@ -24,7 +24,7 @@ export default {
             this.loading = true;
 
             await this.$store.dispatch('updateDraftedOrder', {
-                id: this.$props.order.id,
+                id: this.$props.order?.id,
                 data: {
                     is_online: this.isOnline,
                     at_executor: this.atExecutor,
@@ -33,6 +33,8 @@ export default {
             });
 
             let order = this.$store.getters.draftedOrderByCategory(this.categorySlug);
+            
+            console.log(order);
 
             let nextPage;
             if (order.at_customer || order.at_customer == 1) {

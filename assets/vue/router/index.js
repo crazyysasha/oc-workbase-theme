@@ -16,7 +16,7 @@ export default VueRouter.createRouter({
     routes: [
         {
             name: 'MakeOrderForm',
-            path: '/vue',
+            path: '/',
             component: MakeOrderForm,
             children: [
                 {

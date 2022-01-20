@@ -74,7 +74,7 @@ use Crazy\Freelancer\Models\Service;
 
                         <div class="ml-2">
                             <h3 class="md:text-xl font-medium text-sm">
-                                <a href="{{ 'make-order' | page({'category': category.slug }) }}">
+                                <a href="{{ 'vue/order/make' | page({'category': category.slug }) }}">
                                     {{ category.name }}
                                 </a>
                             </h3>
@@ -88,7 +88,7 @@ use Crazy\Freelancer\Models\Service;
                         <ul class="mb-5">
                             {% for index, service in category.services if index < 5 %}
                             <li class="mb-2">
-                                <a class="flex items-center" href="{{ 'make-order' | page({'category': category.slug, 'service': service.slug }) }}">
+                                <a class="flex items-center" href="{{ 'vue/order/make' | page({'category': category.slug, 'service': service.slug }) }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 mr-2" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -103,7 +103,7 @@ use Crazy\Freelancer\Models\Service;
 
 
                     {% put cardFooter %}
-                        <a href="{{ 'make-order' | page({'category': category.slug }) }}" class="text-blue-900 flex items-center">
+                        <a href="{{ 'vue/order/make' | page({'category': category.slug }) }}" class="text-blue-900 flex items-center">
                             Все категории
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-900 ml-2" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">

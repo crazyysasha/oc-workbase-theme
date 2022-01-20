@@ -51,7 +51,7 @@ export default {
             
             this.loading = false;
 
-            this.$router.push(`/vue/${this.category.slug}/${this.service.slug}`);
+            this.$router.push(`/${this.category.slug}/${this.service.slug}`);
         }
     },
     mounted() {
