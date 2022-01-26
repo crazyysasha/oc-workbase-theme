@@ -2,12 +2,12 @@
     <div class="p-5 md:p-6 lg:p-10 mt-4 mr-2 bg-white rounded-md lg:w-80">
         {% if user.avatar %}
         <div class="relative mt-3 mx-auto w-28 h-28">
-            <img id="blah" class="rounded-full w-28 h-28" src="{{ user.avatar.thumb(auto, auto)  }}" alt="">
+            <img class="rounded-full w-28 h-28" src="{{ user.avatar.thumb(auto, auto)  }}" alt="">
             <form data-request="onAvatarUpdate" data-request-files data-request-flash class="absolute right-0 bottom-3 bg-white border border-blue-500 
                         text-blue-500 rounded-full text-center w-7 h-7 
                         flex justify-center cursor-pointer justify-items-center">
                 <label class="m-auto w-full cursor-pointer" for="avatar">
-                    <input type="file" name="avatar" id="avatar" onchange="readURL(this);" hidden>
+                    <input type="file" name="avatar" id="avatar" hidden>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="#1e40af" class="m-auto w-4 h-4" viewBox="0 0 60 60">
                         <g>
                             <path d="M55.201,15.5h-8.524l-4-10H17.323l-4,10H12v-5H6v5H4.799C2.152,15.5,0,17.652,0,20.299v29.368
@@ -87,19 +87,4 @@
         {% partial 'questionnaire/description' %}
     </div>
 </div>
-{% put scripts %}
-    <script>
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
 
-                reader.onload = function (e) {
-                    $('#blah')
-                        .attr('src', e.target.result);
-                };
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-    </script>
-{% endput %}

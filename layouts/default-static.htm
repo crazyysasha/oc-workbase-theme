@@ -1,11 +1,6 @@
-[session]
-security = "all"
-
-[account]
-redirect = "about-customer"
-paramCode = "code"
-forceSecure = 0
-requirePassword = 0
+[staticPage]
+useContent = 1
+default = 0
 ==
 {##}
 <!DOCTYPE html>
@@ -44,9 +39,9 @@ requirePassword = 0
 <body style="font-family: 'Aeroport';">
 
     {% partial "headers/default" %}
-
-    {% page %}
-
+    <div class="container px-4 mx-auto py-12">
+        {% page %}
+    </div>
     {% partial "footers/default" %}
 
     {% placeholder modals %}
@@ -170,39 +165,6 @@ requirePassword = 0
     <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js"></script>
 
     <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
-
-    {% put scripts %}
-        <script>
-            FilePond.registerPlugin(
-
-                FilePondPluginFileEncode,
-
-                FilePondPluginFileValidateSize,
-
-                FilePondPluginImageExifOrientation,
-
-                FilePondPluginImagePreview
-
-            );
-
-
-            FilePond.create(
-                document.querySelector("input[name='filepond']"),
-                {
-                    labelIdle: `Перетащите изображение или нажмите <span class="text-blue-500">Загрузить</span>`,
-                    imagePreviewHeight: 100,
-                    name: 'avatar',
-                    imageCropAspectRatio: '1:1',
-                    imageResizeTargetWidth: 100,
-                    imageResizeTargetHeight: 100,
-                    stylePanelLayout: 'compact circle',
-                    styleLoadIndicatorPosition: 'center bottom',
-                    styleButtonRemoveItemPosition: 'center bottom'
-                }
-            );
-            
-        </script>
-    {% endput %}
 
 
     {% scripts %}
