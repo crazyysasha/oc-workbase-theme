@@ -6,3 +6,43 @@ authorCode: Crazy
 code: crazy.workbase
 parent: tailpine
 database: '0'
+form:
+    fields:
+          Logo:
+            label: Логотип
+            type: fileupload
+            mode: image
+            span: left
+          Favicon:
+            label: Favicon
+            type: fileupload
+            mode: image
+            span: right
+          Android:
+            label: Ссылка на приложение Android
+            type: text
+            span: right
+          Ios:
+            label: Ссылка на приложение Ios
+            type: text
+            span: left
+          Copyright:
+            label: Copyright
+            type: text
+            span: left
+          SocialLinks:
+            label: Социальные сети
+            type: repeater
+            form:
+              fields:
+                social:
+                  type: dropdown
+                  label: Тип соц. сети 
+                  options:
+                    'instagram': instagram
+                    'facebook': facebook
+                    'youtube': youtube
+                    'telegram': telegram
+                link:
+                  type: text
+                  label: Ссылка на соц.сеть
