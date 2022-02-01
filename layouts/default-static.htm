@@ -15,7 +15,8 @@ default = 0
     <link rel="icon" type="image/png" sizes="32x32" href="{{ 'assets/images/favicon-32x32.png'|theme }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ 'assets/images/favicon-16x16.png'|theme }}">
     <link rel="stylesheet" href="{{[ 
-        'assets/css/app.css', 
+        'assets/css/app.css',
+        'assets/css/static-app.css', 
         '@framework.extras.css'
     ] | theme}}">
     <link rel="icon" href="{{ this.theme.favicon.path }}">
@@ -36,10 +37,10 @@ default = 0
     {% styles %}
 </head>
 
-<body style="font-family: 'Aeroport';">
+<body  style="font-family: 'Aeroport';">
 
     {% partial "headers/default" %}
-    <div class="container px-4 mx-auto py-12">
+    <div id="static-style" class="container px-4 mx-auto py-12">
         {% page %}
     </div>
     {% partial "footers/default" %}

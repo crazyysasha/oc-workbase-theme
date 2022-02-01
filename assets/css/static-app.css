@@ -1,0 +1,23 @@
+#static-style h1 {
+    font-size: 32px;
+}
+
+#static-style h2 {
+    font-size: 24px;
+}
+
+#static-style h3 {
+    font-size: 19px;
+}
+
+#static-style h4 {
+    font-size: 16px;
+}
+
+#static-style h5 {
+    font-size: 13px;
+}
+
+#static-style h6 {
+    font-size: 11px;
+}

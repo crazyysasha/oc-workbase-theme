@@ -9,10 +9,10 @@
                 Скачайте наше бесплатное приложение на смартфон!
             </h3>
             <div class="md:flex first:mr-5"  >
-                <a href="#" class="mr-2">
+                <a href="{{ this.theme.Android }}" class="mr-2">
                     <img class="" src="{{'assets/images/app.png' | theme}}" alt="">
                 </a>
-                <a href="#" class="">
+                <a href="{{ this.theme.Ios }}" class="">
                     <img class="" src="{{'assets/images/play.png' | theme}}" alt="">
                 </a>
             </div>
@@ -47,6 +47,11 @@
             <div class="">
                 <ul>
                     <li class="my-3 text-xs sm:text-sm md:text-md lg:text-lg ">
+                        <a class="hover:text-blue-300"  href="{{'about-us'|staticPage}}">
+                            О компании
+                        </a>
+                    </li>
+                    <li class="my-3 text-xs sm:text-sm md:text-md lg:text-lg ">
                         <a class="hover:text-blue-300"  href="#">
                             Служба поддержки
                         </a>
@@ -57,7 +62,7 @@
                         </a>
                     </li>
                     <li class="my-3 text-xs sm:text-sm md:text-md lg:text-lg">
-                        <a  class="hover:text-blue-300" href="#">
+                        <a  class="hover:text-blue-300" href="{{'terms-of-use'|staticPage}}">
                             Условия использования
                         </a>
                     </li>
@@ -68,31 +73,30 @@
             <div class="my-2">
                 <ul>
                     <li class="text-xs sm:text-sm md:text-md lg:text-lg ">
-                        <a class="hover:text-blue-300" href="#">
-                            © 2021. Все права защищены
-                        </a>
+                        <span>
+                            © 2022. Все права защищены
+                        </span>  
                     </li>
                 </ul>
             </div>
             <div class="my-2">
                 <ul class="flex items-center justify-center md:justify-start">
-                    <li class="mr-5"><a class="hover:text-blue-300" href="#">
-                        <img src="{{ 'assets/images/Facebook.png' | theme }}" alt="">
-                    </a></li>
-                    <li class="mr-5"><a class="hover:text-blue-300" href="#">
-                        <img src="{{ 'assets/images/instagram.png' | theme }}" alt="">
-                    </a></li>
-                    <li class="mr-5"><a class="hover:text-blue-300" href="#">
-                        <img src="{{ 'assets/images/telegram.png' | theme }}" alt="">
-                    </a></li>
+                    {% for social in this.theme.SocialLinks %}
+                        <li class="mr-5">
+                            <a  target="_blank" href="{{ social.link }}">
+                                <img class="transition-all duration-500 transform hover:scale-110" src="{{ social.social|media}}" alt="">
+                            </a>
+                        </li>
+                    {% endfor %}
                 </ul>
             </div>
             <div class="my-2">
                 <ul>
-                    <li class="text-xs sm:text-sm md:text-md lg:text-lg "><a class="hover:text-blue-300" href="#">Разработка сайта: BigSoft</a></li>
+                    <li class="text-xs sm:text-sm md:text-md lg:text-lg ">
+                        <a href="#">Разработка сайта: <span class="hover:text-blue-300">BigSoft</span></a>
+                    </li>
                 </ul>
             </div>
         </div>
     </div>
 </footer>
-

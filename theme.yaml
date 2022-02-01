@@ -36,13 +36,9 @@ form:
             form:
               fields:
                 social:
-                  type: dropdown
+                  type: mediafinder
                   label: Тип соц. сети 
-                  options:
-                    'instagram': instagram
-                    'facebook': facebook
-                    'youtube': youtube
-                    'telegram': telegram
+                  mode: image
                 link:
                   type: text
                   label: Ссылка на соц.сеть
