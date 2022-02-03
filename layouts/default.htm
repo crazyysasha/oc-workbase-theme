@@ -6,6 +6,9 @@ redirect = "about-customer"
 paramCode = "code"
 forceSecure = 0
 requirePassword = 0
+
+[localePicker]
+forceUrl = 0
 ==
 {##}
 <!DOCTYPE html>
@@ -161,46 +164,20 @@ requirePassword = 0
         '@framework.extras',
         ]|theme }}">
         </script>
-    <script src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.min.js"></script>
-
-    <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.min.js"></script>
-
-    <script src="https://unpkg.com/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.min.js"></script>
-
-    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js"></script>
-
-    <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
-
+    <script src="https://unpkg.com/imask"></script>
+    
     {% put scripts %}
-        <script>
-            FilePond.registerPlugin(
-
-                FilePondPluginFileEncode,
-
-                FilePondPluginFileValidateSize,
-
-                FilePondPluginImageExifOrientation,
-
-                FilePondPluginImagePreview
-
-            );
-
-
-            FilePond.create(
-                document.querySelector("input[name='filepond']"),
-                {
-                    labelIdle: `Перетащите изображение или нажмите <span class="text-blue-500">Загрузить</span>`,
-                    imagePreviewHeight: 100,
-                    name: 'avatar',
-                    imageCropAspectRatio: '1:1',
-                    imageResizeTargetWidth: 100,
-                    imageResizeTargetHeight: 100,
-                    stylePanelLayout: 'compact circle',
-                    styleLoadIndicatorPosition: 'center bottom',
-                    styleButtonRemoveItemPosition: 'center bottom'
-                }
-            );
-            
+        <script>    
+            var element = document.getElementById('selector');
+            var maskOptions = {
+            mask: '+{998}(00)000-00-00'
+            };
+            var mask = IMask(element, maskOptions);
+            var element = document.getElementById('selector2');
+            var maskOptions = {
+            mask: '+{998}(00)000-00-00'
+            };
+            var mask = IMask(element, maskOptions);
         </script>
     {% endput %}
 

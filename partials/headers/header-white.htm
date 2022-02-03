@@ -125,7 +125,7 @@
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-300  mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
                                             </svg>
-                                            Вход
+                                            {{'Вход'|_}}
                                         </button>
 
                                     </div>
@@ -137,7 +137,7 @@
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-300 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                             </svg>
-                                            Регистрация
+                                            {{'Регистрация'|_}}
                                         </button>
                                     </div>
                                 </li>
@@ -190,11 +190,15 @@
                             {% endif %}
                             
                             <li class="mr-3">
-                                <div class="relative" x-data="{ Modal : false , lang: 'Ru' }" @click.away="Modal = false">
+                                <div class="relative" x-data="{ Modal : false }" @click.away="Modal = false">
                                     <button
                                         class="border flex text-lg font-light tracking-tight items-center rounded-full w-20 py-2 justify-center hover:bg-blue-950 hover:text-white focus:bg-blue-950 focus:text-white focus:border-gray-300 focus:shadow-lg hover:border-blue-950 transition-all duration-500 shadow-none hover:shadow-lg focus:outline-none"
                                         @click="Modal = !Modal">
-                                        <span  x-text="lang" ></span>
+                                        <span>
+                                            {% for code, name in locales %}
+                                                {{ code == activeLocale ? name }}
+                                            {% endfor %}
+                                        </span>
                                         <svg x-show="!Modal" class="h-2 transform rotate-180 fill-current hover:text-white w-2 ml-2" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 47.255 47.255">
                                             <g>
                                                 <path d="M46.255,35.941c-0.256,0-0.512-0.098-0.707-0.293l-21.921-21.92l-21.92,21.92c-0.391,0.391-1.023,0.391-1.414,0
@@ -214,12 +218,11 @@
                                          x-cloak
                                          class="bg-white w-full absolute z-10  p-2 rounded-xl top-16">
                                         <div class="flex flex-col text-black text-lg font-light tracking-tight text-center">
-                                            <a @click="lang = 'Ru',Modal = !Modal" class="px-2 py-1  hover:text-white hover:bg-blue-950 rounded-lg" href="javascript:;">
-                                                <span>Ru</span>
-                                            </a>
-                                            <a @click="lang = 'Uz',Modal = !Modal" class="px-2 py-1  hover:text-white hover:bg-blue-950 rounded-lg" href="javascript:;">
-                                                <span>Uz</span>
-                                            </a>
+                                            {% for code, name in locales %}
+                                                <a @click="Modal = !Modal" class="px-2 py-1  hover:text-white hover:bg-blue-950 rounded-lg" data-request="onSwitchLocale" data-request-data="locale: '{{code}}'" href="javascript:;">
+                                                    <span>{{ name }}</span>
+                                                </a>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>
@@ -259,10 +262,10 @@
                                 </a>
                             </li>
                             <li @click="$dispatch('login-modal', true)" class="border-b border-blue-950 hover:bg-blue-950  font-semibold hover:bg-blue-950 rounded-lg p-2">
-                                <a href="#">Вход</a>
+                                <a href="#">{{'Вход'|_}}</a>
                             </li>
                             <li @click="$dispatch('register-modal', true)" class="border-b border-blue-950 hover:bg-blue-950 font-semibold hover:bg-blue-950 rounded-lg p-2">
-                                <ahref="#">Регистрация</a>
+                                <ahref="#">{{'Регистрация'|_}}</a>
                             </li>
                             <li class="border-b border-blue-950 hover:bg-blue-950 font-semibold rounded-lg hover:bg-blue-950 p-2">
                                 <a href="#">Служба поддержки</a>
