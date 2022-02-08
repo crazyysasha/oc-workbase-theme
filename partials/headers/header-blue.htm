@@ -288,9 +288,8 @@
                                     </li>
                                     <a
                                         class="border-b border-blue-950 font-semibold py-2 block px-5 hover:bg-blue-950 rounded-lg"
-                                        @click="open = ! open"
-                                        href="{{ 'home' | page }}">
-                                        <span>Выход</span>
+                                        href="javascript:;" data-request="onLogout" data-request-flash data-request-data="redirect: '/'">
+                                            <span>Выход</span>
                                     </a>
                                 </ul>
                             </li>
