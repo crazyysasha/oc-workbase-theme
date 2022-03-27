@@ -35,10 +35,10 @@ forceUrl = 0
     <link rel="stylesheet" href="{{'assets/aeroport/stylesheet.css'|theme }}">
     <style>
         [x-cloak] { display: none !important; }
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
     }
     </style>
     {% styles %}
@@ -164,8 +164,38 @@ forceUrl = 0
         '@framework.extras',
         ]|theme }}">
         </script>
+    <!-- Image user input fileupload Artemio_Langepas   -->
     <script src="https://unpkg.com/imask"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js"></script>
+    <script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
+    
+    <script>
+        
+        FilePond.registerPlugin(
 
+            FilePondPluginImagePreview,
+
+            );
+
+            FilePond.create(
+                document.querySelector('input-img'),
+                {
+                    labelIdle: `Загрузите ваше <br> <span class="filepond--label-action">Фото</span>`,
+                    imagePreviewHeight: 170,
+                    imageCropAspectRatio: '1:1',
+                    imageResizeTargetWidth: 200,
+                    imageResizeTargetHeight: 200,
+                    stylePanelLayout: 'compact circle',
+                    styleLoadIndicatorPosition: 'center bottom',
+                    styleProgressIndicatorPosition: 'center bottom',
+                    styleButtonRemoveItemPosition: 'center bottom',
+                    styleButtonProcessItemPosition: 'center bottom',
+                }
+            );
+    </script>
+    <!-- End -->
     {% put scripts %}
         <script>    
             var element = document.getElementById('selector');
